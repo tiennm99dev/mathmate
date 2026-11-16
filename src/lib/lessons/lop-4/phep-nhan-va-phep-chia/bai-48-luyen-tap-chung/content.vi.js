@@ -19,6 +19,17 @@ export default {
           text: 'Nhân với 10, 100, 1 000: viết thêm một, hai, ba chữ số 0 vào bên phải. Chia cho 10, 100, 1 000: bỏ bớt một, hai, ba chữ số 0 ở bên phải.',
         },
         {
+          type: 'table',
+          head: ['Phép tính', 'Kết quả'],
+          rows: [
+            ['48 256 × 10', '482 560'],
+            ['5 437 × 100', '543 700'],
+            ['625 400 : 100', '6 254'],
+            ['960 000 : 1 000', '960'],
+          ],
+          caption: 'Nhân, chia nhẩm với 10, 100, 1 000.',
+        },
+        {
           type: 'callout',
           tone: 'theorem',
           text: 'Nhân với số có hai chữ số: tích riêng thứ hai viết lùi sang trái một cột so với tích riêng thứ nhất.',
@@ -47,17 +58,6 @@ export default {
           type: 'callout',
           tone: 'theorem',
           text: 'Rút về đơn vị: tìm giá trị của một phần trước, rồi tìm giá trị của nhiều phần.',
-        },
-        {
-          type: 'table',
-          head: ['Phép tính', 'Kết quả'],
-          rows: [
-            ['48 256 × 10', '482 560'],
-            ['5 437 × 100', '543 700'],
-            ['625 400 : 100', '6 254'],
-            ['960 000 : 1 000', '960'],
-          ],
-          caption: 'Nhân, chia nhẩm với 10, 100, 1 000.',
         },
       ],
     },
@@ -179,6 +179,47 @@ export default {
       answer: 51200,
       hints: ['20 × 5 bằng bao nhiêu?'],
       solution: '512 × 20 × 5 = 512 × (20 × 5) = 512 × 100 = 51 200.',
+    },
+    {
+      type: 'choice',
+      prompt:
+        'Mi giấu quà sau cánh cửa có kết quả lớn nhất. Cửa A: 272 000 : 8; cửa B: 3 900 × 9; cửa C: 963 000 : 30; cửa D: 500 × 70. Quà ở sau cửa nào?',
+      options: ['Cửa B', 'Cửa A', 'Cửa C', 'Cửa D'],
+      answer: 0,
+      hints: [
+        'Em tính kết quả của từng cửa rồi so sánh.',
+        '963 000 : 30: em xoá một chữ số 0 ở số bị chia và số chia, được 96 300 : 3.',
+      ],
+      solution:
+        'Cửa A: 272 000 : 8 = 34 000; cửa B: 3 900 × 9 = 35 100; cửa C: 963 000 : 30 = 32 100; cửa D: 500 × 70 = 35 000. Kết quả lớn nhất là 35 100, nên quà ở sau cửa B.',
+    },
+    {
+      type: 'number',
+      prompt: 'Tính bằng cách thuận tiện: 125 × 32 × 8 = ?',
+      answer: 32000,
+      hints: ['125 × 8 bằng bao nhiêu?'],
+      solution: '125 × 32 × 8 = 32 × (125 × 8) = 32 × 1 000 = 32 000.',
+    },
+    {
+      type: 'multi',
+      prompt: 'Rô-bốt chỉ đi qua các ô có kết quả là số lẻ. Em chọn tất cả các ô đó.',
+      options: [
+        '500 × 50',
+        '90 090 : 30',
+        '605 × 13',
+        '36 018 : 9',
+        '145 000 : 1 000',
+        '80 000 : 40',
+        '163 × 7',
+        '24 × 35',
+      ],
+      answers: [1, 2, 4, 6],
+      hints: [
+        'Em tính kết quả từng ô. Số lẻ có chữ số tận cùng là 1, 3, 5, 7, 9.',
+        'Tích của hai số lẻ là số lẻ; tích có một thừa số chẵn là số chẵn.',
+      ],
+      solution:
+        '500 × 50 = 25 000 (chẵn); 90 090 : 30 = 3 003 (lẻ); 605 × 13 = 7 865 (lẻ); 36 018 : 9 = 4 002 (chẵn); 145 000 : 1 000 = 145 (lẻ); 80 000 : 40 = 2 000 (chẵn); 163 × 7 = 1 141 (lẻ); 24 × 35 = 840 (chẵn). Các ô có kết quả lẻ: 90 090 : 30, 605 × 13, 145 000 : 1 000 và 163 × 7.',
     },
     {
       type: 'number',
