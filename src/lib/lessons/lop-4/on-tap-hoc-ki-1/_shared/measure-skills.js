@@ -261,7 +261,7 @@ const YEARS = /** @type {const} */ ([
   { year: 1789, what: 'vua Quang Trung đại phá quân Thanh' },
   { year: 1945, what: 'nước Việt Nam Dân chủ Cộng hoà ra đời' },
   { year: 1975, what: 'đất nước ta thống nhất' },
-  { year: 2026, what: 'em học lớp 4' },
+  { year: 2010, what: 'Thăng Long – Hà Nội tròn 1 000 năm' },
 ]);
 
 /**

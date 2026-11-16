@@ -191,7 +191,8 @@ describe('measures', () => {
       const roman = rightText(q).replace('Thế kỉ ', '');
       if (q.solution.indexOf(`thế kỉ ${roman}.`) < 0) bad.push(q.prompt);
       if (year === 1945 && roman !== 'XX') bad.push(q.prompt);
-      if (year === 2026 && roman !== 'XXI') bad.push(q.prompt);
+      if (year === 2010 && roman !== 'XXI') bad.push(q.prompt);
+      if (year === 938 && roman !== 'X') bad.push(q.prompt);
       if (year === 1010 && roman !== 'XI') bad.push(q.prompt);
     }
     expect(bad).toEqual([]);

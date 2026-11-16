@@ -139,7 +139,7 @@ export default {
     {
       type: 'multi',
       prompt:
-        'Tứ giác ABCD có góc đỉnh A và góc đỉnh C là góc vuông. Những cặp cạnh nào vuông góc với nhau?',
+        'Tứ giác ABCD chỉ có hai góc vuông là góc đỉnh A và góc đỉnh C. Những cặp cạnh nào vuông góc với nhau?',
       options: ['AB và AD', 'CB và CD', 'BA và BC', 'DA và DC'],
       answers: [0, 1],
       hints: ['Hai cạnh vuông góc tạo thành góc vuông. Góc vuông ở những đỉnh nào?'],
