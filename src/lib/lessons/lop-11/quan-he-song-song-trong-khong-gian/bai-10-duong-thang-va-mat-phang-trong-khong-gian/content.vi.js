@@ -44,8 +44,8 @@ export default {
           items: [
             'Có một và chỉ một đường thẳng đi qua hai điểm phân biệt.',
             'Có một và chỉ một mặt phẳng đi qua ba điểm không thẳng hàng. Mặt phẳng qua ba điểm $A$, $B$, $C$ kí hiệu là $(ABC)$.',
-            'Tồn tại bốn điểm không cùng thuộc một mặt phẳng. Ta nói bốn điểm ấy không đồng phẳng.',
             'Nếu một đường thẳng có hai điểm phân biệt thuộc một mặt phẳng thì tất cả các điểm của đường thẳng đều thuộc mặt phẳng đó. Khi đó ta nói đường thẳng $d$ nằm trong $(P)$, kí hiệu $d \\subset (P)$.',
+            'Tồn tại bốn điểm không cùng thuộc một mặt phẳng. Ta nói bốn điểm ấy không đồng phẳng.',
             'Nếu hai mặt phẳng phân biệt có một điểm chung thì chúng có một đường thẳng chung duy nhất chứa tất cả các điểm chung của hai mặt phẳng đó.',
             'Trên mỗi mặt phẳng, các kết quả đã biết của hình học phẳng đều đúng.',
           ],

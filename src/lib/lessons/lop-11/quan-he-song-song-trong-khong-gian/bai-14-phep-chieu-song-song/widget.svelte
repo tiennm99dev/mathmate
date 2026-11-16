@@ -167,10 +167,10 @@
   {#if flat}
     <FeedbackNote
       tone="warn"
-      text="Phương chiếu $l$ gần như song song với mặt phẳng chứa hình: hình chiếu gần như dẹt thành một đoạn thẳng. Hãy đổi phương chiếu."
+      text="Phương chiếu $l$ song song hoặc gần song song với mặt phẳng chứa hình: hình chiếu dẹt (gần) thành một đoạn thẳng, nên ta không xét các tính chất ở đây. Hãy đổi phương chiếu."
     />
   {/if}
-  <ul class="space-y-2" aria-live="polite">
+  <ul class="space-y-2" aria-live="polite" hidden={flat}>
     {#each list as f, i (i)}
       <li
         class="rounded-xl px-4 py-3 text-sm {f.kept

@@ -192,7 +192,7 @@ export default {
       answer: 0,
       hints: ['Mỗi mặt bên có hai cạnh bên song song và bằng nhau.'],
       solution:
-        'Hai cạnh bên của một mặt bên song song và bằng nhau, nên mỗi mặt bên là hình bình hành. Chỉ ở hình lăng trụ đứng (học sau) các mặt bên mới là hình chữ nhật.',
+        'Hai cạnh bên của một mặt bên song song và bằng nhau, nên mỗi mặt bên là hình bình hành. Hình lăng trụ đứng (học sau) có các mặt bên là hình chữ nhật, nhưng nói chung mặt bên chỉ là hình bình hành.',
     },
     {
       type: 'number',

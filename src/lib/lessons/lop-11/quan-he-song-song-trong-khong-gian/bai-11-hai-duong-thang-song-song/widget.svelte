@@ -62,17 +62,26 @@
     chosen = null;
   }
 
-  /** @param {[string, string]} s @param {string} color @param {string} key */
+  /**
+   * A line drawn past both of its vertices: the part between them lies on the
+   * box and is dashed where the box hides it; the parts outside stay solid.
+   * @param {[string, string]} s @param {string} color @param {string} key
+   */
   function long(s, color, key) {
     const a = BOX[s[0]];
     const b = BOX[s[1]];
-    return { key, from: lerp3(a, b, -0.35), to: lerp3(a, b, 1.35), color, width: 3, dash: false };
+    const line = { color, width: 3 };
+    return [
+      { key: `${key}-0`, from: lerp3(a, b, -0.35), to: s[0], ...line, dash: false },
+      { key: `${key}-1`, from: s[0], to: s[1], ...line, dash: /** @type {const} */ ('auto') },
+      { key: `${key}-2`, from: s[1], to: lerp3(a, b, 1.35), ...line, dash: false },
+    ];
   }
 
   const segments = $derived([
     ...EDGES.map((e) => ({ key: segName(e), from: e[0], to: e[1], color: '#64748B', width: 1.6 })),
-    long(pair[0], RED, 'red'),
-    long(pair[1], BLUE, 'blue'),
+    ...long(pair[0], RED, 'red'),
+    ...long(pair[1], BLUE, 'blue'),
   ]);
   const polygons = $derived(
     plane ? [{ key: plane.join(''), pts: plane, fill: '#10B981', opacity: 0.25 }] : [],

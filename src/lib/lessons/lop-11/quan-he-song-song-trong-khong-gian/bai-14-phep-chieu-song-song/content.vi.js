@@ -157,7 +157,7 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Hình chiếu song song của một tam giác đều (lên mặt phẳng không song song với phương chiếu) có thể là',
+        'Hình chiếu song song của một tam giác đều (mặt phẳng chứa tam giác không song song với phương chiếu) có thể là',
       options: [
         'một tam giác bất kì',
         'chỉ một tam giác đều',
@@ -223,7 +223,7 @@ export default {
       answer: 0,
       hints: ['Hãy xem ảnh của đường tròn trong phần Khám phá.'],
       solution:
-        'Hình chiếu song song của đường tròn (lên mặt phẳng không song song với phương chiếu) là một đường elip, nên ta dùng đường elip để biểu diễn đường tròn.',
+        'Khi mặt phẳng chứa đường tròn không song song với phương chiếu, hình chiếu song song của đường tròn là một đường elip (hoặc một đường tròn), nên ta dùng đường elip để biểu diễn đường tròn.',
     },
   ],
   takeaways: [
