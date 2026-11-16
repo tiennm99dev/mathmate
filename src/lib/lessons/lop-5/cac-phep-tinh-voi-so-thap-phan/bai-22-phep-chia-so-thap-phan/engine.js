@@ -84,9 +84,10 @@ export function checkShift(b, pick) {
  * @param {number | 'comma'} input
  * @param {number} divisor
  * @param {number} misses
+ * @param {boolean} [commaWritten] the quotient already has its comma
  * @returns {{ ok: boolean, text: string }}
  */
-export function checkMove(action, input, divisor, misses) {
+export function checkMove(action, input, divisor, misses, commaWritten = false) {
   if (action.kind === 'comma') {
     if (input === 'comma') return { ok: true, text: action.say };
     return {
@@ -96,7 +97,12 @@ export function checkMove(action, input, divisor, misses) {
   }
   if (input === action.digit) return { ok: true, text: action.say };
   if (input === 'comma') {
-    return { ok: false, text: 'Chưa đến lúc viết dấu phẩy. Em còn chia phần nguyên.' };
+    return {
+      ok: false,
+      text: commaWritten
+        ? 'Thương đã có dấu phẩy rồi. Em chọn chữ số tiếp theo của thương.'
+        : 'Chưa đến lúc viết dấu phẩy. Em còn chia phần nguyên.',
+    };
   }
   if (misses > 0) return { ok: false, text: `Chưa đúng. ${action.say}` };
   const lead = action.zero ? 'Em đã viết thêm chữ số 0 vào số dư. ' : '';

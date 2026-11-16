@@ -266,7 +266,7 @@ export function productWhy(a, b) {
     fa > 0 && fb > 0
       ? `Hai thừa số có tất cả ${fa} + ${fb} = ${places} chữ số ở phần thập phân`
       : `Thừa số ${fa > 0 ? a : b} có ${places} chữ số ở phần thập phân`;
-  return `Nhân như số tự nhiên: ${x} × ${y} = ${natural}. ${count}, nên dùng dấu phẩy tách ra ${places} chữ số kể từ phải sang trái: ${a} × ${b} = ${full}.`;
+  return `Nhân như số tự nhiên: ${fmt(x)} × ${fmt(y)} = ${fmt(natural)}. ${count}, nên dùng dấu phẩy tách ra ${places} chữ số kể từ phải sang trái: ${a} × ${b} = ${full}.`;
 }
 
 /**

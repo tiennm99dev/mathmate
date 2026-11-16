@@ -63,6 +63,7 @@ describe('multiplication', () => {
     expect(productPlan('1,25', '4').product).toBe('5');
     expect(productPlan('12,6', '3').product).toBe('37,8');
     expect(productWhy('2,5', '1,3')).toContain('1 + 1 = 2');
+    expect(productWhy('3,05', '2,1')).toContain('305 × 21 = 6\u202f405');
   });
 });
 

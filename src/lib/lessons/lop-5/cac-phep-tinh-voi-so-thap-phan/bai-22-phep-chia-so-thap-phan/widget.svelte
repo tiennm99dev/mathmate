@@ -130,7 +130,7 @@
   /** @param {number | 'comma'} input */
   async function move(input) {
     if (phase !== 'divide' || !next) return;
-    const result = checkMove(next, input, plan.shift.divisor, misses);
+    const result = checkMove(next, input, plan.shift.divisor, misses, quotientSoFar.includes(','));
     if (!result.ok) {
       misses += 1;
       note = { tone: 'warn', text: result.text };

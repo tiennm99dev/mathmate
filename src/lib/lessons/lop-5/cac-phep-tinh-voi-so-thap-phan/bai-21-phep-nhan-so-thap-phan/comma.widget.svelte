@@ -1,6 +1,7 @@
 <script>
   import { tick } from 'svelte';
   import KidNote from '#lib/core/kid/kid-note.svelte';
+  import { fmt } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
   import CommaStrip from '../_shared/comma-strip.svelte';
   import { COMMA_TASKS, checkComma, commaTask } from './engine.js';
@@ -36,12 +37,13 @@
     {pair[0]} × {pair[1]} = {result?.ok ? task.full : '?'}
   </p>
   <p class="text-center text-lg text-slate-700">
-    Nhân như số tự nhiên: {task.x} × {task.y} = {task.natural}. Em chạm vào chỗ đặt dấu phẩy.
+    Nhân như số tự nhiên: {fmt(task.x)} × {fmt(task.y)} = {fmt(task.natural)}. Em chạm vào chỗ đặt
+    dấu phẩy.
   </p>
   <CommaStrip
     digits={task.digits}
     comma={gap}
-    label="Tích {task.natural}{gap === null
+    label="Tích {fmt(task.natural)}{gap === null
       ? ', chưa có dấu phẩy'
       : `, dấu phẩy sau chữ số thứ ${gap}`}"
     onpick={pick}

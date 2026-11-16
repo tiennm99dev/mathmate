@@ -23,7 +23,7 @@
 
   const note = $derived.by(() => {
     if (mode === 'drag') return { tone: /** @type {const} */ ('info'), text: areaNote(cols, rows) };
-    if (result)
+    if (result && built)
       return {
         tone: result.ok ? /** @type {const} */ ('ok') : /** @type {const} */ ('warn'),
         text: result.text,

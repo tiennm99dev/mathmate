@@ -37,5 +37,15 @@ describe('division board', () => {
     expect(checkMove(first, 3, 4, 0).text).toContain('8 chia 4 được mấy');
     expect(checkMove(comma, 'comma', 4, 0).ok).toBe(true);
     expect(checkMove(comma, 1, 4, 0).ok).toBe(false);
+    const after = plan.division.actions[2];
+    expect(checkMove(after, 'comma', 4, 0, true).text).toContain('đã có dấu phẩy');
+  });
+
+  it('gives every task the quotient of the two numbers', () => {
+    const num = (/** @type {string} */ t) => Number(t.replace(',', '.'));
+    const wrong = TASKS.filter(
+      ([a, b]) => Math.abs(num(planOf(a, b).quotient) - num(a) / num(b)) > 1e-9,
+    );
+    expect(wrong).toEqual([]);
   });
 });
