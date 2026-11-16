@@ -102,6 +102,14 @@ describe('chapter skills', () => {
     expect(bad).toEqual([]);
   });
 
+  it('draw sequences whose every term exists', () => {
+    for (const q of sample(dayso)) {
+      const m = /^Tính \$\\lim \\dfrac\{.+?\}\{(.+?)\}\$/.exec(q.prompt);
+      if (!m) continue;
+      for (let n = 1; n <= 20; n++) expect(evalPoly(m[1], 'n', n)).not.toBe(0);
+    }
+  });
+
   it('cover every variant', () => {
     const kinds = (
       /** @type {import('#lib/core/drill.js').Skill} */ s,

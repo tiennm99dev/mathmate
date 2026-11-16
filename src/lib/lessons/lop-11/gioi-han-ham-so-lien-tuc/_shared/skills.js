@@ -57,8 +57,13 @@ export const dayso = {
       const b = int(rand, -6, 6);
       const c = int(rand, -6, 6);
       const d = int(rand, 1, 6);
-      const e = int(rand, -6, 6);
       const f = int(rand, 1, 6);
+      // Every term must exist: redraw e until dn² + en + f ≠ 0 for every
+      // n ≥ 1. A whole root n has dn² = −en − f < |e|n, so n < |e| ≤ 6.
+      let e = int(rand, -6, 6);
+      const vanishes = () =>
+        Array.from({ length: 6 }, (_, i) => i + 1).some((n) => d * n * n + e * n + f === 0);
+      while (vanishes()) e = int(rand, -6, 6);
       const top = polyTex([a, b, c], 'n');
       const bottom = polyTex([d, e, f], 'n');
       return {

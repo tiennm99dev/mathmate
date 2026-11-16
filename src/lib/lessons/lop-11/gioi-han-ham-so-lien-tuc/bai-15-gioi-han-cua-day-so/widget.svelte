@@ -15,6 +15,8 @@
 
   const seq = $derived(SEQUENCES.find((s) => s.id === id) ?? SEQUENCES[0]);
   const finite = $derived(Number.isFinite(seq.limit));
+  // The partial sums are named S_n, every other sequence u_n.
+  const sym = $derived(seq.id === 'sum' ? 'S' : 'u');
   const tol = $derived(finite ? EPSILONS[level] : LEVELS[level]);
   const N = $derived(firstInside(seq, tol));
   const ns = Array.from({ length: SHOWN }, (_, i) => i + 1);
@@ -49,12 +51,12 @@
 
   const note = $derived(
     finite
-      ? `Với $\\varepsilon = ${numTex(tol)}$: $|u_n - ${seq.limitTex}| < ${numTex(tol)}$ với mọi $n \\ge ${N}$, chẳng hạn $|u_{${N}} - ${seq.limitTex}| = ${numTex(seq.gap?.(N) ?? 0, 4)}$. Chỉ ${outside} số hạng đầu nằm ngoài dải.`
+      ? `Với $\\varepsilon = ${numTex(tol)}$: $|${sym}_n - ${seq.limitTex}| < ${numTex(tol)}$ với mọi $n \\ge ${N}$, chẳng hạn $|${sym}_{${N}} - ${seq.limitTex}| = ${numTex(seq.gap?.(N) ?? 0, 4)}$. Chỉ ${outside} số hạng đầu nằm ngoài dải.`
       : `Với $M = ${numTex(tol)}$: $u_n > ${numTex(tol)}$ với mọi $n \\ge ${N}$, chẳng hạn $u_{${N}} = \\sqrt{${N}} \\approx ${numTex(seq.term(N), 3)}$. Chỉ ${outside} số hạng đầu không vượt quá $M$.`,
   );
   const lesson = $derived(
     finite
-      ? `Thu hẹp dải thì $N$ lớn lên, nhưng với mọi $\\varepsilon > 0$ luôn có một chỉ số $N$ như vậy: $|u_n - ${seq.limitTex}|$ nhỏ hơn một số dương bé tuỳ ý kể từ một số hạng nào đó trở đi. Do đó $\\lim u_n = ${seq.limitTex}$.`
+      ? `Thu hẹp dải thì $N$ lớn lên, nhưng với mọi $\\varepsilon > 0$ luôn có một chỉ số $N$ như vậy: $|${sym}_n - ${seq.limitTex}|$ nhỏ hơn một số dương bé tuỳ ý kể từ một số hạng nào đó trở đi. Do đó $\\lim ${sym}_n = ${seq.limitTex}$.`
       : 'Nâng mức $M$ thì $N$ lớn lên, nhưng với mọi $M > 0$ luôn có một chỉ số $N$ như vậy: $u_n$ lớn hơn một số dương lớn tuỳ ý kể từ một số hạng nào đó trở đi. Do đó $\\lim u_n = +\\infty$.',
   );
 </script>
@@ -67,10 +69,7 @@
   />
 
   <div class="overflow-x-auto text-center">
-    <Tex
-      display
-      math={`${seq.tex}, \\quad \\lim_{n \\to +\\infty} ${seq.id === 'sum' ? 'S_n' : 'u_n'} = ${seq.limitTex}`}
-    />
+    <Tex display math={`${seq.tex}, \\quad \\lim_{n \\to +\\infty} ${sym}_n = ${seq.limitTex}`} />
   </div>
 
   <GraphBox {win} {label} {points} {bands} curves={limitLine} />
