@@ -495,7 +495,10 @@ Other shared pieces:
   `ticks.js` (`ticksUpTo`), `force-arrow`, `push-motion.js` (`pushState`),
   `scatter.js` (seeded measuring noise), `circular.js` (a point going round a
   circle: `pointAt`, `tangentAt`, `arcPath`, `slicePath`), `galvanometer` (centre-zero, drawn inside
-  an SVG) and `current-trace` (current against time, with `pushSample`); ChemMax has `periodic-table`, `atom-model`, `molecule-viewer`,
+  an SVG), `current-trace` (current against time, with `pushSample`), `oscillation.js`
+  (harmonic motion: `stateAt`, `piTex`, `equationTex`, `phaseRelation`) with `osc-graph` (a signed
+  graph against time that can be a time slider) and `spring-mass` (a horizontal spring
+  pendulum), and `renewable-power.js` (solar, wind and hydro power); ChemMax has `periodic-table`, `atom-model`, `molecule-viewer`,
   `equation-balancer`, `ph-scale`, `lab-glassware`, `equation-line` (a
   book-style equation such as "Zn + 2HCl → ZnCl2 + H2↑" with real subscripts)
   with `reaction.js` (`terms`, `isBalancedText`, which also checks condensed
@@ -503,7 +506,9 @@ Other shared pieces:
   `elements.js` (`electronConfiguration`, `outerElectrons`,
   `unpairedElectrons`, `configTex`), `main-group.js` (radius and ionisation
   energy), `compounds.js` (highest oxides and hydroxides), `bond-energy.js`
-  (`BOND_ENERGY`, the book's values), `test-tube` and `curve-plot` (a curve
+  (`BOND_ENERGY`, the book's values), `test-tube`, `sample-bench` (telling unknown samples apart with reagents and a results
+  table), `alkane-name.js` (IUPAC names of alkanes from a drawn skeleton, `judgeName`) and
+  `curve-plot` (a curve
   against time or volume with dashed series and a shaded band); BioMax has
   `diagram-hotspots`, `punnett-square`, `pedigree-chart`, `food-web` (`mode`
   opens it in "Loại bỏ" mode), `dna-codon-translator`, `population-chart`,
