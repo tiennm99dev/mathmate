@@ -163,13 +163,13 @@ export default {
     },
     {
       type: 'fraction',
-      prompt: 'Tính giá trị của $\\cos 75^\\circ\\cos 15^\\circ$.',
+      prompt: 'Tính giá trị của $\\sin 105^\\circ\\sin 15^\\circ$.',
       answer: [1, 4],
       hints: [
-        'Biến đổi tích thành tổng: $\\cos a\\cos b = \\dfrac{1}{2}[\\cos(a - b) + \\cos(a + b)]$.',
+        'Biến đổi tích thành tổng: $\\sin a\\sin b = \\dfrac{1}{2}[\\cos(a - b) - \\cos(a + b)]$.',
       ],
       solution:
-        '$\\cos 75^\\circ\\cos 15^\\circ = \\dfrac{1}{2}(\\cos 60^\\circ + \\cos 90^\\circ) = \\dfrac{1}{2} \\cdot \\dfrac{1}{2} = \\dfrac{1}{4}$.',
+        '$\\sin 105^\\circ\\sin 15^\\circ = \\dfrac{1}{2}(\\cos 90^\\circ - \\cos 120^\\circ) = \\dfrac{1}{2}\\left(0 + \\dfrac{1}{2}\\right) = \\dfrac{1}{4}$.',
     },
     {
       type: 'fraction',

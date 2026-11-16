@@ -166,4 +166,24 @@ describe('chapter drill skills', () => {
     }
     expect(fails).toEqual([]);
   });
+
+  it('writes steps that agree with the given values', () => {
+    const fails = [];
+    for (const q of [...sample(goc), ...sample(congThuc)]) {
+      // 1 − (given)² written as a fraction in the first step.
+      let m = /^Cho \$\\(?:sin|cos)\\alpha = (.+?)\$/.exec(q.prompt);
+      if (m) {
+        const s = /= \\dfrac\{(\d+)\}\{(\d+)\}\$\.$/.exec(q.steps[0]);
+        const given = texValue(m[1]);
+        if (!s || Math.abs(Number(s[1]) / Number(s[2]) - (1 - given * given)) > 1e-9) {
+          fails.push(`${q.prompt} | ${q.steps[0]}`);
+        }
+        continue;
+      }
+      // A negative tangent is bracketed after a sign.
+      m = /^Cho \$\\tan a = /.exec(q.prompt);
+      if (m && /[+-] -\d/.test(q.steps[0])) fails.push(q.steps[0]);
+    }
+    expect(fails).toEqual([]);
+  });
 });

@@ -116,7 +116,7 @@ export const goc = {
       const other = givenSin ? co : s;
       const otherSign = other > 0 ? 'dương' : 'âm';
       const steps = [
-        `$${otherName}^2\\alpha = 1 - \\left(${fracTex(givenSin ? s : co, c)}\\right)^2 = \\dfrac{${c * c - (givenSin ? a : b) ** 2}}{${c * c}}$.`,
+        `$${otherName}^2\\alpha = 1 - \\left(${fracTex(givenSin ? s : co, c)}\\right)^2 = \\dfrac{${c * c - a * a}}{${c * c}}$.`,
         `Với $${QUADRANT_TEX[quad]}$, $${otherName}\\alpha$ ${otherSign}, nên $${otherName}\\alpha = ${fracTex(other, c)}$.`,
       ];
       if (askTan) {
@@ -218,12 +218,13 @@ export const congThuc = {
       const num = plus ? ta + tb : ta - tb;
       const op = plus ? '+' : '-';
       const opInv = plus ? '-' : '+';
+      const taOp = ta < 0 ? `(${ta})` : `${ta}`;
       const tbOp = tb < 0 ? `(${tb})` : `${tb}`;
       return {
         prompt: `Cho $\\tan a = ${ta}$ và $\\tan b = ${tb}$. Tính $\\tan(a ${op} b)$.`,
         answer: value(num, den),
         steps: [
-          `$\\tan(a ${op} b) = \\dfrac{\\tan a ${op} \\tan b}{1 ${opInv} \\tan a\\tan b} = \\dfrac{${ta} ${op} ${tbOp}}{1 ${opInv} ${ta} \\cdot ${tbOp}}$.`,
+          `$\\tan(a ${op} b) = \\dfrac{\\tan a ${op} \\tan b}{1 ${opInv} \\tan a\\tan b} = \\dfrac{${ta} ${op} ${tbOp}}{1 ${opInv} ${taOp} \\cdot ${tbOp}}$.`,
           `$= \\dfrac{${num}}{${den}} = ${fracTex(num, den)}$.`,
         ],
         hints: [`$\\tan(a ${op} b) = \\dfrac{\\tan a ${op} \\tan b}{1 ${opInv} \\tan a\\tan b}$.`],
