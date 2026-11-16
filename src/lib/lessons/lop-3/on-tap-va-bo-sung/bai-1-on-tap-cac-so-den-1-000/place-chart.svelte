@@ -1,6 +1,6 @@
 <script>
   import { PLACES, valueOf } from '#lib/core/kid/place-value.js';
-  import PlaceBlock from '../_shared/place-block.svelte';
+  import Block from '#lib/core/kid/block.svelte';
   import { button } from '#lib/core/ui.js';
 
   /**
@@ -22,6 +22,8 @@
   let { counts, name, mark = null, onchange } = $props();
 
   const CELL = { hundreds: 3, tens: 4, ones: 8 };
+  /** @type {Record<string, import('#lib/core/kid/place-value.js').BlockKind>} */
+  const BLOCK = { hundreds: 'tram', tens: 'chuc', ones: 'don-vi' };
 
   /**
    * @param {import('#lib/core/kid/place-value.js').PlaceKey} key
@@ -44,7 +46,7 @@
       <p class="text-sm font-semibold text-slate-600">{place.title}</p>
       <div class="flex min-h-24 flex-wrap items-end justify-center gap-0.5" aria-hidden="true">
         {#each { length: counts[place.key] } as _, i (i)}
-          <PlaceBlock kind={place.key} cell={CELL[place.key]} />
+          <Block kind={BLOCK[place.key]} cell={CELL[place.key]} />
         {/each}
       </div>
       <p class="text-3xl font-bold tabular-nums text-slate-800">{counts[place.key]}</p>

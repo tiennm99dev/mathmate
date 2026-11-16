@@ -9,13 +9,13 @@
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions, numberOptions, questionKey } from '#lib/core/kid/quiz.js';
 import { MINUS } from '#lib/core/number-format.js';
-import { NOTES, sumNotes } from '../_shared/money.js';
+import { GRADE2_NOTES as NOTES, sumNotes } from '#lib/core/kid/money.js';
 
 /**
  * What the widget draws above the options: a tape marked in dm with an arrow,
  * some banknotes, or a broken line with the length of each side.
  * @typedef {{ type: 'tape', at: number }
- *   | { type: 'notes', notes: import('../_shared/money.js').Note[] }
+ *   | { type: 'notes', notes: import('#lib/core/kid/money.js').Note[] }
  *   | { type: 'zigzag', sides: [number, number, number] }} Visual
  */
 
@@ -199,7 +199,7 @@ export function tapeQuestion(rand) {
 export function moneyQuestion(rand) {
   const variant = int(rand, 0, 2);
   if (variant === 0) {
-    const notes = /** @type {import('../_shared/money.js').Note[]} */ ([]);
+    const notes = /** @type {import('#lib/core/kid/money.js').Note[]} */ ([]);
     const count = int(rand, 2, 3);
     while (notes.length < count && sumNotes(notes) < 1000) {
       const next = pick(rand, /** @type {const} */ ([100, 200, 500]));

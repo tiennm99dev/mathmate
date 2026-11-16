@@ -7,7 +7,7 @@
   import BrokenLine from '../_shared/broken-line.svelte';
   import ColumnBoard from '../_shared/column-board.svelte';
   import { columnSteps } from '../_shared/columns.js';
-  import { passFocus } from '../_shared/pass-focus.js';
+  import { passFocus } from '#lib/core/kid/pass-focus.js';
   import { resultOf } from '#lib/core/kid/column.js';
   import { KIND_LABELS, MAX_N, MIN_N, RULES, buildRound, platesFor } from './engine.js';
 

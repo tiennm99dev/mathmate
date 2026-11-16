@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { optionText } from '#lib/core/kid/quiz.js';
 import { GROUP } from '#lib/core/number-format.js';
-import { fewestNotes } from '../_shared/money.js';
+import { GRADE3_NOTES, fewestNotes } from '#lib/core/kid/money.js';
 import {
   GOODS,
   KIND_LABELS,
@@ -18,7 +18,7 @@ const plain = (text) => text.replaceAll(GROUP, ' ');
 describe('the pretend shop', () => {
   it('prices every good in whole thousands the notes can pay', () => {
     const bad = GOODS.filter((g) => {
-      const notes = fewestNotes(g.price);
+      const notes = fewestNotes(g.price, GRADE3_NOTES);
       return !notes || notes.length > MAX_NOTES || g.price > 100000;
     });
     expect(bad).toEqual([]);

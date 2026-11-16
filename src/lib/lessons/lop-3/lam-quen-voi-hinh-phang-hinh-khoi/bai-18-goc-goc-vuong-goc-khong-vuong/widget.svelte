@@ -5,7 +5,7 @@
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
   import { pointsAttr } from '#lib/utils/svg.js';
-  import { passFocus } from '../_shared/pass-focus.js';
+  import { passFocus } from '#lib/core/kid/pass-focus.js';
   import SceneFigure from '../_shared/scene-figure.svelte';
   import { cornerPath, nameAway } from '../_shared/scene.js';
   import {

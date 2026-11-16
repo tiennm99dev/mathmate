@@ -3,8 +3,8 @@
   import { countLabel } from '#lib/core/kid/quiz.js';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
-  import DotGrid from '../_shared/dot-grid.svelte';
-  import { passFocus } from '../_shared/pass-focus.js';
+  import DotGrid from '#lib/core/kid/dot-grid.svelte';
+  import { passFocus } from '#lib/core/kid/pass-focus.js';
   import TableGrid from '#lib/core/kid/table-grid.svelte';
   import { divLine } from '#lib/core/kid/times-table.js';
   import DigitTable from './digit-table.svelte';

@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { fewestNotes, sumNotes } from '../_shared/money.js';
+import { GRADE2_NOTES, fewestNotes, sumNotes } from '#lib/core/kid/money.js';
 import { GOODS, MAX_TRAY, SWAPS, payFeedback, swapCount, swapFeedback } from './engine.js';
 
 describe('the shop', () => {
   it('sells goods that notes can pay within the tray', () => {
     const bad = GOODS.filter((g) => {
-      const notes = fewestNotes(g.price);
+      const notes = fewestNotes(g.price, GRADE2_NOTES);
       return !notes || sumNotes(notes) !== g.price || notes.length > MAX_TRAY;
     });
     expect(bad).toEqual([]);

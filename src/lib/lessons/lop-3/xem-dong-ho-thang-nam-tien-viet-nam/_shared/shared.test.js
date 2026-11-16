@@ -3,8 +3,16 @@ import { rng } from '#lib/core/drill.js';
 import { optionText } from '#lib/core/kid/quiz.js';
 import { WEEKDAYS } from '#lib/core/kid/time.js';
 import { GROUP } from '#lib/core/number-format.js';
-import { NOTES, fewestNotes, moneyText, notesText, spareNote, sumNotes } from './money.js';
+import {
+  GRADE3_NOTES as NOTES,
+  fewestNotes,
+  moneyText,
+  notesText,
+  spareNote,
+  sumNotes,
+} from '#lib/core/kid/money.js';
 import { LABELS, MAKERS, labelsOf, roundOf } from './questions.js';
+import { handsText } from '#lib/core/kid/time.js';
 import {
   THIRTY,
   THIRTY_ONE,
@@ -12,7 +20,6 @@ import {
   daysIn,
   dialText,
   durationText,
-  handsWords,
   kemText,
   later,
   monthDaysText,
@@ -33,12 +40,12 @@ describe('reading a clock to the minute', () => {
   });
 
   it('says where the hands point without the time', () => {
-    expect(handsWords(8 * 60 + 32)).toBe(
+    expect(handsText(8 * 60 + 32)).toBe(
       'kim ngắn ở giữa số 8 và số 9, kim dài chỉ vạch nhỏ thứ 2 sau số 6',
     );
-    expect(handsWords(3 * 60)).toBe('kim ngắn chỉ số 3, kim dài chỉ số 12');
-    expect(handsWords(3 * 60 + 15)).toContain('kim dài chỉ số 3');
-    expect(handsWords(3 * 60 + 3)).toContain('vạch nhỏ thứ 3 sau số 12');
+    expect(handsText(3 * 60)).toBe('kim ngắn chỉ số 3, kim dài chỉ số 12');
+    expect(handsText(3 * 60 + 15)).toContain('kim dài chỉ số 3');
+    expect(handsText(3 * 60 + 3)).toContain('vạch nhỏ thứ 3 sau số 12');
   });
 
   it('adds minutes and writes lengths of time', () => {
@@ -71,8 +78,8 @@ describe('months and the calendar', () => {
 describe('money', () => {
   it('adds notes and pays with the fewest', () => {
     expect(sumNotes([20000, 10000, 5000])).toBe(35000);
-    expect(fewestNotes(38000)).toEqual([20000, 10000, 5000, 2000, 1000]);
-    expect(fewestNotes(1500)).toBeNull();
+    expect(fewestNotes(38000, NOTES)).toEqual([20000, 10000, 5000, 2000, 1000]);
+    expect(fewestNotes(1500, NOTES)).toBeNull();
     expect(notesText([5000, 20000, 5000])).toBe(
       `1 tờ ${moneyText(20000)} và 2 tờ ${moneyText(5000)}`,
     );

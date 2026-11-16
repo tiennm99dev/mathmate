@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { optionText, questionKey, weakLabels } from '#lib/core/kid/quiz.js';
-import { sumNotes } from '../_shared/money.js';
+import { sumNotes } from '#lib/core/kid/money.js';
 import {
   FIT_UNITS,
   KINDS,

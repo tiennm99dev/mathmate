@@ -4,8 +4,8 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import Banknote from '../_shared/banknote.svelte';
-  import { NOTES, NOTE_WORDS, moneyText, sumNotes } from '../_shared/money.js';
+  import Banknote from '#lib/core/kid/banknote.svelte';
+  import { GRADE3_NOTES as NOTES, NOTE_WORDS, moneyText, sumNotes } from '#lib/core/kid/money.js';
   import QuizVisual from '../_shared/quiz-visual.svelte';
   import {
     GOODS,
@@ -21,7 +21,7 @@
 
   let chosen = $state(3);
   const good = $derived(GOODS[chosen]);
-  /** @type {import('../_shared/money.js').Note[]} */
+  /** @type {import('#lib/core/kid/money.js').Note[]} */
   let given = $state([]);
   let phase = $state(/** @type {'pay' | 'change' | 'done'} */ ('pay'));
   let changeNote = $state(/** @type {{ ok: boolean, text: string } | null} */ (null));
@@ -38,7 +38,7 @@
     changeNote = null;
   }
 
-  /** @param {import('../_shared/money.js').Note} note */
+  /** @param {import('#lib/core/kid/money.js').Note} note */
   function add(note) {
     if (phase !== 'pay' || given.length >= MAX_NOTES) return;
     given = [...given, note];

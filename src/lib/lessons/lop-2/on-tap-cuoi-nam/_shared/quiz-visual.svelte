@@ -6,7 +6,7 @@
   import { resultOf } from '#lib/core/kid/column.js';
   import ColumnBoard from './column-board.svelte';
   import Figure from './figure.svelte';
-  import PlaceBlock from './place-block.svelte';
+  import Block from '#lib/core/kid/block.svelte';
   import SolidFigure from './solid-figure.svelte';
   import { SOLID_LOOKS } from './solids.js';
   import MeasureSurveyVisual from './measure-survey-visual.svelte';
@@ -95,19 +95,19 @@
     aria-label={blocksLabel(visual)}
   >
     {#each { length: visual.hundreds } as _, i (i)}
-      <PlaceBlock kind="hundreds" />
+      <Block kind="tram" cell={5} />
     {/each}
     {#if visual.tens > 0}
       <div class="flex gap-1">
         {#each { length: visual.tens } as _, i (i)}
-          <PlaceBlock kind="tens" />
+          <Block kind="chuc" cell={5} />
         {/each}
       </div>
     {/if}
     {#if visual.ones > 0}
       <div class="grid grid-cols-3 gap-1">
         {#each { length: visual.ones } as _, i (i)}
-          <PlaceBlock kind="ones" cell={8} />
+          <Block kind="don-vi" cell={8} />
         {/each}
       </div>
     {/if}

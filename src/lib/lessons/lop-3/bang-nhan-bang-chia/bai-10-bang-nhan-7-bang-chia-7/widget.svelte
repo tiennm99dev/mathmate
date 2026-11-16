@@ -3,7 +3,7 @@
   import { countLabel } from '#lib/core/kid/quiz.js';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
-  import { passFocus } from '../_shared/pass-focus.js';
+  import { passFocus } from '#lib/core/kid/pass-focus.js';
   import TableGrid from '#lib/core/kid/table-grid.svelte';
   import { divLine, mulLine } from '#lib/core/kid/times-table.js';
   import { BASE, KIND_LABELS, MAX_WEEKS, buildRound, divMessage, mulMessage } from './engine.js';

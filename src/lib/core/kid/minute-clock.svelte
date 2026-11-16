@@ -1,7 +1,7 @@
 <script>
   import { polar } from '#lib/core/visuals/svg-math.js';
   import { handAngles } from '#lib/units-engine/clock.js';
-  import { handsWords } from './time.js';
+  import { handsText } from './time.js';
 
   /**
    * A still analog clock with the 60 small minute marks, for reading a time
@@ -27,7 +27,7 @@
   viewBox="0 0 {S} {S}"
   class="{size} mx-auto block shrink-0 select-none"
   role="img"
-  aria-label={label ?? `Đồng hồ: ${handsWords(minutes)}.`}
+  aria-label={label ?? `Đồng hồ: ${handsText(minutes)}.`}
 >
   <circle cx={C} cy={C} r={R} fill="#fff" stroke="#334155" stroke-width="5" />
   {#each { length: 60 } as _, m (m)}

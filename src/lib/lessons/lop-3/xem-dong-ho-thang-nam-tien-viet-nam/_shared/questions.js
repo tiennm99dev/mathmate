@@ -8,17 +8,9 @@ import { int, pick, shuffle } from '#lib/core/drill.js';
 import { capitalize, mixOptions, numberOptions } from '#lib/core/kid/quiz.js';
 import { SHORT_DAYS, WEEKDAYS, dayTitle, dialNumber } from '#lib/core/kid/time.js';
 import { fmt } from '#lib/core/number-format.js';
-import { NOTES, NOTE_WORDS, moneyText, sumNotes } from './money.js';
-import {
-  daysBetween,
-  daysIn,
-  dialText,
-  durationText,
-  handsWords,
-  kemText,
-  later,
-  weekdayOf,
-} from './time.js';
+import { GRADE3_NOTES as NOTES, NOTE_WORDS, moneyText, sumNotes } from '#lib/core/kid/money.js';
+import { handsText } from '#lib/core/kid/time.js';
+import { daysBetween, daysIn, dialText, durationText, kemText, later, weekdayOf } from './time.js';
 
 /**
  * What a question shows above its options: a clock (minutes since 0:00), a
@@ -78,7 +70,7 @@ function withMinutes(total, minutes) {
  */
 function nearMoney(right, slips) {
   const kept = slips.filter((v) => v !== right && v >= 1000 && v <= 100000);
-  return [...new Set(kept)].slice(0, 3).map(moneyText);
+  return [...new Set(kept)].slice(0, 3).map((v) => moneyText(v));
 }
 
 const READ_HINT =
@@ -102,7 +94,7 @@ export const MAKERS = {
       prompt: 'Đồng hồ chỉ mấy giờ?',
       ...mixOptions(rand, right, wrong),
       hint: READ_HINT,
-      solution: `${capitalize(handsWords(t))}. Kim ngắn đã qua số ${dialNumber(h)}, kim dài chỉ ${m} phút. Đồng hồ chỉ ${right}.`,
+      solution: `${capitalize(handsText(t))}. Kim ngắn đã qua số ${dialNumber(h)}, kim dài chỉ ${m} phút. Đồng hồ chỉ ${right}.`,
     };
   },
 
@@ -306,7 +298,7 @@ export const MAKERS = {
           right + 1000,
           right > 1000 ? right - 1000 : right + 2000,
           price === right ? right + 10000 : price,
-        ].map(moneyText),
+        ].map((v) => moneyText(v)),
       ),
       hint: 'Tiền trả lại bằng tiền mẹ đưa trừ đi giá tiền.',
       solution: `${fmt(paid)} − ${fmt(price)} = ${fmt(right)}. Cô trả lại mẹ ${moneyText(right)}.`,

@@ -1,6 +1,6 @@
 <script>
   import { countLabel } from '#lib/core/kid/quiz.js';
-  import PlaceBlock from '../_shared/place-block.svelte';
+  import Block from '#lib/core/kid/block.svelte';
 
   /**
    * The picture above a review question. The number the child has to work out
@@ -32,19 +32,19 @@
     aria-label={blocksLabel(visual)}
   >
     {#each { length: visual.hundreds } as _, i (i)}
-      <PlaceBlock kind="hundreds" cell={4} />
+      <Block kind="tram" cell={4} />
     {/each}
     {#if visual.tens > 0}
       <div class="flex gap-1">
         {#each { length: visual.tens } as _, i (i)}
-          <PlaceBlock kind="tens" cell={4} />
+          <Block kind="chuc" cell={4} />
         {/each}
       </div>
     {/if}
     {#if visual.ones > 0}
       <div class="grid grid-cols-3 gap-1">
         {#each { length: visual.ones } as _, i (i)}
-          <PlaceBlock kind="ones" cell={8} />
+          <Block kind="don-vi" cell={8} />
         {/each}
       </div>
     {/if}

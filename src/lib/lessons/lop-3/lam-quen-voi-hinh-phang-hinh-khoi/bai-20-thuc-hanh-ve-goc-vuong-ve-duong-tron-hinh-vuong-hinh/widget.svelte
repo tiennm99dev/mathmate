@@ -5,7 +5,7 @@
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
   import { pointsAttr } from '#lib/utils/svg.js';
   import { cornerPath } from '../_shared/scene.js';
-  import { passFocus } from '../_shared/pass-focus.js';
+  import { passFocus } from '#lib/core/kid/pass-focus.js';
   import {
     CELL,
     COLOURS,

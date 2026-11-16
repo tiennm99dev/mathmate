@@ -6,7 +6,7 @@
  */
 import { rng } from '#lib/core/drill.js';
 import { fmt } from '#lib/core/number-format.js';
-import { moneyText, spareNote, sumNotes } from '../_shared/money.js';
+import { moneyText, spareNote, sumNotes } from '#lib/core/kid/money.js';
 import { labelsOf, roundOf } from '../_shared/questions.js';
 
 /**

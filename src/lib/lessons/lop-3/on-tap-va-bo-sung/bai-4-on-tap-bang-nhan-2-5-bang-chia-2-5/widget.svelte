@@ -5,7 +5,7 @@
   import { button } from '#lib/core/ui.js';
   import { mulLine } from '#lib/core/kid/times-table.js';
   import TableGrid from '#lib/core/kid/table-grid.svelte';
-  import DotGrid from '../_shared/dot-grid.svelte';
+  import DotGrid from '#lib/core/kid/dot-grid.svelte';
   import { MAX_ROWS, SKILLS, divMessage, mulMessage, relatedDivisions } from './engine.js';
 
   let mode = $state(/** @type {'grid' | 'quiz'} */ ('grid'));

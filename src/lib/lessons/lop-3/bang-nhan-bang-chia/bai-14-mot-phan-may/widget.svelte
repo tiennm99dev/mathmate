@@ -6,7 +6,7 @@
   import { button } from '#lib/core/ui.js';
   import PartOption from '../_shared/part-option.svelte';
   import PartVisual from '../_shared/part-visual.svelte';
-  import { passFocus } from '../_shared/pass-focus.js';
+  import { passFocus } from '#lib/core/kid/pass-focus.js';
   import { BOX, equalFigure, sliceAngles, slicePath, slicePoint } from '../_shared/parts.js';
   import {
     KIND_LABELS,

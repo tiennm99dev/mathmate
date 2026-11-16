@@ -1,6 +1,6 @@
 <script>
   import ChoiceRound from '#lib/core/kid/choice-round.svelte';
-  import Banknote from '../_shared/banknote.svelte';
+  import Banknote from '#lib/core/kid/banknote.svelte';
   import { KIND_LABELS, TAPE_LABELS, TAPE_MAX, buildRound } from './engine.js';
 
   const U = 26;
@@ -85,7 +85,7 @@
     {:else if q.visual?.type === 'notes'}
       <div class="flex flex-wrap items-center justify-center gap-2 rounded-2xl bg-sky-50 p-3">
         {#each q.visual.notes as value, i (i)}
-          <Banknote {value} />
+          <Banknote grouped={false} {value} />
         {/each}
       </div>
     {:else if q.visual?.type === 'zigzag'}

@@ -3,18 +3,23 @@
   import { NOTE_WORDS } from './money.js';
 
   /**
-   * A drawn banknote from 1 000 to 100 000 đồng, one colour per value with
-   * its number large. A plain teaching picture, not a copy of the real note.
+   * A drawn banknote from 100 to 100 000 đồng, one colour per value with its
+   * number large. A plain teaching picture, not a copy of the real note.
    *
-   * - `value`: one of `NOTES`.
+   * - `value`: one of `NOTES` in `money.js`.
+   * - `grouped`: false writes the number without a group space, the way
+   *   grade 2 writes 1000.
    * - `small`: a narrower note, for a row of many notes.
    * - `decorative`: hidden from screen readers, when the button or sentence
    *   around it already says the value.
-   * @type {{ value: import('./money.js').Note; small?: boolean; decorative?: boolean }}
+   * @type {{ value: import('./money.js').Note; small?: boolean; decorative?: boolean; grouped?: boolean }}
    */
-  let { value, small = false, decorative = false } = $props();
+  let { value, small = false, decorative = false, grouped = true } = $props();
 
   const COLORS = {
+    100: { fill: '#fde68a', edge: '#b45309', ink: '#78350f' },
+    200: { fill: '#fecaca', edge: '#b91c1c', ink: '#7f1d1d' },
+    500: { fill: '#bfdbfe', edge: '#1d4ed8', ink: '#1e3a8a' },
     1000: { fill: '#fef3c7', edge: '#b45309', ink: '#78350f' },
     2000: { fill: '#e7e5e4', edge: '#78716c', ink: '#44403c' },
     5000: { fill: '#dbeafe', edge: '#1d4ed8', ink: '#1e3a8a' },
@@ -56,7 +61,7 @@
     opacity="0.5"
   />
   <text x="60" y="32" text-anchor="middle" font-size="22" font-weight="800" fill={color.ink}
-    >{fmt(value)}</text
+    >{grouped ? fmt(value) : value}</text
   >
   <text x="60" y="48" text-anchor="middle" font-size="12" font-weight="600" fill={color.ink}
     >đồng</text

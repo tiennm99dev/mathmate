@@ -417,7 +417,10 @@ Other shared pieces:
   - `times-table.js` with `table-grid.svelte`: the tables' sentences
     (`mulLine` "3 × 4 = 12", `divLine`, `repeatedSum`) and options
     (`productOptions`, `quotientOptions`), and the ten rows of a table with the
-    found rows, the current one and an optional `onpick`.
+    found rows, the current one and an optional `onpick`; `dot-grid.svelte`
+    draws rows of dots with the counted rows ringed.
+  - `pass-focus.js`: `passFocus(from, to)` hands keyboard focus on when a
+    press has just disabled the button that had it.
   - `shapes.js` with `shape-figure.svelte` and `object-figure.svelte`: the
     four plane shapes and two solids (`FIGURE_NAMES`, `plainFigure(kind)` for
     a picture-card look, or a full `Figure` with colour, size, turn and
@@ -443,7 +446,13 @@ Other shared pieces:
   - `time.js` with `clock-picture.svelte` (a still clock at any time) and
     `month-sheet.svelte`: `WEEKDAYS`, `DAY_PARTS`, `namesOf`, `handsText`,
     `dayAfter`, `dayTitle`, `dialHour`, `hourOptions`, `monthRows` and
-    `weekdayOf`/`weekdayFrom`. `clock-face` (section 6) is the draggable one.
+    `weekdayOf`/`weekdayFrom`; `handsText` and `minuteHandWords` say where the
+    hands point to the minute, and `minute-clock.svelte` is a still clock with
+    the 60 minute marks. `clock-face` (section 6) is the draggable one.
+  - `money.js` with `banknote.svelte`: the notes of grade 2 (`GRADE2_NOTES`,
+    100 to 1000 đồng, written without a group space: `grouped: false`) and
+    grade 3 (`GRADE3_NOTES`), `NOTE_WORDS`, `isNote`, `moneyText`,
+    `sumNotes`, `fewestNotes(amount, notes)`, `notesText` and `spareNote`.
   - `place-value.js` with `block.svelte`, `block-pile.svelte` and
     `count-stepper.svelte`: numbers to 1 000 (`PLACES`, `readTo1000` "hai
     trăm linh năm", `placesOf`, `valueOf`, `sumParts`, `sumText`,

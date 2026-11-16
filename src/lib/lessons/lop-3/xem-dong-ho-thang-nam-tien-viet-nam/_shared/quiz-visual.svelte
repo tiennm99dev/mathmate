@@ -1,8 +1,8 @@
 <script>
   import MonthSheet from '#lib/core/kid/month-sheet.svelte';
-  import Banknote from './banknote.svelte';
-  import MinuteClock from './minute-clock.svelte';
-  import { isNote } from './money.js';
+  import Banknote from '#lib/core/kid/banknote.svelte';
+  import MinuteClock from '#lib/core/kid/minute-clock.svelte';
+  import { GRADE3_NOTES, isNote } from '#lib/core/kid/money.js';
 
   /**
    * The picture above a question of the chapter's rounds: a clock, a
@@ -19,7 +19,7 @@
 {:else if visual?.notes}
   <div class="flex flex-wrap justify-center gap-2">
     {#each visual.notes as value, i (i)}
-      {#if isNote(value)}<Banknote {value} small={visual.notes.length > 2} />{/if}
+      {#if isNote(value, GRADE3_NOTES)}<Banknote {value} small={visual.notes.length > 2} />{/if}
     {/each}
   </div>
 {/if}

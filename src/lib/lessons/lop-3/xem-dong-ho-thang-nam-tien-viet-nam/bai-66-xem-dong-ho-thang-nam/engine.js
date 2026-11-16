@@ -7,7 +7,8 @@ import { rng } from '#lib/core/drill.js';
 import { dialNumber, sameOnDial } from '#lib/core/kid/time.js';
 import { fromMinutes } from '#lib/units-engine/clock.js';
 import { labelsOf, roundOf } from '../_shared/questions.js';
-import { dialText, kemText, minuteHandWords } from '../_shared/time.js';
+import { minuteHandWords } from '#lib/core/kid/time.js';
+import { dialText, kemText } from '../_shared/time.js';
 
 /** Times to set on the clock, minutes since 0:00, read on the dial. */
 export const TARGETS = /** @type {const} */ ([

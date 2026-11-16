@@ -3,14 +3,14 @@
   import Picture from '#lib/core/kid/picture.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import Banknote from '../_shared/banknote.svelte';
-  import { NOTES, NOTE_WORDS, sumNotes } from '../_shared/money.js';
+  import Banknote from '#lib/core/kid/banknote.svelte';
+  import { GRADE2_NOTES as NOTES, NOTE_WORDS, sumNotes } from '#lib/core/kid/money.js';
   import { GOODS, MAX_TRAY, SWAPS, payFeedback, swapFeedback } from './engine.js';
 
   let mode = $state(/** @type {'shop' | 'swap'} */ ('shop'));
 
   let goodIndex = $state(0);
-  /** @type {import('../_shared/money.js').Note[]} */
+  /** @type {import('#lib/core/kid/money.js').Note[]} */
   let tray = $state([]);
 
   let swapIndex = $state(0);
@@ -30,7 +30,7 @@
     nextEl?.focus();
   }
 
-  /** @param {import('../_shared/money.js').Note} value */
+  /** @param {import('#lib/core/kid/money.js').Note} value */
   async function addNote(value) {
     if (feedback.done || tray.length >= MAX_TRAY) return;
     tray = [...tray, value];
@@ -102,7 +102,7 @@
             class={noteBtn}
             disabled={feedback.done || tray.length >= MAX_TRAY}
             aria-label="Đặt tờ {NOTE_WORDS[value]}"
-            onclick={() => addNote(value)}><Banknote {value} decorative /></button
+            onclick={() => addNote(value)}><Banknote grouped={false} {value} decorative /></button
           >
         {/each}
       </div>
@@ -120,7 +120,8 @@
                 class="min-h-12 rounded-xl hover:opacity-70 {focusRing}"
                 aria-label="Bỏ tờ {NOTE_WORDS[value]}"
                 aria-disabled={feedback.done}
-                onclick={() => removeNote(i)}><Banknote {value} small decorative /></button
+                onclick={() => removeNote(i)}
+                ><Banknote grouped={false} {value} small decorative /></button
               >
             {/each}
           </div>
@@ -128,7 +129,7 @@
       </div>
     {:else}
       <div class="flex items-center gap-3 rounded-2xl bg-sky-50 p-3">
-        <Banknote value={swap.big} />
+        <Banknote grouped={false} value={swap.big} />
         <p class="text-xl text-slate-800">
           Đổi tờ <strong>{swap.big} đồng</strong> lấy các tờ
           <strong class="text-indigo-700">{swap.small} đồng</strong>. Cần mấy tờ?
@@ -142,7 +143,7 @@
         disabled={feedback.done}
         aria-label="Đếm thêm 1 tờ {NOTE_WORDS[swap.small]}"
         onclick={countOne}
-        ><Banknote value={swap.small} decorative />
+        ><Banknote grouped={false} value={swap.small} decorative />
         <span class="ml-2 text-xl font-bold text-slate-700" aria-hidden="true">+ 1 tờ</span></button
       >
 
@@ -152,7 +153,7 @@
         </p>
         <div class="flex flex-wrap gap-2" aria-hidden="true">
           {#each { length: count } as _, i (i)}
-            <Banknote value={swap.small} small decorative />
+            <Banknote grouped={false} value={swap.small} small decorative />
           {/each}
         </div>
       </div>

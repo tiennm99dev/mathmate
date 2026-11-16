@@ -28,33 +28,6 @@ export function kemText(total) {
 }
 
 /**
- * Where the long hand stands, said the way a child counts it: on a number,
- * or so many small marks after one.
- * @param {number} minutes 0 to 59
- */
-export function minuteHandWords(minutes) {
-  const big = Math.floor(minutes / 5) || 12;
-  const rest = minutes % 5;
-  if (rest === 0) return `kim dài chỉ số ${minutes === 0 ? 12 : big}`;
-  return `kim dài chỉ vạch nhỏ thứ ${rest} sau số ${big}`;
-}
-
-/**
- * What a screen reader hears for a still clock: where both hands point, never
- * the time itself.
- * @param {number} total minutes since 0:00
- */
-export function handsWords(total) {
-  const { hours, minutes } = fromMinutes(total);
-  const dial = dialNumber(hours);
-  const hour =
-    minutes === 0
-      ? `kim ngắn chỉ số ${dial}`
-      : `kim ngắn ở giữa số ${dial} và số ${dialNumber(hours + 1)}`;
-  return `${hour}, ${minuteHandWords(minutes)}`;
-}
-
-/**
  * A time `delta` minutes later (earlier when negative), on the 24-hour day.
  * @param {number} total
  * @param {number} delta

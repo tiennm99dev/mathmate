@@ -3,7 +3,7 @@
  * exact price with banknotes, and a counter that swaps one note for smaller
  * notes of the same value. Pure and DOM-free.
  */
-import { fewestNotes, notesText, sumNotes } from '../_shared/money.js';
+import { GRADE2_NOTES, fewestNotes, notesText, sumNotes } from '#lib/core/kid/money.js';
 
 /** The most notes on the tray at once. */
 export const MAX_TRAY = 10;
@@ -28,7 +28,7 @@ export const GOODS = [
 
 /**
  * One note to swap for notes of a smaller value.
- * @typedef {{ big: import('../_shared/money.js').Note, small: import('../_shared/money.js').Note }} Swap
+ * @typedef {{ big: import('#lib/core/kid/money.js').Note, small: import('#lib/core/kid/money.js').Note }} Swap
  */
 
 /** @type {readonly Swap[]} */
@@ -60,11 +60,11 @@ export function payFeedback(good, paid) {
       text: `Em đã đặt ${sum} đồng, nhiều hơn giá ${sum - good.price} đồng. Chạm vào tờ tiền để bỏ bớt.`,
     };
   }
-  const best = fewestNotes(good.price) ?? [];
+  const best = fewestNotes(good.price, GRADE2_NOTES) ?? [];
   const tail =
     paid.length === best.length
       ? ' Em dùng ít tờ tiền nhất, giỏi quá!'
-      : ` Trả ít tờ hơn thì dùng: ${notesText(best)}.`;
+      : ` Trả ít tờ hơn thì dùng: ${notesText(best, { grouped: false })}.`;
   return { done: true, text: `Đúng giá ${good.price} đồng!${tail}` };
 }
 
