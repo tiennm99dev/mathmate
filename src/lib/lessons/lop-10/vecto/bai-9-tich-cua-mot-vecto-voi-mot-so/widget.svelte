@@ -13,9 +13,18 @@
   import { gridHandle } from '../_shared/grid-handle.js';
   import VectorArrow from '../_shared/vector-arrow.svelte';
   import { add, scale, sub } from '../_shared/vectors.js';
-  import { centroidChain, kTex, lengthLine, scaleNote } from './engine.js';
+  import {
+    BOX,
+    centroidChain,
+    chainFits,
+    fitK,
+    kTex,
+    lengthLine,
+    onBoard,
+    scaleNote,
+  } from './engine.js';
 
-  const plane = planeScale({ xMin: -6, xMax: 6, yMin: -4, yMax: 4, width: 400, pad: 16 });
+  const plane = planeScale({ ...BOX, width: 400, pad: 16 });
   const { mx, my } = plane;
   /** @param {{ x: number, y: number }} g */
   const px = (g) => ({ x: mx(g.x), y: my(g.y) });
@@ -27,19 +36,20 @@
   let mode = $state('k');
 
   // Scaling: A and B = A + a are handles, k a slider.
-  let A = $state({ x: -2, y: -1 });
-  let B = $state({ x: 0, y: 0 });
+  let A = $state({ x: 0, y: -1 });
+  let B = $state({ x: 2, y: 0 });
   let k = $state(2);
   const a = $derived(sub(B, A));
   const C = $derived(add(A, scale(a, k)));
 
   // Centroid: triangle PQR (named A, B, C on the board) and a free point M.
-  let tri = $state([
-    { x: -4, y: -3 },
-    { x: 2, y: -3 },
-    { x: -1, y: 2 },
-  ]);
-  let M = $state({ x: 4, y: 2 });
+  const TRI = [
+    { x: -2, y: -1 },
+    { x: 2, y: -2 },
+    { x: 0, y: 3 },
+  ];
+  let tri = $state(TRI.map((p) => ({ ...p })));
+  let M = $state({ x: 2, y: 1 });
   const chain = $derived(centroidChain(tri[0], tri[1], tri[2], M));
 
   /** @type {SVGSVGElement | undefined} */
@@ -51,35 +61,58 @@
       plane,
       svg,
       onmove: (g) => {
-        const d = sub(B, A);
-        const next = add(g, d);
-        if (Math.abs(next.x) <= 6 && Math.abs(next.y) <= 4) {
+        // Moving A moves the whole vector: B and C must stay on the board.
+        const next = add(g, a);
+        if (onBoard(next) && onBoard(add(g, scale(a, k)))) {
           A = g;
           B = next;
         }
       },
     }),
   );
-  const headOpts = $derived(gridHandle({ at: B, plane, svg, onmove: (g) => (B = g) }));
+  const headOpts = $derived(
+    gridHandle({
+      at: B,
+      plane,
+      svg,
+      onmove: (g) => {
+        if (onBoard(add(A, scale(sub(g, A), k)))) B = g;
+      },
+    }),
+  );
   /** @param {number} i */
-  const vertexOpts = (i) => gridHandle({ at: tri[i], plane, svg, onmove: (g) => (tri[i] = g) });
-  const mOpts = $derived(gridHandle({ at: M, plane, svg, onmove: (g) => (M = g) }));
+  const vertexOpts = (i) =>
+    gridHandle({
+      at: tri[i],
+      plane,
+      svg,
+      onmove: (g) => {
+        const next = tri.map((p, j) => (j === i ? g : p));
+        if (chainFits(next[0], next[1], next[2], M)) tri = next;
+      },
+    });
+  const mOpts = $derived(
+    gridHandle({
+      at: M,
+      plane,
+      svg,
+      onmove: (g) => {
+        if (chainFits(tri[0], tri[1], tri[2], g)) M = g;
+      },
+    }),
+  );
 
   function reset() {
-    A = { x: -2, y: -1 };
-    B = { x: 0, y: 0 };
+    A = { x: 0, y: -1 };
+    B = { x: 2, y: 0 };
     k = 2;
-    tri = [
-      { x: -4, y: -3 },
-      { x: 2, y: -3 },
-      { x: -1, y: 2 },
-    ];
-    M = { x: 4, y: 2 };
+    tri = TRI.map((p) => ({ ...p }));
+    M = { x: 2, y: 1 };
   }
 
   const NAMES = ['A', 'B', 'C'];
   const CHAIN_NOTE =
-    'Nối tiếp ba vectơ $\\overrightarrow{MA}$ (tím), $\\overrightarrow{MB}$ (đỏ), $\\overrightarrow{MC}$ (cam) theo quy tắc ba điểm: điểm cuối luôn trùng điểm cuối của $3\\overrightarrow{MG}$ (vệt xanh), dù kéo $M$ hay các đỉnh đi đâu.';
+    'Nối tiếp ba vectơ $\\overrightarrow{MA}$ (tím), $\\overrightarrow{MB}$ (đỏ), $\\overrightarrow{MC}$ (cam) theo quy tắc ba điểm: điểm cuối luôn trùng điểm cuối của $3\\overrightarrow{MG}$ (vệt xanh), dù kéo $M$ hay các đỉnh đi đâu (bảng giữ cả chuỗi vectơ trong lưới).';
   const label = $derived(
     mode === 'k'
       ? `Vectơ a từ A đến B, sang ${formatNumber(a.x)} ô và lên ${formatNumber(a.y)} ô; vectơ ${formatNumber(k)} nhân a từ A đến C.`
@@ -108,7 +141,20 @@
   />
 
   {#if mode === 'k'}
-    <SliderField label="Số k" bind:value={k} min={-3} max={3} step={0.5} />
+    <SliderField
+      label="Số k"
+      bind:value={k}
+      min={-3}
+      max={3}
+      step={0.5}
+      oninput={(v) => (k = fitK(A, a, v))}
+    />
+    {#if fitK(A, a, 3) < 3 || fitK(A, a, -3) > -3}
+      <p class="text-sm text-slate-600">
+        Thanh trượt dừng ở chỗ điểm <i>C</i> sắp ra khỏi lưới; kéo <i>A</i>, <i>B</i> lại gần nhau
+        để <i>k</i> chạy xa hơn.
+      </p>
+    {/if}
   {/if}
 
   <GeometryBoard

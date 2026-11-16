@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { opTex, parallelTex, pointLines, result } from './engine.js';
+import { fits, kLimit, opTex, parallelTex, pointLines, result } from './engine.js';
 
 const p = (/** @type {number} */ x, /** @type {number} */ y) => ({ x, y });
 
@@ -30,5 +30,22 @@ describe('coordinate expressions', () => {
     expect(r.lines[3]).toContain('G\\left(2;\\ 1\\right)');
     expect(pointLines(p(0, 0), p(1, 1), p(-2, 0)).lines[3]).toContain('-\\dfrac{1}{3}');
     expect(pointLines(p(0, 0), p(1, 2), p(0, 0)).lines[1]).toContain('\\sqrt{5}');
+  });
+});
+
+describe('keeping the result on the grid', () => {
+  it('takes a drag only when the result stays on the board', () => {
+    expect(fits('cong', p(3, 1), p(1, 3), 2)).toBe(true);
+    expect(fits('cong', p(5, 1), p(2, 0), 2)).toBe(false);
+    expect(fits('tru', p(5, 1), p(-2, 0), 2)).toBe(false);
+    expect(fits('nhan', p(3, 1), p(0, 0), -2)).toBe(true);
+    expect(fits('nhan', p(3, 1), p(0, 0), 3)).toBe(false);
+  });
+
+  it('limits k so k·u stays on the board', () => {
+    expect(kLimit(p(3, 1))).toBe(2);
+    expect(kLimit(p(1, 1))).toBe(3);
+    expect(kLimit(p(0, 0))).toBe(3);
+    expect(kLimit(p(6, 5))).toBe(1);
   });
 });

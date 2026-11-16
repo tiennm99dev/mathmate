@@ -11,9 +11,9 @@
   import { gridHandle } from '../_shared/grid-handle.js';
   import VectorArrow from '../_shared/vector-arrow.svelte';
   import { add, coordTex, coordText, relation } from '../_shared/vectors.js';
-  import { opTex, parallelTex, pointLines, result } from './engine.js';
+  import { BOX, fits, kLimit, opTex, parallelTex, pointLines, result } from './engine.js';
 
-  const plane = planeScale({ xMin: -6, xMax: 6, yMin: -5, yMax: 5 });
+  const plane = planeScale(BOX);
   const { mx, my } = plane;
   /** @param {{ x: number, y: number }} g */
   const px = (g) => ({ x: mx(g.x), y: my(g.y) });
@@ -25,9 +25,12 @@
   let mode = $state('vecto');
   /** @type {import('./engine.js').Op} */
   let kind = $state('cong');
-  let u = $state({ x: 3, y: 1 });
-  let v = $state({ x: 1, y: 3 });
+  const START_U = { x: 3, y: 1 };
+  const START_V = { x: 1, y: 3 };
+  let u = $state({ ...START_U });
+  let v = $state({ ...START_V });
   let k = $state(2);
+  const limit = $derived(kLimit(u));
   const r = $derived(result(kind, u, v, k));
 
   let pts = $state([
@@ -40,8 +43,37 @@
   /** @type {SVGSVGElement | undefined} */
   let svgEl = $state();
   const svg = () => svgEl ?? null;
-  const uOpts = $derived(gridHandle({ at: u, plane, svg, onmove: (g) => (u = g) }));
-  const vOpts = $derived(gridHandle({ at: v, plane, svg, onmove: (g) => (v = g) }));
+  // A drag is taken only when the result vector stays on the grid.
+  const uOpts = $derived(
+    gridHandle({
+      at: u,
+      plane,
+      svg,
+      onmove: (g) => {
+        if (fits(kind, g, v, k)) u = g;
+      },
+    }),
+  );
+  const vOpts = $derived(
+    gridHandle({
+      at: v,
+      plane,
+      svg,
+      onmove: (g) => {
+        if (fits(kind, u, g, k)) v = g;
+      },
+    }),
+  );
+
+  /** A new operation whose result would leave the grid starts from small vectors. @param {string | number} next */
+  function switchKind(next) {
+    const op = /** @type {import('./engine.js').Op} */ (next);
+    if (op === 'nhan') k = Math.max(-limit, Math.min(limit, k));
+    else if (!fits(op, u, v, k)) {
+      u = { ...START_U };
+      v = { ...START_V };
+    }
+  }
   /** @param {number} i */
   const pOpts = (i) => gridHandle({ at: pts[i], plane, svg, onmove: (g) => (pts[i] = g) });
 
@@ -51,7 +83,7 @@
     mode === 'vecto'
       ? `$\\vec u = ${coordTex(u.x, u.y)}$ nghĩa là $\\vec u = ${u.x}\\vec i + ${u.y < 0 ? `(${u.y})` : u.y}\\vec j$: đi ${Math.abs(u.x)} ô ${u.x < 0 ? 'sang trái' : 'sang phải'} và ${Math.abs(u.y)} ô ${u.y < 0 ? 'xuống dưới' : 'lên trên'}. ${
           rel.parallel
-            ? '$\\vec u$ và $\\vec v$ cùng phương: tích chéo bằng $0$.'
+            ? "$\\vec u$ và $\\vec v$ cùng phương: $xy' - x'y = 0$."
             : '$\\vec u$ và $\\vec v$ không cùng phương.'
         }`
       : `Toạ độ của $\\overrightarrow{AB}$ là "toạ độ điểm cuối trừ toạ độ điểm đầu". Trung điểm $I$ của $AB$ và trọng tâm $G$ của tam giác $ABC$ có toạ độ là trung bình cộng toạ độ các điểm.`,
@@ -77,6 +109,7 @@
       <SegmentedControl
         label="Phép toán"
         bind:value={kind}
+        onchange={switchKind}
         options={[
           { value: 'cong', label: 'u + v' },
           { value: 'tru', label: 'u − v' },
@@ -84,7 +117,7 @@
         ]}
       />
       {#if kind === 'nhan'}
-        <Stepper label="k" bind:value={k} min={-3} max={3} format={intText} />
+        <Stepper label="k" bind:value={k} min={-limit} max={limit} format={intText} />
       {/if}
     </div>
   {/if}

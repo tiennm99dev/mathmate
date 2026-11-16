@@ -71,3 +71,27 @@ export function pointLines(A, B, C) {
     ],
   };
 }
+
+/** The coordinate board, in grid units; it is symmetric about O. */
+export const BOX = { xMin: -6, xMax: 6, yMin: -5, yMax: 5 };
+
+/** @param {V} p */
+export const onBoard = (p) =>
+  p.x >= BOX.xMin && p.x <= BOX.xMax && p.y >= BOX.yMin && p.y <= BOX.yMax;
+
+/**
+ * Whether the result of an operation stays on the board.
+ * @param {Op} kind @param {V} u @param {V} v @param {number} k
+ */
+export const fits = (kind, u, v, k) => onBoard(result(kind, u, v, k));
+
+/**
+ * The largest whole k from 1 to 3 for which k·u (and so −k·u, the board being
+ * symmetric) stays on the board; u itself always does.
+ * @param {V} u
+ */
+export function kLimit(u) {
+  let m = 3;
+  while (m > 1 && !onBoard(scale(u, m))) m -= 1;
+  return m;
+}

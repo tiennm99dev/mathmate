@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { centroidChain, kTex, lengthLine, scaleNote } from './engine.js';
+import { centroidChain, chainFits, fitK, kTex, lengthLine, onBoard, scaleNote } from './engine.js';
 
 const p = (/** @type {number} */ x, /** @type {number} */ y) => ({ x, y });
 
@@ -33,5 +33,19 @@ describe('centroid identity', () => {
     });
     expect(misses).toEqual([]);
     expect(centroidChain(p(0, 0), p(3, 0), p(0, 3), p(5, 5)).G).toEqual(p(1, 1));
+  });
+});
+
+describe('keeping the board whole', () => {
+  it('stops k where C would leave the board', () => {
+    expect(fitK(p(0, -1), p(2, 1), 3)).toBe(3);
+    expect(fitK(p(-2, -1), p(2, 1), -3)).toBe(-2);
+    expect(fitK(p(4, 0), p(2, 0), 2.5)).toBe(1);
+  });
+
+  it('keeps the centroid chain on the board', () => {
+    expect(chainFits(p(-2, -1), p(2, -2), p(0, 3), p(2, 1))).toBe(true);
+    expect(chainFits(p(-4, -3), p(2, -3), p(-1, 2), p(4, 2))).toBe(false);
+    expect(onBoard(p(6, -4))).toBe(true);
   });
 });

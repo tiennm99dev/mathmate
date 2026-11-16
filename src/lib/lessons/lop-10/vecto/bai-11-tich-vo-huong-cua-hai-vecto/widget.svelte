@@ -3,6 +3,7 @@
   import Tex from '#lib/components/tex.svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
+  import { formatNumber, intText } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
   import { arcPath, directionTo, rightMarkPath } from '#lib/core/visuals/angle-math.js';
   import CoordinatePlane from '#lib/core/visuals/coordinate-plane.svelte';
@@ -59,7 +60,9 @@
   }
 
   const label = $derived(
-    `Mặt phẳng toạ độ với vectơ ${names[0]} ${coordText(a.x, a.y)} và vectơ ${names[1]} ${coordText(b.x, b.y)} cùng gốc O; tích vô hướng bằng ${dot(a, b)}.`,
+    forces
+      ? `Mặt phẳng toạ độ với vectơ dịch chuyển d ${coordText(a.x, a.y)} theo mét và lực F ${coordText(b.x * NEWTONS, b.y * NEWTONS)} theo niutơn, cùng gốc O; công A bằng ${formatNumber(job.A)} J.`
+      : `Mặt phẳng toạ độ với vectơ a ${coordText(a.x, a.y)} và vectơ b ${coordText(b.x, b.y)} cùng gốc O; tích vô hướng bằng ${intText(dot(a, b))}.`,
   );
 </script>
 

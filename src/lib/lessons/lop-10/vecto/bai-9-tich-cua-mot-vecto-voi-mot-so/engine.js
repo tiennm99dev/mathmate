@@ -49,3 +49,28 @@ export function centroidChain(A, B, C, M) {
   const end = add(two, sub(C, M));
   return { G, chain: [M, one, two, end], end, triple: add(M, scale(sub(G, M), 3)) };
 }
+
+/** The board of both modes, in grid units. */
+export const BOX = { xMin: -6, xMax: 6, yMin: -4, yMax: 4 };
+
+/** @param {V} p */
+export const onBoard = (p) =>
+  p.x >= BOX.xMin && p.x <= BOX.xMax && p.y >= BOX.yMin && p.y <= BOX.yMax;
+
+/**
+ * The k nearest to the wanted one, in half steps towards 0, for which
+ * C = A + k·a stays on the board (k = 0 always does, since C is then A).
+ * @param {V} A @param {V} a @param {number} k
+ */
+export function fitK(A, a, k) {
+  let next = k;
+  while (next !== 0 && !onBoard(add(A, scale(a, next)))) next -= Math.sign(next) * 0.5;
+  return next;
+}
+
+/**
+ * Whether the whole chain M → A → … and the end of 3MG stay on the board.
+ * @param {V} A @param {V} B @param {V} C @param {V} M
+ */
+export const chainFits = (A, B, C, M) =>
+  [A, B, C, M, ...centroidChain(A, B, C, M).chain].every(onBoard);
