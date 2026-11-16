@@ -25,6 +25,8 @@
   const round = $derived(ROUNDS[index % ROUNDS.length]);
   /** The ways in a turning order, so the fast way is not always in the same place. */
   const order = $derived([0, 1, 2].map((i) => (i + index * 2 + 1) % 3));
+  /** The steps of the fast way; the last one, which gives the value, waits for the child's pick. */
+  const shownSteps = $derived(stage === 'done' ? round.steps : round.steps.slice(0, -1));
 
   async function focusChoices() {
     await tick();
@@ -94,7 +96,7 @@
       </div>
     {:else}
       <ol class="space-y-1 rounded-2xl bg-slate-50 px-4 py-3 text-xl text-slate-800 tabular-nums">
-        {#each round.steps as line, i (i)}
+        {#each shownSteps as line, i (i)}
           <li>{line}</li>
         {/each}
       </ol>

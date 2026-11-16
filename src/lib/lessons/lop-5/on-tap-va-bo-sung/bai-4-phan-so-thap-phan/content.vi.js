@@ -57,7 +57,7 @@ export default {
         {
           type: 'callout',
           tone: 'theorem',
-          text: 'Em nhân (hoặc chia) cả tử số và mẫu số với cùng một số để được mẫu số 10, 100, 1 000, ...',
+          text: 'Em nhân cả tử số và mẫu số với cùng một số (hoặc chia cả hai cho cùng một số) để được mẫu số 10, 100, 1 000, ...',
         },
         {
           type: 'p',
@@ -143,11 +143,11 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Số nào thích hợp? $\\dfrac{3}{5} = \\dfrac{?}{10}$',
-      answer: 6,
+      prompt: 'Số nào thích hợp? $\\dfrac{4}{5} = \\dfrac{?}{10}$',
+      answer: 8,
       hints: ['5 nhân mấy được 10?'],
       solution:
-        '5 × 2 = 10, nên $\\dfrac{3}{5} = \\dfrac{3 \\times 2}{5 \\times 2} = \\dfrac{6}{10}$.',
+        '5 × 2 = 10, nên $\\dfrac{4}{5} = \\dfrac{4 \\times 2}{5 \\times 2} = \\dfrac{8}{10}$.',
     },
     {
       type: 'number',
@@ -159,10 +159,10 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Số nào thích hợp? $\\dfrac{11}{25} = \\dfrac{?}{100}$',
-      answer: 44,
+      prompt: 'Số nào thích hợp? $\\dfrac{13}{25} = \\dfrac{?}{100}$',
+      answer: 52,
       hints: ['25 × 4 = 100.'],
-      solution: '$\\dfrac{11}{25} = \\dfrac{11 \\times 4}{25 \\times 4} = \\dfrac{44}{100}$.',
+      solution: '$\\dfrac{13}{25} = \\dfrac{13 \\times 4}{25 \\times 4} = \\dfrac{52}{100}$.',
     },
     {
       type: 'number',
@@ -173,18 +173,18 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Viết $\\dfrac{3}{4}$ thành phân số thập phân có mẫu số 100. Tử số là bao nhiêu?',
-      answer: 75,
+      prompt: 'Viết $\\dfrac{9}{4}$ thành phân số thập phân có mẫu số 100. Tử số là bao nhiêu?',
+      answer: 225,
       hints: ['4 × 25 = 100.'],
       solution:
-        '$\\dfrac{3}{4} = \\dfrac{3 \\times 25}{4 \\times 25} = \\dfrac{75}{100}$. Tử số là 75.',
+        '$\\dfrac{9}{4} = \\dfrac{9 \\times 25}{4 \\times 25} = \\dfrac{225}{100}$. Tử số là 225.',
     },
     {
       type: 'number',
-      prompt: 'Viết $\\dfrac{27}{300}$ thành phân số thập phân có mẫu số 100. Tử số là bao nhiêu?',
-      answer: 9,
-      hints: ['300 : 3 = 100.'],
-      solution: '$\\dfrac{27}{300} = \\dfrac{27 : 3}{300 : 3} = \\dfrac{9}{100}$. Tử số là 9.',
+      prompt: 'Viết $\\dfrac{42}{600}$ thành phân số thập phân có mẫu số 100. Tử số là bao nhiêu?',
+      answer: 7,
+      hints: ['600 : 6 = 100.'],
+      solution: '$\\dfrac{42}{600} = \\dfrac{42 : 6}{600 : 6} = \\dfrac{7}{100}$. Tử số là 7.',
     },
     {
       type: 'match',
@@ -210,11 +210,11 @@ export default {
     {
       type: 'number',
       prompt:
-        'Viết $\\dfrac{31}{125}$ thành phân số thập phân có mẫu số 1 000. Tử số là bao nhiêu?',
-      answer: 248,
+        'Viết $\\dfrac{17}{125}$ thành phân số thập phân có mẫu số 1 000. Tử số là bao nhiêu?',
+      answer: 136,
       hints: ['125 × 8 = 1 000.'],
       solution:
-        '$\\dfrac{31}{125} = \\dfrac{31 \\times 8}{125 \\times 8} = \\dfrac{248}{1000}$. Tử số là 248.',
+        '$\\dfrac{17}{125} = \\dfrac{17 \\times 8}{125 \\times 8} = \\dfrac{136}{1000}$. Tử số là 136.',
     },
   ],
   takeaways: [

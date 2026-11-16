@@ -74,7 +74,7 @@ export default {
         {
           type: 'callout',
           tone: 'note',
-          text: 'Tìm phân số của một số: muốn tìm $\\dfrac{7}{8}$ của 96, em lấy 96 × $\\dfrac{7}{8}$ = 84.',
+          text: 'Tìm phân số của một số: muốn tìm $\\dfrac{3}{4}$ của 40, em lấy 40 × $\\dfrac{3}{4}$ = 30.',
         },
       ],
     },
@@ -108,12 +108,12 @@ export default {
   practice: [
     {
       type: 'fraction',
-      prompt: 'Tính: $\\dfrac{6}{5} + \\dfrac{7}{15}$ (viết kết quả là phân số tối giản)',
-      answer: [5, 3],
+      prompt: 'Tính: $\\dfrac{2}{3} + \\dfrac{5}{12}$ (viết kết quả là phân số tối giản)',
+      answer: [13, 12],
       simplest: true,
-      hints: ['15 : 5 = 3, quy đồng $\\dfrac{6}{5}$ thành phân số có mẫu số 15.'],
+      hints: ['12 : 3 = 4, quy đồng $\\dfrac{2}{3}$ thành phân số có mẫu số 12.'],
       solution:
-        '$\\dfrac{6}{5} + \\dfrac{7}{15} = \\dfrac{18}{15} + \\dfrac{7}{15} = \\dfrac{25}{15} = \\dfrac{5}{3}$.',
+        '$\\dfrac{2}{3} + \\dfrac{5}{12} = \\dfrac{8}{12} + \\dfrac{5}{12} = \\dfrac{13}{12}$.',
     },
     {
       type: 'fraction',
@@ -158,20 +158,20 @@ export default {
     },
     {
       type: 'fraction',
-      prompt: 'Tính: $\\dfrac{5}{8} \\times \\dfrac{8}{15}$',
-      answer: [1, 3],
+      prompt: 'Tính: $\\dfrac{4}{9} \\times \\dfrac{3}{8}$',
+      answer: [1, 6],
       simplest: true,
       hints: ['Tử số nhân tử số, mẫu số nhân mẫu số, rồi rút gọn.'],
-      solution: '$\\dfrac{5}{8} \\times \\dfrac{8}{15} = \\dfrac{40}{120} = \\dfrac{1}{3}$.',
+      solution: '$\\dfrac{4}{9} \\times \\dfrac{3}{8} = \\dfrac{12}{72} = \\dfrac{1}{6}$.',
     },
     {
       type: 'fraction',
-      prompt: 'Tính: $\\dfrac{12}{7} : \\dfrac{8}{7}$',
-      answer: [3, 2],
+      prompt: 'Tính: $\\dfrac{10}{9} : \\dfrac{5}{6}$',
+      answer: [4, 3],
       simplest: true,
-      hints: ['Nhân với phân số đảo ngược của $\\dfrac{8}{7}$.'],
+      hints: ['Nhân với phân số đảo ngược của $\\dfrac{5}{6}$.'],
       solution:
-        '$\\dfrac{12}{7} : \\dfrac{8}{7} = \\dfrac{12}{7} \\times \\dfrac{7}{8} = \\dfrac{84}{56} = \\dfrac{3}{2}$.',
+        '$\\dfrac{10}{9} : \\dfrac{5}{6} = \\dfrac{10}{9} \\times \\dfrac{6}{5} = \\dfrac{60}{45} = \\dfrac{4}{3}$.',
     },
     {
       type: 'fraction',

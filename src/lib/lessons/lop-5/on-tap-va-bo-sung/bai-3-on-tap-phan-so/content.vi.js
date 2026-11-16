@@ -30,7 +30,7 @@ export default {
         {
           type: 'callout',
           tone: 'theorem',
-          text: 'Nhân (hoặc chia) cả tử số và mẫu số của một phân số với cùng một số tự nhiên khác 0 thì được một phân số bằng phân số đã cho.',
+          text: 'Nhân cả tử số và mẫu số của một phân số với cùng một số tự nhiên khác 0 thì được một phân số bằng phân số đã cho. Nếu cả tử số và mẫu số cùng chia hết cho một số tự nhiên khác 0 thì sau khi chia ta cũng được một phân số bằng phân số đã cho.',
         },
         { type: 'p', text: '$\\dfrac{3}{5} = \\dfrac{3 \\times 2}{5 \\times 2} = \\dfrac{6}{10}$' },
         {
@@ -122,11 +122,11 @@ export default {
   practice: [
     {
       type: 'fraction',
-      prompt: 'Rút gọn phân số $\\dfrac{18}{24}$.',
-      answer: [3, 4],
+      prompt: 'Rút gọn phân số $\\dfrac{20}{45}$.',
+      answer: [4, 9],
       simplest: true,
-      hints: ['18 và 24 cùng chia hết cho 6.'],
-      solution: '$\\dfrac{18}{24} = \\dfrac{18 : 6}{24 : 6} = \\dfrac{3}{4}$.',
+      hints: ['20 và 45 cùng chia hết cho 5.'],
+      solution: '$\\dfrac{20}{45} = \\dfrac{20 : 5}{45 : 5} = \\dfrac{4}{9}$.',
     },
     {
       type: 'fraction',
@@ -146,11 +146,11 @@ export default {
     {
       type: 'choice',
       prompt: 'Phân số nào là phân số tối giản?',
-      options: ['$\\dfrac{7}{9}$', '$\\dfrac{16}{18}$', '$\\dfrac{15}{12}$', '$\\dfrac{25}{30}$'],
+      options: ['$\\dfrac{8}{15}$', '$\\dfrac{16}{18}$', '$\\dfrac{15}{12}$', '$\\dfrac{25}{30}$'],
       answer: 0,
       hints: ['Em thử xem tử số và mẫu số có cùng chia hết cho 2, 3 hay 5 không.'],
       solution:
-        '16 và 18 cùng chia hết cho 2; 15 và 12 cùng chia hết cho 3; 25 và 30 cùng chia hết cho 5. Chỉ $\\dfrac{7}{9}$ là phân số tối giản.',
+        '16 và 18 cùng chia hết cho 2; 15 và 12 cùng chia hết cho 3; 25 và 30 cùng chia hết cho 5. 8 và 15 không cùng chia hết cho số nào lớn hơn 1. Chỉ $\\dfrac{8}{15}$ là phân số tối giản.',
     },
     {
       type: 'number',
@@ -164,26 +164,27 @@ export default {
     {
       type: 'number',
       prompt:
-        'Quy đồng mẫu số $\\dfrac{1}{3}$, $\\dfrac{7}{12}$ và $\\dfrac{35}{48}$. Phân số $\\dfrac{7}{12}$ trở thành $\\dfrac{?}{48}$.',
-      answer: 28,
-      hints: ['48 : 12 = 4.'],
-      solution: '$\\dfrac{7}{12} = \\dfrac{7 \\times 4}{12 \\times 4} = \\dfrac{28}{48}$.',
+        'Quy đồng mẫu số $\\dfrac{5}{6}$ và $\\dfrac{7}{24}$. Phân số $\\dfrac{5}{6}$ trở thành $\\dfrac{?}{24}$.',
+      answer: 20,
+      hints: ['24 : 6 = 4.'],
+      solution: '$\\dfrac{5}{6} = \\dfrac{5 \\times 4}{6 \\times 4} = \\dfrac{20}{24}$.',
     },
     {
       type: 'choice',
-      prompt: 'Em chọn dấu đúng: $\\dfrac{3}{4}$ ? $\\dfrac{7}{12}$',
+      prompt: 'Em chọn dấu đúng: $\\dfrac{5}{6}$ ? $\\dfrac{13}{18}$',
       options: ['>', '<', '='],
       answer: 0,
-      hints: ['Quy đồng: $\\dfrac{3}{4} = \\dfrac{?}{12}$.'],
-      solution: '$\\dfrac{3}{4} = \\dfrac{9}{12}$, mà 9 > 7. Vậy $\\dfrac{3}{4} > \\dfrac{7}{12}$.',
+      hints: ['Quy đồng: $\\dfrac{5}{6} = \\dfrac{?}{18}$.'],
+      solution:
+        '$\\dfrac{5}{6} = \\dfrac{15}{18}$, mà 15 > 13. Vậy $\\dfrac{5}{6} > \\dfrac{13}{18}$.',
     },
     {
       type: 'choice',
-      prompt: 'Em chọn dấu đúng: $\\dfrac{8}{5}$ ? $\\dfrac{8}{7}$',
+      prompt: 'Em chọn dấu đúng: $\\dfrac{9}{10}$ ? $\\dfrac{9}{8}$',
       options: ['>', '<', '='],
-      answer: 0,
+      answer: 1,
       hints: ['Hai phân số cùng tử số. Mẫu số bé hơn thì mỗi phần to hơn.'],
-      solution: 'Cùng tử số 8, mà 5 < 7. Vậy $\\dfrac{8}{5} > \\dfrac{8}{7}$.',
+      solution: 'Cùng tử số 9, mà 10 > 8. Vậy $\\dfrac{9}{10} < \\dfrac{9}{8}$.',
     },
     {
       type: 'choice',
@@ -228,7 +229,7 @@ export default {
     },
   ],
   takeaways: [
-    'Nhân hoặc chia cả tử số và mẫu số với cùng một số khác 0 thì được phân số bằng nó.',
+    'Nhân cả tử số và mẫu số với cùng một số khác 0, hoặc chia cả hai cho cùng một số khác 0 mà chúng cùng chia hết, thì được phân số bằng nó.',
     'Rút gọn đến khi được phân số tối giản.',
     'Quy đồng mẫu số rồi so sánh tử số.',
     'Cùng tử số: mẫu số bé hơn thì phân số lớn hơn.',
