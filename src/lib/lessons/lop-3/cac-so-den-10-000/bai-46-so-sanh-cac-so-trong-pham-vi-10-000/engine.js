@@ -6,7 +6,9 @@
  */
 import { fmt } from '#lib/core/number-format.js';
 import { SIGN_WORDS, compareSign } from '#lib/core/kid/numbers.js';
-import { TOP, compareWhy4 } from '../_shared/numbers-to-10000.js';
+import { compareWhy } from '#lib/core/kid/whole-numbers.js';
+
+const TOP = 10000;
 
 /** The pairs to compare, in order. */
 export const PAIRS = /** @type {const} */ ([
@@ -77,7 +79,7 @@ export function lineText(level, a, b) {
  */
 export function signVerdict(a, b, sign) {
   const right = compareSign(a, b);
-  if (sign === right) return { ok: true, text: `Đúng rồi! ${compareWhy4(a, b)}` };
+  if (sign === right) return { ok: true, text: `Đúng rồi! ${compareWhy(a, b)}` };
   return {
     ok: false,
     text: `Chưa đúng: ${fmt(a)} không ${SIGN_WORDS[sign]} ${fmt(b)}. Em so sánh từ hàng nghìn, hoặc nhìn xem số nào nằm bên trái trên tia số.`,

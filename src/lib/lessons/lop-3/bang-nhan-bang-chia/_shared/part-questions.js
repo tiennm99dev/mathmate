@@ -15,7 +15,7 @@ import {
   shapesFor,
   unevenSizes,
 } from './parts.js';
-import { divLine, quotientOptions } from './times.js';
+import { divLine, quotientOptions } from '#lib/core/kid/times-table.js';
 
 /** @typedef {import('./parts.js').Figure} Figure */
 

@@ -5,8 +5,8 @@
   import { button } from '#lib/core/ui.js';
   import DotGrid from '../_shared/dot-grid.svelte';
   import { passFocus } from '../_shared/pass-focus.js';
-  import TableGrid from '../_shared/table-grid.svelte';
-  import { divLine, mulLine } from '../_shared/times.js';
+  import TableGrid from '#lib/core/kid/table-grid.svelte';
+  import { divLine, mulLine } from '#lib/core/kid/times-table.js';
   import { BASE, KIND_LABELS, MAX_ROWS, buildRound, divMessage, mulMessage } from './engine.js';
 
   let mode = $state(/** @type {'nhan' | 'chia' | 'quiz'} */ ('nhan'));

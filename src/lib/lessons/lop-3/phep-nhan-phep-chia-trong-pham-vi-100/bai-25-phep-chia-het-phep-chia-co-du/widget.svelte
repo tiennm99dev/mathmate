@@ -3,7 +3,7 @@
   import { button } from '#lib/core/ui.js';
   import DivisionSheet from '../_shared/division-sheet.svelte';
   import { divText, oneStepRows } from '../_shared/division.js';
-  import KidNote from '../_shared/kid-note.svelte';
+  import KidNote from '#lib/core/kid/kid-note.svelte';
   import Candy from './candy.svelte';
   import {
     TASKS,

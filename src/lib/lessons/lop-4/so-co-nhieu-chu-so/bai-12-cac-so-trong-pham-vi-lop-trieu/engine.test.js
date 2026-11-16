@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { readBig } from '../_shared/big-numbers.js';
+import { readWhole } from '#lib/core/kid/whole-numbers.js';
 import { NUMBERS, builtReading, classesOf, nextClass, partSentence, tapClass } from './engine.js';
 
 /** Group spaces as plain spaces. @param {string} t */
@@ -38,7 +38,7 @@ describe('reading class by class', () => {
         last = tapClass(n, read, cls);
         read = last.read;
       }
-      return builtReading(n, read) !== readBig(n) || last?.tone !== 'ok';
+      return builtReading(n, read) !== readWhole(n) || last?.tone !== 'ok';
     });
     expect(bad).toEqual([]);
     const done = tapClass(2000001, [2, 1], 0);

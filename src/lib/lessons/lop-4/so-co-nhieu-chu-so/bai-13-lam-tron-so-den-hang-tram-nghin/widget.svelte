@@ -4,7 +4,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import NumberLine from '#lib/core/visuals/number-line.svelte';
   import { fmt } from '#lib/core/number-format.js';
-  import { readBig } from '../_shared/big-numbers.js';
+  import { readWhole } from '#lib/core/kid/whole-numbers.js';
   import { button } from '#lib/core/ui.js';
   import { QUIZ, STEP, STRETCHES, checkPick, marksAround, roundNote } from './engine.js';
 
@@ -86,7 +86,7 @@
       {marks}
       {hops}
       format={tickText}
-      valueText={(v) => readBig(v)}
+      valueText={(v) => readWhole(v)}
       width={360}
       label="Tia số từ {fmt(lineLow)} đến {fmt(lineLow + STEP)}"
       markerLabel="Số cần làm tròn"

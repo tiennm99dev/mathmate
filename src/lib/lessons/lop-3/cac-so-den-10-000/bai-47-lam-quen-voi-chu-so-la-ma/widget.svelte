@@ -1,7 +1,7 @@
 <script>
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button } from '#lib/core/ui.js';
-  import { ROMAN_DIGITS } from '../_shared/numbers-to-10000.js';
+  import { ROMAN_DIGITS } from '#lib/core/kid/whole-numbers.js';
   import { HOURS, MAX_LETTERS, TARGETS, addLetter, romanWhy, rowNote } from './engine.js';
 
   /** Width of each matchstick letter, in SVG units. */

@@ -5,8 +5,8 @@
   import { button } from '#lib/core/ui.js';
   import DotGrid from '../_shared/dot-grid.svelte';
   import { passFocus } from '../_shared/pass-focus.js';
-  import TableGrid from '../_shared/table-grid.svelte';
-  import { divLine } from '../_shared/times.js';
+  import TableGrid from '#lib/core/kid/table-grid.svelte';
+  import { divLine } from '#lib/core/kid/times-table.js';
   import DigitTable from './digit-table.svelte';
   import { BASE, KIND_LABELS, MAX_ROWS, buildRound, divMessage, patternMessage } from './engine.js';
 

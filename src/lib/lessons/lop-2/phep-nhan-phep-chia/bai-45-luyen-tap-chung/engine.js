@@ -10,7 +10,7 @@ import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { compareSign, SIGN_WORDS } from '#lib/core/kid/numbers.js';
 import { bigOptions, drawFresh, mixOptions, questionKey, signOptions } from '#lib/core/kid/quiz.js';
 import { divLine, divisionOptions } from '../_shared/divide.js';
-import { mulLine, repeatedSum, tableOptions } from '../_shared/times.js';
+import { mulLine, productOptions, repeatedSum } from '#lib/core/kid/times-table.js';
 
 /** @typedef {{ each: number, groups: number, loose?: boolean }} Visual */
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion<Visual>} Asked */
@@ -43,7 +43,7 @@ export function mulQuestion(rand) {
   return {
     prompt: `${base} × ${n} = ?`,
     visual: { each: base, groups: n },
-    ...tableOptions(base, n),
+    ...productOptions(base, n),
     hint: `Em đếm thêm ${base}, đếm ${n} lần.`,
     solution: `${mulLine(base, n)}.`,
   };
@@ -250,7 +250,7 @@ export function wordProblem(rand) {
     return {
       prompt: story.prompt,
       visual: { each: story.mul, groups: n },
-      ...tableOptions(story.mul, n),
+      ...productOptions(story.mul, n),
       hint: `Số ${story.mul} được lấy ${n} lần. Em viết phép nhân.`,
       solution: `${mulLine(story.mul, n)} (${story.unit}).`,
     };

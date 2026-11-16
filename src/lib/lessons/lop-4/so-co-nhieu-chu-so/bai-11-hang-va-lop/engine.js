@@ -5,7 +5,13 @@
  * for a digit by place, by class or by value. Pure and DOM-free.
  */
 import { fmt } from '#lib/core/number-format.js';
-import { CLASS_NAMES, PLACE_NAMES, classOf, digitAt, valueAt } from '../_shared/big-numbers.js';
+import {
+  CLASS_NAMES,
+  PLACE_NAMES,
+  classOf,
+  digitAt,
+  valueAt,
+} from '#lib/core/kid/whole-numbers.js';
 
 /**
  * A round: tap the digit at a place, any digit of a class, or the digit

@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { along, ccwSides, measure } from '#lib/core/visuals/angle-math.js';
-import { clockAngle, directionTo, kindOf, placeOf } from './angle.js';
+import { clockAngle, kindOf } from '#lib/core/visuals/protractor.js';
+import { directionTo, placeOf } from './angle.js';
 
 const O = { x: 200, y: 150 };
 

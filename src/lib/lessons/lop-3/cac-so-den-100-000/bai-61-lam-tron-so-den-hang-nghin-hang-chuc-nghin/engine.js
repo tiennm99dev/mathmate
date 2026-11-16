@@ -6,9 +6,11 @@
  * one from the halfway mark on, as the book's rule says. Pure and DOM-free.
  */
 import { fmt } from '#lib/core/number-format.js';
-import { TOP, roundTo } from '../_shared/numbers-to-100000.js';
+import { roundTo } from '#lib/core/kid/whole-numbers.js';
 
-/** @typedef {import('../_shared/numbers-to-100000.js').RoundUnit} RoundUnit */
+const TOP = 100000;
+
+/** @typedef {1000 | 10000} RoundUnit */
 
 /** The first number shown per unit, from the book. */
 export const START = /** @type {const} */ ({ 1000: 65341, 10000: 82134 });

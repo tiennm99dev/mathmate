@@ -3,7 +3,7 @@
  * the table's products in the Sunday column, and ringing whole weeks out of a
  * number of days is the division table. Pure and DOM-free.
  */
-import { divLine, mulLine, repeatedSum } from '../_shared/times.js';
+import { divLine, mulLine, repeatedSum } from '#lib/core/kid/times-table.js';
 import { buildTableRound, tableKindLabels } from '../_shared/table-round.js';
 
 /** The table of this lesson. */

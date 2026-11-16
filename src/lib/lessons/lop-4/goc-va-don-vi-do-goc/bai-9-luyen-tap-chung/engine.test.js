@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import { optionText } from '#lib/core/kid/quiz.js';
-import { KINDS, clockAngle, kindOf } from '../_shared/angle.js';
+import { KINDS, clockAngle, kindOf } from '#lib/core/visuals/protractor.js';
 import {
   KIND_LABELS,
   buildRound,

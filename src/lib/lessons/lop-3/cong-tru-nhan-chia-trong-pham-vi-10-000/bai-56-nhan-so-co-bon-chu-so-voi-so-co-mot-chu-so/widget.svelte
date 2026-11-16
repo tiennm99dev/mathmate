@@ -1,6 +1,7 @@
 <script>
   import { fmt } from '#lib/core/number-format.js';
-  import ColumnWorker from '../_shared/column-worker.svelte';
+  import ColumnWorker from '#lib/core/kid/column-worker.svelte';
+  import { COLUMNS, drawColumn } from '../_shared/columns.js';
   import { partsOf, partsSum } from './engine.js';
 
   const TONES = [
@@ -12,7 +13,7 @@
 </script>
 
 {#snippet area(
-  /** @type {import('../_shared/columns.js').Task} */ task,
+  /** @type {import('#lib/core/kid/column-steps.js').Task} */ task,
   /** @type {number} */ finished,
 )}
   {@const parts = partsOf(task)}
@@ -56,6 +57,8 @@
 
 <ColumnWorker
   op="×"
+  columns={COLUMNS}
+  draw={(kind, previous) => drawColumn(Math.random, '×', kind, previous)}
   switchLabel="Chọn loại phép nhân"
   nextLabel="Phép nhân khác"
   kinds={[

@@ -5,8 +5,9 @@
   import { along, arcPath, directionTo, rightMarkPath } from '#lib/core/visuals/angle-math.js';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
-  import { STEP, clampMeasure, measureAt, rayDirection, scaleReadings } from '../_shared/angle.js';
-  import Protractor from '../_shared/protractor.svelte';
+  import { rayDirection } from '#lib/core/visuals/protractor.js';
+  import { STEP, clampMeasure, measureAt, scaleReadings } from '../_shared/angle.js';
+  import Protractor from '#lib/core/visuals/protractor.svelte';
   import QuestionVisual from '../_shared/question-visual.svelte';
   import { KIND_LABELS, TARGETS, buildRound, targetMessage } from './engine.js';
 

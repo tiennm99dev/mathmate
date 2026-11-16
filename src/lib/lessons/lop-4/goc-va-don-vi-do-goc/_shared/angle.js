@@ -7,31 +7,20 @@
  * Directions are whole degrees measured the mathematical way: 0° points
  * right and angles grow counter-clockwise.
  *
- * @typedef {'nhon' | 'vuong' | 'tu' | 'bet'} AngleKind
- * @typedef {'phai' | 'trai'} Side where the side OA lies on the protractor
+ * Kinds, the protractor's two scales and the clock angle are in
+ * `#lib/core/visuals/protractor.js`.
+ *
+ * @typedef {import('#lib/core/visuals/protractor.js').AngleKind} AngleKind
+ * @typedef {import('#lib/core/visuals/protractor.js').Side} Side
  */
-
-/** The kinds in the book's order. */
-export const KINDS = /** @type {const} */ (['nhon', 'vuong', 'tu', 'bet']);
-
-/** Vietnamese names of the kinds. */
-export const KIND_NAME = /** @type {Record<AngleKind, string>} */ ({
-  nhon: 'góc nhọn',
-  vuong: 'góc vuông',
-  tu: 'góc tù',
-  bet: 'góc bẹt',
-});
-
-/**
- * Kind of an angle by its measure, 0° < m ≤ 180°.
- * @param {number} m
- * @returns {AngleKind}
- */
-export function kindOf(m) {
-  if (m === 180) return 'bet';
-  if (m === 90) return 'vuong';
-  return m < 90 ? 'nhon' : 'tu';
-}
+import {
+  KINDS,
+  KIND_NAME,
+  foldUpper,
+  kindOf,
+  measureFrom,
+  rayDirection,
+} from '#lib/core/visuals/protractor.js';
 
 /**
  * Why an angle of measure `m` is of its kind, compared with 90°.
@@ -69,29 +58,6 @@ export const NAME_SETS = /** @type {const} */ ([
   ['G', 'S', 'L'],
   ['E', 'P', 'Q'],
 ]);
-
-/**
- * Direction of the side OB for an angle AOB of measure `m` when the side OA
- * points right (direction 0°) or left (direction 180°).
- * @param {number} m @param {Side} side
- */
-export const rayDirection = (m, side) => (side === 'phai' ? m : 180 - m);
-
-/**
- * Measure of the angle AOB from the direction of OB (0° to 180°).
- * @param {number} dir @param {Side} side
- */
-export const measureFrom = (dir, side) => (side === 'phai' ? dir : 180 - dir);
-
-/**
- * A pointer direction seen from O folded onto the upper half, where the
- * protractor lies: a direction below the base line goes to the nearer end.
- * @param {number} dir in [0, 360)
- */
-export function foldUpper(dir) {
-  if (dir <= 180) return dir;
-  return dir < 270 ? 180 : 0;
-}
 
 /** The step the side OB turns by. */
 export const STEP = 5;
@@ -166,13 +132,3 @@ export const KIND_OPTIONS = KINDS.map((k) => {
   const name = KIND_NAME[k];
   return name.charAt(0).toUpperCase() + name.slice(1);
 });
-
-/**
- * The angle between the two hands of a clock at `h` o'clock sharp (1 to 12),
- * from 0° to 180°.
- * @param {number} h
- */
-export function clockAngle(h) {
-  const turn = (30 * h) % 360;
-  return turn <= 180 ? turn : 360 - turn;
-}

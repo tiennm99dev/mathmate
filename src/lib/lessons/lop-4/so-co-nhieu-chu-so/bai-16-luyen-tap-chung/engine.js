@@ -11,17 +11,18 @@ import { fmt } from '#lib/core/number-format.js';
 import {
   CLASS_NAMES,
   PLACE_NAMES,
-  TOP,
   classOf,
   compareWhy,
   digitAt,
   digitCount,
-  readBig,
+  readWhole,
   roundTo,
   roundWhy,
   sumText,
   valueAt,
-} from '../_shared/big-numbers.js';
+} from '#lib/core/kid/whole-numbers.js';
+
+const TOP = 999999999;
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion} Question */
 
@@ -109,10 +110,10 @@ const MAKERS = {
       n * 10 <= TOP ? n * 10 : n + 100000,
     ].filter((v) => v !== n && v > 0 && v <= TOP);
     return {
-      prompt: `Số "${readBig(n)}" viết là số nào?`,
+      prompt: `Số "${readWhole(n)}" viết là số nào?`,
       ...mixOptions(rand, fmt(n), [...new Set(slips)].slice(0, 3).map(fmt)),
       hint: 'Em viết từng lớp: lớp triệu, lớp nghìn, lớp đơn vị. Mỗi lớp sau lớp đầu có đủ ba chữ số; hàng nào không có thì viết chữ số 0.',
-      solution: `Số "${readBig(n)}" viết là ${fmt(n)}.`,
+      solution: `Số "${readWhole(n)}" viết là ${fmt(n)}.`,
     };
   },
   'tong-hang': (rand) => {

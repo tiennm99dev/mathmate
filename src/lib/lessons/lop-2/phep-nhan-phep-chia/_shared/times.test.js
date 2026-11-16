@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { buildRound, jumpMessage, mulLine, repeatedSum, tableOptions } from './times.js';
+import { mulLine, productOptions, repeatedSum } from '#lib/core/kid/times-table.js';
+import { buildRound, jumpMessage } from './times.js';
 
 describe('table sentences', () => {
   it('keeps the repeated number first', () => {
@@ -19,7 +20,7 @@ describe('table options', () => {
     const bad = [];
     for (const base of [2, 5]) {
       for (let n = 1; n <= 10; n++) {
-        const { options, answer } = tableOptions(base, n);
+        const { options, answer } = productOptions(base, n);
         const values = options.map(Number);
         if (values[answer] !== base * n) bad.push(['answer', base, n]);
         if (new Set(values).size !== 4) bad.push(['size', base, n, options]);

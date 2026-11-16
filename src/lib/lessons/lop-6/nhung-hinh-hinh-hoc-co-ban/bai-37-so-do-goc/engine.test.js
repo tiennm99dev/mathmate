@@ -1,13 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import {
-  foldUpper,
-  judgeReading,
-  measureFrom,
-  newMeasure,
-  rayDirection,
-  readDegrees,
-} from './engine.js';
+import { foldUpper, measureFrom, rayDirection } from '#lib/core/visuals/protractor.js';
+import { judgeReading, newMeasure, readDegrees } from './engine.js';
 
 describe('virtual protractor', () => {
   it('turns a measure into a ray direction and back for either side', () => {

@@ -2,7 +2,7 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button } from '#lib/core/ui.js';
   import Block from '#lib/core/kid/block.svelte';
-  import { PLACES4, readTo10000 } from '../_shared/numbers-to-10000.js';
+  import { placeColumns, readWhole } from '#lib/core/kid/whole-numbers.js';
   import {
     CHALLENGES,
     EMPTY,
@@ -15,9 +15,12 @@
     remove,
   } from './engine.js';
 
-  /** @typedef {import('../_shared/numbers-to-10000.js').Place4} Place4 */
+  const PLACES4 = placeColumns(4);
+
+  /** @typedef {import('#lib/core/kid/whole-numbers.js').PlaceKey} Place4 */
 
   /** Drawn cell size per place, chosen so ten blocks of a place fit a column at 390 px. */
+  /** @type {Record<string, number>} */
   const CELLS = { thousands: 1.6, hundreds: 2, tens: 3.5, ones: 9 };
 
   let table = $state(EMPTY);
@@ -56,7 +59,7 @@
 
 <div class="space-y-4">
   <p class="text-center text-xl font-semibold text-slate-800">
-    Em hãy xếp số: <strong class="text-indigo-700">{readTo10000(target)}</strong>
+    Em hãy xếp số: <strong class="text-indigo-700">{readWhole(target)}</strong>
   </p>
 
   <div class="grid grid-cols-4 gap-1.5">
@@ -71,7 +74,7 @@
           aria-hidden="true"
         >
           {#each { length: table[p.key] } as _, i (i)}
-            <Block kind={p.block} cell={CELLS[p.key]} />
+            <Block kind={p.block ?? 'don-vi'} cell={CELLS[p.key]} />
           {/each}
         </div>
         <p

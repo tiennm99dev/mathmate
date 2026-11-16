@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { divLine, mulLine, productOptions, quotientOptions, repeatedSum } from './times.js';
+import { divLine, mulLine, productOptions, quotientOptions, repeatedSum } from './times-table.js';
 
 describe('table sentences', () => {
   it('writes the rows the way the book does', () => {

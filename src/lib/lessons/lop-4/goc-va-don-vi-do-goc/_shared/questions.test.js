@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import { optionText } from '#lib/core/kid/quiz.js';
-import { clockAngle } from './angle.js';
+import { clockAngle } from '#lib/core/visuals/protractor.js';
 import { clockQuestion, drawMeasure, readingQuestion } from './questions.js';
 
 describe('shared questions', () => {

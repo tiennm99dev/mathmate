@@ -6,7 +6,7 @@
  * Pure and DOM-free.
  */
 import { compareSign } from '#lib/core/kid/numbers.js';
-import { PLACE_NAMES, compareWhy, digitAt, digitCount } from '../_shared/big-numbers.js';
+import { PLACE_NAMES, compareWhy, digitAt, digitCount } from '#lib/core/kid/whole-numbers.js';
 
 /** The pairs to compare, in order. */
 export const PAIRS = /** @type {const} */ ([

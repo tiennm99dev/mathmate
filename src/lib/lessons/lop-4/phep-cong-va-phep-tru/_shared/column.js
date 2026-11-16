@@ -4,8 +4,13 @@
  * "9 cộng 8 bằng 17, viết 7, nhớ 1" and "3 không trừ được 9, lấy 13 trừ 9
  * bằng 4, viết 4, nhớ 1". Each step also tells the widget what to draw: the
  * carried 1 over the next column, or the 10 borrowed into this one and the 1
- * added to the next digit of the number below. Pure and DOM-free.
+ * added to the next digit of the number below. The grade 4 book words a
+ * column a little differently from grade 3 ("Hạ 4", "4 thêm 1 bằng 5; ..."),
+ * so the steps stay here; digits and place names come from the kid core.
+ * Pure and DOM-free.
  */
+import { onesDigits as onesFirst } from '#lib/core/kid/column-steps.js';
+import { PLACE_NAMES } from '#lib/core/kid/whole-numbers.js';
 import { fmt } from '#lib/core/number-format.js';
 
 /** @typedef {'+' | '−'} Op */
@@ -29,25 +34,6 @@ import { fmt } from '#lib/core/number-format.js';
  *   say: string,
  * }} Step
  */
-
-/** Place names from the ones, up to hundred millions. */
-export const PLACE_NAMES = /** @type {const} */ ([
-  'đơn vị',
-  'chục',
-  'trăm',
-  'nghìn',
-  'chục nghìn',
-  'trăm nghìn',
-  'triệu',
-  'chục triệu',
-  'trăm triệu',
-]);
-
-/**
- * Digits of a natural number, ones first.
- * @param {number} n
- */
-export const onesFirst = (n) => String(n).split('').reverse().map(Number);
 
 /**
  * The number set on top and the one set below: the first number on top,

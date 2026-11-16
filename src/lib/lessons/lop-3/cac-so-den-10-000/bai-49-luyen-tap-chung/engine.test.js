@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { GROUP } from '#lib/core/number-format.js';
 import { optionText, questionKey } from '#lib/core/kid/quiz.js';
-import { readTo10000, roundTo, toRoman } from '../_shared/numbers-to-10000.js';
+import { readWhole, roundTo, toRoman } from '#lib/core/kid/whole-numbers.js';
 import {
   KINDS,
   KIND_LABELS,
@@ -40,8 +40,8 @@ function recompute(q) {
   const options = q.options.map((o) => plain(optionText(o)));
   switch (q.kind) {
     case 'doc':
-      if (q.prompt.includes('đọc là gì')) return readTo10000(nums[0]);
-      return String(options.map(Number).find((v) => q.prompt.includes(`"${readTo10000(v)}"`)));
+      if (q.prompt.includes('đọc là gì')) return readWhole(nums[0]);
+      return String(options.map(Number).find((v) => q.prompt.includes(`"${readWhole(v)}"`)));
     case 'hang': {
       const n = String(nums[0]);
       if (q.prompt.startsWith('Trong số')) {

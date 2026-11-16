@@ -3,7 +3,7 @@
   import ChoiceRound from '#lib/core/kid/choice-round.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import KidNote from '../_shared/kid-note.svelte';
+  import KidNote from '#lib/core/kid/kid-note.svelte';
   import TwoStepDiagram from '../_shared/two-step-diagram.svelte';
   import { SCENES, answerLine, makeStory, solutionSteps } from '../_shared/two-step.js';
   import { KIND_LABELS, buildRound, stepOf } from './engine.js';

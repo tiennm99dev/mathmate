@@ -11,16 +11,18 @@ import { fmt } from '#lib/core/number-format.js';
 import { compareSign } from '#lib/core/kid/numbers.js';
 import { drawFresh, mixOptions, questionKey, signOptions } from '#lib/core/kid/quiz.js';
 import {
-  PLACES4,
-  compareWhy4,
-  digitsOf,
-  placesText4,
-  readTo10000,
+  compareWhy,
+  placeColumns,
+  placeDigits,
+  placesText,
+  readWhole,
   roundTo,
   roundWhy,
-  sumParts4,
+  sumParts,
   toRoman,
-} from '../_shared/numbers-to-10000.js';
+} from '#lib/core/kid/whole-numbers.js';
+
+const PLACES4 = placeColumns(4);
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion<null>} Asked */
 /**
@@ -101,17 +103,17 @@ export function sortedOptions(right, wrong) {
 export function readQuestion(rand) {
   const n = withZeros(rand);
   const wrong = digitSlips(rand, n);
-  const solution = `${fmt(n)} gồm ${placesText4(n)}, đọc là: ${readTo10000(n)}.`;
+  const solution = `${fmt(n)} gồm ${placesText(n, 4)}, đọc là: ${readWhole(n)}.`;
   if (rand() < 0.5) {
     return {
       prompt: `Số ${fmt(n)} đọc là gì?`,
-      ...mixOptions(rand, readTo10000(n), wrong.map(readTo10000)),
+      ...mixOptions(rand, readWhole(n), wrong.map(readWhole)),
       hint: 'Em đọc từ hàng nghìn. Hàng trăm là 0 thì đọc "không trăm", hàng chục là 0 thì đọc "linh".',
       solution,
     };
   }
   return {
-    prompt: `Số "${readTo10000(n)}" viết là số nào?`,
+    prompt: `Số "${readWhole(n)}" viết là số nào?`,
     ...sortedOptions(n, wrong),
     hint: 'Em viết lần lượt chữ số hàng nghìn, hàng trăm, hàng chục, hàng đơn vị.',
     solution,
@@ -137,10 +139,10 @@ function distinctDigits(rand) {
 export function placeQuestion(rand) {
   const n = distinctDigits(rand);
   const place = pick(rand, PLACES4);
-  const d = digitsOf(n);
+  const d = placeDigits(n, 4);
   const digit = d[place.key];
   const hint = 'Từ trái sang phải là hàng nghìn, hàng trăm, hàng chục, hàng đơn vị.';
-  const solution = `${fmt(n)} gồm ${placesText4(n)}. Chữ số ${digit} ở hàng ${place.unit}.`;
+  const solution = `${fmt(n)} gồm ${placesText(n, 4)}. Chữ số ${digit} ở hàng ${place.unit}.`;
   if (rand() < 0.5) {
     return {
       prompt: `Trong số ${fmt(n)}, chữ số ${digit} ở hàng nào?`,
@@ -167,7 +169,7 @@ export function placeQuestion(rand) {
  * @returns {string[]}
  */
 export function sumSlips(n) {
-  const parts = sumParts4(n);
+  const parts = sumParts(n);
   return parts.flatMap((part, i) =>
     [part * 10, part / 10]
       .filter((v) => Number.isInteger(v) && v >= 1 && v <= 9000)
@@ -187,8 +189,8 @@ export function sumSlips(n) {
  */
 export function sumQuestion(rand) {
   const n = withZeros(rand);
-  const sum = sumParts4(n).map(fmt).join(' + ');
-  const solution = `${fmt(n)} gồm ${placesText4(n)}, nên ${fmt(n)} = ${sum}.`;
+  const sum = sumParts(n).map(fmt).join(' + ');
+  const solution = `${fmt(n)} gồm ${placesText(n, 4)}, nên ${fmt(n)} = ${sum}.`;
   if (rand() < 0.5) {
     return {
       prompt: `${fmt(n)} bằng tổng nào?`,
@@ -249,7 +251,7 @@ export function closePair(rand) {
     return rand() < 0.5 ? [int(rand, 900, 999), int(rand, 1000, 1099)] : [9999, 10000];
   if (shape === 9) return [a, a];
   const place = PLACES4[shape % 4];
-  const d = { ...digitsOf(a) };
+  const d = { ...placeDigits(a, 4) };
   d[place.key] = place.key === 'thousands' ? int(rand, 1, 9) : int(rand, 0, 9);
   const b = d.thousands * 1000 + d.hundreds * 100 + d.tens * 10 + d.ones;
   return rand() < 0.5 ? [a, b] : [b, a];
@@ -266,7 +268,7 @@ export function signQuestion(rand) {
     prompt: `Em chọn dấu đúng: ${fmt(a)} ... ${fmt(b)}.`,
     ...signOptions(compareSign(a, b)),
     hint: 'Em đếm chữ số trước. Cùng số chữ số thì so sánh từ hàng nghìn.',
-    solution: compareWhy4(a, b),
+    solution: compareWhy(a, b),
   };
 }
 
@@ -450,7 +452,7 @@ export function storyQuestion(rand) {
     prompt: `${story.text(fmt(a), fmt(b))} ${story.ask}`,
     ...mixOptions(rand, right, [wrong]),
     hint: `Em so sánh ${fmt(a)} và ${fmt(b)}.`,
-    solution: `${compareWhy4(a, b)} ${right} ${story.verdict}.`,
+    solution: `${compareWhy(a, b)} ${right} ${story.verdict}.`,
   };
 }
 

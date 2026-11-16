@@ -6,7 +6,7 @@
  * Pure and DOM-free.
  */
 import { fmt } from '#lib/core/number-format.js';
-import { PLACE_NAMES, placeTitle, readBig, sumText } from '../_shared/big-numbers.js';
+import { PLACE_NAMES, placeTitle, readWhole, sumText } from '#lib/core/kid/whole-numbers.js';
 
 /** One digit per column, or null while the column is empty. @typedef {(number | null)[]} Slots */
 
@@ -67,7 +67,7 @@ export function reading(slots) {
   if (empty > 0) return `Còn ${empty} cột chưa có thẻ.`;
   const n = numberOf(slots);
   if (n === null) return 'Số có sáu chữ số thì chữ số hàng trăm nghìn phải khác 0.';
-  return `${fmt(n)} đọc là: ${readBig(n)}.`;
+  return `${fmt(n)} đọc là: ${readWhole(n)}.`;
 }
 
 /**
@@ -90,7 +90,7 @@ export function sumLine(slots) {
 export function challengeNote(slots, target) {
   const want = columnsOf(target);
   if (slots.every((d, i) => d === want[i])) {
-    return { tone: 'ok', text: `Đúng rồi! Số ${readBig(target)} viết là ${fmt(target)}.` };
+    return { tone: 'ok', text: `Đúng rồi! Số ${readWhole(target)} viết là ${fmt(target)}.` };
   }
   if (slots.every((d) => d === null)) {
     return { tone: 'info', text: 'Em chạm một thẻ chữ số rồi chạm một cột.' };
@@ -116,5 +116,5 @@ export function hundredThousands(k) {
   if (k === 10) {
     return { value, text: `10 trăm nghìn là 1 triệu. Viết là ${fmt(value)}, đọc là: một triệu.` };
   }
-  return { value, text: `${k} trăm nghìn. Viết là ${fmt(value)}, đọc là: ${readBig(value)}.` };
+  return { value, text: `${k} trăm nghìn. Viết là ${fmt(value)}, đọc là: ${readWhole(value)}.` };
 }

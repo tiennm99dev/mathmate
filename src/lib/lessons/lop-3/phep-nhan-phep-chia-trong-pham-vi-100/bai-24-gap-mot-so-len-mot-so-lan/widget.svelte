@@ -2,7 +2,7 @@
   import ChoiceRound from '#lib/core/kid/choice-round.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
-  import KidNote from '../_shared/kid-note.svelte';
+  import KidNote from '#lib/core/kid/kid-note.svelte';
   import PaperStrip from '../_shared/paper-strip.svelte';
   import {
     FIRST_TASK,

@@ -1,7 +1,7 @@
 <script>
   import { tick } from 'svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import KidNote from '../_shared/kid-note.svelte';
+  import KidNote from '#lib/core/kid/kid-note.svelte';
   import {
     FIRST_TASK,
     doneLines,

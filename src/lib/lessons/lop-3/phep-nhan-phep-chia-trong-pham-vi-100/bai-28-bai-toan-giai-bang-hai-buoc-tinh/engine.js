@@ -4,7 +4,7 @@
  * open one by one on the widget and are mixed in the quiz. Pure and DOM-free.
  */
 import { rng } from '#lib/core/drill.js';
-import { slipOptions } from '../_shared/strip.js';
+import { slipOptions } from '#lib/core/kid/quiz.js';
 import {
   answerLine,
   drawStories,

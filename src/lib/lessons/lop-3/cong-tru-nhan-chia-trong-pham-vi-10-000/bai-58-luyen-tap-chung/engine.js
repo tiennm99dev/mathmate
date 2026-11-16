@@ -6,16 +6,8 @@
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions } from '#lib/core/kid/quiz.js';
 import { fmt } from '#lib/core/number-format.js';
-import {
-  columnWords,
-  divText,
-  divWords,
-  drawColumn,
-  drawDivision,
-  noCarry,
-  slipOptions,
-  withRest,
-} from '../_shared/columns.js';
+import { columnWords, divText, divWords, noCarry, withRest } from '#lib/core/kid/column-steps.js';
+import { drawColumn, drawDivision, slipOptions } from '../_shared/columns.js';
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion} Question */
 
@@ -99,7 +91,7 @@ const MAKERS = {
     return {
       prompt: `Đặt tính rồi tính: ${fmt(a)} − ${fmt(b)} = ?`,
       ...slipOptions(right, [noCarry(a, b, '-'), right + 10, right - 100]),
-      hint: 'Em trừ từ hàng đơn vị. Không trừ được thì mượn 1, rồi nhớ 1 vào hàng bên trái của số trừ.',
+      hint: 'Em trừ từ hàng đơn vị. Không trừ được thì lấy thêm 10 rồi trừ, nhớ 1 vào hàng bên trái của số trừ.',
       solution: columnWords(a, b, '-'),
     };
   },

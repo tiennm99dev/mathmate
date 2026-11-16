@@ -5,7 +5,7 @@
  * taken is checked against the cards still on the table. Pure and DOM-free.
  */
 import { fmt } from '#lib/core/number-format.js';
-import { compareWhy5 } from '../_shared/numbers-to-100000.js';
+import { compareWhy } from '#lib/core/kid/whole-numbers.js';
 
 /** @typedef {'up' | 'down'} Direction */
 /** @typedef {{ numbers: readonly number[], direction: Direction }} CardSet */
@@ -82,5 +82,5 @@ export function take(numbers, row, direction, card) {
  * @param {readonly number[]} row
  */
 export function rowReasons(row) {
-  return row.slice(1).map((n, i) => compareWhy5(row[i], n));
+  return row.slice(1).map((n, i) => compareWhy(row[i], n));
 }

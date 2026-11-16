@@ -3,7 +3,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
   import NumberLine from '#lib/core/visuals/number-line.svelte';
-  import TableGrid from '../_shared/table-grid.svelte';
+  import TableGrid from '#lib/core/kid/table-grid.svelte';
   import { KIND_LABELS, jumpMessage } from '../_shared/times.js';
   import { BASE, hopsFor, round } from './engine.js';
 
@@ -71,7 +71,7 @@
       {message}
     </p>
 
-    <TableGrid base={BASE} shown={step} />
+    <TableGrid base={BASE} found={(n) => n <= step} active={step} />
   {:else}
     <ChoiceRound build={round} labels={KIND_LABELS} allGood="Em đã thuộc bảng nhân 2 rồi!">
       {#snippet visual(/** @type {{ visual?: { n: number } }} */ q, /** @type {boolean} */ settled)}

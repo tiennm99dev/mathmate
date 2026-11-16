@@ -13,7 +13,7 @@ import {
   rightOrWrong,
   shareOf,
 } from '../_shared/part-questions.js';
-import { divLine } from '../_shared/times.js';
+import { divLine } from '#lib/core/kid/times-table.js';
 
 /** What each part of the round practises. */
 export const KIND_LABELS = /** @type {const} */ ({

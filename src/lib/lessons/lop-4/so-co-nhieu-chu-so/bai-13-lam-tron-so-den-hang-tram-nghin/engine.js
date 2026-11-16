@@ -5,7 +5,7 @@
  * ask which mark a number rounds to. Pure and DOM-free.
  */
 import { fmt } from '#lib/core/number-format.js';
-import { digitAt, roundTo, roundWhy } from '../_shared/big-numbers.js';
+import { digitAt, roundTo, roundWhy } from '#lib/core/kid/whole-numbers.js';
 
 /** One hundred thousand: the gap between two marks. */
 export const STEP = 100000;

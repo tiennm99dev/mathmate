@@ -4,7 +4,8 @@
  * DOM-free.
  */
 import { int, pick } from '#lib/core/drill.js';
-import { angleName, clockAngle, degreeOptions, NAME_SETS } from './angle.js';
+import { clockAngle } from '#lib/core/visuals/protractor.js';
+import { NAME_SETS, angleName, degreeOptions } from './angle.js';
 import { protractorFigure } from './figure.js';
 
 /** @typedef {import('./angle.js').Side} Side */

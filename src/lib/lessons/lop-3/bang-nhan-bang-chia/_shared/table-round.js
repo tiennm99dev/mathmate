@@ -4,7 +4,7 @@
  * picture and word problems. Pure and DOM-free.
  */
 import { pick, rng, shuffle } from '#lib/core/drill.js';
-import { divLine, mulLine, productOptions, quotientOptions } from './times.js';
+import { divLine, mulLine, productOptions, quotientOptions } from '#lib/core/kid/times-table.js';
 
 /**
  * A word problem on row `n` of the table.

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import { GROUP } from '#lib/core/number-format.js';
 import { optionText, questionKey } from '#lib/core/kid/quiz.js';
-import { readTo100000, roundTo } from '../_shared/numbers-to-100000.js';
+import { readWhole, roundTo } from '#lib/core/kid/whole-numbers.js';
 import {
   KINDS,
   KIND_LABELS,
@@ -41,8 +41,8 @@ function recompute(q) {
   const options = q.options.map((o) => plain(optionText(o)));
   switch (q.kind) {
     case 'doc':
-      if (q.prompt.includes('đọc là gì')) return readTo100000(nums[0]);
-      return String(options.map(Number).find((v) => q.prompt.includes(`"${readTo100000(v)}"`)));
+      if (q.prompt.includes('đọc là gì')) return readWhole(nums[0]);
+      return String(options.map(Number).find((v) => q.prompt.includes(`"${readWhole(v)}"`)));
     case 'hang': {
       const n = String(nums[0]);
       if (q.prompt.startsWith('Trong số')) {

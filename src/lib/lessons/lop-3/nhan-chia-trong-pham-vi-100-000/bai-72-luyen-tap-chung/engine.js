@@ -6,17 +6,8 @@
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions } from '#lib/core/kid/quiz.js';
 import { fmt } from '#lib/core/number-format.js';
-import {
-  LIMIT,
-  divText,
-  divWords,
-  drawDivision,
-  drawMul,
-  mulWords,
-  noCarry,
-  slipOptions,
-  withRest,
-} from '../_shared/columns.js';
+import { columnWords, divText, divWords, noCarry, withRest } from '#lib/core/kid/column-steps.js';
+import { LIMIT, drawDivision, drawMul, slipOptions } from '../_shared/columns.js';
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion} Question */
 
@@ -76,9 +67,9 @@ const MAKERS = {
     const right = a * b;
     return {
       prompt: `Đặt tính rồi tính: ${fmt(a)} × ${b} = ?`,
-      ...slipOptions(right, [noCarry(a, b), right - 10, right + 100]),
+      ...slipOptions(right, [noCarry(a, b, '×'), right - 10, right + 100]),
       hint: 'Em nhân từ hàng đơn vị. Nhớ thêm số đã nhớ vào hàng tiếp theo.',
-      solution: mulWords(a, b),
+      solution: columnWords(a, b, '×'),
     };
   },
   chia: (rand) => {
@@ -142,7 +133,7 @@ const MAKERS = {
     const right = a * b;
     return {
       prompt: `Mỗi lần người ta chuyển ${fmt(a)} kg thóc vào kho. Hỏi ${b} lần như thế chuyển được bao nhiêu ki-lô-gam thóc?`,
-      ...slipOptions(right, [noCarry(a, b), a + b, right + 100]),
+      ...slipOptions(right, [noCarry(a, b, '×'), a + b, right + 100]),
       hint: `${fmt(a)} kg được lấy ${b} lần, em làm phép nhân.`,
       solution: `${b} lần chuyển được: ${fmt(a)} × ${b} = ${fmt(right)} (kg). Đáp số: ${fmt(right)} kg thóc.`,
     };

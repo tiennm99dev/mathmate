@@ -1,32 +1,8 @@
 /**
  * Logic of the virtual protractor: which way the ray Oy points for a given
- * measure, how a typed reading is judged, and new angles to read.
+ * measure (`#lib/core/visuals/protractor.js`), how a typed reading is judged,
+ * and new angles to read.
  */
-
-/**
- * Direction of the ray Oy (mathematical degrees, 0 to 180) for the angle
- * xOy of measure `m`, when the side Ox points right (direction 0°) or left
- * (direction 180°).
- * @param {number} m @param {'phai' | 'trai'} side
- */
-export const rayDirection = (m, side) => (side === 'phai' ? m : 180 - m);
-
-/**
- * Measure of the angle xOy from the direction of Oy.
- * @param {number} dir @param {'phai' | 'trai'} side
- */
-export const measureFrom = (dir, side) => (side === 'phai' ? dir : 180 - dir);
-
-/**
- * The direction of a pointer seen from O, folded onto the upper half plane
- * where the protractor lies: directions below the base line go to the
- * nearer end.
- * @param {number} dir whole degrees in [0, 360)
- */
-export function foldUpper(dir) {
-  if (dir <= 180) return dir;
-  return dir < 270 ? 180 : 0;
-}
 
 /**
  * Judges a reading typed by the learner.

@@ -23,7 +23,8 @@
  */
 
 import { along, dirOf, measure } from '#lib/core/visuals/angle-math.js';
-import { angleName, protractorText, rayDirection } from './angle.js';
+import { rayDirection } from '#lib/core/visuals/protractor.js';
+import { angleName, protractorText } from './angle.js';
 
 export const FIGURE_W = 320;
 export const FIGURE_H = 224;

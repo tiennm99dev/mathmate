@@ -5,42 +5,39 @@ import {
   askFor,
   carriesOf,
   checkText,
+  columnWords,
   divText,
   divWords,
-  drawDivision,
-  drawMul,
-  isDivKind,
   mulSteps,
-  mulWords,
   noCarry,
   sheetAt,
-  slipOptions,
   wrongFor,
-} from './columns.js';
+} from '#lib/core/kid/column-steps.js';
+import { COLUMNS, drawDivision, drawMul, isDivKind, slipOptions } from './columns.js';
 
 /** @param {string} text */
 const plain = (text) => text.replaceAll(GROUP, ' ');
 
 describe('multiplying in columns', () => {
   it('reads 31 504 × 3 the book way', () => {
-    expect(plain(mulWords(31504, 3))).toBe(
+    expect(plain(columnWords(31504, 3, '×'))).toBe(
       '3 nhân 4 bằng 12, viết 2, nhớ 1. 3 nhân 0 bằng 0, thêm 1 bằng 1, viết 1. 3 nhân 5 bằng 15, viết 5, nhớ 1. 3 nhân 1 bằng 3, thêm 1 bằng 4, viết 4. 3 nhân 3 bằng 9, viết 9. Vậy 31 504 × 3 = 94 512.',
     );
   });
 
   it('counts carries and the forgotten-carry slip', () => {
-    expect(carriesOf(12132, 3)).toBe(0);
-    expect(carriesOf(21314, 3)).toBe(1);
-    expect(carriesOf(31504, 3)).toBe(2);
-    expect(noCarry(31504, 3)).toBe(93502);
+    expect(carriesOf(12132, 3, '×')).toBe(0);
+    expect(carriesOf(21314, 3, '×')).toBe(1);
+    expect(carriesOf(31504, 3, '×')).toBe(2);
+    expect(noCarry(31504, 3, '×')).toBe(93502);
   });
 
   it('fills the sheet digit by digit with carries above', () => {
-    const sheet = sheetAt(31504, 3, 1);
+    const sheet = sheetAt(31504, 3, '×', 1, COLUMNS);
     expect(sheet.written.slice(0, 5)).toEqual(['2', '', '', '', '']);
     expect(sheet.carries[1]).toBe(1);
     expect(sheet.active).toBe(1);
-    const end = sheetAt(31504, 3, 5);
+    const end = sheetAt(31504, 3, '×', 5, COLUMNS);
     expect(end.written.slice(0, 5).reverse().join('')).toBe('94512');
     expect(end.active).toBe(null);
     expect(end.finished).toBe(5);
@@ -48,10 +45,12 @@ describe('multiplying in columns', () => {
 
   it('asks and nudges by column', () => {
     const steps = mulSteps(31504, 3);
-    expect(askFor(steps[1])).toBe('Hàng chục: 3 nhân 0, rồi thêm 1 đã nhớ. Em viết chữ số nào?');
-    expect(wrongFor(steps[1], 0, 1)).toBe('Em quên thêm 1 đã nhớ rồi.');
-    expect(wrongFor(steps[0], 1, 1)).toContain('nhớ sang hàng chục');
-    expect(wrongFor(steps[0], 7, 2)).toContain('viết 2, nhớ 1');
+    expect(askFor({ type: 'digit', step: steps[1] }, '×')).toBe(
+      'Hàng chục: 3 nhân 0, rồi thêm 1 đã nhớ. Em viết chữ số nào?',
+    );
+    expect(wrongFor(steps[1], '×', 0, 1)).toBe('Em quên thêm 1 đã nhớ rồi.');
+    expect(wrongFor(steps[0], '×', 1, 1)).toContain('nhớ sang hàng chục');
+    expect(wrongFor(steps[0], '×', 7, 2)).toContain('viết 2, nhớ 1');
   });
 
   it('draws tasks of each kind with the product within 99 999', () => {
@@ -64,7 +63,7 @@ describe('multiplying in columns', () => {
     ])) {
       for (let i = 0; i < 60; i++) {
         const { a, b } = drawMul(rand, kind);
-        const c = carriesOf(a, b);
+        const c = carriesOf(a, b, '×');
         const digits = mulSteps(a, b).map((s) => s.digit);
         if (a < 10000 || a * b > 99999 || c < lo || c > hi) bad.push({ a, b });
         if (Number(digits.reverse().join('')) !== a * b) bad.push({ a, b });

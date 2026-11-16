@@ -4,7 +4,7 @@
   import NumberLine from '#lib/core/visuals/number-line.svelte';
   import { fmt } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
-  import { roundTo, roundWhy, roundingPlaces } from '../_shared/numbers-to-100000.js';
+  import { roundingPlaces, roundTo, roundWhy } from '#lib/core/kid/whole-numbers.js';
   import {
     BOOK_NUMBERS,
     START,

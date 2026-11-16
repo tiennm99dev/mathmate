@@ -5,10 +5,13 @@
  * (10 trăm = 1 nghìn), until 10 khối nghìn make 10 000. Pure and DOM-free.
  */
 import { fmt } from '#lib/core/number-format.js';
-import { PLACES4, TOP, digitsOf, readTo10000 } from '../_shared/numbers-to-10000.js';
+import { placeColumns, placeDigits, readWhole } from '#lib/core/kid/whole-numbers.js';
 
-/** @typedef {import('../_shared/numbers-to-10000.js').Place4} Place4 */
-/** @typedef {import('../_shared/numbers-to-10000.js').Digits} Table */
+const PLACES4 = placeColumns(4);
+const TOP = 10000;
+
+/** @typedef {import('#lib/core/kid/whole-numbers.js').PlaceKey} Place4 */
+/** @typedef {Record<string, number>} Table */
 
 /** The empty table. */
 export const EMPTY = /** @type {Table} */ ({ thousands: 0, hundreds: 0, tens: 0, ones: 0 });
@@ -119,7 +122,7 @@ export function reading(table) {
     return `10 ${full.unit} = 1 ${above?.unit}. Em ghép 10 ${full.blockName} lại thì mới viết được số.`;
   }
   if (n === TOP) return `10 nghìn là ${fmt(TOP)}, đọc là: mười nghìn.`;
-  return `${fmt(n)} đọc là: ${readTo10000(n)}.`;
+  return `${fmt(n)} đọc là: ${readWhole(n)}.`;
 }
 
 /**
@@ -133,11 +136,11 @@ export function challengeNote(table, target) {
   const n = numberOf(table);
   const full = columnToMerge(table);
   if (n === target && !full) {
-    return { tone: 'ok', text: `Đúng rồi! Số ${readTo10000(target)} viết là ${fmt(target)}.` };
+    return { tone: 'ok', text: `Đúng rồi! Số ${readWhole(target)} viết là ${fmt(target)}.` };
   }
   if (n === 0) return { tone: 'info', text: 'Em bấm dấu + để thêm khối vào từng cột.' };
   if (full) return { tone: 'info', text: `Cột ${full.title} có 10 khối. Em ghép lại nhé.` };
-  const want = digitsOf(target);
+  const want = placeDigits(target, 4);
   const off = PLACES4.find((p) => table[p.key] !== want[p.key]);
   if (!off) return { tone: 'info', text: 'Em xem lại nhé.' };
   const more = table[off.key] < want[off.key];

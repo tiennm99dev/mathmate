@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { roundTo } from '../_shared/big-numbers.js';
+import { roundTo } from '#lib/core/kid/whole-numbers.js';
 import { QUIZ, STRETCHES, checkPick, marksAround, roundNote } from './engine.js';
 
 /** Group spaces as plain spaces. @param {string} t */
@@ -21,7 +21,7 @@ describe('rounding on the line', () => {
     expect(roundNote(3230000).target).toBe(3200000);
     expect(roundNote(3270000).target).toBe(3300000);
     expect(plain(roundNote(3250000).text)).toBe(
-      '3 250 000 ở chính giữa 3 200 000 và 3 300 000. Chữ số hàng chục nghìn là 5, 5 = 5 nên làm tròn lên: làm tròn đến hàng trăm nghìn được 3 300 000.',
+      '3 250 000 ở chính giữa 3 200 000 và 3 300 000. Chữ số hàng chục nghìn của 3 250 000 là 5, 5 = 5 nên làm tròn lên. Làm tròn 3 250 000 đến hàng trăm nghìn được 3 300 000.',
     );
     expect(plain(roundNote(3200000).text)).toContain('đã là số tròn trăm nghìn');
     expect(roundNote(960000).target).toBe(1000000);

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { fmt } from '#lib/core/number-format.js';
-import { readTo100000 } from '../_shared/numbers-to-100000.js';
+import { readWhole } from '#lib/core/kid/whole-numbers.js';
 import {
   CHALLENGES,
   EMPTY,
@@ -61,7 +61,7 @@ describe('building the number asked for', () => {
   });
 
   it('asks only numbers of five digits with a reading', () => {
-    const bad = CHALLENGES.filter((n) => n < 10000 || n > 99999 || readTo100000(n) === String(n));
+    const bad = CHALLENGES.filter((n) => n < 10000 || n > 99999 || readWhole(n) === String(n));
     expect(bad).toEqual([]);
   });
 });

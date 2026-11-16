@@ -1,6 +1,6 @@
 <script>
   import { focusRing } from '#lib/core/ui.js';
-  import { divLine, mulLine } from './times.js';
+  import { divLine, mulLine } from './times-table.js';
 
   /**
    * The ten rows of a multiplication or division table. Rows the child has not

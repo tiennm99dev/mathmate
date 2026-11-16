@@ -6,7 +6,7 @@
  */
 
 import { int, pick } from '#lib/core/drill.js';
-import { KIND_NAME, clockAngle, kindOf } from './angle.js';
+import { KIND_NAME, clockAngle, kindOf } from '#lib/core/visuals/protractor.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 

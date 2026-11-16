@@ -2,8 +2,8 @@
   import { tick } from 'svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
-  import DigitPad from '../_shared/digit-pad.svelte';
-  import KidNote from '../_shared/kid-note.svelte';
+  import DigitPad from '#lib/core/kid/digit-pad.svelte';
+  import KidNote from '#lib/core/kid/kid-note.svelte';
   import {
     areaLayout,
     askColumn,

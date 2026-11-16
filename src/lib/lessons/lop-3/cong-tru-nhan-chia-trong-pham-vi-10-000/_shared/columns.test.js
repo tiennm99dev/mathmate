@@ -9,18 +9,15 @@ import {
   columnWords,
   divText,
   divWords,
-  drawColumn,
-  drawDivision,
   equation,
-  isDivKind,
   noCarry,
   planOf,
   resultOf,
   sheetAt,
-  slipOptions,
   stepsOf,
   wrongFor,
-} from './columns.js';
+} from '#lib/core/kid/column-steps.js';
+import { COLUMNS, drawColumn, drawDivision, isDivKind, slipOptions } from './columns.js';
 
 /** @param {string} text */
 const plain = (text) => text.replaceAll(GROUP, ' ');
@@ -78,17 +75,19 @@ describe('the board', () => {
       'digit',
       'digit',
     ]);
-    const sheet = sheetAt(6378, 2549, '-', 1);
+    const sheet = sheetAt(6378, 2549, '-', 1, COLUMNS);
     expect(sheet.borrowed[0]).toBe(true);
     expect(sheet.carries[1]).toBe(1);
     expect(sheet.active).toBe(0);
-    expect(borrowLabel(plan[0].step)).toBe('Mượn 1 chục: 8 thành 18');
-    expect(askFor(plan[0], '-')).toBe('Hàng đơn vị: 8 không trừ được 9. Em mượn 1 chục nhé.');
+    expect(borrowLabel(plan[0].step)).toBe('Lấy 18 trừ, nhớ 1');
+    expect(askFor(plan[0], '-')).toBe(
+      'Hàng đơn vị: 8 không trừ được 9. Em lấy 18 trừ 9, nhớ 1 nhé.',
+    );
     expect(askFor(plan[2], '-')).toBe('Hàng chục: 4 thêm 1 bằng 5. 7 trừ 5. Em viết chữ số nào?');
   });
 
   it('writes every digit of a finished calculation', () => {
-    const sheet = sheetAt(3628, 4845, '+', 4);
+    const sheet = sheetAt(3628, 4845, '+', 4, COLUMNS);
     expect(sheet.written.slice(0, 4).reverse().join('')).toBe('8473');
     expect(sheet.carries).toEqual([0, 1, 0, 1, 0]);
     expect(sheet.active).toBe(null);
@@ -119,7 +118,7 @@ describe('drawn calculations', () => {
         for (let i = 0; i < 40; i++) {
           const { a, b } = drawColumn(rand, op, kind);
           const r = resultOf(a, b, op);
-          const digits = sheetAt(a, b, op, planOf(a, b, op).length)
+          const digits = sheetAt(a, b, op, planOf(a, b, op).length, COLUMNS)
             .written.reverse()
             .join('');
           const c = carriesOf(a, b, op);
@@ -147,7 +146,7 @@ describe('dividing', () => {
   it('writes the sentence, the words and the check', () => {
     expect(plain(divText(2487, 2))).toBe('2 487 : 2 = 1 243 (dư 1)');
     expect(plain(divWords(1276, 4))).toBe(
-      '12 chia 4 được 3, viết 3; 3 nhân 4 bằng 12; 12 trừ 12 bằng 0. Hạ 7, được 7. 7 chia 4 được 1, viết 1; 1 nhân 4 bằng 4; 7 trừ 4 bằng 3. Hạ 6, được 36. 36 chia 4 được 9, viết 9; 9 nhân 4 bằng 36; 36 trừ 36 bằng 0. Vậy 1 276 : 4 = 319.',
+      '12 chia 4 được 3, viết 3; 3 nhân 4 bằng 12; 12 trừ 12 bằng 0. Hạ 7. 7 chia 4 được 1, viết 1; 1 nhân 4 bằng 4; 7 trừ 4 bằng 3. Hạ 6, được 36. 36 chia 4 được 9, viết 9; 9 nhân 4 bằng 36; 36 trừ 36 bằng 0. Vậy 1 276 : 4 = 319.',
     );
     expect(plain(checkText(2487, 2))).toBe('Thử lại: 1 243 × 2 = 2 486, 2 486 + 1 = 2 487.');
   });

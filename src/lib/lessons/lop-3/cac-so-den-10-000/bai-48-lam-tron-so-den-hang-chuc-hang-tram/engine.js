@@ -6,7 +6,7 @@
  * up). The child guesses the mark before the ball rolls. Pure and DOM-free.
  */
 import { fmt } from '#lib/core/number-format.js';
-import { roundTo, roundWhy } from '../_shared/numbers-to-10000.js';
+import { roundTo, roundWhy } from '#lib/core/kid/whole-numbers.js';
 
 /** @typedef {10 | 100} Unit */
 

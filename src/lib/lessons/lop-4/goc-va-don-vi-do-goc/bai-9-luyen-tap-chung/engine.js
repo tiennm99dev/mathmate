@@ -6,16 +6,8 @@
  */
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions } from '#lib/core/kid/quiz.js';
-import {
-  KINDS,
-  KIND_OPTIONS,
-  NAME_SETS,
-  angleName,
-  clockAngle,
-  degreeOptions,
-  kindOf,
-  kindWhy,
-} from '../_shared/angle.js';
+import { KINDS, clockAngle, kindOf } from '#lib/core/visuals/protractor.js';
+import { KIND_OPTIONS, NAME_SETS, angleName, degreeOptions, kindWhy } from '../_shared/angle.js';
 import { angleFigure, pairFigure } from '../_shared/figure.js';
 import { drawMeasure, readingQuestion } from '../_shared/questions.js';
 

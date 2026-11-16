@@ -8,6 +8,8 @@
  */
 import { numberDivide } from '#lib/algebra-engine/long-division.js';
 import { fmt } from '#lib/core/number-format.js';
+import { onesDigits as onesFirst } from '#lib/core/kid/column-steps.js';
+import { PLACE_NAMES } from '#lib/core/kid/whole-numbers.js';
 
 /** @typedef {'+' | '−' | '×' | ':'} Op */
 
@@ -53,15 +55,6 @@ export const TASKS = {
     { a: 47819, b: 6 },
   ],
 };
-
-/** The place names from the ones. */
-export const PLACE_NAMES = /** @type {const} */ (['đơn vị', 'chục', 'trăm', 'nghìn', 'chục nghìn']);
-
-/**
- * Digits of a natural number, ones first.
- * @param {number} n
- */
-const onesFirst = (n) => String(n).split('').reverse().map(Number);
 
 /**
  * @param {number} a
@@ -209,7 +202,7 @@ export function nudge(op, step, tries) {
   if (op === '+')
     return 'Chưa đúng. Em cộng hai chữ số cùng hàng, nhớ cộng thêm số nhớ ở hàng trước.';
   if (op === '−')
-    return 'Chưa đúng. Nếu chữ số trên bé hơn chữ số dưới, em mượn 1 chục rồi nhớ 1 sang hàng sau.';
+    return 'Chưa đúng. Nếu chữ số trên bé hơn chữ số dưới, em lấy thêm 10 rồi trừ, nhớ 1 sang hàng sau.';
   if (op === '×') return 'Chưa đúng. Em nhân rồi cộng thêm số nhớ ở hàng trước.';
   return 'Chưa đúng. Em xem số bị chia lần này chứa mấy lần số chia.';
 }

@@ -11,21 +11,23 @@ import { fmt } from '#lib/core/number-format.js';
 import { compareSign } from '#lib/core/kid/numbers.js';
 import { drawFresh, mixOptions, questionKey, signOptions } from '#lib/core/kid/quiz.js';
 import {
-  PLACES5,
-  TOP,
-  compareWhy5,
-  digitsOf5,
-  placesText5,
-  readTo100000,
+  compareWhy,
+  placeColumns,
+  placeDigits,
+  placesText,
+  readWhole,
   roundTo,
   roundWhy,
-  sumParts5,
-} from '../_shared/numbers-to-100000.js';
+  sumParts,
+} from '#lib/core/kid/whole-numbers.js';
+
+const PLACES5 = placeColumns(5);
+const TOP = 100000;
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion<null>} Asked */
 /** @typedef {'doc' | 'hang' | 'tong' | 'lien' | 'dau' | 'lon-be' | 'lam-tron' | 'bai-toan'} Kind */
 /** @typedef {Asked & { kind: Kind }} Question */
-/** @typedef {import('../_shared/numbers-to-100000.js').RoundUnit} RoundUnit */
+/** @typedef {1000 | 10000} RoundUnit */
 
 /** What each kind practises, for the end card. */
 export const KIND_LABELS = /** @type {const} */ ({
@@ -99,17 +101,17 @@ export function sortedOptions(right, wrong) {
 export function readQuestion(rand) {
   const n = withZeros(rand);
   const wrong = digitSlips(rand, n);
-  const solution = `${fmt(n)} gồm ${placesText5(n)}, đọc là: ${readTo100000(n)}.`;
+  const solution = `${fmt(n)} gồm ${placesText(n, 5)}, đọc là: ${readWhole(n)}.`;
   if (rand() < 0.5) {
     return {
       prompt: `Số ${fmt(n)} đọc là gì?`,
-      ...mixOptions(rand, readTo100000(n), wrong.map(readTo100000)),
+      ...mixOptions(rand, readWhole(n), wrong.map(readWhole)),
       hint: 'Em đọc hai chữ số đầu rồi thêm "nghìn". Hàng trăm là 0 thì đọc "không trăm", hàng chục là 0 thì đọc "linh".',
       solution,
     };
   }
   return {
-    prompt: `Số "${readTo100000(n)}" viết là số nào?`,
+    prompt: `Số "${readWhole(n)}" viết là số nào?`,
     ...sortedOptions(n, wrong),
     hint: 'Em viết lần lượt chữ số hàng chục nghìn, hàng nghìn, hàng trăm, hàng chục, hàng đơn vị.',
     solution,
@@ -135,11 +137,11 @@ function distinctDigits(rand) {
 export function placeQuestion(rand) {
   const n = distinctDigits(rand);
   const place = pick(rand, PLACES5);
-  const d = digitsOf5(n);
+  const d = placeDigits(n, 5);
   const digit = d[place.key];
   const hint =
     'Từ trái sang phải là hàng chục nghìn, hàng nghìn, hàng trăm, hàng chục, hàng đơn vị.';
-  const solution = `${fmt(n)} gồm ${placesText5(n)}. Chữ số ${digit} ở hàng ${place.unit}.`;
+  const solution = `${fmt(n)} gồm ${placesText(n, 5)}. Chữ số ${digit} ở hàng ${place.unit}.`;
   if (rand() < 0.5) {
     return {
       prompt: `Trong số ${fmt(n)}, chữ số ${digit} ở hàng nào?`,
@@ -166,7 +168,7 @@ export function placeQuestion(rand) {
  * @returns {string[]}
  */
 export function sumSlips(n) {
-  const parts = sumParts5(n);
+  const parts = sumParts(n);
   return parts.flatMap((part, i) =>
     [part * 10, part / 10]
       .filter((v) => Number.isInteger(v) && v >= 1 && v <= 90000)
@@ -186,8 +188,8 @@ export function sumSlips(n) {
  */
 export function sumQuestion(rand) {
   const n = withZeros(rand);
-  const sum = sumParts5(n).map(fmt).join(' + ');
-  const solution = `${fmt(n)} gồm ${placesText5(n)}, nên ${fmt(n)} = ${sum}.`;
+  const sum = sumParts(n).map(fmt).join(' + ');
+  const solution = `${fmt(n)} gồm ${placesText(n, 5)}, nên ${fmt(n)} = ${sum}.`;
   if (rand() < 0.5) {
     return {
       prompt: `${fmt(n)} bằng tổng nào?`,
@@ -255,7 +257,7 @@ export function closePair(rand) {
   }
   if (shape === 11) return [a, a];
   const place = PLACES5[shape % 5];
-  const d = { ...digitsOf5(a) };
+  const d = { ...placeDigits(a, 5) };
   d[place.key] = place.key === 'tenThousands' ? int(rand, 1, 9) : int(rand, 0, 9);
   const b = PLACES5.reduce((sum, p) => sum + d[p.key] * p.value, 0);
   return rand() < 0.5 ? [a, b] : [b, a];
@@ -272,7 +274,7 @@ export function signQuestion(rand) {
     prompt: `Em chọn dấu đúng: ${fmt(a)} ... ${fmt(b)}.`,
     ...signOptions(compareSign(a, b)),
     hint: 'Em đếm chữ số trước. Cùng số chữ số thì so sánh từ hàng chục nghìn.',
-    solution: compareWhy5(a, b),
+    solution: compareWhy(a, b),
   };
 }
 
@@ -420,7 +422,7 @@ export function storyQuestion(rand) {
     prompt: `${story.text(fmt(a), fmt(b))} ${story.ask}`,
     ...mixOptions(rand, right, [wrong]),
     hint: `Em so sánh ${fmt(a)} và ${fmt(b)}.`,
-    solution: `${compareWhy5(a, b)} ${right} ${story.verdict}.`,
+    solution: `${compareWhy(a, b)} ${right} ${story.verdict}.`,
   };
 }
 

@@ -6,7 +6,16 @@
  * places and rounds it. Pure and DOM-free.
  */
 import { fmt } from '#lib/core/number-format.js';
-import { columnsOf, readTo100000, roundWhy, sumText } from '../_shared/numbers.js';
+import {
+  digitAt,
+  placeColumns,
+  readWhole,
+  roundWhy,
+  sumText,
+} from '#lib/core/kid/whole-numbers.js';
+
+/** The digits of a number below 100 000 in the five places, from the left. @param {number} n */
+export const columnsOf = (n) => placeColumns(5).map((p) => digitAt(n, p.exp));
 
 /** One digit per column, or null while the column is empty. @typedef {(number | null)[]} Slots */
 
@@ -61,7 +70,7 @@ export function reading(slots) {
   if (empty > 0) return `Còn ${empty} cột chưa có thẻ.`;
   const n = numberOf(slots);
   if (n === null) return 'Số có năm chữ số thì chữ số hàng chục nghìn phải khác 0.';
-  return `${fmt(n)} đọc là: ${readTo100000(n)}.`;
+  return `${fmt(n)} đọc là: ${readWhole(n)}.`;
 }
 
 /**
@@ -86,7 +95,7 @@ export function facts(slots) {
 export function challengeNote(slots, target) {
   const want = columnsOf(target);
   if (slots.every((d, i) => d === want[i])) {
-    return { tone: 'ok', text: `Đúng rồi! Số ${readTo100000(target)} viết là ${fmt(target)}.` };
+    return { tone: 'ok', text: `Đúng rồi! Số ${readWhole(target)} viết là ${fmt(target)}.` };
   }
   if (slots.every((d) => d === null)) {
     return { tone: 'info', text: 'Em chọn một thẻ chữ số rồi đặt vào một cột.' };

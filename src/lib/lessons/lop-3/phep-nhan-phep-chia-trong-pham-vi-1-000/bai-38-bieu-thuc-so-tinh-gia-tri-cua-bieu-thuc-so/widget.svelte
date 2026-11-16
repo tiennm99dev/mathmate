@@ -2,7 +2,7 @@
   import { tick } from 'svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import KidNote from '../_shared/kid-note.svelte';
+  import KidNote from '#lib/core/kid/kid-note.svelte';
   import {
     applyOp,
     compute,

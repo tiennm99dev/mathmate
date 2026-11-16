@@ -10,7 +10,7 @@ import {
   productOptions,
   quotientOptions,
   repeatedSum,
-} from '../_shared/times.js';
+} from '#lib/core/kid/times-table.js';
 
 /** The table of this lesson. */
 export const BASE = 3;

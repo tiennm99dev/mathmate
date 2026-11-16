@@ -6,7 +6,6 @@
  * flip y themselves.
  *
  * @typedef {{ x: number, y: number }} Pt
- * @typedef {'nhon' | 'vuong' | 'tu' | 'bet'} AngleKind
  * @typedef {'dinh' | 'canh-x' | 'canh-y' | 'trong' | 'ngoai' | 'bet' | 'trung'} PointPlace
  */
 
@@ -19,25 +18,6 @@ import { directionTo as exactDirection, measure, norm } from '#lib/core/visuals/
 export function directionTo(o, p) {
   return norm(Math.round(exactDirection(o, p)));
 }
-
-/**
- * Kind of an angle by its measure (0° < m ≤ 180°).
- * @param {number} m
- * @returns {AngleKind}
- */
-export function kindOf(m) {
-  if (m === 180) return 'bet';
-  if (m === 90) return 'vuong';
-  return m < 90 ? 'nhon' : 'tu';
-}
-
-/** Vietnamese names of the kinds. */
-export const KIND_NAME = /** @type {Record<AngleKind, string>} */ ({
-  nhon: 'góc nhọn',
-  vuong: 'góc vuông',
-  tu: 'góc tù',
-  bet: 'góc bẹt',
-});
 
 /**
  * Where point `m` lies with respect to the angle with vertex `o` and sides in
@@ -66,12 +46,4 @@ export function placeOf(o, a, b, m, tol = 6) {
   if (m0 === 180) return 'bet';
   const s = Math.sign(cross(u, w));
   return s * cross(u, v) > 0 && s * cross(v, w) > 0 ? 'trong' : 'ngoai';
-}
-
-/**
- * Angle between the hands of a clock at `h` o'clock sharp (1 to 12).
- * @param {number} h
- */
-export function clockAngle(h) {
-  return measure(0, 30 * (h % 12));
 }

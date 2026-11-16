@@ -12,7 +12,7 @@ import {
   productOptions,
   quotientOptions,
   repeatedSum,
-} from '../_shared/times.js';
+} from '#lib/core/kid/times-table.js';
 
 /** @typedef {{ type: 'dots', base: number, rows: number }} Visual */
 /** @typedef {import('#lib/core/kid/quiz.js').KidSkill<Visual>} ReviewSkill */

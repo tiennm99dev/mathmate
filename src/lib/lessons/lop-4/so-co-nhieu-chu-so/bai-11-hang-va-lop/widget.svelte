@@ -3,7 +3,7 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { fmt } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
-  import { CLASS_NAMES } from '../_shared/big-numbers.js';
+  import { CLASS_NAMES } from '#lib/core/kid/whole-numbers.js';
   import { ROUNDS, groups, question, tapNote } from './engine.js';
 
   /** Colours of lớp đơn vị and lớp nghìn. */

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { buildSet, hintsFor, rng } from '#lib/core/drill.js';
-import { clockAngle, kindOf } from './angle.js';
+import { clockAngle, kindOf } from '#lib/core/visuals/protractor.js';
 import {
   CHAPTER_SKILLS,
   PAGE_57_SKILLS,

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { optionText } from '#lib/core/kid/quiz.js';
 import { GROUP } from '#lib/core/number-format.js';
-import { readBig } from '../_shared/big-numbers.js';
+import { readWhole } from '#lib/core/kid/whole-numbers.js';
 import { KIND_LABELS, buildRound, slipOptions } from './engine.js';
 
 /** @param {string} text */
@@ -66,8 +66,8 @@ describe('the round', () => {
         if (kind === 'doc-viet') {
           const words = q.prompt.match(/"(.+)"/)?.[1];
           if (
-            readBig(value) !== words ||
-            opts.filter((o) => readBig(numbersIn(o)[0]) === words).length !== 1
+            readWhole(value) !== words ||
+            opts.filter((o) => readWhole(numbersIn(o)[0]) === words).length !== 1
           )
             fail();
         }

@@ -3,7 +3,7 @@
  * multiplication table, and the same grid read backwards gives the division:
  * the dots split into rows of six, as many rows as were added. Pure and DOM-free.
  */
-import { divLine, mulLine, repeatedSum } from '../_shared/times.js';
+import { divLine, mulLine, repeatedSum } from '#lib/core/kid/times-table.js';
 import { buildTableRound, tableKindLabels } from '../_shared/table-round.js';
 
 /** The table of this lesson. */

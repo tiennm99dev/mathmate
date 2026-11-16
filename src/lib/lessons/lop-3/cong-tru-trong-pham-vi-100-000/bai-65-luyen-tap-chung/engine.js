@@ -6,7 +6,8 @@
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions } from '#lib/core/kid/quiz.js';
 import { fmt } from '#lib/core/number-format.js';
-import { columnWords, drawColumn, noCarry, slipOptions } from '../_shared/columns.js';
+import { columnWords, noCarry } from '#lib/core/kid/column-steps.js';
+import { drawColumn, slipOptions } from '../_shared/columns.js';
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion} Question */
 

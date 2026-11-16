@@ -3,21 +3,17 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
+  import Protractor from '#lib/core/visuals/protractor.svelte';
   import { along, arcPath, rightMarkPath } from '#lib/core/visuals/angle-math.js';
-  import { KIND_NAME, directionTo, kindOf } from '../_shared/angle.js';
-  import {
-    foldUpper,
-    judgeReading,
-    measureFrom,
-    newMeasure,
-    rayDirection,
-    readDegrees,
-  } from './engine.js';
+  import { KIND_NAME, kindOf } from '#lib/core/visuals/protractor.js';
+  import { directionTo } from '../_shared/angle.js';
+  import { foldUpper, measureFrom, rayDirection } from '#lib/core/visuals/protractor.js';
+  import { judgeReading, newMeasure, readDegrees } from './engine.js';
 
   const W = 400;
   const H = 250;
   const O = { x: 200, y: 212 };
-  const RIM = 168;
+  const RIM = 158;
   const HANDLE = 182;
   const START = 50;
 
@@ -44,15 +40,6 @@
   const xEnd = $derived(along(O, 205, xDir));
   const yEnd = $derived(along(O, 230, yDir));
   const kind = $derived(m === 0 ? null : kindOf(m));
-
-  const ticks = Array.from({ length: 181 }, (_, d) => {
-    const len = d % 10 === 0 ? 16 : d % 5 === 0 ? 10 : 5;
-    return { d, p: along(O, RIM, d), q: along(O, RIM - len, d), long: d % 10 === 0 };
-  });
-  const labels = Array.from({ length: 19 }, (_, i) => {
-    const d = i * 10;
-    return { d, inner: along(O, RIM - 46, d), outer: along(O, RIM - 26, d) };
-  });
 
   /** @param {number} next */
   function setMeasure(next) {
@@ -134,47 +121,7 @@
     maxWidth="max-w-xl"
     label="Thước đo góc ảo đặt lên góc xOy, tâm thước trùng đỉnh O; cạnh Oy xoay được"
   >
-    <path
-      d="M {O.x - RIM} {O.y} A {RIM} {RIM} 0 0 1 {O.x + RIM} {O.y} Z"
-      fill="#EFF6FF"
-      fill-opacity="0.9"
-      stroke="#3B82F6"
-      stroke-width="1.5"
-    />
-    <path
-      d="M {O.x - (RIM - 56)} {O.y} A {RIM - 56} {RIM - 56} 0 0 1 {O.x + RIM - 56} {O.y}"
-      fill="none"
-      stroke="#93C5FD"
-      stroke-width="1"
-    />
-    {#each ticks as t (t.d)}
-      <line
-        x1={t.p.x}
-        y1={t.p.y}
-        x2={t.q.x}
-        y2={t.q.y}
-        stroke="#1E3A8A"
-        stroke-width={t.long ? 1.2 : 0.6}
-      />
-    {/each}
-    {#each labels as l (l.d)}
-      <text
-        x={l.outer.x}
-        y={l.outer.y + 4}
-        font-size="12"
-        text-anchor="middle"
-        fill={side === 'trai' ? '#B91C1C' : '#64748B'}
-        font-weight={side === 'trai' ? 700 : 400}>{180 - l.d}</text
-      >
-      <text
-        x={l.inner.x}
-        y={l.inner.y + 4}
-        font-size="11"
-        text-anchor="middle"
-        fill={side === 'phai' ? '#B91C1C' : '#64748B'}
-        font-weight={side === 'phai' ? 700 : 400}>{l.d}</text
-      >
-    {/each}
+    <Protractor o={O} r={RIM} {side} font={12} />
 
     {#if kind === 'vuong'}
       <path d={rightMarkPath(O, xDir, yDir, 18)} fill="none" stroke="#059669" stroke-width="2" />

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { kindOf } from '../_shared/angle.js';
+import { kindOf } from '#lib/core/visuals/protractor.js';
 import { BINS, GOALS, SORT_ANGLES, compareText, goalMessage, sortCards } from './engine.js';
 
 describe('naming by comparing with 90°', () => {

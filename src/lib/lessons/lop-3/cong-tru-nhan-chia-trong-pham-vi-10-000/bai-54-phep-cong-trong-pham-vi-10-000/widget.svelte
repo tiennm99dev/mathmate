@@ -1,9 +1,12 @@
 <script>
-  import ColumnWorker from '../_shared/column-worker.svelte';
+  import ColumnWorker from '#lib/core/kid/column-worker.svelte';
+  import { COLUMNS, drawColumn } from '../_shared/columns.js';
 </script>
 
 <ColumnWorker
   op="+"
+  columns={COLUMNS}
+  draw={(kind, previous) => drawColumn(Math.random, '+', kind, previous)}
   switchLabel="Chọn loại phép cộng"
   nextLabel="Phép cộng khác"
   kinds={[

@@ -16,7 +16,7 @@ import {
   productOptions,
   quotientOptions,
   repeatedSum,
-} from '../_shared/times.js';
+} from '#lib/core/kid/times-table.js';
 
 /** @typedef {import('#lib/core/kid/column.js').Op} Op */
 /** @typedef {'nhan-1' | 'nhan-0' | 'chia-1' | 'chia-so-0'} Rule */

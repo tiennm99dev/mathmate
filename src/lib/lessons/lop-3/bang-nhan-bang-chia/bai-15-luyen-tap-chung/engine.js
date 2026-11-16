@@ -6,7 +6,7 @@
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions } from '#lib/core/kid/quiz.js';
 import { pickPart, readPart, shareOf } from '../_shared/part-questions.js';
-import { divLine, mulLine, productOptions, quotientOptions } from '../_shared/times.js';
+import { divLine, mulLine, productOptions, quotientOptions } from '#lib/core/kid/times-table.js';
 
 /**
  * Three numbers on the corners of a triangle, and the side whose product is

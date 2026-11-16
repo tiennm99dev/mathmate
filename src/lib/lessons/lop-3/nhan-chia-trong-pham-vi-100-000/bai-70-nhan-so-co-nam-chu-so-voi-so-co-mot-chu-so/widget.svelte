@@ -1,7 +1,8 @@
 <script>
   import { fmt } from '#lib/core/number-format.js';
-  import ColumnWorker from '../_shared/column-worker.svelte';
-  import { PLACE_NAMES } from '../_shared/columns.js';
+  import ColumnWorker from '#lib/core/kid/column-worker.svelte';
+  import { COLUMNS, drawMul } from '../_shared/columns.js';
+  import { PLACE_NAMES } from '#lib/core/kid/whole-numbers.js';
   import { partsOf, partsSum } from './engine.js';
 
   const TONES = [
@@ -14,7 +15,7 @@
 </script>
 
 {#snippet parts(
-  /** @type {import('../_shared/columns.js').Task} */ task,
+  /** @type {import('#lib/core/kid/column-steps.js').Task} */ task,
   /** @type {number} */ finished,
 )}
   {@const list = partsOf(task)}
@@ -54,6 +55,11 @@
 {/snippet}
 
 <ColumnWorker
+  op="×"
+  columns={COLUMNS}
+  draw={(kind, previous) => drawMul(Math.random, kind, previous)}
+  switchLabel="Chọn loại phép nhân"
+  nextLabel="Phép nhân khác"
   kinds={[
     { value: 'plain', label: 'Không nhớ', first: { a: 12132, b: 3 } },
     { value: 'one', label: 'Nhớ một lần', first: { a: 21314, b: 3 } },

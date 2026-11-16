@@ -1,23 +1,10 @@
 /**
- * Multiplication tables for the chapter: the book's sentences and the quiz
- * rounds of the table lessons. In this grade `a × b` means "a taken b times",
+ * The quiz rounds and skip-counting messages of the chapter's table lessons;
+ * the table sentences and options are `times-table.js` in the kid core. In this grade `a × b` means "a taken b times",
  * so the repeated number always comes first.
  */
 import { pick, rng, shuffle } from '#lib/core/drill.js';
-
-/**
- * "2 × 3 = 6"
- * @param {number} a
- * @param {number} b
- */
-export const mulLine = (a, b) => `${a} × ${b} = ${a * b}`;
-
-/**
- * "2 + 2 + 2"
- * @param {number} a
- * @param {number} times
- */
-export const repeatedSum = (a, times) => Array.from({ length: times }, () => a).join(' + ');
+import { mulLine, productOptions } from '#lib/core/kid/times-table.js';
 
 /**
  * What the skip-counting widgets say after `step` jumps of `base`.
@@ -30,20 +17,6 @@ export function jumpMessage(base, step, start) {
   const list = Array.from({ length: step }, (_, i) => base * (i + 1)).join(', ');
   if (step === 10) return `Xong bảng nhân ${base}! Đếm thêm ${base}: ${list}.`;
   return `${step} lần ${base}: ${mulLine(base, step)}. Đếm thêm ${base}: ${list}.`;
-}
-
-/**
- * Four options around `base × n`: the next and previous rows of the table,
- * and the sum a child gets by adding instead of multiplying.
- * @param {number} base
- * @param {number} n
- */
-export function tableOptions(base, n) {
-  const right = base * n;
-  const wrong = [base * (n + 1), base * (n - 1), base + n, base * (n + 2), right + 1];
-  const picked = [...new Set(wrong)].filter((v) => v > 0 && v !== right).slice(0, 3);
-  const values = [right, ...picked].sort((x, y) => x - y);
-  return { options: values.map(String), answer: values.indexOf(right) };
 }
 
 /** What each part of a table round practises. */
@@ -73,7 +46,7 @@ export function buildRound(base, stories, seed) {
   return kinds.map((kind, i) => {
     const n = rows[i];
     const right = base * n;
-    const common = { kind, ...tableOptions(base, n), visual: { n } };
+    const common = { kind, ...productOptions(base, n), visual: { n } };
     if (kind === 'skip') {
       const shown = [right - 3 * base, right - 2 * base, right - base].filter((v) => v > 0);
       return {

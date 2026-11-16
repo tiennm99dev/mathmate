@@ -5,7 +5,7 @@
   import { frameLoop, reducedMotion } from '#lib/core/motion.js';
   import { fmt } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
-  import { roundTo } from '../_shared/numbers-to-10000.js';
+  import { roundTo } from '#lib/core/kid/whole-numbers.js';
   import {
     HIGH,
     LOW,

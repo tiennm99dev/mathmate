@@ -1,6 +1,6 @@
 <script>
   import { arcPath, measure, rightMarkPath } from '#lib/core/visuals/angle-math.js';
-  import Protractor from './protractor.svelte';
+  import Protractor from '#lib/core/visuals/protractor.svelte';
   import { PROTRACTOR_R, layoutFigure } from './figure.js';
 
   /**

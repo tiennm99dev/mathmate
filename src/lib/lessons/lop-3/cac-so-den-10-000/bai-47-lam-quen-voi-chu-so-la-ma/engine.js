@@ -4,7 +4,7 @@
  * or a number up to XX, and hears why a row of letters is or is not written
  * the right way. Pure and DOM-free.
  */
-import { fromRoman, romanSum, sticksOf, toRoman } from '../_shared/numbers-to-10000.js';
+import { fromRoman, romanSum, sticksOf, toRoman } from '#lib/core/kid/whole-numbers.js';
 
 /** The numbers to lay, in order: hours on the clock first, then up to 20. */
 export const TARGETS = /** @type {const} */ ([3, 4, 6, 9, 12, 8, 11, 13, 14, 17, 19, 20]);

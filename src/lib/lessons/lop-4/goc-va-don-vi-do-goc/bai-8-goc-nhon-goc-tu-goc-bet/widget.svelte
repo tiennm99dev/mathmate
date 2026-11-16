@@ -6,7 +6,8 @@
   import { along, arcPath, directionTo, rightMarkPath } from '#lib/core/visuals/angle-math.js';
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import GeometryBoard from '#lib/core/visuals/geometry-board.svelte';
-  import { KIND_NAME, STEP, clampMeasure, kindOf, measureAt } from '../_shared/angle.js';
+  import { KIND_NAME, kindOf } from '#lib/core/visuals/protractor.js';
+  import { STEP, clampMeasure, measureAt } from '../_shared/angle.js';
   import AngleFigure from '../_shared/angle-figure.svelte';
   import { angleFigure } from '../_shared/figure.js';
   import { BINS, GOALS, SORT_ANGLES, compareText, goalMessage, sortCards } from './engine.js';

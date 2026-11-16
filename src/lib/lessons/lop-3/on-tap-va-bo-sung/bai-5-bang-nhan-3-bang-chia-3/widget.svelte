@@ -3,7 +3,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
   import NumberLine from '#lib/core/visuals/number-line.svelte';
-  import TableGrid from '../_shared/table-grid.svelte';
+  import TableGrid from '#lib/core/kid/table-grid.svelte';
   import {
     BASE,
     KIND_LABELS,

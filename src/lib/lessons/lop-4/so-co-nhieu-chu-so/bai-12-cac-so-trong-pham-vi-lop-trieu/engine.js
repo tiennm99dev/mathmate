@@ -5,7 +5,7 @@
  * Pure and DOM-free.
  */
 import { fmt } from '#lib/core/number-format.js';
-import { CLASS_NAMES, capitalBig, classParts, readPart } from '../_shared/big-numbers.js';
+import { CLASS_NAMES, capitalReading, classParts, readPart } from '#lib/core/kid/whole-numbers.js';
 
 /** The numbers to read: populations and the book's numbers. */
 export const NUMBERS = /** @type {const} */ ([
@@ -58,7 +58,7 @@ export function tapClass(n, read, cls) {
   }
   const now = [...read, cls];
   if (nextClass(n, now) === null) {
-    return { read: now, tone: 'ok', text: `${fmt(n)} đọc là: ${capitalBig(n)}.` };
+    return { read: now, tone: 'ok', text: `${fmt(n)} đọc là: ${capitalReading(n)}.` };
   }
   return { read: now, tone: 'info', text: partSentence(n, cls) };
 }

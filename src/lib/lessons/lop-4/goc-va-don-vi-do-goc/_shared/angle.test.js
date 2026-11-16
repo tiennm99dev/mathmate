@@ -1,16 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import {
-  angleName,
-  clampMeasure,
   clockAngle,
-  degreeOptions,
   foldUpper,
   kindOf,
+  measureFrom,
+  rayDirection,
+} from '#lib/core/visuals/protractor.js';
+import {
+  angleName,
+  clampMeasure,
+  degreeOptions,
   kindWhy,
   measureAt,
-  measureFrom,
   protractorText,
-  rayDirection,
   scaleReadings,
 } from './angle.js';
 

@@ -101,7 +101,7 @@ export default {
   explore: {
     title: 'Trừ từng hàng',
     instruction:
-      'Em trừ từ hàng đơn vị. Khi chữ số trên bé hơn, em bấm nút "Mượn 1": chữ số trên có thêm 10, và số 1 đã nhớ hiện bên chữ số của số trừ ở hàng bên trái. Rồi em chạm vào chữ số để viết kết quả.',
+      'Em trừ từ hàng đơn vị. Khi chữ số trên bé hơn, em bấm nút "Lấy … trừ, nhớ 1": chữ số trên có thêm 10, và số 1 đã nhớ hiện bên chữ số của số trừ ở hàng bên trái. Rồi em chạm vào chữ số để viết kết quả.',
   },
   examples: [
     {

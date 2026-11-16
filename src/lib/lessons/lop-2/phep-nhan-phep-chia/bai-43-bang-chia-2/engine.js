@@ -1,6 +1,6 @@
 /** The cards that turn the table of 2 into the table of division by 2, and its quiz round. */
 import { buildDivisionRound, divLine } from '../_shared/divide.js';
-import { mulLine } from '../_shared/times.js';
+import { mulLine } from '#lib/core/kid/times-table.js';
 
 export const BASE = 2;
 

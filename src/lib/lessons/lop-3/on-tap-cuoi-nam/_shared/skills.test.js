@@ -38,7 +38,14 @@ import {
 import { clockLabel, convert, shapeLabel, timeText } from './measure.js';
 import { MUL_DIV_SKILLS, ageStory, brickStory, riceStory } from './mul-div-skills.js';
 import { NUMBER_SKILLS, SPECIAL, addAll, gapSlip } from './number-skills.js';
-import { compareWhy, readTo100000, roman, roundTo, roundWhy, sumText } from './numbers.js';
+import {
+  compareWhy,
+  readWhole,
+  roundTo,
+  roundWhy,
+  sumText,
+  toRoman,
+} from '#lib/core/kid/whole-numbers.js';
 import { valueOptions } from './options.js';
 
 /** @typedef {import('./visual.js').ReviewQuestion} Question */
@@ -158,13 +165,13 @@ describe('every review question', () => {
 
 describe('numbers to 100 000', () => {
   it('reads numbers the way the book does', () => {
-    expect(readTo100000(9084)).toBe('chín nghìn không trăm tám mươi tư');
-    expect(readTo100000(12765)).toBe('mười hai nghìn bảy trăm sáu mươi lăm');
-    expect(readTo100000(30258)).toBe('ba mươi nghìn hai trăm năm mươi tám');
-    expect(readTo100000(61409)).toBe('sáu mươi mốt nghìn bốn trăm linh chín');
-    expect(readTo100000(95027)).toBe('chín mươi lăm nghìn không trăm hai mươi bảy');
-    expect(readTo100000(92007)).toBe('chín mươi hai nghìn không trăm linh bảy');
-    expect(readTo100000(100000)).toBe('một trăm nghìn');
+    expect(readWhole(9084)).toBe('chín nghìn không trăm tám mươi tư');
+    expect(readWhole(12765)).toBe('mười hai nghìn bảy trăm sáu mươi lăm');
+    expect(readWhole(30258)).toBe('ba mươi nghìn hai trăm năm mươi tám');
+    expect(readWhole(61409)).toBe('sáu mươi mốt nghìn bốn trăm linh chín');
+    expect(readWhole(95027)).toBe('chín mươi lăm nghìn không trăm hai mươi bảy');
+    expect(readWhole(92007)).toBe('chín mươi hai nghìn không trăm linh bảy');
+    expect(readWhole(100000)).toBe('một trăm nghìn');
     expect(gapSlip(9084)).toBe('chín nghìn tám mươi tư');
   });
 
@@ -176,7 +183,7 @@ describe('numbers to 100 000', () => {
     expect(roundWhy(48420, 1000)).toContain('4 < 5');
     expect(compareWhy(90537, 90357)).toContain('Ở hàng trăm: 5 lớn hơn 3');
     expect(compareWhy(9999, 10001)).toContain('ít chữ số hơn');
-    expect([4, 9, 14, 19, 20].map(roman)).toEqual(['IV', 'IX', 'XIV', 'XIX', 'XX']);
+    expect([4, 9, 14, 19, 20].map(toRoman)).toEqual(['IV', 'IX', 'XIV', 'XIX', 'XX']);
     expect(addAll('XIV')).toBe(16);
   });
 

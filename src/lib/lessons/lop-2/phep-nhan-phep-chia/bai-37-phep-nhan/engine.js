@@ -2,7 +2,7 @@
  * Plates of equal groups: when every plate holds the same number, the repeated
  * addition can be written as a multiplication. Plates that differ cannot.
  */
-import { mulLine } from '../_shared/times.js';
+import { mulLine } from '#lib/core/kid/times-table.js';
 
 export const MIN_PLATES = 1;
 export const MAX_PLATES = 5;

@@ -6,7 +6,9 @@
  * has one after it. Pure and DOM-free.
  */
 import { fmt } from '#lib/core/number-format.js';
-import { TOP, readBig } from '../_shared/big-numbers.js';
+import { readWhole } from '#lib/core/kid/whole-numbers.js';
+
+const TOP = 999999999;
 
 /** How many ticks the ray shows at once. */
 export const SPAN = 5;
@@ -46,7 +48,7 @@ export const neighbours = (n) => ({ before: n > 0 ? n - 1 : null, after: n + 1 }
  * A number in words when the chapter can read it, else in digits.
  * @param {number} n
  */
-export const spoken = (n) => (n <= TOP ? readBig(n) : fmt(n));
+export const spoken = (n) => (n <= TOP ? readWhole(n) : fmt(n));
 
 /**
  * What the ray says about the chosen number.

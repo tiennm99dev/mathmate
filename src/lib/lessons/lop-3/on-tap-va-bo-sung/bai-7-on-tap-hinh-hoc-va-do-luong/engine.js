@@ -9,7 +9,7 @@ import { MASS_THINGS, fewestWeights } from '#lib/core/kid/mass.js';
 import { capitalize, mixOptions, numberOptions } from '#lib/core/kid/quiz.js';
 import { WEEKDAYS, dayAfter, dayClockText, dayTitle, partText } from '#lib/core/kid/time.js';
 import { nearOptions, unitOptions } from '../_shared/options.js';
-import { divLine, mulLine } from '../_shared/times.js';
+import { divLine, mulLine } from '#lib/core/kid/times-table.js';
 
 /** @typedef {'tru' | 'cau' | 'hop-chu-nhat' | 'lap-phuong'} SolidKind */
 /** @typedef {import('#lib/core/kid/mass.js').Load} Load */

@@ -6,7 +6,9 @@
  * DOM-free.
  */
 import { fmt } from '#lib/core/number-format.js';
-import { PLACES5, digitsOf5, readTo100000, sumText5 } from '../_shared/numbers-to-100000.js';
+import { placeColumns, placeDigits, readWhole, sumText } from '#lib/core/kid/whole-numbers.js';
+
+const PLACES5 = placeColumns(5);
 
 /** One digit per column, or null while the column is empty. @typedef {(number | null)[]} Slots */
 
@@ -61,7 +63,7 @@ export function numberOf(slots) {
  * @returns {number[]}
  */
 export function columnsOf(n) {
-  const d = digitsOf5(n);
+  const d = placeDigits(n, 5);
   return PLACES5.map((p) => d[p.key]);
 }
 
@@ -75,7 +77,7 @@ export function reading(slots) {
   if (empty > 0) return `Còn ${empty} cột chưa có thẻ.`;
   if (slots[0] === 0) return 'Số có năm chữ số thì chữ số hàng chục nghìn phải khác 0.';
   const n = /** @type {number} */ (numberOf(slots));
-  return `${fmt(n)} đọc là: ${readTo100000(n)}.`;
+  return `${fmt(n)} đọc là: ${readWhole(n)}.`;
 }
 
 /**
@@ -85,7 +87,7 @@ export function reading(slots) {
  */
 export function sumLine(slots) {
   const n = numberOf(slots);
-  return n !== null && n >= 10000 ? sumText5(n) : '';
+  return n !== null && n >= 10000 ? sumText(n) : '';
 }
 
 /**
@@ -98,7 +100,7 @@ export function sumLine(slots) {
 export function challengeNote(slots, target) {
   const want = columnsOf(target);
   if (slots.every((d, i) => d === want[i])) {
-    return { tone: 'ok', text: `Đúng rồi! Số ${readTo100000(target)} viết là ${fmt(target)}.` };
+    return { tone: 'ok', text: `Đúng rồi! Số ${readWhole(target)} viết là ${fmt(target)}.` };
   }
   if (slots.every((d) => d === null)) {
     return { tone: 'info', text: 'Em chọn một thẻ chữ số rồi đặt vào một cột.' };

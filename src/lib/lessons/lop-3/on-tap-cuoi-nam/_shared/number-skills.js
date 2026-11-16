@@ -9,7 +9,14 @@ import { fmt } from '#lib/core/number-format.js';
 import { mixOptions, signOptions } from '#lib/core/kid/quiz.js';
 import { readNumber } from '#lib/core/kid/numbers.js';
 import { readTo1000 } from '#lib/core/kid/place-value.js';
-import { compareWhy, readTo100000, roman, roundTo, roundWhy, sumParts } from './numbers.js';
+import {
+  compareWhy,
+  readWhole,
+  roundTo,
+  roundWhy,
+  sumParts,
+  toRoman,
+} from '#lib/core/kid/whole-numbers.js';
 import { valueOptions } from './options.js';
 
 /** @typedef {import('./visual.js').ReviewSkill} ReviewSkill */
@@ -63,12 +70,12 @@ export const readSkill = {
   make(rand) {
     for (;;) {
       const n = drawNumber(rand);
-      const right = readTo100000(n);
+      const right = readWhole(n);
       const wrong = [
         gapSlip(n),
-        readTo100000(swapDigits(n, int(rand, 0, String(n).length - 2))),
-        readTo100000(swapDigits(n, String(n).length - 2)),
-        readTo100000(Math.min(99999, n + pick(rand, [100, 1000, 10]))),
+        readWhole(swapDigits(n, int(rand, 0, String(n).length - 2))),
+        readWhole(swapDigits(n, String(n).length - 2)),
+        readWhole(Math.min(99999, n + pick(rand, [100, 1000, 10]))),
       ].filter((w) => w !== null && w !== right);
       const options = mixOptions(rand, right, /** @type {string[]} */ (wrong).slice(0, 3));
       if (options.options.length < 3) continue;
@@ -91,10 +98,10 @@ export const writeSkill = {
       const n = drawNumber(rand);
       if (!String(n).includes('0')) continue;
       return {
-        prompt: `Số "${readTo100000(n)}" viết là:`,
+        prompt: `Số "${readWhole(n)}" viết là:`,
         ...valueOptions(n, [dropZeros(n), swapDigits(n, 1), n * 10, n + 1000], { step: 100 }),
         hint: 'Hàng nào không được đọc tên số thì em viết chữ số 0 ở hàng đó.',
-        solution: `"${readTo100000(n)}" viết là ${fmt(n)}.`,
+        solution: `"${readWhole(n)}" viết là ${fmt(n)}.`,
       };
     }
   },
@@ -292,7 +299,7 @@ export const romanSkill = {
   label: 'Chữ số La Mã',
   make(rand) {
     const n = rand() < 0.6 ? pick(rand, [4, 6, 9, 11, 14, 16, 19, 20]) : int(rand, 1, 20);
-    const r = roman(n);
+    const r = toRoman(n);
     if (rand() < 0.5) {
       return {
         prompt: `Số La Mã ${r} đọc là số nào?`,
@@ -303,7 +310,7 @@ export const romanSkill = {
     }
     const wrong = [n + 2, n - 1, n + 1, n - 2, n === 4 ? 6 : n === 9 ? 11 : n + 10]
       .filter((v) => v >= 1 && v <= 20 && v !== n)
-      .map(roman);
+      .map(toRoman);
     return {
       prompt: `Số ${n} viết bằng chữ số La Mã là:`,
       ...mixOptions(rand, r, wrong.slice(0, 3)),

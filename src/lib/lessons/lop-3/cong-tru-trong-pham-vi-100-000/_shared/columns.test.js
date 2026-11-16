@@ -6,16 +6,15 @@ import {
   borrowLabel,
   carriesOf,
   columnWords,
-  drawColumn,
   equation,
   noCarry,
   planOf,
   resultOf,
   sheetAt,
-  slipOptions,
   stepsOf,
   wrongFor,
-} from './columns.js';
+} from '#lib/core/kid/column-steps.js';
+import { COLUMNS, drawColumn, slipOptions } from './columns.js';
 
 /** @param {string} text */
 const plain = (text) => text.replaceAll(GROUP, ' ');
@@ -65,11 +64,13 @@ describe('the board', () => {
       'digit',
       'digit',
     ]);
-    const sheet = sheetAt(23285, 12967, '-', 1);
+    const sheet = sheetAt(23285, 12967, '-', 1, COLUMNS);
     expect(sheet.borrowed[0]).toBe(true);
     expect(sheet.carries[1]).toBe(1);
-    expect(borrowLabel(plan[3].step)).toBe('Mượn 1 nghìn: 2 thành 12');
-    expect(askFor(plan[0], '-')).toBe('Hàng đơn vị: 5 không trừ được 7. Em mượn 1 chục nhé.');
+    expect(borrowLabel(plan[3].step)).toBe('Lấy 12 trừ, nhớ 1');
+    expect(askFor(plan[0], '-')).toBe(
+      'Hàng đơn vị: 5 không trừ được 7. Em lấy 15 trừ 7, nhớ 1 nhé.',
+    );
     expect(askFor(plan[2], '-')).toBe('Hàng chục: 6 thêm 1 bằng 7. 8 trừ 7. Em viết chữ số nào?');
     expect(askFor(plan[5], '-')).toBe('Hàng nghìn: 2 thêm 1 bằng 3. 3 trừ 3. Em viết chữ số nào?');
   });
@@ -77,11 +78,11 @@ describe('the board', () => {
   it('borrows from the ten thousands', () => {
     const plan = planOf(72146, 35258, '-');
     const last = plan.filter((x) => x.type === 'borrow').at(-1);
-    expect(last && borrowLabel(last.step)).toBe('Mượn 1 chục nghìn: 2 thành 12');
+    expect(last && borrowLabel(last.step)).toBe('Lấy 12 trừ, nhớ 1');
   });
 
   it('writes every digit of a finished calculation', () => {
-    const sheet = sheetAt(45637, 28485, '+', 5);
+    const sheet = sheetAt(45637, 28485, '+', 5, COLUMNS);
     expect(sheet.written.slice(0, 5).reverse().join('')).toBe('74122');
     expect(sheet.carries).toEqual([0, 1, 1, 1, 1, 0]);
     expect(sheet.active).toBe(null);
@@ -115,7 +116,7 @@ describe('drawn calculations', () => {
         for (let i = 0; i < 40; i++) {
           const { a, b } = drawColumn(rand, op, kind);
           const r = resultOf(a, b, op);
-          const digits = sheetAt(a, b, op, planOf(a, b, op).length)
+          const digits = sheetAt(a, b, op, planOf(a, b, op).length, COLUMNS)
             .written.reverse()
             .join('');
           const c = carriesOf(a, b, op);

@@ -4,7 +4,8 @@
  * child is asked to make in turn, and the angle cards to sort. Pure and
  * DOM-free.
  */
-import { KIND_NAME, angleName, kindOf, kindWhy } from '../_shared/angle.js';
+import { KIND_NAME, kindOf } from '#lib/core/visuals/protractor.js';
+import { angleName, kindWhy } from '../_shared/angle.js';
 
 /** @typedef {import('../_shared/angle.js').AngleKind} AngleKind */
 

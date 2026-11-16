@@ -6,37 +6,40 @@
   import DigitPad from './digit-pad.svelte';
   import KidNote from './kid-note.svelte';
   import {
-    PLACE_NAMES,
     askFor,
     borrowLabel,
-    drawColumn,
     equation,
     planOf,
     sheetAt,
     stepsOf,
     wrongFor,
-  } from './columns.js';
+  } from './column-steps.js';
+  import { PLACE_NAMES } from './whole-numbers.js';
 
   /**
-   * The learner works a calculation within 100 000 in columns, right to left:
+   * The learner works a calculation in columns, right to left:
    * taps the digit of each column, and in a subtraction first borrows 1 from
    * the next column when the top digit is too small. Carries appear on the
    * sheet as they are made. A wrong digit gets a nudge; a second one shows the
    * working. The finished columns are read out in the book's words.
    *
-   * - `op`: '+' or '-'.
+   * - `op`: '+', '-' or '×' (a one-digit second number).
+   * - `columns`: how many columns the sheet has at least.
    * - `kinds`: the cases to choose from, each with its first task.
+   * - `draw(kind, previous)`: a new task of a kind, not the previous one.
    * - `aside`: an optional picture drawn under the sheet, given the task and
    *   how many columns are finished from the ones.
    * @type {{
-   *   op: import('./columns.js').Op;
-   *   kinds: Array<{ value: import('./columns.js').CarryKind, label: string, first: import('./columns.js').Task }>;
+   *   op: import('./column-steps.js').Op;
+   *   columns: number;
+   *   kinds: Array<{ value: string, label: string, first: import('./column-steps.js').Task }>;
+   *   draw: (kind: any, previous: import('./column-steps.js').Task) => import('./column-steps.js').Task;
    *   switchLabel: string;
    *   nextLabel: string;
-   *   aside?: import('svelte').Snippet<[import('./columns.js').Task, number]>;
+   *   aside?: import('svelte').Snippet<[import('./column-steps.js').Task, number]>;
    * }}
    */
-  let { op, kinds, switchLabel, nextLabel, aside } = $props();
+  let { op, columns, kinds, draw, switchLabel, nextLabel, aside } = $props();
 
   let kind = $state(untrack(() => kinds[0].value));
   let task = $state(untrack(() => kinds[0].first));
@@ -50,14 +53,14 @@
 
   const plan = $derived(planOf(task.a, task.b, op));
   const action = $derived(plan[done] ?? null);
-  const sheet = $derived(sheetAt(task.a, task.b, op, done));
+  const sheet = $derived(sheetAt(task.a, task.b, op, done, columns));
   const said = $derived(stepsOf(task.a, task.b, op).slice(0, sheet.finished));
   const message = $derived(
     action === null ? `Đúng rồi! ${equation(task.a, task.b, op)}.` : slip || askFor(action, op),
   );
   const tone = $derived(action === null ? 'ok' : slip ? 'warn' : 'info');
 
-  /** @param {import('./columns.js').Task} next */
+  /** @param {import('./column-steps.js').Task} next */
   function start(next) {
     task = next;
     done = 0;
@@ -106,7 +109,7 @@
   />
 
   <div class="flex flex-wrap items-start justify-center gap-4">
-    <ColumnSheet a={task.a} b={task.b} {op} {sheet} />
+    <ColumnSheet a={task.a} b={task.b} {op} {sheet} {columns} />
     {#if said.length > 0}
       <ol class="min-w-0 flex-1 basis-56 space-y-2 text-lg font-semibold">
         {#each said as step (step.col)}
@@ -134,6 +137,6 @@
     type="button"
     class="min-h-12 text-lg {action === null ? button.primary : button.secondary}"
     bind:this={nextButton}
-    onclick={() => start(drawColumn(Math.random, op, kind, task))}>{nextLabel}</button
+    onclick={() => start(draw(kind, task))}>{nextLabel}</button
   >
 </div>

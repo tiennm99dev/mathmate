@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { toRoman } from '../_shared/numbers-to-10000.js';
+import { toRoman } from '#lib/core/kid/whole-numbers.js';
 import { HOURS, MAX_LETTERS, TARGETS, addLetter, romanWhy, rowNote, wrongWay } from './engine.js';
 
 describe('laying letters', () => {

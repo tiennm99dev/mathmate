@@ -1,7 +1,7 @@
 <svelte:options namespace="svg" />
 
 <script>
-  import { along } from '#lib/core/visuals/angle-math.js';
+  import { along } from './angle-math.js';
 
   /**
    * A half-circle protractor drawn inside an SVG, its centre at `o` and its
@@ -19,7 +19,7 @@
    * @type {{
    *   o: { x: number, y: number };
    *   r: number;
-   *   side?: import('./angle.js').Side | null;
+   *   side?: import('./protractor.js').Side | null;
    *   font?: number;
    * }}
    */

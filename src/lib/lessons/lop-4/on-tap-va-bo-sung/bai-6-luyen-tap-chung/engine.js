@@ -8,7 +8,9 @@
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions } from '#lib/core/kid/quiz.js';
 import { fmt } from '#lib/core/number-format.js';
-import { TOP, readTo100000, roundTo, roundWhy } from '../_shared/numbers.js';
+import { readWhole, roundTo, roundWhy } from '#lib/core/kid/whole-numbers.js';
+
+const TOP = 100000;
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion} Question */
 
@@ -96,10 +98,10 @@ const MAKERS = {
       n + 10,
     ].filter((v) => v !== n && v >= 10000 && v < TOP);
     return {
-      prompt: `Số "${readTo100000(n)}" viết là số nào?`,
+      prompt: `Số "${readWhole(n)}" viết là số nào?`,
       ...mixOptions(rand, fmt(n), [...new Set(slips)].slice(0, 3).map(fmt)),
       hint: 'Em viết từ hàng chục nghìn đến hàng đơn vị. Hàng nào không có thì em viết chữ số 0.',
-      solution: `Số "${readTo100000(n)}" viết là ${fmt(n)}.`,
+      solution: `Số "${readWhole(n)}" viết là ${fmt(n)}.`,
     };
   },
   'so-sanh': (rand) => {
@@ -122,9 +124,7 @@ const MAKERS = {
     };
   },
   'lam-tron': (rand) => {
-    const unit = /** @type {import('../_shared/numbers.js').RoundUnit} */ (
-      pick(rand, [10, 1000, 10000])
-    );
+    const unit = /** @type {number} */ (pick(rand, [10, 1000, 10000]));
     let n = int(rand, 10001, 98999);
     if (unit === 10 && n % 10 === 0) n += int(rand, 1, 9);
     if (unit > 10 && n % (unit / 10) === 0) n += int(rand, 1, 9) * (unit / 100);

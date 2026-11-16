@@ -2,7 +2,7 @@
   import { tick } from 'svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button } from '#lib/core/ui.js';
-  import { readBig } from '../_shared/big-numbers.js';
+  import { readWhole } from '#lib/core/kid/whole-numbers.js';
   import {
     CHALLENGES,
     COLUMNS,
@@ -64,7 +64,7 @@
 
 <div class="space-y-4">
   <p class="text-center text-xl font-semibold text-slate-800">
-    Em hãy xếp số: <strong class="text-indigo-700">{readBig(target)}</strong>
+    Em hãy xếp số: <strong class="text-indigo-700">{readWhole(target)}</strong>
   </p>
 
   <div class="grid grid-cols-6 gap-1" role="group" aria-label="Bảng các hàng">

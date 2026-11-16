@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { fmt } from '#lib/core/number-format.js';
-import { roundTo } from '../_shared/numbers-to-10000.js';
+import { roundTo } from '#lib/core/kid/whole-numbers.js';
 import { NUMBERS, along, ballText, guessVerdict, hillHeight, marksAround } from './engine.js';
 
 describe('the hill', () => {

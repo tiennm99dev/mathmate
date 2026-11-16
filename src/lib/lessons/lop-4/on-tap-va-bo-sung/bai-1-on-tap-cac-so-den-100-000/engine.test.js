@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { columnsOf, readTo100000, roundTo, sumText } from '../_shared/numbers.js';
+import { readWhole, roundTo, sumText } from '#lib/core/kid/whole-numbers.js';
 import {
   CHALLENGES,
   EMPTY,
   challengeNote,
   clear,
+  columnsOf,
   facts,
   numberOf,
   place,
@@ -13,12 +14,12 @@ import {
 
 describe('numbers to 100 000', () => {
   it('reads numbers the book way', () => {
-    expect(readTo100000(36515)).toBe('ba mươi sáu nghìn năm trăm mười lăm');
-    expect(readTo100000(61034)).toBe('sáu mươi mốt nghìn không trăm ba mươi tư');
-    expect(readTo100000(20809)).toBe('hai mươi nghìn tám trăm linh chín');
-    expect(readTo100000(94005)).toBe('chín mươi tư nghìn không trăm linh năm');
-    expect(readTo100000(7941)).toBe('bảy nghìn chín trăm bốn mươi mốt');
-    expect(readTo100000(100000)).toBe('một trăm nghìn');
+    expect(readWhole(36515)).toBe('ba mươi sáu nghìn năm trăm mười lăm');
+    expect(readWhole(61034)).toBe('sáu mươi mốt nghìn không trăm ba mươi tư');
+    expect(readWhole(20809)).toBe('hai mươi nghìn tám trăm linh chín');
+    expect(readWhole(94005)).toBe('chín mươi tư nghìn không trăm linh năm');
+    expect(readWhole(7941)).toBe('bảy nghìn chín trăm bốn mươi mốt');
+    expect(readWhole(100000)).toBe('một trăm nghìn');
   });
 
   it('splits a number into its places', () => {
@@ -58,8 +59,8 @@ describe('the table', () => {
   it('tells the sum and the roundings of a full table', () => {
     expect(facts([1, 2, 9, 6, 7])).toEqual([
       '12 967 = 10 000 + 2 000 + 900 + 60 + 7',
-      'Chữ số hàng trăm là 9, 9 ≥ 5 nên làm tròn lên: làm tròn đến hàng nghìn được 13 000.',
-      'Chữ số hàng nghìn là 2, 2 < 5 nên làm tròn xuống: làm tròn đến hàng chục nghìn được 10 000.',
+      'Chữ số hàng trăm của 12 967 là 9, 9 > 5 nên làm tròn lên. Làm tròn 12 967 đến hàng nghìn được 13 000.',
+      'Chữ số hàng nghìn của 12 967 là 2, 2 < 5 nên làm tròn xuống. Làm tròn 12 967 đến hàng chục nghìn được 10 000.',
     ]);
     expect(facts([1, 2, null, 6, 7])).toEqual([]);
   });

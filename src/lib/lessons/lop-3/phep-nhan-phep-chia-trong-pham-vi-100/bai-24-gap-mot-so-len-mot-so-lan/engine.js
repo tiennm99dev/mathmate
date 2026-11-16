@@ -3,7 +3,7 @@
  * times, against the slip of adding that many units instead. Pure and DOM-free.
  */
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
-import { slipOptions } from '../_shared/strip.js';
+import { slipOptions } from '#lib/core/kid/quiz.js';
 
 /** @typedef {{ n: number, times: number }} Task */
 

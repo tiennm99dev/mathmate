@@ -5,7 +5,8 @@
  * prints it. Pure and DOM-free.
  */
 import { numberDivide } from '#lib/algebra-engine/long-division.js';
-import { checkText, divText, drawDivision } from '../_shared/columns.js';
+import { checkText, divText } from '#lib/core/kid/column-steps.js';
+import { drawDivision } from '../_shared/columns.js';
 
 /** What each column of a four-digit number is called, from the left. */
 const PLACES = /** @type {const} */ (['nghìn', 'trăm', 'chục', 'đơn vị']);

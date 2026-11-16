@@ -1,5 +1,5 @@
 /**
- * Multiplication and division tables for this chapter: the book's sentences
+ * Multiplication and division tables of grades 2 and 3: the book's sentences
  * and the option sets of their questions. `a × b` means "a taken b times", so
  * the repeated number always comes first. Pure and DOM-free.
  */

@@ -2,7 +2,7 @@
   import ChoiceRound from '#lib/core/kid/choice-round.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
-  import TableGrid from '../_shared/table-grid.svelte';
+  import TableGrid from '#lib/core/kid/table-grid.svelte';
   import { KIND_LABELS, jumpMessage } from '../_shared/times.js';
   import { BASE, round } from './engine.js';
   import Hand from './hand.svelte';
@@ -76,7 +76,7 @@
       {message}
     </p>
 
-    <TableGrid base={BASE} shown={hands} />
+    <TableGrid base={BASE} found={(n) => n <= hands} active={hands} />
   {:else}
     <ChoiceRound build={round} labels={KIND_LABELS} allGood="Em đã thuộc bảng nhân 5 rồi!">
       {#snippet visual(/** @type {{ visual?: { n: number } }} */ q, /** @type {boolean} */ settled)}

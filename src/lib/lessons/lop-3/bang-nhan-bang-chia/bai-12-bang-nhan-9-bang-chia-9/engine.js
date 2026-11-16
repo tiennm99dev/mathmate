@@ -4,7 +4,7 @@
  * Pure and DOM-free.
  */
 import { pick, rng, shuffle } from '#lib/core/drill.js';
-import { divLine, mulLine } from '../_shared/times.js';
+import { divLine, mulLine } from '#lib/core/kid/times-table.js';
 import { buildTableRound, tableKindLabels } from '../_shared/table-round.js';
 
 /** The table of this lesson. */

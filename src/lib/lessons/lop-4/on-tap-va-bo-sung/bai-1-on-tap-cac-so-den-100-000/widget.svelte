@@ -1,7 +1,7 @@
 <script>
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button } from '#lib/core/ui.js';
-  import { PLACES5, readTo100000 } from '../_shared/numbers.js';
+  import { placeColumns, readWhole } from '#lib/core/kid/whole-numbers.js';
   import {
     CHALLENGES,
     DIGITS,
@@ -12,6 +12,8 @@
     place,
     reading,
   } from './engine.js';
+
+  const PLACES5 = placeColumns(5);
 
   /** How far, in px, a press must move before it counts as a drag. */
   const DRAG_START = 8;
@@ -108,7 +110,7 @@
 
 <div class="space-y-4">
   <p class="text-center text-xl font-semibold text-slate-800">
-    Em hãy xếp số: <strong class="text-indigo-700">{readTo100000(target)}</strong>
+    Em hãy xếp số: <strong class="text-indigo-700">{readWhole(target)}</strong>
   </p>
 
   <div class="grid grid-cols-5 gap-1" role="group" aria-label="Bảng các hàng">
