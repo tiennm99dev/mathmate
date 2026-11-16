@@ -37,10 +37,14 @@ export default {
           text: 'Vẽ đường thẳng qua điểm H, vuông góc với AB: đặt một cạnh góc vuông của ê ke trên AB, trượt ê ke cho cạnh góc vuông kia gặp H, rồi vẽ theo cạnh đó.',
         },
         {
+          type: 'p',
+          text: 'Vẽ đường thẳng CD qua điểm H, song song với AB: em làm hai bước.',
+        },
+        {
           type: 'list',
           ordered: true,
           items: [
-            'Vẽ song song: vẽ đường thẳng MN qua H, vuông góc với AB.',
+            'Vẽ đường thẳng MN qua H, vuông góc với AB.',
             'Vẽ đường thẳng CD qua H, vuông góc với MN.',
           ],
         },

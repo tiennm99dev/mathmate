@@ -20,7 +20,7 @@
  */
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { capitalize, mixOptions } from '#lib/core/kid/quiz.js';
-import { RELATION_WORDS, relationOf } from '../_shared/lines.js';
+import { RELATION_WORDS, lineAngle, relationOf } from '../_shared/lines.js';
 
 /** What each part of the round practises. */
 export const KIND_LABELS = /** @type {const} */ ({
@@ -149,6 +149,39 @@ export function sideRelation(shape, i, j) {
 export function sideSquare(shape, i) {
   const v = sideVec(shape, i);
   return v.x * v.x + v.y * v.y;
+}
+
+/**
+ * What a screen reader hears for a drawn quadrilateral: each side as the
+ * grid shows it (lying flat, standing upright, or slanting so many squares
+ * across and up or down), never whether two sides are parallel or
+ * perpendicular, so a blind learner reads the grid as a sighted one does.
+ * @param {Shape} shape @param {Names} names
+ */
+export function quadText(shape, names) {
+  const sides = SIDES.map(([p, q], i) => {
+    const v = sideVec(shape, i);
+    const name = `cạnh ${names[p]}${names[q]}`;
+    if (v.y === 0) return `${name} nằm ngang, dài ${Math.abs(v.x)} ô`;
+    if (v.x === 0) return `${name} thẳng đứng, dài ${Math.abs(v.y)} ô`;
+    const across = `${Math.abs(v.x)} ô sang ${v.x > 0 ? 'phải' : 'trái'}`;
+    const upDown = `${Math.abs(v.y)} ô ${v.y < 0 ? 'lên trên' : 'xuống dưới'}`;
+    return `${name} nằm nghiêng, từ ${names[p]} đi ${across} và ${upDown} tới ${names[q]}`;
+  });
+  return `Tứ giác ${names.join('')} trên lưới ô vuông: ${sides.join('; ')}.`;
+}
+
+/**
+ * What a screen reader hears for two drawn lines: whether they meet in the
+ * picture and, when they cross, the angle at the crossing, which a sighted
+ * learner checks with the set square.
+ * @param {number} a @param {number} b directions in degrees
+ */
+export function linesText(a, b) {
+  const m = lineAngle(a, b);
+  return m === 0
+    ? 'Hai đường thẳng màu tím và màu xanh nằm hai bên, cách đều nhau và không gặp nhau trong hình.'
+    : `Hai đường thẳng màu tím và màu xanh cắt nhau ở giữa hình. Góc nhỏ ở chỗ cắt là ${m} độ.`;
 }
 
 /** The three answers for two lines, in the book's words. */

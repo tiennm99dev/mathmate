@@ -3,7 +3,7 @@
   import ClockPicture from '#lib/core/kid/clock-picture.svelte';
   import LinePair from '../_shared/line-pair.svelte';
   import QuadFigure from '../_shared/quad-figure.svelte';
-  import { BOARD, KIND_LABELS, SHAPES, buildRound } from './engine.js';
+  import { BOARD, KIND_LABELS, SHAPES, buildRound, linesText, quadText } from './engine.js';
 
   /** @param {import('#lib/core/kid/quiz.js').KidOption} o */
   const isShape = (o) => typeof o !== 'string' && 'shape' in o;
@@ -22,7 +22,7 @@
   {#snippet visual(q)}
     {@const v = q.visual}
     {#if v?.type === 'lines'}
-      <div role="img" aria-label="Hai đường thẳng màu tím và màu xanh">
+      <div role="img" aria-label={linesText(v.a, v.b)}>
         <LinePair a={v.a} b={v.b} size="max-w-64" />
       </div>
     {:else if v?.type === 'quad'}
@@ -31,7 +31,7 @@
         w={BOARD.w}
         h={BOARD.h}
         names={v.names}
-        label="Hình tứ giác {v.names.join('')} vẽ trên lưới ô vuông"
+        label={quadText(/** @type {import('./engine.js').Shape} */ (v.shape), v.names)}
       />
     {:else if v?.type === 'clock'}
       <ClockPicture minutes={v.minutes} size="w-40" />

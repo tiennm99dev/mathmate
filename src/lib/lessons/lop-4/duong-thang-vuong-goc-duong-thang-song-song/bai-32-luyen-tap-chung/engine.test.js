@@ -9,10 +9,12 @@ import {
   SIDES,
   buildRound,
   clockHands,
+  linesText,
   parallelSide,
   parallelogramSide,
   perpendicularSide,
   pickShape,
+  quadText,
   rhombusSide,
   sideName,
   sideRelation,
@@ -198,5 +200,23 @@ describe('mixed practice', () => {
     }
     expect(bad).toEqual([]);
     expect(buildRound(7)).toEqual(buildRound(7));
+  });
+});
+
+describe('screen-reader descriptions', () => {
+  it('reads each side of a drawn quadrilateral off the grid without naming the relation', () => {
+    expect(quadText('thang-vuong', ['A', 'B', 'C', 'D'])).toBe(
+      'Tứ giác ABCD trên lưới ô vuông: cạnh AB nằm ngang, dài 8 ô; cạnh BC nằm nghiêng, từ B đi 3 ô sang trái và 4 ô lên trên tới C; cạnh DC nằm ngang, dài 5 ô; cạnh AD thẳng đứng, dài 4 ô.',
+    );
+    const bad = /** @type {Shape[]} */ (Object.keys(SHAPES)).filter((shape) =>
+      /song song|vuông góc/.test(quadText(shape, ['M', 'N', 'P', 'Q'])),
+    );
+    expect(bad).toEqual([]);
+  });
+
+  it('gives the angle where two drawn lines cross, and none for parallel lines', () => {
+    expect(linesText(30, 120)).toContain('90 độ');
+    expect(linesText(15, 150)).toContain('45 độ');
+    expect(linesText(45, 45)).toContain('không gặp nhau');
   });
 });
