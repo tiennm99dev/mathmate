@@ -76,8 +76,8 @@ export const PRESETS = /** @type {Preset[]} */ ([
   },
 ]);
 
-/** Names for the new vertices of a section, in turn. */
-const FRESH = ['Q', 'R', 'T', 'U', 'V', 'E', 'F'];
+/** Names for the new vertices of a section, in turn around it. */
+const FRESH = ['N', 'P', 'Q', 'R', 'T', 'U', 'V'];
 const TOL = 1e-6;
 
 /** @param {string} edge @returns {[P3, P3]} */
@@ -180,14 +180,7 @@ export function sectionOf(preset, ts) {
       continue;
     }
     const mine = given.find((g) => g.edge === h.edge);
-    const name =
-      h.hit === 'vertex'
-        ? h.t === 0
-          ? h.edge[0]
-          : h.edge[1]
-        : mine
-          ? mine.name
-          : /** @type {string} */ (fresh.shift());
+    const name = h.hit === 'vertex' ? (h.t === 0 ? h.edge[0] : h.edge[1]) : mine ? mine.name : '';
     vertices.push({ name, point: h.point, edges: [h.edge] });
   }
   const c = centroid3(vertices.map((v) => v.point));
@@ -204,6 +197,7 @@ export function sectionOf(preset, ts) {
     vertices.findIndex((v) => v.name === given[0].name),
   );
   vertices.push(...vertices.splice(0, start));
+  for (const v of vertices) if (!v.name) v.name = /** @type {string} */ (fresh.shift());
   const sides = vertices.map((v, i) => {
     const next = vertices[(i + 1) % vertices.length];
     const face = FACES.find((f) => {

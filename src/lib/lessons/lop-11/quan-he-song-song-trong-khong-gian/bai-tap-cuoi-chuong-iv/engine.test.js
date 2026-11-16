@@ -33,7 +33,7 @@ describe('sections of the pyramid', () => {
   it('cuts by a plane parallel to the base in a parallelogram', () => {
     const s = sectionOf(preset('song-song-day'), [0.4]);
     expect(s.shape).toBe('hinh-binh-hanh');
-    expect(s.vertices.map((v) => v.name)[0]).toBe('M');
+    expect(s.vertices.map((v) => v.name).join('')).toBe('MNPQ');
     expect(s.hits.filter((h) => h.hit === 'cut').map((h) => h.edge)).toEqual([
       'SA',
       'SB',
@@ -45,6 +45,12 @@ describe('sections of the pyramid', () => {
   it('cuts by a plane through M on AB parallel to SA and BC in a trapezoid', () => {
     const s = sectionOf(preset('song-song-sa-bc'), [0.4]);
     expect(s.shape).toBe('hinh-thang');
+    expect(s.vertices.map((v) => `${v.name}:${v.edges[0]}`)).toEqual([
+      'M:AB',
+      'N:CD',
+      'P:SC',
+      'Q:SB',
+    ]);
     expect(
       s.hits
         .filter((h) => h.hit === 'cut')

@@ -20,7 +20,7 @@ export default {
           rows: [
             [
               '$a \\parallel b$',
-              '$a$, $b$ đồng phẳng và không có điểm chung; hoặc $a \\parallel c$, $b \\parallel c$',
+              '$a$, $b$ đồng phẳng và không có điểm chung; hoặc $a$, $b$ phân biệt cùng song song với một đường thẳng $c$',
               'Ba mặt phẳng đôi một cắt nhau theo ba giao tuyến phân biệt thì ba giao tuyến đồng quy hoặc đôi một song song',
             ],
             [
@@ -41,7 +41,7 @@ export default {
             'Hai đường thẳng trong không gian có bốn vị trí tương đối: trùng nhau, cắt nhau, song song, chéo nhau (không đồng phẳng).',
             'Hai mặt phẳng phân biệt cùng đi qua hai đường thẳng song song $a$, $b$ và cắt nhau thì giao tuyến song song với $a$ và $b$ (hoặc trùng với một trong hai đường thẳng đó).',
             'Định lí Thalès: ba mặt phẳng đôi một song song chắn trên hai cát tuyến bất kì những đoạn thẳng tương ứng tỉ lệ.',
-            'Phép chiếu song song biến đường thẳng thành đường thẳng, giữ nguyên quan hệ song song và tỉ số độ dài của hai đoạn thẳng cùng nằm trên một đường thẳng hoặc trên hai đường thẳng song song.',
+            'Phép chiếu song song (với các đường thẳng, đoạn thẳng không song song hoặc trùng với phương chiếu) biến đường thẳng thành đường thẳng, biến hai đường thẳng song song thành hai đường thẳng song song hoặc trùng nhau, và không làm thay đổi tỉ số độ dài của hai đoạn thẳng cùng nằm trên một đường thẳng hoặc trên hai đường thẳng song song.',
           ],
         },
       ],
@@ -203,14 +203,14 @@ export default {
     {
       type: 'fraction',
       prompt:
-        'Cho hình chóp $S.ABCD$ có đáy là hình bình hành, $M$ trên $SC$ với $CM = 2SM$. Mặt phẳng $(ABM)$ cắt $SD$ tại $K$. Tính $\\dfrac{SK}{SD}$.',
-      answer: [1, 3],
+        'Cho hình chóp $S.ABCD$ có đáy là hình bình hành, $M$ trên $SC$ với $SM = 2MC$. Mặt phẳng $(ABM)$ cắt $SD$ tại $K$. Tính $\\dfrac{SK}{SD}$.',
+      answer: [2, 3],
       simplest: true,
       hints: [
         '$(ABM)$ chứa $AB \\parallel CD$, nên cắt $(SCD)$ theo đường thẳng qua $M$ song song với $CD$.',
       ],
       solution:
-        '$(ABM) \\cap (SCD) = MK$ với $MK \\parallel CD$, $K \\in SD$. Theo định lí Thalès trong tam giác $SCD$: $\\dfrac{SK}{SD} = \\dfrac{SM}{SC} = \\dfrac{1}{3}$.',
+        '$(ABM) \\cap (SCD) = MK$ với $MK \\parallel CD$, $K \\in SD$. Vì $SM = 2MC$ nên $\\dfrac{SM}{SC} = \\dfrac{2}{3}$. Theo định lí Thalès trong tam giác $SCD$: $\\dfrac{SK}{SD} = \\dfrac{SM}{SC} = \\dfrac{2}{3}$.',
     },
     {
       type: 'fraction',
@@ -246,12 +246,15 @@ export default {
     {
       type: 'number',
       prompt:
-        'Với hình chóp ở câu trên, biết $AB = 9$ cm. Tính độ dài cạnh $MN$ của thiết diện $MNEF$.',
+        'Cho hình chóp $S.ABCD$ có đáy là hình bình hành, $AB = 9$ cm; $G$ là trọng tâm tam giác $SAD$. Mặt phẳng qua $G$ song song với $(ABCD)$ cắt $SA$, $SB$ lần lượt tại $M$, $N$. Tính độ dài $MN$.',
       answer: 6,
       unit: 'cm',
-      hints: ['$MN \\parallel AB$ và $\\dfrac{SM}{SA} = \\dfrac{2}{3}$.'],
+      hints: [
+        'Gọi $I$ là trung điểm $AD$. Mặt phẳng song song với đáy cắt $SA$, $SI$ theo cùng một tỉ số, và $\\dfrac{SG}{SI} = \\dfrac{2}{3}$.',
+        '$MN \\parallel AB$ nên dùng định lí Thalès trong tam giác $SAB$.',
+      ],
       solution:
-        'Trong tam giác $SAB$, $MN \\parallel AB$ nên $\\dfrac{MN}{AB} = \\dfrac{SM}{SA} = \\dfrac{2}{3}$, do đó $MN = \\dfrac{2}{3} \\cdot 9 = 6$ (cm).',
+        'Gọi $I$ là trung điểm $AD$; mặt phẳng qua $G$ song song với đáy cắt $(SAD)$ theo đường thẳng qua $G$ song song với $AD$, cắt $SA$ tại $M$. Trong tam giác $SAI$, đường thẳng đó song song với $AI$ nên $\\dfrac{SM}{SA} = \\dfrac{SG}{SI} = \\dfrac{2}{3}$. Trong tam giác $SAB$, $MN \\parallel AB$ nên $\\dfrac{MN}{AB} = \\dfrac{SM}{SA} = \\dfrac{2}{3}$, do đó $MN = \\dfrac{2}{3} \\cdot 9 = 6$ (cm).',
     },
     {
       type: 'choice',
