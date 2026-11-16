@@ -151,10 +151,14 @@ const MAKERS = {
     return {
       kind: 'nhieu-hon',
       prompt: `Có bao nhiêu ngày nhóm bạn thu được nhiều hơn ${fmt(t)} đồng?`,
-      ...slipOptions(above.length, [values.filter((v) => v >= t).length + 1, n - above.length], {
-        min: 0,
-        max: n,
-      }),
+      ...slipOptions(
+        above.length,
+        [values.filter((v) => v >= t).length, above.length + 1, n - above.length],
+        {
+          min: 0,
+          max: n,
+        },
+      ),
       hint: `Em so sánh từng số với ${fmt(t)}. Số bằng ${fmt(t)} không tính.`,
       solution: `Các số lớn hơn ${fmt(t)} là ${listText(above)}. Có ${above.length} ngày.`,
       visual: {

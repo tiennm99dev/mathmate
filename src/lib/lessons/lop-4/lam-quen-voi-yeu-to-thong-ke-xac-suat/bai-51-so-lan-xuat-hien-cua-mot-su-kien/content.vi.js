@@ -22,9 +22,8 @@ export default {
           items: ['Rô-bốt có thể lấy được bóng xanh.', 'Rô-bốt có thể lấy được bóng vàng.'],
         },
         {
-          type: 'callout',
-          tone: 'definition',
-          text: 'Mỗi kết quả có thể xảy ra như "lấy được bóng xanh" gọi là một sự kiện.',
+          type: 'p',
+          text: '"Lấy được bóng xanh" và "lấy được bóng vàng" là hai sự kiện có thể xảy ra.',
         },
         {
           type: 'p',
@@ -211,7 +210,7 @@ export default {
     },
   ],
   takeaways: [
-    'Mỗi kết quả có thể xảy ra khi làm thí nghiệm là một sự kiện.',
+    'Khi làm thí nghiệm, em nêu được các sự kiện có thể xảy ra.',
     'Ghi kết quả mỗi lần thử bằng một vạch trong bảng kiểm đếm.',
     'Đếm số vạch để biết số lần xuất hiện của mỗi sự kiện, rồi so sánh.',
   ],

@@ -1,5 +1,6 @@
 <script>
   import KidNote from '#lib/core/kid/kid-note.svelte';
+  import { passFocus } from '#lib/core/kid/pass-focus.js';
   import TallyMarks from '#lib/core/kid/tally-marks.svelte';
   import { button } from '#lib/core/ui.js';
   import { EXPERIMENTS, MAX_TRIALS, runTrials, tallyText } from '../_shared/experiments.js';
@@ -44,6 +45,8 @@
   let counts = $state([0, 0]);
   /** @type {number | null} */
   let last = $state(null);
+  /** @type {HTMLButtonElement | undefined} */
+  let again = $state();
 
   const exp = $derived(EXPERIMENTS[pick]);
   const total = $derived(counts.reduce((s, c) => s + c, 0));
@@ -57,11 +60,13 @@
     last = null;
   }
 
-  /** @param {number} times */
-  function run(times) {
+  /** @param {MouseEvent} e @param {number} times */
+  function run(e, times) {
+    const from = /** @type {HTMLButtonElement} */ (e.currentTarget);
     const step = runTrials(exp, counts, times, Math.random);
     counts = step.counts;
     if (step.last !== null) last = step.last;
+    passFocus(from, again);
   }
 </script>
 
@@ -135,16 +140,19 @@
       type="button"
       class="min-h-12 text-lg {button.primary}"
       disabled={full}
-      onclick={() => run(1)}>{exp.once}</button
+      onclick={(e) => run(e, 1)}>{exp.once}</button
     >
     <button
       type="button"
       class="min-h-12 text-lg {button.secondary}"
       disabled={full}
-      onclick={() => run(10)}>Thêm 10 lần</button
+      onclick={(e) => run(e, 10)}>Thêm 10 lần</button
     >
-    <button type="button" class="min-h-12 text-lg {button.quiet}" onclick={() => choose(pick)}
-      >Làm lại</button
+    <button
+      bind:this={again}
+      type="button"
+      class="min-h-12 text-lg {button.quiet}"
+      onclick={() => choose(pick)}>Làm lại</button
     >
   </div>
 

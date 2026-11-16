@@ -176,7 +176,7 @@ export default {
         'Rạp phim bán được từ thứ Hai đến Chủ nhật: 285, 540, 2 150, 410, 1 105, 1 200, 1 610 vé. Chọn các ngày bán được nhiều hơn 1 000 vé.',
       options: ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chủ nhật'],
       answers: [2, 4, 5, 6],
-      hints: ['Em so sánh từng số với 1 000.', 'Số có bốn chữ số thì lớn hơn 1 000.'],
+      hints: ['Em so sánh từng số với 1 000.', 'Số có ba chữ số thì bé hơn 1 000.'],
       solution:
         'Thứ Tư 2 150 vé, thứ Sáu 1 105 vé, thứ Bảy 1 200 vé, Chủ nhật 1 610 vé đều nhiều hơn 1 000 vé.',
     },
