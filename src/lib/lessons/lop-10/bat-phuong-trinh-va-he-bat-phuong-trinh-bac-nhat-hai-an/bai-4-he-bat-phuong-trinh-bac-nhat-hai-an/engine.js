@@ -26,7 +26,7 @@ const items = (rows) =>
 /** @type {Preset[]} */
 export const PRESETS = [
   {
-    name: 'Cửa hàng máy',
+    name: 'Tứ giác OABC',
     items: items([
       [1, 0, 0, '>='],
       [0, 1, 0, '>='],
@@ -37,7 +37,7 @@ export const PRESETS = [
     q: 4,
   },
   {
-    name: 'Tứ giác',
+    name: 'Tứ giác ABCD',
     items: items([
       [1, 0, 1, '>='],
       [0, 1, 1, '>='],
@@ -48,7 +48,7 @@ export const PRESETS = [
     q: -1,
   },
   {
-    name: 'Tam giác',
+    name: 'Tam giác ABC',
     items: items([
       [0, 1, 0, '>='],
       [1, 0, 4, '<='],
@@ -99,17 +99,22 @@ export function levelVerdict(vertices, p, q, k) {
   const value = formatNumber(tidy(k));
   const at = (/** @type {number[]} */ idx) =>
     idx.map((i) => `${vertices[i].name}${pointText(vertices[i].pt)}`).join(' và ');
+  // A level line parallel to an edge leaves the polygon along that whole edge.
+  const touch = (/** @type {number[]} */ idx) =>
+    idx.length > 1
+      ? `chỉ còn chạm miền nghiệm dọc cạnh nối ${at(idx)} (mọi điểm của cạnh này)`
+      : `chỉ còn chạm miền nghiệm tại ${at(idx)}`;
   const near = (/** @type {number} */ a, /** @type {number} */ b) => Math.abs(a - b) < 1e-7;
   if (near(k, best.max)) {
     return {
       tone: 'ok',
-      text: `Đường mức F = ${value} chỉ còn chạm miền nghiệm tại ${at(best.argMax)}: F lớn nhất bằng ${value}.`,
+      text: `Đường mức F = ${value} ${touch(best.argMax)}: F lớn nhất bằng ${value}.`,
     };
   }
   if (near(k, best.min)) {
     return {
       tone: 'ok',
-      text: `Đường mức F = ${value} chỉ còn chạm miền nghiệm tại ${at(best.argMin)}: F nhỏ nhất bằng ${value}.`,
+      text: `Đường mức F = ${value} ${touch(best.argMin)}: F nhỏ nhất bằng ${value}.`,
     };
   }
   if (k > best.max || k < best.min) {

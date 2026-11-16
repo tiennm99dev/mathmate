@@ -3,6 +3,7 @@
  * their solution regions cut out of a drawing box. Pure logic, no DOM.
  */
 import { eqTex, eqText, substituteText } from '#lib/core/algebra-text.js';
+import { fracText } from '#lib/core/fractions.js';
 import { formatNumber, tidy } from '#lib/core/number-format.js';
 
 /**
@@ -72,11 +73,27 @@ export const holds = (q, p) => compare(valueAt(q, p), q.op, q.c);
 export const onBorder = (q, p) => Math.abs(valueAt(q, p) - q.c) < 1e-7;
 
 /**
- * A point written the book's way: '(2; −1,5)'.
+ * A computed value written exactly: a short decimal ('3,5', '−2'), else a
+ * fraction with a small denominator ('15/7'), the way a vertex found by
+ * solving two equations is written; only past that is it rounded ('≈ 2,14').
+ * @param {number} v
+ */
+export function exactText(v) {
+  const t = tidy(v);
+  if (Math.abs(t * 100 - Math.round(t * 100)) < 1e-6) return formatNumber(t, 2);
+  for (let d = 3; d <= 1000; d++) {
+    const n = Math.round(t * d);
+    if (Math.abs(n / d - t) < 1e-7) return fracText(n, d);
+  }
+  return `≈ ${formatNumber(t, 2)}`;
+}
+
+/**
+ * A point written the book's way: '(2; −1,5)', or '(15/7; 12/7)'.
  * @param {Pt} p
  */
 export function pointText(p) {
-  return `(${formatNumber(tidy(p.x), 2)}; ${formatNumber(tidy(p.y), 2)})`;
+  return `(${exactText(p.x)}; ${exactText(p.y)})`;
 }
 
 /**

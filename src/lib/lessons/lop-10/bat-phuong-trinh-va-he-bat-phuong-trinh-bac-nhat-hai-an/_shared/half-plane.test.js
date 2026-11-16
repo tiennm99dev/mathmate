@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   checkText,
   conclusion,
+  exactText,
   excludedPolygon,
   holds,
   ineqTex,
@@ -18,6 +19,13 @@ describe('linear inequalities in two unknowns', () => {
   it('writes an inequality the book way', () => {
     expect(ineqText({ a: 2, b: -1, c: 4, op: '<=' })).toBe('2x − y ≤ 4');
     expect(ineqTex({ a: 1, b: 2, c: -3, op: '>' })).toBe('x + 2y > -3');
+  });
+
+  it('writes computed coordinates exactly', () => {
+    expect(exactText(3.5)).toBe('3,5');
+    expect(exactText(-2)).toBe('−2');
+    expect(exactText(15 / 7)).toBe('15/7');
+    expect(pointText({ x: 15 / 7, y: -12 / 7 })).toBe('(15/7; −12/7)');
   });
 
   it('tests points, strict and not strict on the border', () => {

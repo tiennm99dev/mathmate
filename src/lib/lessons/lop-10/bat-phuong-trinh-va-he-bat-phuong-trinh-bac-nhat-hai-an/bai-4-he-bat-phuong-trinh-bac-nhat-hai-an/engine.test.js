@@ -34,6 +34,8 @@ describe('system widget', () => {
     expect(levelVerdict(v, 3, 4, 20).text).toContain('không cắt');
     expect(levelVerdict(v, 3, 4, 9).text).toContain('cắt miền nghiệm');
     expect(levelVerdict(v, 0, 0, 1).tone).toBe('warn');
+    // F = x + y is constant along the edge from A(5; 0) to B(2; 3).
+    expect(levelVerdict(v, 1, 1, 5).text).toContain('dọc cạnh nối A(5; 0) và B(2; 3)');
   });
 
   it('spans the box with the slider', () => {

@@ -2,12 +2,11 @@
   import Tex from '#lib/components/tex.svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import Stepper from '#lib/core/stepper.svelte';
-  import { formatNumber } from '#lib/core/number-format.js';
   import { button, focusRing } from '#lib/core/ui.js';
   import CoordinatePlane from '#lib/core/visuals/coordinate-plane.svelte';
   import { planeScale } from '#lib/core/visuals/svg-math.js';
   import RegionLayer from '../_shared/region-layer.svelte';
-  import { ineqTex, ineqText, pointText } from '../_shared/half-plane.js';
+  import { exactText, ineqTex, ineqText, pointText } from '../_shared/half-plane.js';
   import { DEFAULT_PLAN, judgePick, spanOf, systemOf, verticesOf } from './engine.js';
 
   const COLORS = ['#64748b', '#64748b', '#0f766e', '#4f46e5'];
@@ -35,15 +34,15 @@
 
   /** @type {Array<{ key: 'a1' | 'b1' | 'c1' | 'a2' | 'b2' | 'c2' | 'p' | 'q', label: string, min: number, max: number }>} */
   const MACHINE_1 = [
-    { key: 'a1', label: 'Mỗi sản phẩm A cần (giờ)', min: 1, max: 5 },
-    { key: 'b1', label: 'Mỗi sản phẩm B cần (giờ)', min: 1, max: 5 },
-    { key: 'c1', label: 'Máy chạy tối đa (giờ)', min: 1, max: 20 },
+    { key: 'a1', label: 'Mỗi sản phẩm A cần (giờ trên máy I)', min: 1, max: 5 },
+    { key: 'b1', label: 'Mỗi sản phẩm B cần (giờ trên máy I)', min: 1, max: 5 },
+    { key: 'c1', label: 'Máy I chạy tối đa (giờ)', min: 1, max: 20 },
   ];
   /** @type {typeof MACHINE_1} */
   const MACHINE_2 = [
-    { key: 'a2', label: 'Mỗi sản phẩm A cần (giờ)', min: 1, max: 5 },
-    { key: 'b2', label: 'Mỗi sản phẩm B cần (giờ)', min: 1, max: 5 },
-    { key: 'c2', label: 'Máy chạy tối đa (giờ)', min: 1, max: 20 },
+    { key: 'a2', label: 'Mỗi sản phẩm A cần (giờ trên máy II)', min: 1, max: 5 },
+    { key: 'b2', label: 'Mỗi sản phẩm B cần (giờ trên máy II)', min: 1, max: 5 },
+    { key: 'c2', label: 'Máy II chạy tối đa (giờ)', min: 1, max: 20 },
   ];
   /** @type {typeof MACHINE_1} */
   const PROFIT = [
@@ -152,7 +151,7 @@
                 : ''}"
             >
               <td class="py-1 pr-3">{v.name}{pointText(v.pt)}</td>
-              <td class="py-1 tabular-nums">{formatNumber(verdict.values[i])}</td>
+              <td class="py-1 tabular-nums">{exactText(verdict.values[i])}</td>
             </tr>
           {/each}
         </tbody>

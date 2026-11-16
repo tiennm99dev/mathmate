@@ -92,12 +92,12 @@ export default {
   explore: {
     title: 'Chồng nửa mặt phẳng và kéo đường mức',
     instruction:
-      'Bấm từng bất phương trình để chồng các nửa mặt phẳng: phần không bị gạch (tô xanh nhạt) là miền nghiệm của hệ. Chọn $p$, $q$ cho $F = px + qy$ rồi kéo $k$ để đường mức $F = k$ trượt qua miền. Quan sát: khi sắp rời miền, đường mức chỉ còn chạm miền tại một đỉnh. Bấm “Tính F tại các đỉnh” để kiểm tra.',
+      'Bấm từng bất phương trình để chồng các nửa mặt phẳng: phần không bị gạch (tô xanh nhạt) là miền nghiệm của hệ. Chọn hai hệ số $p$ và $q$ của $F = px + qy$ rồi kéo $k$ để đường mức $F = k$ trượt qua miền. Quan sát: khi sắp rời miền, đường mức chỉ còn chạm miền tại một đỉnh. Bấm “Tính F tại các đỉnh” để kiểm tra.',
   },
   examples: [
     {
       problem:
-        'Cặp số nào trong $(2; 3)$ và $(3; 3)$ là nghiệm của hệ $\\begin{cases} x \\ge 0,\\ y \\ge 0 \\\\ x + y \\le 5 \\\\ x + 2y \\le 8? \\end{cases}$',
+        'Cặp số nào trong $(2; 3)$ và $(3; 3)$ là nghiệm của hệ $\\begin{cases} x \\ge 0,\\ y \\ge 0 \\\\ x + y \\le 5 \\\\ x + 2y \\le 8 \\end{cases}$?',
       steps: [
         '$(2; 3)$: $x, y \\ge 0$; $2 + 3 = 5 \\le 5$; $2 + 2 \\cdot 3 = 8 \\le 8$. Cả bốn bất phương trình đều đúng.',
         '$(3; 3)$: $3 + 3 = 6$, mà $6 \\le 5$ sai, nên không cần thử tiếp.',

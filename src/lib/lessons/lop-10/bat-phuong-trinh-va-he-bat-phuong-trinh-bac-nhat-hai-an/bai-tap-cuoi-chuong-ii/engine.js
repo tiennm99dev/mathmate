@@ -2,8 +2,7 @@
  * Logic of the production widget: two products share two machines, the
  * learner enters the numbers, and the best vertex is checked.
  */
-import { formatNumber } from '#lib/core/number-format.js';
-import { namedRegion, optimize, pointText } from '../_shared/half-plane.js';
+import { exactText, namedRegion, optimize, pointText } from '../_shared/half-plane.js';
 
 /**
  * @typedef {import('../_shared/half-plane.js').Ineq} Ineq
@@ -61,7 +60,7 @@ export function judgePick(plan, picked) {
     plan.q,
   );
   const name = (/** @type {number} */ i) => `${vertices[i].name}${pointText(vertices[i].pt)}`;
-  const max = formatNumber(result.max);
+  const max = exactText(result.max);
   const right = result.argMax.includes(picked);
   const whole = result.argMax.every(
     (i) => Number.isInteger(vertices[i].pt.x) && Number.isInteger(vertices[i].pt.y),
@@ -71,6 +70,6 @@ export function judgePick(plan, picked) {
     : ' Đỉnh này có toạ độ không nguyên: nếu chỉ làm được số nguyên sản phẩm, cần xét thêm các điểm nguyên gần đó.';
   const text = right
     ? `Đúng! F lớn nhất bằng ${max}, đạt tại ${result.argMax.map(name).join(' và ')}.${caution}`
-    : `Chưa đúng: F tại ${name(picked)} bằng ${formatNumber(result.values[picked])}, nhưng tại ${name(result.argMax[0])} F bằng ${max}.${caution}`;
+    : `Chưa đúng: F tại ${name(picked)} bằng ${exactText(result.values[picked])}, nhưng tại ${name(result.argMax[0])} F bằng ${max}.${caution}`;
   return { tone: right ? 'ok' : 'warn', text, best: result.argMax, values: result.values };
 }

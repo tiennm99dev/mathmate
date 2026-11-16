@@ -30,4 +30,12 @@ describe('production widget', () => {
     expect(verdict.text).toContain('(2,4; 2,2)');
     expect(verdict.text).toContain('không nguyên');
   });
+
+  it('writes vertices that are not short decimals as fractions', () => {
+    const plan = { ...DEFAULT_PLAN, a1: 3 };
+    // 3x + y = 8 meets the x-axis at 8/3 and x + 3y = 9 at (15/8; 19/8).
+    const names = verticesOf(plan).map((v) => `${v.name}${pointText(v.pt)}`);
+    expect(names).toEqual(['O(0; 0)', 'A(8/3; 0)', 'B(15/8; 19/8)', 'C(0; 3)']);
+    expect(judgePick(plan, 2).text).toContain('F lớn nhất bằng 121/8');
+  });
 });
