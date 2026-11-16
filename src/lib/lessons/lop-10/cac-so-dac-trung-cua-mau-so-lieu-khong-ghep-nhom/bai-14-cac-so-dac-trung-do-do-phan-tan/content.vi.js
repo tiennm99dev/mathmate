@@ -46,7 +46,7 @@ export default {
           type: 'callout',
           tone: 'definition',
           title: 'Phương sai và độ lệch chuẩn',
-          text: 'Cho mẫu số liệu $x_1, x_2, \\ldots, x_n$ có số trung bình $\\overline{x}$. Phương sai của mẫu là $$s^2 = \\dfrac{(x_1 - \\overline{x})^2 + (x_2 - \\overline{x})^2 + \\cdots + (x_n - \\overline{x})^2}{n}.$$ Căn bậc hai của phương sai, $s = \\sqrt{s^2}$, được gọi là độ lệch chuẩn.',
+          text: 'Cho mẫu số liệu $x_1, x_2, \\ldots, x_n$ có số trung bình $\\overline{x}$. Phương sai của mẫu là $$s^2 = \\dfrac{(x_1 - \\overline{x})^2 + \\cdots + (x_n - \\overline{x})^2}{n}.$$ Căn bậc hai của phương sai, $s = \\sqrt{s^2}$, được gọi là độ lệch chuẩn.',
         },
         {
           type: 'callout',
@@ -88,7 +88,7 @@ export default {
   examples: [
     {
       problem:
-        'Điểm $10$ lần bắn của hai xạ thủ: A: $8;\\ 9;\\ 10;\\ 7;\\ 6;\\ 10;\\ 6;\\ 7;\\ 9;\\ 8$; B: $10;\\ 6;\\ 8;\\ 7;\\ 9;\\ 9;\\ 8;\\ 7;\\ 8;\\ 8$. Xạ thủ nào bắn đều hơn?',
+        'Điểm $10$ lần bắn của hai xạ thủ: A: $8$; $9$; $10$; $7$; $6$; $10$; $6$; $7$; $9$; $8$; B: $10$; $6$; $8$; $7$; $9$; $9$; $8$; $7$; $8$; $8$. Xạ thủ nào bắn đều hơn?',
       steps: [
         'Số trung bình: $\\overline{x}_A = \\dfrac{80}{10} = 8$, $\\overline{x}_B = \\dfrac{80}{10} = 8$.',
         'Khoảng biến thiên: $R_A = 10 - 6 = 4$, $R_B = 10 - 6 = 4$, như nhau.',
@@ -99,18 +99,20 @@ export default {
     },
     {
       problem:
-        'Cân nặng (kg) của $10$ trẻ sơ sinh: $2{,}8;\\ 2{,}5;\\ 3{,}1;\\ 3{,}3;\\ 2{,}9;\\ 3{,}5;\\ 4{,}1;\\ 2{,}8;\\ 3{,}0;\\ 3{,}3$. Tìm khoảng biến thiên, khoảng tứ phân vị, phương sai và độ lệch chuẩn.',
+        'Cân nặng (kg) của $10$ trẻ sơ sinh: $2{,}8$; $2{,}5$; $3{,}1$; $3{,}3$; $2{,}9$; $3{,}5$; $4{,}1$; $2{,}8$; $3{,}0$; $3{,}3$. Tìm khoảng biến thiên, khoảng tứ phân vị, phương sai và độ lệch chuẩn.',
       steps: [
-        'Sắp xếp: $2{,}5;\\ 2{,}8;\\ 2{,}8;\\ 2{,}9;\\ 3{,}0;\\ 3{,}1;\\ 3{,}3;\\ 3{,}3;\\ 3{,}5;\\ 4{,}1$. $R = 4{,}1 - 2{,}5 = 1{,}6$ (kg).',
+        'Sắp xếp: $2{,}5$; $2{,}8$; $2{,}8$; $2{,}9$; $3{,}0$; $3{,}1$; $3{,}3$; $3{,}3$; $3{,}5$; $4{,}1$. $R = 4{,}1 - 2{,}5 = 1{,}6$ (kg).',
         'Nửa trái $2{,}5;\\ 2{,}8;\\ 2{,}8;\\ 2{,}9;\\ 3{,}0$ cho $Q_1 = 2{,}8$; nửa phải $3{,}1;\\ 3{,}3;\\ 3{,}3;\\ 3{,}5;\\ 4{,}1$ cho $Q_3 = 3{,}3$. $\\Delta_Q = 0{,}5$ (kg).',
         '$\\overline{x} = \\dfrac{31{,}3}{10} = 3{,}13$. Tổng bình phương các độ lệch là $1{,}821$, nên $s^2 = \\dfrac{1{,}821}{10} = 0{,}1821$.',
         '$s = \\sqrt{0{,}1821} \\approx 0{,}4267$ (kg).',
+        'Kiểm tra giá trị bất thường: $Q_1 - 1{,}5\\Delta_Q = 2{,}8 - 0{,}75 = 2{,}05$ và $Q_3 + 1{,}5\\Delta_Q = 3{,}3 + 0{,}75 = 4{,}05$. Giá trị $4{,}1 > 4{,}05$ nên $4{,}1$ kg là giá trị bất thường; vì vậy $R = 1{,}6$ lớn hơn nhiều so với $\\Delta_Q = 0{,}5$.',
       ],
-      answer: '$R = 1{,}6$ kg, $\\Delta_Q = 0{,}5$ kg, $s^2 = 0{,}1821$, $s \\approx 0{,}43$ kg.',
+      answer:
+        '$R = 1{,}6$ kg, $\\Delta_Q = 0{,}5$ kg, $s^2 = 0{,}1821$, $s \\approx 0{,}43$ kg; mẫu có một giá trị bất thường là $4{,}1$ kg.',
     },
     {
       problem:
-        'Hàm lượng canxi (mg) trong $20$ mẫu thực phẩm, đã sắp xếp: $0;\\ 4;\\ 8;\\ 10;\\ 13;\\ 14;\\ 15;\\ 16;\\ 16;\\ 18;\\ 18;\\ 18;\\ 19;\\ 20;\\ 20;\\ 20;\\ 21;\\ 22;\\ 29;\\ 34$. Tìm các giá trị bất thường.',
+        'Hàm lượng canxi (mg) trong $20$ mẫu thực phẩm, đã sắp xếp: $0$; $4$; $8$; $10$; $13$; $14$; $15$; $16$; $16$; $18$; $18$; $18$; $19$; $20$; $20$; $20$; $21$; $22$; $29$; $34$. Tìm các giá trị bất thường.',
       steps: [
         '$Q_2 = \\dfrac{18 + 18}{2} = 18$; nửa trái có $Q_1 = \\dfrac{13 + 14}{2} = 13{,}5$; nửa phải có $Q_3 = \\dfrac{20 + 20}{2} = 20$.',
         '$\\Delta_Q = 20 - 13{,}5 = 6{,}5$.',
@@ -130,7 +132,7 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Tìm khoảng tứ phân vị của mẫu số liệu: $3;\\ 5;\\ 6;\\ 8;\\ 9;\\ 11;\\ 14;\\ 15$.',
+      prompt: 'Tìm khoảng tứ phân vị của mẫu số liệu: $3$; $5$; $6$; $8$; $9$; $11$; $14$; $15$.',
       answer: 7,
       hints: [
         'Mẫu đã sắp xếp, $n = 8$: mỗi nửa có $4$ giá trị.',
@@ -184,7 +186,7 @@ export default {
     {
       type: 'multi',
       prompt:
-        'Cho mẫu số liệu $1;\\ 10;\\ 11;\\ 12;\\ 12;\\ 13;\\ 14;\\ 15;\\ 30$. Chọn tất cả các giá trị bất thường.',
+        'Cho mẫu số liệu $1$; $10$; $11$; $12$; $12$; $13$; $14$; $15$; $30$. Chọn tất cả các giá trị bất thường.',
       options: ['$1$', '$10$', '$15$', '$30$'],
       answers: [0, 3],
       hints: [

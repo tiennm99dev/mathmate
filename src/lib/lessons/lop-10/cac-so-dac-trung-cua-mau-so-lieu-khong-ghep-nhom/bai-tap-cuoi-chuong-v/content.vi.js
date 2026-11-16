@@ -66,7 +66,7 @@ export default {
     },
     {
       problem:
-        'Số giờ tự học mỗi tuần của $9$ bạn lớp 10C: $5;\\ 6;\\ 6;\\ 7;\\ 8;\\ 8;\\ 9;\\ 10;\\ 24$. Tìm giá trị bất thường và cho biết nên dùng số đặc trưng nào để đại diện cho mẫu.',
+        'Số giờ tự học mỗi tuần của $9$ bạn lớp 10C: $5$; $6$; $6$; $7$; $8$; $8$; $9$; $10$; $24$. Tìm giá trị bất thường và cho biết nên dùng số đặc trưng nào để đại diện cho mẫu.',
       steps: [
         '$n = 9$, $Q_2 = M_e = 8$; nửa trái $5;\\ 6;\\ 6;\\ 7$ cho $Q_1 = 6$; nửa phải $8;\\ 9;\\ 10;\\ 24$ cho $Q_3 = 9{,}5$.',
         '$\\Delta_Q = 3{,}5$; $Q_3 + 1{,}5\\Delta_Q = 9{,}5 + 5{,}25 = 14{,}75$ và $Q_1 - 1{,}5\\Delta_Q = 0{,}75$.',
@@ -100,7 +100,7 @@ export default {
     {
       type: 'number',
       prompt:
-        'Tính số trung bình của mẫu số liệu $3;\\ 5;\\ 6;\\ 6;\\ 7;\\ 9;\\ 10$ (làm tròn đến hàng phần trăm).',
+        'Tính số trung bình của mẫu số liệu $3$; $5$; $6$; $6$; $7$; $9$; $10$ (làm tròn đến hàng phần trăm).',
       answer: 6.57,
       tolerance: 0.005,
       hints: ['Tổng các giá trị là $46$.'],
@@ -108,24 +108,24 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Tìm trung vị của mẫu số liệu $12;\\ 15;\\ 11;\\ 18;\\ 20;\\ 14;\\ 16;\\ 13$.',
+      prompt: 'Tìm trung vị của mẫu số liệu $12$; $15$; $11$; $18$; $20$; $14$; $16$; $13$.',
       answer: 14.5,
       hints: ['Sắp xếp mẫu trước; $n = 8$ chẵn.'],
       solution:
-        'Sắp xếp: $11;\\ 12;\\ 13;\\ 14;\\ 15;\\ 16;\\ 18;\\ 20$. $M_e = \\dfrac{14 + 15}{2} = 14{,}5$.',
+        'Sắp xếp: $11$; $12$; $13$; $14$; $15$; $16$; $18$; $20$. $M_e = \\dfrac{14 + 15}{2} = 14{,}5$.',
     },
     {
       type: 'number',
       prompt:
-        'Tìm tứ phân vị thứ ba $Q_3$ của mẫu số liệu $12;\\ 15;\\ 11;\\ 18;\\ 20;\\ 14;\\ 16;\\ 13$.',
+        'Tìm tứ phân vị thứ ba $Q_3$ của mẫu số liệu $12$; $15$; $11$; $18$; $20$; $14$; $16$; $13$.',
       answer: 17,
       hints: ['Sau khi sắp xếp, nửa bên phải gồm $4$ giá trị lớn nhất.'],
       solution:
-        'Mẫu đã sắp xếp: $11;\\ 12;\\ 13;\\ 14;\\ 15;\\ 16;\\ 18;\\ 20$. Nửa bên phải $15;\\ 16;\\ 18;\\ 20$ cho $Q_3 = \\dfrac{16 + 18}{2} = 17$.',
+        'Mẫu đã sắp xếp: $11$; $12$; $13$; $14$; $15$; $16$; $18$; $20$. Nửa bên phải $15;\\ 16;\\ 18;\\ 20$ cho $Q_3 = \\dfrac{16 + 18}{2} = 17$.',
     },
     {
       type: 'number',
-      prompt: 'Tìm mốt của mẫu số liệu $2;\\ 3;\\ 3;\\ 4;\\ 4;\\ 4;\\ 5;\\ 6$.',
+      prompt: 'Tìm mốt của mẫu số liệu $2$; $3$; $3$; $4$; $4$; $4$; $5$; $6$.',
       answer: 4,
       hints: ['Đếm số lần xuất hiện của mỗi giá trị.'],
       solution: 'Giá trị $4$ xuất hiện $3$ lần, nhiều nhất, nên $M_o = 4$.',
@@ -140,7 +140,7 @@ export default {
     {
       type: 'number',
       prompt:
-        'Tìm khoảng tứ phân vị của mẫu số liệu $2;\\ 4;\\ 4;\\ 5;\\ 7;\\ 8;\\ 9;\\ 12;\\ 15$.',
+        'Tìm khoảng tứ phân vị của mẫu số liệu $2$; $4$; $4$; $5$; $7$; $8$; $9$; $12$; $15$.',
       answer: 6.5,
       hints: [
         '$n = 9$ lẻ, $Q_2 = 7$; hai nửa không chứa $Q_2$.',
@@ -152,7 +152,7 @@ export default {
     {
       type: 'multi',
       prompt:
-        'Cho mẫu số liệu $3;\\ 20;\\ 21;\\ 22;\\ 23;\\ 24;\\ 25;\\ 26;\\ 45$. Chọn tất cả các giá trị bất thường.',
+        'Cho mẫu số liệu $3$; $20$; $21$; $22$; $23$; $24$; $25$; $26$; $45$. Chọn tất cả các giá trị bất thường.',
       options: ['$3$', '$20$', '$26$', '$45$'],
       answers: [0, 3],
       hints: [

@@ -68,7 +68,7 @@ export default {
           head: ['Mẫu đã sắp xếp', '$Q_1$', '$Q_2$', '$Q_3$'],
           rows: [
             [
-              '$0;\\ 3;\\ 5;\\ 7;\\ \\mathbf{9};\\ 11;\\ 16;\\ 19;\\ 20$ ($n = 9$)',
+              '$0$; $3$; $5$; $7$; $\\mathbf{9}$; $11$; $16$; $19$; $20$ ($n = 9$)',
               '$\\dfrac{3 + 5}{2} = 4$',
               '$9$',
               '$\\dfrac{16 + 19}{2} = 17{,}5$',
@@ -112,9 +112,9 @@ export default {
     },
     {
       problem:
-        'Số ghế trống của một rạp chiếu phim trong $9$ ngày là: $7;\\ 9;\\ 16;\\ 0;\\ 11;\\ 19;\\ 3;\\ 20;\\ 5$. Tìm trung vị và tứ phân vị.',
+        'Số ghế trống của một rạp chiếu phim trong $9$ ngày là: $7$; $9$; $16$; $0$; $11$; $19$; $3$; $20$; $5$. Tìm trung vị và tứ phân vị.',
       steps: [
-        'Sắp xếp theo thứ tự không giảm: $0;\\ 3;\\ 5;\\ 7;\\ 9;\\ 11;\\ 16;\\ 19;\\ 20$.',
+        'Sắp xếp theo thứ tự không giảm: $0$; $3$; $5$; $7$; $9$; $11$; $16$; $19$; $20$.',
         '$n = 9$ lẻ nên $Q_2 = M_e = x_5 = 9$.',
         'Nửa bên trái $Q_2$ là $0;\\ 3;\\ 5;\\ 7$, nên $Q_1 = \\dfrac{3 + 5}{2} = 4$.',
         'Nửa bên phải $Q_2$ là $11;\\ 16;\\ 19;\\ 20$, nên $Q_3 = \\dfrac{16 + 19}{2} = 17{,}5$.',
@@ -123,9 +123,9 @@ export default {
     },
     {
       problem:
-        'Một cửa hàng bán được $10$ đôi giày với các cỡ: $40;\\ 38;\\ 41;\\ 44;\\ 41;\\ 39;\\ 42;\\ 41;\\ 43;\\ 40$. Tìm trung vị, tứ phân vị và mốt. Cửa hàng nên nhập thêm cỡ giày nào nhiều nhất?',
+        'Một cửa hàng bán được $10$ đôi giày với các cỡ: $40$; $38$; $41$; $44$; $41$; $39$; $42$; $41$; $43$; $40$. Tìm trung vị, tứ phân vị và mốt. Cửa hàng nên nhập thêm cỡ giày nào nhiều nhất?',
       steps: [
-        'Sắp xếp: $38;\\ 39;\\ 40;\\ 40;\\ 41;\\ 41;\\ 41;\\ 42;\\ 43;\\ 44$.',
+        'Sắp xếp: $38$; $39$; $40$; $40$; $41$; $41$; $41$; $42$; $43$; $44$.',
         '$n = 10$ chẵn nên $M_e = \\dfrac{x_5 + x_6}{2} = \\dfrac{41 + 41}{2} = 41$.',
         'Nửa trái $38;\\ 39;\\ 40;\\ 40;\\ 41$ cho $Q_1 = 40$; nửa phải $41;\\ 41;\\ 42;\\ 43;\\ 44$ cho $Q_3 = 42$.',
         'Cỡ $41$ xuất hiện $3$ lần, nhiều nhất, nên $M_o = 41$.',
@@ -135,7 +135,7 @@ export default {
     },
     {
       problem:
-        'Thu nhập một tháng (triệu đồng) của $7$ nhân viên một công ty nhỏ là: $5;\\ 6;\\ 6;\\ 7;\\ 7;\\ 8;\\ 50$ (người cuối là giám đốc). Nên dùng số trung bình hay trung vị để đại diện cho thu nhập của các nhân viên?',
+        'Thu nhập một tháng (triệu đồng) của $7$ nhân viên một công ty nhỏ là: $5$; $6$; $6$; $7$; $7$; $8$; $50$ (người cuối là giám đốc). Nên dùng số trung bình hay trung vị để đại diện cho thu nhập của các nhân viên?',
       steps: [
         '$\\overline{x} = \\dfrac{5 + 6 + 6 + 7 + 7 + 8 + 50}{7} = \\dfrac{89}{7} \\approx 12{,}71$.',
         'Mẫu đã sắp xếp, $n = 7$, nên $M_e = x_4 = 7$.',
@@ -154,26 +154,26 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Tìm trung vị của mẫu số liệu: $23;\\ 17;\\ 30;\\ 25;\\ 19;\\ 28;\\ 21$.',
+      prompt: 'Tìm trung vị của mẫu số liệu: $23$; $17$; $30$; $25$; $19$; $28$; $21$.',
       answer: 23,
       hints: [
         'Sắp xếp mẫu theo thứ tự không giảm trước.',
         '$n = 7$ lẻ: trung vị là giá trị thứ $4$.',
       ],
       solution:
-        'Sắp xếp: $17;\\ 19;\\ 21;\\ 23;\\ 25;\\ 28;\\ 30$. Vì $n = 7$ nên $M_e = x_4 = 23$.',
+        'Sắp xếp: $17$; $19$; $21$; $23$; $25$; $28$; $30$. Vì $n = 7$ nên $M_e = x_4 = 23$.',
     },
     {
       type: 'number',
       prompt:
-        'Tìm tứ phân vị thứ nhất $Q_1$ của mẫu số liệu: $23;\\ 17;\\ 30;\\ 25;\\ 19;\\ 28;\\ 21$.',
+        'Tìm tứ phân vị thứ nhất $Q_1$ của mẫu số liệu: $23$; $17$; $30$; $25$; $19$; $28$; $21$.',
       answer: 19,
       hints: [
         'Sắp xếp mẫu rồi tìm $Q_2 = M_e$.',
         '$n$ lẻ: nửa bên trái $Q_2$ gồm $3$ giá trị, không tính $Q_2$.',
       ],
       solution:
-        'Mẫu đã sắp xếp $17;\\ 19;\\ 21;\\ 23;\\ 25;\\ 28;\\ 30$ có $Q_2 = 23$. Nửa bên trái là $17;\\ 19;\\ 21$, nên $Q_1 = 19$.',
+        'Mẫu đã sắp xếp $17$; $19$; $21$; $23$; $25$; $28$; $30$ có $Q_2 = 23$. Nửa bên trái là $17;\\ 19;\\ 21$, nên $Q_1 = 19$.',
     },
     {
       type: 'number',
@@ -189,7 +189,7 @@ export default {
     {
       type: 'number',
       prompt:
-        'Tìm tứ phân vị thứ ba $Q_3$ của mẫu số liệu: $1;\\ 3;\\ 4;\\ 6;\\ 7;\\ 9;\\ 10;\\ 12$.',
+        'Tìm tứ phân vị thứ ba $Q_3$ của mẫu số liệu: $1$; $3$; $4$; $6$; $7$; $9$; $10$; $12$.',
       answer: 9.5,
       hints: [
         'Mẫu đã sắp xếp, $n = 8$ chẵn: chia thành hai nửa, mỗi nửa $4$ giá trị.',
