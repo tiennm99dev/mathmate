@@ -71,7 +71,7 @@ export function kindOf(f) {
 export function shapeText(f) {
   switch (kindOf(f)) {
     case 'loi':
-      return 'Bốn đỉnh A, B, C, D chưa tạo thành một tứ giác. Em kéo lại các đỉnh nhé.';
+      return 'Hình ABCD đang bị lõm, bị bẹt hoặc có hai cạnh cắt nhau. Em kéo lại các đỉnh nhé.';
     case 'thoi':
       return `Hình thoi ABCD: AB song song với DC, AD song song với BC, bốn cạnh bằng nhau.${f.rightA ? ' Hình này còn là hình vuông.' : ''}`;
     case 'binh-hanh':

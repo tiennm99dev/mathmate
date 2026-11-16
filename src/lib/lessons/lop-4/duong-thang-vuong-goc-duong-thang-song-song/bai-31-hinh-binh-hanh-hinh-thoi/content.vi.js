@@ -3,7 +3,7 @@ export default {
   summary:
     'Hình bình hành có hai cặp cạnh đối diện song song và bằng nhau. Hình thoi có hai cặp cạnh đối diện song song và bốn cạnh bằng nhau.',
   intro:
-    'Mắt lưới hàng rào, chiếc diều, viên gạch lát sân có nhiều hình đẹp. Hôm nay em làm quen với hình bình hành và hình thoi nhé!',
+    'Mắt lưới hàng rào, hoa văn trên viên gạch lát sân có nhiều hình đẹp. Hôm nay em làm quen với hình bình hành và hình thoi nhé!',
   objectives: [
     'Nhận biết hình bình hành và đặc điểm của nó.',
     'Nhận biết hình thoi và đặc điểm của nó.',
@@ -63,11 +63,11 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Mắt lưới hàng rào, hoa văn trên gạch lát, chiếc diều thường có dạng hình thoi.',
+          text: 'Mắt lưới hàng rào, hoa văn trên gạch lát thường có dạng hình thoi.',
         },
         {
           type: 'p',
-          text: 'Em gấp đôi tờ giấy, gấp đôi thêm lần nữa, cắt chéo một góc rồi mở ra: em được một hình thoi.',
+          text: 'Em gấp đôi tờ giấy, gấp đôi thêm lần nữa. Ở góc có hai nếp gấp, em cắt một nhát chéo rồi mở ra: em được một hình thoi.',
         },
       ],
     },
@@ -136,6 +136,19 @@ export default {
     },
     {
       type: 'number',
+      prompt:
+        'ABCD và CDEG là hai hình bình hành có chung cạnh CD. Biết AB = 3 dm. Cạnh EG dài bao nhiêu đề-xi-mét?',
+      answer: 3,
+      unit: 'dm',
+      hints: [
+        'Trong hình bình hành ABCD, cạnh CD bằng cạnh nào?',
+        'Trong hình bình hành CDEG, cạnh EG đối diện với cạnh CD.',
+      ],
+      solution:
+        'Trong hình bình hành ABCD: CD = AB = 3 dm. Trong hình bình hành CDEG: EG = CD = 3 dm.',
+    },
+    {
+      type: 'number',
       prompt: 'Hình bình hành ABCD có AB = 6 cm, BC = 4 cm. Cạnh AD dài bao nhiêu xăng-ti-mét?',
       answer: 4,
       unit: 'cm',
@@ -173,7 +186,7 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Em gấp đôi tờ giấy, gấp đôi thêm lần nữa, cắt chéo một góc gấp rồi mở ra. Em được hình gì?',
+        'Em gấp đôi tờ giấy, gấp đôi thêm lần nữa. Ở góc có hai nếp gấp, em cắt một nhát chéo rồi mở ra. Em được hình gì?',
       options: ['Hình thoi', 'Hình tam giác', 'Hình tròn'],
       answer: 0,
       hints: ['Hai nếp gấp vuông góc với nhau, nhát cắt chéo tạo ra bốn cạnh bằng nhau.'],

@@ -164,17 +164,17 @@ export default {
       type: 'multi',
       prompt: 'Trên đường chạy, em chọn các cặp vạch song song với nhau.',
       options: [
-        'Hai vạch chia làn số 1 và làn số 2',
-        'Hai vạch chia làn số 3 và làn số 4',
-        'Vạch xuất phát và vạch chia làn',
+        'Vạch giữa làn 1 và làn 2, vạch giữa làn 2 và làn 3',
+        'Mép trái và mép phải của đường chạy',
+        'Vạch xuất phát và một vạch chia làn',
         'Vạch xuất phát và vạch đích',
       ],
       answers: [0, 1, 3],
       hints: [
-        'Các vạch chia làn song song với nhau. Vạch xuất phát và vạch đích vuông góc với các làn.',
+        'Các vạch chia làn và hai mép đường chạy song song với nhau. Vạch xuất phát và vạch đích vuông góc với các làn.',
       ],
       solution:
-        'Các vạch chia làn song song với nhau. Vạch xuất phát và vạch đích cùng vuông góc với các làn, nên chúng song song với nhau. Vạch xuất phát vuông góc với vạch chia làn.',
+        'Các vạch chia làn và hai mép đường chạy song song với nhau. Vạch xuất phát và vạch đích cùng vuông góc với các làn, nên chúng song song với nhau. Vạch xuất phát vuông góc với vạch chia làn.',
     },
   ],
   takeaways: [

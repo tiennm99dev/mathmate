@@ -70,6 +70,11 @@
   const baseEnds = $derived(clipLine(base.o, base.deg, W, H, 4));
   const nameA = $derived(pointAt(base, 0, -side * 20));
   const nameB = $derived(pointAt(base, len, -side * 20));
+  /** The given point's name sits behind it and on the far side from the set square. */
+  const pointLabel = $derived.by(() => {
+    const q = paramsOf(base, point);
+    return pointAt(base, q.s - 16, q.h - side * 16);
+  });
   const markA = $derived(pointAt(base, 0));
   const markB = $derived(pointAt(base, len));
   const lines = $derived(
@@ -164,7 +169,7 @@
     tipDeg={square.legDeg}
   />
   <circle cx={point.x} cy={point.y} r="5" fill="#BE123C" />
-  <text x={point.x - 22} y={point.y - 9} font-size="18" font-weight="700" fill="#BE123C"
+  <text x={pointLabel.x - 6} y={pointLabel.y + 6} font-size="18" font-weight="700" fill="#BE123C"
     >{pointName}</text
   >
   <DragPoint
