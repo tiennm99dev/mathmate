@@ -55,6 +55,6 @@ export function groupingAdvice(k) {
   }
   return {
     tone: 'ok',
-    text: `${k} nhóm: bảng gọn mà vẫn cho thấy số liệu tập trung nhiều ở khoảng giữa và thưa dần về hai phía.`,
+    text: `${k} nhóm: bảng gọn mà vẫn cho thấy số liệu tập trung nhiều ở khoảng nào và thưa ở khoảng nào.`,
   };
 }

@@ -64,7 +64,7 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Mốt là giá trị xuất hiện nhiều nhất. Ở mẫu ghép nhóm, mốt nằm trong nhóm có tần số lớn nhất, gọi là nhóm chứa mốt. Mốt không đặt ở giữa nhóm mà lệch về phía nhóm kề có tần số lớn hơn.',
+          text: 'Mốt là giá trị xuất hiện nhiều nhất. Ở mẫu ghép nhóm, mốt nằm trong nhóm có tần số lớn nhất, gọi là nhóm chứa mốt. Mốt thường không nằm ở giữa nhóm mà lệch về phía nhóm kề có tần số lớn hơn; nó nằm đúng giữa nhóm khi hai nhóm kề có tần số bằng nhau.',
         },
         {
           type: 'callout',
