@@ -27,8 +27,14 @@ export default {
               'Chia cho số thập phân',
               'Số chia có bao nhiêu chữ số ở phần thập phân thì chuyển dấu phẩy ở số bị chia sang phải bấy nhiêu chữ số, bỏ dấu phẩy ở số chia, rồi chia.',
             ],
-            ['Nhân với 10; 100; 1 000', 'Chuyển dấu phẩy sang bên phải một, hai, ba chữ số.'],
-            ['Nhân với 0,1; 0,01; 0,001', 'Chuyển dấu phẩy sang bên trái một, hai, ba chữ số.'],
+            [
+              'Nhân với 10; 100; 1 000 hoặc chia cho 0,1; 0,01; 0,001',
+              'Chuyển dấu phẩy sang bên phải một, hai, ba chữ số.',
+            ],
+            [
+              'Chia cho 10; 100; 1 000 hoặc nhân với 0,1; 0,01; 0,001',
+              'Chuyển dấu phẩy sang bên trái một, hai, ba chữ số.',
+            ],
           ],
         },
         {
@@ -183,12 +189,31 @@ export default {
       solution: 'Diện tích tấm bản đồ: 2,97 × 2,1 = 6,237 (dm²).',
     },
     {
+      type: 'number',
+      prompt: 'Số nào thay vào dấu ? cho đúng: 51,23 + ? = 74,9',
+      answer: 23.67,
+      hints: [
+        'Muốn tìm số hạng chưa biết, em lấy tổng trừ đi số hạng đã biết.',
+        'Viết 74,9 thành 74,90 rồi trừ.',
+      ],
+      solution: 'Số cần tìm là 74,9 − 51,23 = 23,67. Thử lại: 51,23 + 23,67 = 74,9.',
+    },
+    {
       type: 'choice',
       prompt: 'Số nào thay vào dấu ? cho đúng: ? : 3,8 = 21,34',
       options: ['81,092', '810,92', '17,54', '25,14'],
       answer: 0,
       hints: ['Muốn tìm số bị chia, em lấy thương nhân với số chia.'],
       solution: 'Số cần tìm là 21,34 × 3,8 = 81,092. Thử lại: 81,092 : 3,8 = 21,34.',
+    },
+    {
+      type: 'number',
+      prompt:
+        'Trong một tháng, ba lần đo lượng mưa được 15,4 mm, 22,1 mm và 12 mm. Trung bình mỗi lần đo được bao nhiêu mi-li-mét nước mưa?',
+      answer: 16.5,
+      unit: 'mm',
+      hints: ['Muốn tìm số trung bình cộng của ba số, em tính tổng ba số rồi chia cho 3.'],
+      solution: 'Tổng: 15,4 + 22,1 + 12 = 49,5 (mm). Trung bình: 49,5 : 3 = 16,5 (mm).',
     },
     {
       type: 'number',
