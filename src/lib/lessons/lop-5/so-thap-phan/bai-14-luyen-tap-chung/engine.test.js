@@ -77,6 +77,7 @@ describe('mixed practice of the decimals chapter', () => {
           bad.push([seed, q.kind, texts]);
         if (q.answer < 0 || q.answer >= texts.length) bad.push([seed, q.kind, 'answer']);
         if (!q.hint || !q.solution) bad.push([seed, q.kind, 'text']);
+        if (q.kind === 'doc-so' && /,0\d\d/.test(q.prompt)) bad.push([seed, q.prompt]);
         const want = expected(q);
         if (want === null) continue;
         const right = texts[q.answer];

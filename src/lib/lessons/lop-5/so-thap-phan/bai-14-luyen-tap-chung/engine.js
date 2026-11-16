@@ -80,7 +80,9 @@ function choices(rand, right, wrong) {
 const MAKERS = {
   'doc-so'(rand) {
     const whole = int(rand, 0, 99);
-    const frac = (rand() < 0.4 ? '0' : '') + fracDigits(rand, int(rand, 1, 2));
+    // A leading zero is followed by one digit only ('0,07'): the reading of a
+    // three-digit decimal part that starts with 0 is not settled in the book.
+    const frac = rand() < 0.4 ? `0${fracDigits(rand, 1)}` : fracDigits(rand, int(rand, 1, 2));
     const t = `${whole},${frac}`;
     const bare = frac.replace(/^0+/, '');
     const wrong = [

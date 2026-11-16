@@ -95,7 +95,7 @@ export function choicesOf(text, level) {
     return marks.slice(1, GAPS).map((m, i) => ({ label: m, aria: `Vạch ${m}`, digit: i + 1 }));
   }
   return marks.slice(0, GAPS).map((m, i) => ({
-    label: `${m} – ${marks[i + 1]}`,
+    label: `${m}–${marks[i + 1]}`,
     aria: `Khoảng từ ${m} đến ${marks[i + 1]}`,
     digit: i,
   }));
