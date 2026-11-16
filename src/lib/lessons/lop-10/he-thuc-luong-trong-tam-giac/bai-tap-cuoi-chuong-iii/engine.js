@@ -36,6 +36,25 @@ export function towerReadings(far, near) {
 }
 
 /**
+ * The smallest angle at the top C, in degrees, the widget lets the learner
+ * set up. Readings rounded to the degree make a thin triangle unreliable:
+ * below 10° the worked-out height can be more than 10 m off; from 10° on it
+ * stays within about 4,4 m.
+ */
+export const MIN_TOP_ANGLE = 10;
+
+/**
+ * Whether A at `far` and B at `near` metres from the foot make a usable
+ * measurement: B at least 15 m nearer and an angle at the top of at least
+ * MIN_TOP_ANGLE.
+ * @param {number} far @param {number} near
+ */
+export function towerUsable(far, near) {
+  const r = towerReadings(far, near);
+  return far - near >= 15 && r.beta - r.alpha >= MIN_TOP_ANGLE;
+}
+
+/**
  * The height worked out from the readings.
  * @param {{ d: number, alpha: number, beta: number }} r
  */

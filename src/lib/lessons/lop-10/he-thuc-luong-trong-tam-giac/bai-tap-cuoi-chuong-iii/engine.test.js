@@ -7,6 +7,7 @@ import {
   riverReadings,
   towerHeight,
   towerReadings,
+  towerUsable,
 } from './engine.js';
 
 describe('virtual clinometer', () => {
@@ -21,6 +22,21 @@ describe('virtual clinometer', () => {
     expect(Math.abs(towerHeight(towerReadings(60, 25)) - TOWER_HEIGHT)).toBeLessThan(0.3);
     // Readings rounded to the degree can be 2 m off when the angle at the top is small.
     expect(Math.abs(towerHeight(towerReadings(90, 40)) - TOWER_HEIGHT)).toBeLessThan(2.1);
+  });
+
+  it('keeps every allowed tower set-up within a few metres of the real height', () => {
+    expect(towerUsable(60, 25)).toBe(true);
+    // atan(45/120) ≈ 20,56° and atan(45/99) ≈ 24,44°: a 3° angle at the top.
+    expect(towerUsable(120, 99)).toBe(false);
+    expect(towerUsable(30, 20)).toBe(false);
+    const bad = [];
+    for (let far = 25; far <= 120; far++)
+      for (let near = 10; near <= 105; near++)
+        if (towerUsable(far, near)) {
+          const off = Math.abs(towerHeight(towerReadings(far, near)) - TOWER_HEIGHT);
+          if (off > 4.5) bad.push([far, near, off]);
+        }
+    expect(bad).toEqual([]);
   });
 
   it('works out the distance across the river', () => {

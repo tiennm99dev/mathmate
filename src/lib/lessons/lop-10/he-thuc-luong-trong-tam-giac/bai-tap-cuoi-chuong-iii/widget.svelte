@@ -14,6 +14,7 @@
     riverReadings,
     towerHeight,
     towerReadings,
+    towerUsable,
   } from './engine.js';
 
   const W = 400;
@@ -60,9 +61,7 @@
   function setTower(f, n) {
     const nf = Math.max(25, Math.min(120, Math.round(f)));
     const nn = Math.max(10, Math.min(105, Math.round(n)));
-    const r = towerReadings(nf, nn);
-    // B stays at least 15 m nearer, so the angle at the top is not too small.
-    if (nf - nn < 15 || r.beta - r.alpha < 3) return;
+    if (!towerUsable(nf, nn)) return;
     far = nf;
     near = nn;
     clear();

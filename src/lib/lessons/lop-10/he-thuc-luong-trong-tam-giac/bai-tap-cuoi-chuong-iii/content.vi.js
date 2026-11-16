@@ -114,7 +114,7 @@ export default {
         'Hai góc phụ nhau: côsin góc này bằng sin góc kia.',
       ],
       solution:
-        '$\\sin 150^\\circ = \\sin 30^\\circ = \\dfrac{1}{2}$; $\\cos 120^\\circ = -\\dfrac{1}{2}$ nên đẳng thức thứ hai sai; $\\tan 135^\\circ = -\\tan 45^\\circ = -1$; $\\cot 90^\\circ = \\dfrac{0}{1} = 0$; $\\sin 160^\\circ = \\sin 20^\\circ$ (không đổi dấu) nên đẳng thức đó sai; $\\cos 10^\\circ = \\sin 80^\\circ$ vì $10^\\circ + 80^\\circ = 90^\\circ$.',
+        '$\\sin 150^\\circ = \\sin 30^\\circ = \\dfrac{1}{2}$; $\\cos 120^\\circ = -\\dfrac{1}{2}$ (không phải $\\dfrac{1}{2}$); $\\tan 135^\\circ = -\\tan 45^\\circ = -1$; $\\cot 90^\\circ = \\dfrac{0}{1} = 0$; $\\sin 160^\\circ = \\sin 20^\\circ$ (không đổi dấu) nên đẳng thức đó sai; $\\cos 10^\\circ = \\sin 80^\\circ$ vì $10^\\circ + 80^\\circ = 90^\\circ$.',
     },
     {
       type: 'fraction',
