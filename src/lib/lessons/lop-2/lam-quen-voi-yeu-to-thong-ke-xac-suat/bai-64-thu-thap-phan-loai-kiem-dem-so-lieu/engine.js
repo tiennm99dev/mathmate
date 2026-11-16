@@ -6,7 +6,7 @@ import { numberOptions, capitalize, mixOptions } from '#lib/core/kid/quiz.js';
 import { pictures } from '#lib/core/kid/pictures/index.js';
 import { rng, shuffle } from '#lib/core/drill.js';
 import { THEMES } from '../_shared/themes.js';
-import { extremes, tallyWords } from '../_shared/survey.js';
+import { extremes, tallyWords } from '#lib/core/kid/tally.js';
 
 /**
  * @typedef {object} SceneRow

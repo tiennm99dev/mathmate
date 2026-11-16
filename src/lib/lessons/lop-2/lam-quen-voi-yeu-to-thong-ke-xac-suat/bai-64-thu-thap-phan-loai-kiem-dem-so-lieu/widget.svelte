@@ -4,7 +4,7 @@
   import Picture from '#lib/core/kid/picture.svelte';
   import { tapOption } from '#lib/core/kid/quiz.js';
   import { button, focusRing } from '#lib/core/ui.js';
-  import TallyMarks from '../_shared/tally-marks.svelte';
+  import TallyMarks from '#lib/core/kid/tally-marks.svelte';
   import { makeScene, questionsOf, strokes } from './engine.js';
 
   let seed = $state(1);

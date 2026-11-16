@@ -1,14 +1,15 @@
 /**
- * Counting by category for the data lessons of grade 3: tally bundles, totals
- * and the categories with the most and the fewest.
+ * Counting by category for the statistics lessons of grades 2 and 3: tally
+ * bundles of five and how they are read, counts and totals, and the
+ * categories with the most and the fewest. Pure and DOM-free.
  */
 
 /**
- * What one column of a data table (bảng số liệu) or one survey choice shows
- * beside its name: a kid picture, a colour swatch or an emoji.
+ * What one picture of a picture chart, one column of a data table or one
+ * survey choice shows beside its name: a kid picture, a colour or an emoji.
  * @typedef {{ picture: import('#lib/core/kid/pictures/index.js').PictureName }
  *   | { color: string }
- *   | { emoji: string }} DataSymbol
+ *   | { emoji: string }} ChartSymbol
  */
 
 /**
@@ -20,6 +21,17 @@ export function tallyBundles(n) {
   const full = Math.floor(n / 5);
   const rest = n % 5;
   return [...Array.from({ length: full }, () => 5), ...(rest > 0 ? [rest] : [])];
+}
+
+/**
+ * How a tally of `n` is read: '1 bó 5 vạch và 2 vạch'.
+ * @param {number} n
+ */
+export function tallyWords(n) {
+  const full = Math.floor(n / 5);
+  const rest = n % 5;
+  if (full === 0) return `${rest} vạch`;
+  return `${full} bó 5 vạch${rest > 0 ? ` và ${rest} vạch` : ''}`;
 }
 
 /**

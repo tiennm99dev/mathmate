@@ -8,7 +8,7 @@
   import { countLabel } from '#lib/core/kid/quiz.js';
   import { FIGURE_NAMES, plainFigure } from '#lib/core/kid/shapes.js';
   import { BALL_COLORS, boxText } from './chance.js';
-  import TallyMarks from './tally-marks.svelte';
+  import TallyMarks from '#lib/core/kid/tally-marks.svelte';
 
   /**
    * The pictures of the reviews of measures and of counting data

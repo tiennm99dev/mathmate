@@ -6,7 +6,7 @@
 import { bigOptions, capitalize, mixOptions, numberOptions } from '#lib/core/kid/quiz.js';
 import { pictures } from '#lib/core/kid/pictures/index.js';
 import { int, rng, shuffle } from '#lib/core/drill.js';
-import { countBy, extremes, totalOf } from '../_shared/data.js';
+import { countBy, extremes, totalOf } from '#lib/core/kid/tally.js';
 
 /**
  * @typedef {object} Theme

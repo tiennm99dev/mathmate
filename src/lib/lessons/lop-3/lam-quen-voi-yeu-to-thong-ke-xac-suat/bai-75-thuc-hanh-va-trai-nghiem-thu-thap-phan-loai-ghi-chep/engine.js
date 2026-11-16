@@ -3,14 +3,14 @@
  * types a count straight in, and the data table and the summary come from
  * the counts.
  */
-import { extremes, totalOf } from '../_shared/data.js';
+import { extremes, totalOf } from '#lib/core/kid/tally.js';
 
 export const MAX_COUNT = 50;
 
 /**
  * @typedef {object} SurveyChoice
  * @property {string} label
- * @property {import('../_shared/data.js').DataSymbol} symbol
+ * @property {import('#lib/core/kid/tally.js').ChartSymbol} symbol
  */
 
 /**

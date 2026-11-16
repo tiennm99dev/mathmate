@@ -419,6 +419,11 @@ Other shared pieces:
     (`productOptions`, `quotientOptions`), and the ten rows of a table with the
     found rows, the current one and an optional `onpick`; `dot-grid.svelte`
     draws rows of dots with the counted rows ringed.
+  - `tally.js` with `tally-marks.svelte`: counting by category for grades 2
+    and 3 (`ChartSymbol`, `tallyBundles`, `tallyWords` "1 bó 5 vạch và 2
+    vạch", `countBy`, `totalOf`, `extremes`) and the tally strokes, read one
+    word per stroke until `settled`. `chance.js`: the book's three words
+    (`CHANCES`) and `wordOf(outcomes, holds)`.
   - `pass-focus.js`: `passFocus(from, to)` hands keyboard focus on when a
     press has just disabled the button that had it.
   - `shapes.js` with `shape-figure.svelte` and `object-figure.svelte`: the

@@ -1,7 +1,7 @@
 <script>
   import { button } from '#lib/core/ui.js';
-  import TallyMarks from '../_shared/tally-marks.svelte';
-  import { tallyWords } from '../_shared/survey.js';
+  import TallyMarks from '#lib/core/kid/tally-marks.svelte';
+  import { tallyWords } from '#lib/core/kid/tally.js';
 
   let count = $state(4);
 

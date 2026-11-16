@@ -8,13 +8,14 @@ import { int, pick, shuffle } from '#lib/core/drill.js';
 import { capitalize, mixOptions, numberOptions } from '#lib/core/kid/quiz.js';
 import { pictures } from '#lib/core/kid/pictures/index.js';
 import { FIGURE_NAMES } from '#lib/core/kid/shapes.js';
-import { BALL_COLORS, COLOR_IDS, WORDS, waysToTake, wordOf } from './chance.js';
+import { CHANCES, wordOf } from '#lib/core/kid/chance.js';
+import { BALL_COLORS, COLOR_IDS, waysToTake } from './chance.js';
 import { nearOptions } from './options.js';
-import { tallyWords } from './survey.js';
+import { tallyWords } from '#lib/core/kid/tally.js';
 
 /** @typedef {import('./visual.js').ReviewSkill} ReviewSkill */
 /** @typedef {import('./chance.js').BallColor} BallColor */
-/** @typedef {import('./chance.js').ChanceWord} ChanceWord */
+/** @typedef {import('#lib/core/kid/chance.js').Chance} Chance */
 
 const SHAPE_KINDS = /** @type {const} */ (['vuong', 'tron', 'tam-giac']);
 
@@ -324,7 +325,7 @@ function whyHas(balls, color) {
 /**
  * A question asked over a box of balls, in the book's words.
  * @param {() => number} rand
- * @returns {{ balls: BallColor[], taken: 1 | 2, event: string, word: ChanceWord, why: string }}
+ * @returns {{ balls: BallColor[], taken: 1 | 2, event: string, word: Chance, why: string }}
  */
 export function boxEvent(rand) {
   const taken = /** @type {1 | 2} */ (rand() < 0.5 ? 1 : 2);
@@ -368,8 +369,8 @@ export const boxChanceSkill = {
     return {
       prompt: `Rô-bốt lấy ${taken} quả bóng, không nhìn. ${event} là việc thế nào?`,
       visual: { type: 'box', balls },
-      options: [...WORDS],
-      answer: WORDS.indexOf(word),
+      options: [...CHANCES],
+      answer: CHANCES.indexOf(word),
       hint:
         taken === 1
           ? 'Em nhìn xem trong hộp có bóng màu đó không, và còn màu nào khác không.'
@@ -386,7 +387,7 @@ export const boxChanceSkill = {
 export function boxSentences(balls) {
   const ways = waysToTake(balls, 1);
   return COLOR_IDS.flatMap((color) =>
-    WORDS.map((word) => ({
+    CHANCES.map((word) => ({
       text: `${word} lấy được bóng ${BALL_COLORS[color].name}.`,
       color,
       holds: wordOf(ways, (w) => w[0] === color) === word,
@@ -429,7 +430,7 @@ export const cardChanceSkill = {
   label: 'Rút thẻ số',
   make(rand) {
     const digits = shuffle(rand, [1, 2, 3, 4, 5, 6, 7, 8, 9]).slice(0, 3);
-    const wanted = pick(rand, WORDS);
+    const wanted = pick(rand, CHANCES);
     for (;;) {
       const bigger = rand() < 0.5;
       const x = int(rand, 1, 10);
@@ -441,8 +442,8 @@ export const cardChanceSkill = {
       return {
         prompt: `Rút một thẻ, không nhìn. Số trên thẻ ${side} ${x} là việc thế nào?`,
         visual: { type: 'cards', digits },
-        options: [...WORDS],
-        answer: WORDS.indexOf(word),
+        options: [...CHANCES],
+        answer: CHANCES.indexOf(word),
         hint: `Em so sánh từng thẻ với số ${x}.`,
         solution:
           word === 'Không thể'

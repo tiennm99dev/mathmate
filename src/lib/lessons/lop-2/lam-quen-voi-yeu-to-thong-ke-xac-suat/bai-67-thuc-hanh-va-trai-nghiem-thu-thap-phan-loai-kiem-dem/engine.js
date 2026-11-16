@@ -2,14 +2,14 @@
  * The class survey board: each tap records one vote, and the tally, the
  * picture chart and the summary all come from the list of votes.
  */
-import { extremes } from '../_shared/survey.js';
+import { extremes } from '#lib/core/kid/tally.js';
 
 export const MAX_VOTES = 40;
 
 /**
  * @typedef {object} SurveyChoice
  * @property {string} label
- * @property {import('../_shared/survey.js').ChartSymbol} symbol
+ * @property {import('#lib/core/kid/tally.js').ChartSymbol} symbol
  */
 
 /**

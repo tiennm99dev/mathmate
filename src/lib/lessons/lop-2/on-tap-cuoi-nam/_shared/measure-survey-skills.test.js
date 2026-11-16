@@ -5,12 +5,13 @@ import { totalKg } from '#lib/core/kid/mass.js';
 import { optionText } from '#lib/core/kid/quiz.js';
 import { FIGURE_NAMES } from '#lib/core/kid/shapes.js';
 import { daysIn, weekdayOf, WEEKDAYS, dialNumber } from '#lib/core/kid/time.js';
-import { BALL_COLORS, WORDS, waysToTake, wordOf } from './chance.js';
+import { CHANCES, wordOf } from '#lib/core/kid/chance.js';
+import { BALL_COLORS, waysToTake } from './chance.js';
 import { carryCount } from './columns.js';
 import { GENERAL_SKILLS } from './general-skills.js';
 import { MEASURE_SKILLS, canChoices, clockWords } from './measure-review-skills.js';
 import { SURVEY_SKILLS, boxSentences, makeBox } from './survey-skills.js';
-import { tallyBundles, tallyWords } from './survey.js';
+import { tallyBundles, tallyWords } from '#lib/core/kid/tally.js';
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion<import('./visual.js').Visual>} Question */
 
@@ -294,7 +295,7 @@ describe('review skills of measures, counting data and the whole year', () => {
     expect(wordOf(ways, (w) => w.every((b) => b === 'xanh'))).toBe('Có thể');
     expect(wordOf(ways, (w) => w.every((b) => b === 'do'))).toBe('Không thể');
     expect(wordOf(ways, (w) => w.includes('xanh'))).toBe('Chắc chắn');
-    expect(WORDS).toHaveLength(3);
+    expect(CHANCES).toHaveLength(3);
   });
 
   it('builds boxes of at least the asked size', () => {

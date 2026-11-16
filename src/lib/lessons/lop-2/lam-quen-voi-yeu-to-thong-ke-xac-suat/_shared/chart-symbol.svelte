@@ -4,7 +4,7 @@
   /**
    * One picture of a picture chart: a kid picture, a coloured ball or an emoji.
    * Decorative, because the chart or the button around it carries the name.
-   * @type {{ symbol: import('./survey.js').ChartSymbol, size?: number }}
+   * @type {{ symbol: import('#lib/core/kid/tally.js').ChartSymbol, size?: number }}
    */
   let { symbol, size = 28 } = $props();
 </script>

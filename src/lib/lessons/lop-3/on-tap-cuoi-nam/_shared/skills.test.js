@@ -9,7 +9,8 @@ import {
   doseStory,
   treeStory,
 } from './add-sub-skills.js';
-import { CHANCES, chanceOfOne, pairPossible } from './chance.js';
+import { CHANCES } from '#lib/core/kid/chance.js';
+import { chanceOfOne, pairPossible } from './chance.js';
 import {
   addSteps,
   columnValue,

@@ -1,6 +1,6 @@
 <script>
-  import { countLabel } from '#lib/core/kid/quiz.js';
-  import { tallyBundles } from './survey.js';
+  import { countLabel } from './quiz.js';
+  import { tallyBundles } from './tally.js';
 
   /**
    * Tally marks (vạch kiểm đếm): bundles of four strokes with a slash across

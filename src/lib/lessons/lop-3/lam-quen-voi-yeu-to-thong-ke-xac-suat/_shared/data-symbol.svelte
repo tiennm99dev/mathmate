@@ -5,7 +5,7 @@
    * The small picture beside a category name: a kid picture, a colour swatch
    * or an emoji. Decorative, because the cell or button around it carries
    * the name.
-   * @type {{ symbol: import('./data.js').DataSymbol, size?: number }}
+   * @type {{ symbol: import('#lib/core/kid/tally.js').ChartSymbol, size?: number }}
    */
   let { symbol, size = 28 } = $props();
 </script>

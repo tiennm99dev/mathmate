@@ -1,7 +1,7 @@
 /**
- * Boxes of coloured balls and the book's three words for what can happen when
- * balls are taken without looking. The word comes from going through every way
- * of taking them. Pure and DOM-free.
+ * Boxes of coloured balls and every way of taking balls from them without
+ * looking; `#lib/core/kid/chance.js` gives the word for what can happen. Pure
+ * and DOM-free.
  */
 
 export const BALL_COLORS = /** @type {const} */ ({
@@ -13,24 +13,6 @@ export const BALL_COLORS = /** @type {const} */ ({
 /** @typedef {keyof typeof BALL_COLORS} BallColor */
 
 export const COLOR_IDS = /** @type {BallColor[]} */ (Object.keys(BALL_COLORS));
-
-/** The three words, in the order the options show them. */
-export const WORDS = /** @type {const} */ (['Chắc chắn', 'Có thể', 'Không thể']);
-
-/** @typedef {(typeof WORDS)[number]} ChanceWord */
-
-/**
- * The word for an event, given every way things can turn out.
- * @template T
- * @param {readonly T[]} outcomes
- * @param {(outcome: T) => boolean} holds
- * @returns {ChanceWord}
- */
-export function wordOf(outcomes, holds) {
-  const hits = outcomes.filter(holds).length;
-  if (hits === 0) return 'Không thể';
-  return hits === outcomes.length ? 'Chắc chắn' : 'Có thể';
-}
 
 /**
  * Every way of taking one or two balls from a box.

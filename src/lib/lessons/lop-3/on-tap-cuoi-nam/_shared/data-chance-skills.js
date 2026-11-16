@@ -5,7 +5,8 @@
 import { int, pick, shuffle } from '#lib/core/drill.js';
 import { fmt } from '#lib/core/number-format.js';
 import { mixOptions } from '#lib/core/kid/quiz.js';
-import { CHANCES, boxText, chanceOfOne } from './chance.js';
+import { CHANCES } from '#lib/core/kid/chance.js';
+import { boxText, chanceOfOne } from './chance.js';
 import { dong, valueOptions } from './options.js';
 
 /** @typedef {import('./visual.js').ReviewSkill} ReviewSkill */

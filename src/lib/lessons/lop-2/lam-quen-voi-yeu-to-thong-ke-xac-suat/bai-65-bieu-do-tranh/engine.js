@@ -5,7 +5,7 @@
 import { capitalize, mixOptions, numberOptions } from '#lib/core/kid/quiz.js';
 import { pictures } from '#lib/core/kid/pictures/index.js';
 import { int, rng, shuffle } from '#lib/core/drill.js';
-import { extremes } from '../_shared/survey.js';
+import { extremes } from '#lib/core/kid/tally.js';
 import { THEMES } from '../_shared/themes.js';
 
 export const MAX_PICTURES = 8;

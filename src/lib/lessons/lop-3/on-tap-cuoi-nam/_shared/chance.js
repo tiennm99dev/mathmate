@@ -1,12 +1,11 @@
 /**
- * "Chắc chắn, có thể, không thể" for a box of coloured balls. Pure and
- * DOM-free.
+ * "Chắc chắn, có thể, không thể" for a box of coloured balls, with the words
+ * of `#lib/core/kid/chance.js`. Pure and DOM-free.
  */
 
-/** The three words of the book, in the order the options show them. */
-export const CHANCES = /** @type {const} */ (['Chắc chắn', 'Có thể', 'Không thể']);
+import { wordOf } from '#lib/core/kid/chance.js';
 
-/** @typedef {(typeof CHANCES)[number]} Chance */
+/** @typedef {import('#lib/core/kid/chance.js').Chance} Chance */
 
 /**
  * "Trong hộp có 3 quả bóng đỏ, 2 quả bóng xanh."
@@ -24,10 +23,10 @@ export function boxText(balls) {
  * @returns {Chance}
  */
 export function chanceOfOne(balls, color) {
-  const total = balls.reduce((s, b) => s + b.count, 0);
-  const have = balls.filter((b) => b.color === color).reduce((s, b) => s + b.count, 0);
-  if (have === 0) return 'Không thể';
-  return have === total ? 'Chắc chắn' : 'Có thể';
+  return wordOf(
+    balls.filter((b) => b.count > 0),
+    (b) => b.color === color,
+  );
 }
 
 /**

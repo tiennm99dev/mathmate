@@ -3,7 +3,7 @@
   import { button, focusRing } from '#lib/core/ui.js';
   import DataSymbol from '../_shared/data-symbol.svelte';
   import NumberTable from '../_shared/number-table.svelte';
-  import TallyMarks from '../_shared/tally-marks.svelte';
+  import TallyMarks from '#lib/core/kid/tally-marks.svelte';
   import { MAX_COUNT, SURVEYS, setCount, surveySummary } from './engine.js';
 
   let surveyId = $state(SURVEYS[0].id);
@@ -78,7 +78,7 @@
               onclick={() => change(i, row.count + 1)}>+</button
             >
           </span>
-          <span class="w-full"><TallyMarks count={row.count} /></span>
+          <span class="w-full"><TallyMarks count={row.count} settled /></span>
         </li>
       {/each}
     </ul>

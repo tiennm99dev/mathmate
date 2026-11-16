@@ -17,7 +17,7 @@
    *   countHead: string;
    *   columns: Array<{
    *     label: string;
-   *     symbol?: import('./data.js').DataSymbol;
+   *     symbol?: import('#lib/core/kid/tally.js').ChartSymbol;
    *     count: number | null;
    *     highlight?: boolean;
    *   }>;

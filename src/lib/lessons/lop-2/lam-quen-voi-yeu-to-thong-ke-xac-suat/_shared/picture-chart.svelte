@@ -11,7 +11,7 @@
    *   rows: ReadonlyArray<{
    *     label: string;
    *     count: number;
-   *     symbol: import('./survey.js').ChartSymbol;
+   *     symbol: import('#lib/core/kid/tally.js').ChartSymbol;
    *   }>;
    *   title: string;
    *   settled?: boolean;
