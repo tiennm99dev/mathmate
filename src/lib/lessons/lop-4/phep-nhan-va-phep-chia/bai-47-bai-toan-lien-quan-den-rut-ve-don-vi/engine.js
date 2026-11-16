@@ -8,20 +8,21 @@ import { int, pick } from '#lib/core/drill.js';
 import { slipOptions } from '#lib/core/kid/quiz.js';
 
 /**
- * A story: the group word, the thing word and its picture.
- * @typedef {{ group: string, thing: string, picture: import('#lib/core/kid/pictures/index.js').PictureName }} Story
+ * A story: the group word, the verb that puts the things in a group ("đĩa
+ * đựng cam", "lọ cắm hoa"), the thing word and its picture.
+ * @typedef {{ group: string, verb: string, thing: string, picture: import('#lib/core/kid/pictures/index.js').PictureName }} Story
  */
 
 /** @typedef {{ story: Story, units: number, per: number, ask: number }} Task */
 
 /** @type {Story[]} */
 export const STORIES = [
-  { group: 'đĩa', thing: 'quả cam', picture: 'orange' },
-  { group: 'lọ', thing: 'bông hoa', picture: 'flower' },
-  { group: 'hộp', thing: 'cái bút chì', picture: 'pencil' },
-  { group: 'bể', thing: 'con cá', picture: 'fish' },
-  { group: 'hộp', thing: 'quả dâu tây', picture: 'strawberry' },
-  { group: 'chùm', thing: 'quả bóng bay', picture: 'balloon' },
+  { group: 'đĩa', verb: 'đựng', thing: 'quả cam', picture: 'orange' },
+  { group: 'lọ', verb: 'cắm', thing: 'bông hoa', picture: 'flower' },
+  { group: 'hộp', verb: 'đựng', thing: 'cái bút chì', picture: 'pencil' },
+  { group: 'bể', verb: 'nuôi', thing: 'con cá', picture: 'fish' },
+  { group: 'hộp', verb: 'đựng', thing: 'quả dâu tây', picture: 'strawberry' },
+  { group: 'chùm', verb: 'gồm', thing: 'quả bóng bay', picture: 'balloon' },
 ];
 
 /** The first task: 3 plates hold 24 oranges; how many do 5 plates hold? */
@@ -57,7 +58,7 @@ export const answerOf = ({ per, ask }) => per * ask;
  */
 export function problemText(task) {
   const { story, units, ask } = task;
-  return `Có ${units} ${story.group} như nhau đựng ${totalOf(task)} ${story.thing}. Hỏi ${ask} ${story.group} như thế có bao nhiêu ${story.thing}?`;
+  return `Có ${units} ${story.group} như nhau ${story.verb} ${totalOf(task)} ${story.thing}. Hỏi ${ask} ${story.group} như thế có bao nhiêu ${story.thing}?`;
 }
 
 /**
@@ -99,6 +100,8 @@ export function stepHint(task, step) {
 
 /**
  * The rows of the two-step table: groups, things, and how the number was found.
+ * The last row's method names one group's number only once step 1 has found
+ * it, so the table never gives that answer away.
  * @param {Task} task
  * @param {number} found how many steps are done
  * @returns {string[][]}
@@ -109,7 +112,7 @@ export function tableRows(task, found) {
   return [
     [String(units), String(total), 'Đề bài cho'],
     ['1', found >= 1 ? String(per) : '?', `${total} : ${units}`],
-    [String(ask), found >= 2 ? String(answerOf(task)) : '?', `${per} × ${ask}`],
+    [String(ask), found >= 2 ? String(answerOf(task)) : '?', `${found >= 1 ? per : '?'} × ${ask}`],
   ];
 }
 

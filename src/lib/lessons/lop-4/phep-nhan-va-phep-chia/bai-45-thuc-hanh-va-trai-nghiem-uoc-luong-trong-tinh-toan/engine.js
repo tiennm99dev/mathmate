@@ -62,7 +62,10 @@ export function sumQuestion(rand, kind) {
 }
 
 /**
- * Estimating a product of two numbers close to whole tens.
+ * Estimating a product of two numbers close to whole tens. The wrong options
+ * are a place off or double, never a nearby hundred: shifting each factor by
+ * up to 2 can move the product further than a hundred from the estimate, so
+ * a nearby hundred could sit closer to the exact product than the answer.
  * @param {() => number} rand
  * @returns {Question}
  */
@@ -74,7 +77,7 @@ export function productQuestion(rand) {
   const estimate = x * y;
   return {
     prompt: `${a} × ${b} được khoảng bao nhiêu?`,
-    ...slipOptions(estimate, [estimate / 10, estimate * 10], { near: [-100, 100] }),
+    ...slipOptions(estimate, [estimate / 10, estimate * 2, estimate * 10], { near: [] }),
     hint: `Em làm tròn mỗi thừa số đến hàng chục: ${a} được khoảng ${x}.`,
     solution: `${a} làm tròn thành ${x}, ${b} làm tròn thành ${y}. ${x} × ${y} = ${fmt(estimate)}. Kết quả đúng: ${a} × ${b} = ${fmt(a * b)}, gần ${fmt(estimate)}.`,
     kind: 'nhan',

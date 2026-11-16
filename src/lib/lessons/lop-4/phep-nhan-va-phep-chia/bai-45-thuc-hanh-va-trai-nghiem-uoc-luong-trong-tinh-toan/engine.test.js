@@ -54,6 +54,35 @@ describe('the estimating questions', () => {
     expect(bad).toEqual([]);
   });
 
+  it('store the option closest to the exact result', () => {
+    const bad = [];
+    const rand = rng(17);
+    for (let i = 0; i < 300; i++) {
+      const questions = [
+        sumQuestion(rand, 'cong'),
+        sumQuestion(rand, 'tru'),
+        productQuestion(rand),
+        quotientQuestion(rand),
+      ];
+      for (const q of questions) {
+        const [a, b] = numbersOf(q.prompt);
+        const exact = q.prompt.includes('+')
+          ? a + b
+          : q.prompt.includes('−')
+            ? a - b
+            : q.prompt.includes('×')
+              ? a * b
+              : a / b;
+        const gaps = q.options.map((o) => Math.abs(value(optionText(o)) - exact));
+        const best = Math.min(...gaps);
+        if (gaps[q.answer] !== best || gaps.filter((g) => g === best).length > 1) {
+          bad.push(q.prompt);
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
   it('keep the exact product among the options of the reasonable result', () => {
     const bad = [];
     const rand = rng(5);

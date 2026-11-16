@@ -9,6 +9,7 @@ describe('going back to one unit', () => {
     );
     expect(stepQuestion(FIRST, 0).sentence).toBe('24 : 3 = 8 (quả cam)');
     expect(stepQuestion(FIRST, 1).sentence).toBe('8 × 5 = 40 (quả cam)');
+    expect(tableRows(FIRST, 0)[2]).toEqual(['5', '?', '? × 5']);
     expect(tableRows(FIRST, 1)[2]).toEqual(['5', '?', '8 × 5']);
   });
 
