@@ -38,9 +38,9 @@ describe('mixed numbers on circles', () => {
     expect(shadedText(0, 4)).toBe('Em chưa tô phần nào.');
     expect(shadedText(3, 4)).toContain('chưa đủ một hình tròn');
     expect(shadedText(8, 4)).toContain('đúng 2 hình tròn');
-    expect(shadedText(11, 4)).toContain('bằng $2\\dfrac{3}{4}$ hình tròn (phần nguyên 2');
+    expect(shadedText(11, 4)).toContain('bằng $2\\,\\dfrac{3}{4}$ hình tròn (phần nguyên 2');
     expect(toFractionText(2, 3, 4)).toBe(
-      '$2\\dfrac{3}{4}$ = $\\dfrac{2 \\times 4 + 3}{4}$ = $\\dfrac{11}{4}$',
+      '$2\\,\\dfrac{3}{4}$ = $\\dfrac{2 \\times 4 + 3}{4}$ = $\\dfrac{11}{4}$',
     );
     expect(circleNote(11, TASKS[0]).tone).toBe('ok');
     expect(circleNote(10, TASKS[0]).text).toContain('Em tô thêm.');

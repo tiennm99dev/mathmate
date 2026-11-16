@@ -37,7 +37,7 @@ export const partsOf = (t) => t.whole * t.d + t.n;
 const tex = (n, d) => `$\\dfrac{${n}}{${d}}$`;
 
 /** A mixed number in TeX. @param {number} whole @param {number} n @param {number} d */
-export const mixedTex = (whole, n, d) => `$${whole}\\dfrac{${n}}{${d}}$`;
+export const mixedTex = (whole, n, d) => `$${whole}\\,\\dfrac{${n}}{${d}}$`;
 
 /**
  * How the book reads a fraction: 3/4 is "ba phần tư", 7/10 "bảy phần mười".

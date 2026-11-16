@@ -122,10 +122,10 @@ export default {
     },
     {
       type: 'fraction',
-      prompt: 'Chuyển hỗn số $2\\dfrac{3}{5}$ thành phân số.',
+      prompt: 'Chuyển hỗn số $2\\,\\dfrac{3}{5}$ thành phân số.',
       answer: [13, 5],
       hints: ['Tử số: 2 × 5 + 3.'],
-      solution: '$2\\dfrac{3}{5} = \\dfrac{2 \\times 5 + 3}{5} = \\dfrac{13}{5}$.',
+      solution: '$2\\,\\dfrac{3}{5} = \\dfrac{2 \\times 5 + 3}{5} = \\dfrac{13}{5}$.',
     },
     {
       type: 'fraction',

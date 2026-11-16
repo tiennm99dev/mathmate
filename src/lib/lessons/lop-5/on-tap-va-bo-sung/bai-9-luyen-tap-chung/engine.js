@@ -12,6 +12,7 @@ import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { slipOptions } from '#lib/core/kid/quiz.js';
 import { fmt } from '#lib/core/number-format.js';
 import { equals, fraction, simplify } from '#lib/fraction-engine/index.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
 
 /**
  * A fraction option, or a whole number when `d` is 1.
@@ -270,7 +271,11 @@ const MAKERS = {
   'hon-so'(rand) {
     const whole = int(rand, 1, 5);
     const d = pick(rand, [3, 4, 5, 7, 8, 10]);
-    const n = int(rand, 1, d - 1);
+    // The fraction part is in lowest terms, as the book writes mixed numbers.
+    const n = pick(
+      rand,
+      Array.from({ length: d - 1 }, (_, i) => i + 1).filter((x) => gcd(x, d) === 1),
+    );
     const right = { n: whole * d + n, d };
     return {
       prompt: 'Chuyển hỗn số thành phân số.',

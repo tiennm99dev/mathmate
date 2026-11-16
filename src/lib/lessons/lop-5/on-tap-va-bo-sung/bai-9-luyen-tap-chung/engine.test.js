@@ -94,4 +94,18 @@ describe('mixed practice of the review chapter', () => {
     }
     expect(bad).toEqual([]);
   });
+
+  it('writes the fraction part of a mixed number in lowest terms', () => {
+    const bad = [];
+    for (let seed = 1; seed <= 200; seed++) {
+      const q = buildRound(seed).find((x) => x.kind === 'hon-so');
+      const m = /** @type {{ n: number, d: number }} */ (q?.visual?.terms[0]);
+      const g = (/** @type {number} */ a, /** @type {number} */ b) => {
+        while (b) [a, b] = [b, a % b];
+        return a;
+      };
+      if (g(m.n, m.d) !== 1) bad.push(seed);
+    }
+    expect(bad).toEqual([]);
+  });
 });
