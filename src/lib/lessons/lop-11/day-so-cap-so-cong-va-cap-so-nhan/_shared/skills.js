@@ -31,10 +31,10 @@ function atTex(a, b, k) {
 }
 
 /**
- * ' + 3' or ' - \\dfrac{1}{4}': a signed term to append, as TeX.
+ * ' + 3' or ' - \\dfrac{1}{4}' (nothing for 0): a signed term to append, as TeX.
  * @param {number} x
  */
-const signed = (x) => ` ${x < 0 ? '-' : '+'} ${termTex(Math.abs(x))}`;
+const signed = (x) => (x === 0 ? '' : ` ${x < 0 ? '-' : '+'} ${termTex(Math.abs(x))}`);
 
 /** @param {number} x a number in brackets when negative, as TeX */
 const op = (x) => (x < 0 ? `(${termTex(x)})` : termTex(x));

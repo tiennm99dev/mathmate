@@ -244,7 +244,11 @@ export function formulaTex(node) {
       }
       // a product: 2n, 3\left(n + 1\right), n \cdot 2
       const l = isSum(left) || left.kind === 'neg' ? paren(formulaTex(left)) : formulaTex(left);
-      const rightBare = right.kind === 'var' || right.kind === 'sqrt' || isSum(right);
+      const rightBare =
+        right.kind === 'var' ||
+        right.kind === 'sqrt' ||
+        isSum(right) ||
+        (right.kind === 'bin' && right.op === '^' && right.left.kind === 'var');
       const r = isSum(right) || right.kind === 'neg' ? paren(formulaTex(right)) : formulaTex(right);
       const implicit = (left.kind === 'num' && rightBare) || isSum(right);
       return implicit ? `${l}${r}` : `${l} \\cdot ${r}`;

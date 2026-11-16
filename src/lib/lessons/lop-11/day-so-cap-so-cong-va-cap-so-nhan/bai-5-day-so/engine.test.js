@@ -63,6 +63,8 @@ describe('formula reader', () => {
     expect(formulaTex(read('2u + 1', ['u', 'n']))).toBe('2u_{n-1} + 1');
     expect(formulaTex(read('n - (n - 1)'))).toBe('n - \\left(n - 1\\right)');
     expect(formulaTex(read('0,5n'))).toBe('0{,}5n');
+    expect(formulaTex(read('2n^2 - 3n'))).toBe('2n^{2} - 3n');
+    expect(formulaTex(read('2^n'))).toBe('2^{n}');
   });
 
   it('reads every preset', () => {

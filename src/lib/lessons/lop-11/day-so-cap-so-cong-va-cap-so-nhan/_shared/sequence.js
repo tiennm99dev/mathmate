@@ -150,6 +150,16 @@ export function termTex(v) {
 }
 
 /**
+ * A term as the right-hand side of an equation in TeX: '= 5', '= \dfrac{2}{3}',
+ * '\approx 1{,}414' (a rounded term takes ≈ in place of =).
+ * @param {Term} v
+ */
+export function eqTex(v) {
+  const t = termTex(v);
+  return t.startsWith('\\approx') ? t : `= ${t}`;
+}
+
+/**
  * A term as plain text for labels and screen readers: '5', '−2/3', '≈ 1,414',
  * 'không xác định'.
  * @param {Term} v

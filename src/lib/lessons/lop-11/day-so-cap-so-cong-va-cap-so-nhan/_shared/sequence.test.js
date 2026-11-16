@@ -7,6 +7,7 @@ import {
   geometricTerm,
   rationalOf,
   recursiveTerms,
+  eqTex,
   termTex,
   termText,
   trend,
@@ -64,6 +65,8 @@ describe('sequence terms', () => {
     expect(termTex(2048000)).toBe('2\\,048\\,000');
     expect(termTex(3 / 1024)).toBe('\\dfrac{3}{1024}');
     expect(termTex(Math.SQRT2)).toBe('\\approx 1{,}414');
+    expect(eqTex(-2 / 3)).toBe('= -\\dfrac{2}{3}');
+    expect(eqTex(Math.SQRT2)).toBe('\\approx 1{,}414');
     expect(termTex(null)).toBe('\\text{không xác định}');
     expect(termText(-0.75)).toBe('−3/4');
     expect(termText(Math.SQRT2)).toBe('≈ 1,414');

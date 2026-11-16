@@ -6,7 +6,7 @@
   import { button, textInput } from '#lib/core/ui.js';
   import { formatNumber } from '#lib/core/number-format.js';
   import TermChart from '../_shared/term-chart.svelte';
-  import { generalTerms, recursiveTerms, termTex, termText, trend } from '../_shared/sequence.js';
+  import { eqTex, generalTerms, recursiveTerms, termText, trend } from '../_shared/sequence.js';
   import { PRESETS, evaluate, formulaTex, parseFormula } from './engine.js';
 
   let mode = $state(/** @type {'general' | 'recursive'} */ ('general'));
@@ -49,10 +49,10 @@
     if (!terms.length) return '';
     const t = terms[k - 1];
     if (mode === 'general' && parsed.ok) {
-      return `$u_{${k}}$: thay $n = ${k}$ vào công thức, được $u_{${k}} = ${termTex(t)}$.`;
+      return `$u_{${k}}$: thay $n = ${k}$ vào công thức, được $u_{${k}} ${eqTex(t)}$.`;
     }
-    if (k === 1) return `$u_1 = ${termTex(t)}$ là số hạng đầu đã cho.`;
-    return `$u_{${k}}$ tính từ $u_{${k - 1}} = ${termTex(terms[k - 2])}$ với $n = ${k}$: $u_{${k}} = ${termTex(t)}$.`;
+    if (k === 1) return `$u_1 ${eqTex(t)}$ là số hạng đầu đã cho.`;
+    return `$u_{${k}}$ tính từ $u_{${k - 1}} ${eqTex(terms[k - 2])}$ với $n = ${k}$: $u_{${k}} ${eqTex(t)}$.`;
   });
 
   const values = $derived(/** @type {number[]} */ (terms.filter((t) => t !== null)));
@@ -61,7 +61,7 @@
     const tr = trend(terms);
     const shown = `Trong ${count} số hạng đầu`;
     if (tr === 'undefined')
-      return `${shown} có số hạng không xác định: công thức này không cho một dãy số trên toàn bộ $\\mathbb{N}^*$.`;
+      return `${shown} có số hạng không tính được (chia cho $0$, căn bậc hai của số âm, hoặc quá lớn để vẽ). Nếu công thức không xác định tại một số nguyên dương $n$ nào đó thì nó không cho một dãy số trên toàn bộ $\\mathbb{N}^*$.`;
     const lo = formatNumber(Math.min(...values), 3);
     const hi = formatNumber(Math.max(...values), 3);
     const range = `các số hạng nằm giữa ${lo} và ${hi}.`;
@@ -148,7 +148,7 @@
       {#each terms as t, i (i)}
         <span class={i === k - 1 ? 'font-semibold text-rose-700' : ''}
           ><Tex
-            math={`u_{${i + 1}} = ${termTex(t)}`}
+            math={`u_{${i + 1}} ${eqTex(t)}`}
             ariaLabel={`u ${i + 1} bằng ${termText(t)}`}
           /></span
         >
