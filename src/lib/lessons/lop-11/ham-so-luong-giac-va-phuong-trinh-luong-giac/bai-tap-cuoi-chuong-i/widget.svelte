@@ -1,0 +1,14 @@
+<script>
+  import DrillBoard from '#lib/core/drill-board.svelte';
+  import { numberText, readNumber } from '#lib/core/decimal.js';
+  import { CHAPTER_SKILLS } from '../_shared/skills.js';
+</script>
+
+<DrillBoard
+  skills={CHAPTER_SKILLS}
+  perSkill={3}
+  mapLabel="Bản đồ kĩ năng chương I"
+  read={readNumber}
+  format={numberText}
+  invalidText="Hãy nhập một số nguyên, số thập phân (dùng dấu phẩy, ví dụ 22,5) hoặc phân số (ví dụ −4/5)."
+/>
