@@ -7,7 +7,7 @@
   import CoordinatePlane from '#lib/core/visuals/coordinate-plane.svelte';
   import { planeScale } from '#lib/core/visuals/svg-math.js';
   import VectorArrow from '../_shared/vector-arrow.svelte';
-  import { add, coordTex, coordText, scale } from '../_shared/vectors.js';
+  import { add, coordTex, coordText, crossV, scale } from '../_shared/vectors.js';
   import {
     BOX,
     MAX_STEPS,
@@ -36,6 +36,9 @@
   let showHint = $state(false);
   let solved = $state(false);
 
+  // The key arrows share the origin: write each name on the side away from
+  // the other vector, outside the angle between them, so the names never meet.
+  const keySide = $derived(crossV(round.a, round.b) > 0 ? 1 : -1);
   const range = $derived(mRange(round.A, round.a));
   const turn = $derived(walk(round.A, round.a, round.b, m, 0).P);
   const nRange = $derived(mRange(turn, round.b));
@@ -103,13 +106,20 @@
 
   <CoordinatePlane {plane} {label} interactive={false}>
     <!-- The two given vectors drawn from the origin, as a key. -->
-    <VectorArrow from={px({ x: 0, y: 0 })} to={px(round.a)} color={AC} name="a" opacity={0.35} />
+    <VectorArrow
+      from={px({ x: 0, y: 0 })}
+      to={px(round.a)}
+      color={AC}
+      name="a"
+      side={keySide === 1 ? -1 : 1}
+      opacity={0.35}
+    />
     <VectorArrow
       from={px({ x: 0, y: 0 })}
       to={px(round.b)}
       color={BC}
       name="b"
-      side={-1}
+      side={keySide}
       opacity={0.35}
     />
     <circle
