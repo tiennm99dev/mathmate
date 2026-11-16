@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { setTex } from '../_shared/intervals.js';
-import { SHADE, endSymbol, moveEnd, nextMode, resultOf, toSet } from './engine.js';
+import { SHADE, endSymbol, moveEnd, resultOf, switchEnd, toSet } from './engine.js';
 
 /** @type {import('./engine.js').EditableInterval} */
 const A = { lo: -1, hi: 3, loMode: 'closed', hiMode: 'open' };
@@ -16,7 +16,8 @@ describe('interval editor', () => {
       endSymbol('open', 'hi'),
       endSymbol('infinite', 'lo'),
     ]).toEqual(['[', ')', '−∞']);
-    expect(nextMode(nextMode(nextMode('closed')))).toBe('closed');
+    const cycled = switchEnd(switchEnd(switchEnd(A, 'hi'), 'hi'), 'hi');
+    expect(cycled.hiMode).toBe('open');
   });
 
   it('keeps the ends on ticks, inside the line and apart', () => {
@@ -24,6 +25,25 @@ describe('interval editor', () => {
     expect(moveEnd(A, 'hi', 9).hi).toBe(6);
     expect(moveEnd(A, 'lo', -20).lo).toBe(-6);
     expect(moveEnd(A, 'hi', -3).hi).toBe(0);
+  });
+
+  it('lets an end move freely while the other end is infinite', () => {
+    /** @type {import('./engine.js').EditableInterval} */
+    const ray = { ...A, hiMode: 'infinite' };
+    expect(moveEnd(ray, 'lo', 6).lo).toBe(6);
+    expect(moveEnd({ ...A, loMode: 'infinite' }, 'hi', -6).hi).toBe(-6);
+  });
+
+  it('moves a returning end so the interval keeps its order', () => {
+    /** @type {import('./engine.js').EditableInterval} */
+    const ray = { lo: 6, hi: 3, loMode: 'closed', hiMode: 'infinite' };
+    const back = switchEnd(ray, 'hi');
+    expect(back.hiMode).toBe('closed');
+    expect(back.lo).toBeLessThan(back.hi);
+    expect([back.lo, back.hi]).toEqual([5, 6]);
+    /** @type {import('./engine.js').EditableInterval} */
+    const left = { lo: 2, hi: -6, loMode: 'infinite', hiMode: 'closed' };
+    expect(switchEnd(left, 'lo')).toMatchObject({ lo: -6, hi: -5, loMode: 'closed' });
   });
 
   it('works out the worked example of the lesson', () => {

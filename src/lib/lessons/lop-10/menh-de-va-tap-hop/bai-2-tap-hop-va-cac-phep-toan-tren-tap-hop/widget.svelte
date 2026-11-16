@@ -7,7 +7,17 @@
   import RealLine, { LINE_VIEW } from '../_shared/real-line.svelte';
   import Venn from '../_shared/venn.svelte';
   import { setTex } from '../_shared/intervals.js';
-  import { MAX, MIN, OPS, SHADE, endSymbol, moveEnd, nextMode, resultOf, toSet } from './engine.js';
+  import {
+    MAX,
+    MIN,
+    OPS,
+    SHADE,
+    endSymbol,
+    moveEnd,
+    resultOf,
+    switchEnd,
+    toSet,
+  } from './engine.js';
 
   /** @typedef {'A' | 'B'} Name */
   /** @typedef {'lo' | 'hi'} Side */
@@ -36,9 +46,7 @@
 
   /** @param {Name} name @param {Side} side */
   function toggle(name, side) {
-    const E = sets[name];
-    sets[name] =
-      side === 'lo' ? { ...E, loMode: nextMode(E.loMode) } : { ...E, hiMode: nextMode(E.hiMode) };
+    sets[name] = switchEnd(sets[name], side);
   }
 
   /** @param {Name} name @param {Side} side @param {number} value */

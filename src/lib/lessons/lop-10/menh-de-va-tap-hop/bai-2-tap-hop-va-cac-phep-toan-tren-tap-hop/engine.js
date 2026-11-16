@@ -76,21 +76,39 @@ export function toSet(E) {
 const NEXT = { closed: 'open', open: 'infinite', infinite: 'closed' };
 
 /**
- * The next way to close an end: closed, then open, then infinite.
- * @param {EndMode} mode
+ * The interval with one end switched to its next form: closed, then open,
+ * then infinite. When a finite end comes back it is moved, if needed, so
+ * that it stays at least one unit away from the other end.
+ * @param {EditableInterval} E @param {'lo' | 'hi'} side
+ * @returns {EditableInterval}
  */
-export const nextMode = (mode) => NEXT[mode];
+export function switchEnd(E, side) {
+  if (side === 'lo') {
+    const next = { ...E, loMode: NEXT[E.loMode] };
+    if (next.loMode === 'infinite' || next.hiMode === 'infinite' || next.lo < next.hi) return next;
+    const lo = Math.max(MIN, next.hi - 1);
+    return { ...next, lo, hi: Math.max(next.hi, lo + 1) };
+  }
+  const next = { ...E, hiMode: NEXT[E.hiMode] };
+  if (next.hiMode === 'infinite' || next.loMode === 'infinite' || next.lo < next.hi) return next;
+  const hi = Math.min(MAX, next.lo + 1);
+  return { ...next, hi, lo: Math.min(next.lo, hi - 1) };
+}
 
 /**
  * The interval with one end moved to `value`, rounded to a tick and kept
- * at least one unit away from the other end.
+ * at least one unit away from the other end while that end is finite.
  * @param {EditableInterval} E @param {'lo' | 'hi'} side @param {number} value
  * @returns {EditableInterval}
  */
 export function moveEnd(E, side, value) {
   const v = Math.round(value);
-  if (side === 'lo') return { ...E, lo: Math.max(MIN, Math.min(E.hi - 1, v)) };
-  return { ...E, hi: Math.min(MAX, Math.max(E.lo + 1, v)) };
+  if (side === 'lo') {
+    const top = E.hiMode === 'infinite' ? MAX : E.hi - 1;
+    return { ...E, lo: Math.max(MIN, Math.min(top, v)) };
+  }
+  const bottom = E.loMode === 'infinite' ? MIN : E.lo + 1;
+  return { ...E, hi: Math.min(MAX, Math.max(bottom, v)) };
 }
 
 /**

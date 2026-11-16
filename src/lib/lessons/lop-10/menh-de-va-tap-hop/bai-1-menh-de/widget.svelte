@@ -69,13 +69,13 @@
   <div class="flex flex-wrap gap-3" role="group" aria-label="Dự đoán tính đúng sai">
     <button
       type="button"
-      class={button.primary}
+      class={guess === true ? button.primary : button.secondary}
       aria-pressed={guess === true}
       onclick={() => (guess = true)}>Mệnh đề đúng</button
     >
     <button
       type="button"
-      class={button.secondary}
+      class={guess === false ? button.primary : button.secondary}
       aria-pressed={guess === false}
       onclick={() => (guess = false)}>Mệnh đề sai</button
     >
