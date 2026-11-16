@@ -50,11 +50,11 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Nhân với 10: chữ số 3 ở hàng chục lên hàng trăm, chữ số 6 ở hàng đơn vị lên hàng chục. Mỗi chữ số dịch sang trái một hàng.',
+          text: '36 × 10 = 360: chữ số 3 ở hàng chục lên hàng trăm, chữ số 6 ở hàng đơn vị lên hàng chục. Mỗi chữ số dịch sang trái một hàng.',
         },
         {
           type: 'p',
-          text: 'Chia cho 10 thì ngược lại: mỗi chữ số dịch sang phải một hàng.',
+          text: 'Chia cho 10 thì ngược lại: 360 : 10 = 36, mỗi chữ số dịch sang phải một hàng.',
         },
       ],
     },
