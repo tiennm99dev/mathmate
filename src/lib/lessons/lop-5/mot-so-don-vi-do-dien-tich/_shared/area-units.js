@@ -1,39 +1,39 @@
 /**
- * The table of area units of grade 5: km², hm² (the héc-ta), dam², m², dm²,
- * cm² and mm², biggest first; each unit is 100 times the next one. A measure
- * is held exactly as a whole number times a power of ten, so converting
- * never meets binary noise. Pure and DOM-free.
+ * The area units of grade 5, biggest first: km², ha, m², dm², cm² and mm².
+ * 1 km² = 100 ha and 1 ha = 10 000 m²; from m² down, each unit is 100 times
+ * the next one. A measure is held exactly as a whole number times a power of
+ * ten, so converting never meets binary noise. Pure and DOM-free.
  */
 import { GROUP } from '#lib/core/number-format.js';
 
 /**
- * An area unit: its symbol, its name read aloud and the side of its square.
- * @typedef {{ symbol: string, name: string, side: string }} AreaUnit
+ * An area unit: its symbol, its name read aloud and its size in m² as a
+ * power of ten (km² is 10^6 m², mm² is 10^-6 m²).
+ * @typedef {{ symbol: string, name: string, exp: number }} AreaUnit
  */
 
 /** @type {readonly AreaUnit[]} */
 export const AREA_UNITS = [
-  { symbol: 'km²', name: 'ki-lô-mét vuông', side: '1 km' },
-  { symbol: 'hm²', name: 'héc-tô-mét vuông', side: '1 hm' },
-  { symbol: 'dam²', name: 'đề-ca-mét vuông', side: '1 dam' },
-  { symbol: 'm²', name: 'mét vuông', side: '1 m' },
-  { symbol: 'dm²', name: 'đề-xi-mét vuông', side: '1 dm' },
-  { symbol: 'cm²', name: 'xăng-ti-mét vuông', side: '1 cm' },
-  { symbol: 'mm²', name: 'mi-li-mét vuông', side: '1 mm' },
+  { symbol: 'km²', name: 'ki-lô-mét vuông', exp: 6 },
+  { symbol: 'ha', name: 'héc-ta', exp: 4 },
+  { symbol: 'm²', name: 'mét vuông', exp: 0 },
+  { symbol: 'dm²', name: 'đề-xi-mét vuông', exp: -2 },
+  { symbol: 'cm²', name: 'xăng-ti-mét vuông', exp: -4 },
+  { symbol: 'mm²', name: 'mi-li-mét vuông', exp: -6 },
 ];
 
-/** The héc-ta is the héc-tô-mét vuông: 1 ha = 1 hm². */
-export const HA = 'ha';
-
 /**
- * The column of a unit in the table; 'ha' is the column of hm².
+ * The column of a unit in the table.
  * @param {string} symbol
  */
 export function unitIndex(symbol) {
-  const i = AREA_UNITS.findIndex((u) => u.symbol === (symbol === HA ? 'hm²' : symbol));
+  const i = AREA_UNITS.findIndex((u) => u.symbol === symbol);
   if (i < 0) throw new Error(`unknown area unit ${symbol}`);
   return i;
 }
+
+/** The power of ten in m² of a unit. @param {string} symbol */
+const expOf = (symbol) => AREA_UNITS[unitIndex(symbol)].exp;
 
 /**
  * Digits grouped by threes with the book's narrow space: '1234567' →
@@ -59,37 +59,37 @@ export function shiftText(n, exp) {
 }
 
 /**
- * A measure n (× 10^exp) in unit `from` written in unit `to`: each column to
- * the right multiplies by 100, each column to the left divides by 100.
+ * A measure n (× 10^exp) in unit `from` written in unit `to`.
  * @param {number} n
  * @param {string} from
  * @param {string} to
  * @param {number} [exp] the measure is n × 10^exp of `from`
  */
 export function convertText(n, from, to, exp = 0) {
-  return shiftText(n, exp + 2 * (unitIndex(to) - unitIndex(from)));
+  return shiftText(n, exp + expOf(from) - expOf(to));
 }
 
 /**
  * The steps from one unit to another, one column at a time: each step says
- * the unit it reaches, the value there and whether it multiplied or divided
- * by 100.
+ * the unit it reaches, the value there and the multiplication or division
+ * that got there (× 100 for most columns, × 10 000 between ha and m²).
  * @param {number} n
  * @param {string} from
  * @param {string} to
- * @returns {{ unit: string, value: string, op: '× 100' | ': 100' }[]}
+ * @returns {{ unit: string, value: string, op: string }[]}
  */
 export function convertSteps(n, from, to) {
   const a = unitIndex(from);
   const b = unitIndex(to);
   const dir = Math.sign(b - a);
-  /** @type {{ unit: string, value: string, op: '× 100' | ': 100' }[]} */
+  /** @type {{ unit: string, value: string, op: string }[]} */
   const steps = [];
   for (let i = a + dir; dir !== 0 && i !== b + dir; i += dir) {
+    const factor = shiftText(1, Math.abs(AREA_UNITS[i - dir].exp - AREA_UNITS[i].exp));
     steps.push({
       unit: AREA_UNITS[i].symbol,
-      value: shiftText(n, 2 * (i - a)),
-      op: dir > 0 ? '× 100' : ': 100',
+      value: shiftText(n, expOf(from) - AREA_UNITS[i].exp),
+      op: `${dir > 0 ? '×' : ':'} ${factor}`,
     });
   }
   return steps;

@@ -29,7 +29,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Người ta dùng ki-lô-mét vuông để đo diện tích một thành phố, một tỉnh, một khu rừng lớn. Ví dụ: diện tích thành phố Hải Phòng khoảng 1 562 km².',
+          text: 'Người ta dùng ki-lô-mét vuông để đo diện tích một thành phố, một tỉnh, một khu rừng lớn. Ví dụ: diện tích Thủ đô Hà Nội khoảng 3 359 km².',
         },
       ],
     },
@@ -103,9 +103,9 @@ export default {
       answer: '70 000 m² = 7 ha.',
     },
     {
-      problem: 'Thành phố Hải Phòng rộng khoảng 1 562 km². Diện tích đó là bao nhiêu héc-ta?',
-      steps: ['1 km² = 100 ha.', '1 562 × 100 = 156 200.'],
-      answer: 'Hải Phòng rộng khoảng 156 200 ha.',
+      problem: 'Thủ đô Hà Nội rộng khoảng 3 359 km². Diện tích đó là bao nhiêu héc-ta?',
+      steps: ['1 km² = 100 ha.', '3 359 × 100 = 335 900.'],
+      answer: 'Hà Nội rộng khoảng 335 900 ha.',
     },
   ],
   practice: [
@@ -166,15 +166,15 @@ export default {
     {
       type: 'match',
       prompt: 'Nối mỗi nơi với diện tích phù hợp.',
-      left: ['Nền phòng học', 'Hồ Gươm', 'Thành phố Hải Phòng'],
-      right: ['50 m²', '12 ha', '1 562 km²', '12 m²'],
+      left: ['Nền phòng học', 'Hồ Gươm', 'Thủ đô Hà Nội'],
+      right: ['50 m²', '12 ha', '3 359 km²', '12 m²'],
       pairs: [
         [0, 0],
         [1, 1],
         [2, 2],
       ],
       hints: ['Nơi càng rộng thì dùng đơn vị càng lớn: m², rồi ha, rồi km².'],
-      solution: 'Nền phòng học khoảng 50 m². Hồ Gươm khoảng 12 ha. Hải Phòng khoảng 1 562 km².',
+      solution: 'Nền phòng học khoảng 50 m². Hồ Gươm khoảng 12 ha. Hà Nội khoảng 3 359 km².',
     },
     {
       type: 'choice',

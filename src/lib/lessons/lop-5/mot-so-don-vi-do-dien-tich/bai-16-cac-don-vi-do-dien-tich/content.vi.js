@@ -1,12 +1,12 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Bảng đơn vị đo diện tích km², hm² (ha), dam², m², dm², cm², mm²: hai đơn vị liền nhau gấp hoặc kém nhau 100 lần.',
+    'Bảng đơn vị đo diện tích km², ha, m², dm², cm², mm²: 1 km² = 100 ha, 1 ha = 10 000 m², từ m² trở xuống hai đơn vị liền nhau gấp hoặc kém nhau 100 lần.',
   intro:
-    'Em đã biết km², ha, m², dm², cm², mm². Hôm nay em xếp tất cả vào một bảng. Nhìn bảng, em đổi đơn vị thật nhanh: sang phải nhân 100, sang trái chia 100.',
+    'Em đã biết km², ha, m², dm², cm², mm². Hôm nay em xếp tất cả vào một bảng. Nhìn bảng, em đổi đơn vị thật nhanh.',
   objectives: [
     'Nêu được bảng đơn vị đo diện tích theo thứ tự từ lớn đến bé.',
-    'Biết hai đơn vị đo diện tích liền nhau gấp hoặc kém nhau 100 lần.',
+    'Biết 1 km² = 100 ha, 1 ha = 10 000 m², 1 m² = 100 dm², 1 dm² = 100 cm², 1 cm² = 100 mm².',
     'Đổi được các số đo diện tích, kể cả viết dưới dạng số thập phân.',
   ],
   sections: [
@@ -15,19 +15,14 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Đề-ca-mét vuông (dam²) là diện tích hình vuông cạnh 1 dam. 1 dam² = 100 m².',
-        },
-        {
-          type: 'p',
-          text: 'Héc-tô-mét vuông (hm²) là diện tích hình vuông cạnh 1 hm, tức là cạnh 100 m. Vì thế 1 hm² = 1 ha.',
+          text: 'Em xếp các đơn vị đo diện tích đã học từ lớn đến bé: km², ha, m², dm², cm², mm².',
         },
         {
           type: 'table',
           head: ['Đơn vị', 'Bằng'],
           rows: [
-            ['1 km²', '100 hm²'],
-            ['1 hm² (1 ha)', '100 dam²'],
-            ['1 dam²', '100 m²'],
+            ['1 km²', '100 ha'],
+            ['1 ha', '10 000 m²'],
             ['1 m²', '100 dm²'],
             ['1 dm²', '100 cm²'],
             ['1 cm²', '100 mm²'],
@@ -37,7 +32,12 @@ export default {
         {
           type: 'callout',
           tone: 'theorem',
-          text: 'Hai đơn vị đo diện tích liền nhau: đơn vị lớn gấp 100 lần đơn vị bé, đơn vị bé bằng 1/100 đơn vị lớn.',
+          text: 'Với m², dm², cm², mm²: đơn vị lớn gấp 100 lần đơn vị bé liền sau, đơn vị bé bằng 1/100 đơn vị lớn liền trước.',
+        },
+        {
+          type: 'callout',
+          tone: 'warning',
+          text: 'Héc-ta và mét vuông đứng cạnh nhau trong bảng nhưng 1 ha = 10 000 m², không phải 100 m².',
         },
       ],
     },
@@ -46,20 +46,20 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Đổi từ đơn vị lớn ra đơn vị bé liền sau: nhân với 100. Ví dụ: 4 m² = 400 dm².',
+          text: 'Đổi từ đơn vị lớn ra đơn vị bé: nhân. Ví dụ: 4 m² = 4 × 100 dm² = 400 dm²; 3 ha = 3 × 10 000 m² = 30 000 m².',
         },
         {
           type: 'p',
-          text: 'Đổi từ đơn vị bé ra đơn vị lớn liền trước: chia cho 100. Ví dụ: 900 cm² = 9 dm².',
+          text: 'Đổi từ đơn vị bé ra đơn vị lớn: chia. Ví dụ: 900 : 100 = 9, nên 900 cm² = 9 dm²; 600 : 100 = 6, nên 600 ha = 6 km².',
         },
         {
           type: 'p',
-          text: 'Cách hai cột thì nhân hoặc chia hai lần: 3 ha = 300 dam² = 30 000 m².',
+          text: 'Cách hai cột thì nhân hoặc chia hai lần: 3 m² = 300 dm² = 30 000 cm².',
         },
         {
           type: 'callout',
           tone: 'warning',
-          text: 'Đơn vị đo độ dài liền nhau gấp nhau 10 lần (1 m = 10 dm). Đơn vị đo diện tích liền nhau gấp nhau 100 lần (1 m² = 100 dm²).',
+          text: 'Đơn vị đo độ dài liền nhau gấp nhau 10 lần (1 m = 10 dm). Còn 1 m² = 100 dm², gấp 100 lần, vì hình vuông cạnh 1 m gồm 10 hàng, mỗi hàng 10 ô vuông 1 dm².',
         },
       ],
     },
@@ -84,7 +84,7 @@ export default {
   explore: {
     title: 'Bấm cột để đổi đơn vị',
     instruction:
-      'Số đo bắt đầu ở cột đơn vị của nó. Em bấm vào cột đơn vị được hỏi. Mỗi cột đi qua, máy ghi lại phép nhân 100 hoặc chia 100.',
+      'Số đo bắt đầu ở cột đơn vị của nó. Em bấm vào cột đơn vị được hỏi. Mỗi cột đi qua, máy ghi lại phép nhân hoặc phép chia.',
   },
   examples: [
     {
@@ -110,10 +110,10 @@ export default {
     {
       type: 'order',
       prompt: 'Xếp các đơn vị đo diện tích theo thứ tự từ lớn đến bé.',
-      items: ['m²', 'km²', 'cm²', 'dam²', 'mm²', 'hm²', 'dm²'],
-      answer: [1, 5, 3, 0, 6, 2, 4],
-      hints: ['Mét vuông đứng giữa bảng.', 'Bên trái mét vuông: km², hm², dam².'],
-      solution: 'km², hm², dam², m², dm², cm², mm².',
+      items: ['m²', 'km²', 'cm²', 'ha', 'mm²', 'dm²'],
+      answer: [1, 3, 0, 5, 2, 4],
+      hints: ['Lớn nhất là km², bé nhất là mm².', 'Lớn hơn mét vuông có km² và ha.'],
+      solution: 'km², ha, m², dm², cm², mm².',
     },
     {
       type: 'number',
@@ -195,8 +195,8 @@ export default {
     },
   ],
   takeaways: [
-    'Bảng đơn vị đo diện tích: km², hm² (ha), dam², m², dm², cm², mm².',
-    'Hai đơn vị liền nhau gấp hoặc kém nhau 100 lần: sang phải nhân 100, sang trái chia 100.',
-    '1 ha = 1 hm² = 10 000 m².',
+    'Bảng đơn vị đo diện tích: km², ha, m², dm², cm², mm².',
+    '1 km² = 100 ha; 1 ha = 10 000 m²; 1 m² = 100 dm²; 1 dm² = 100 cm²; 1 cm² = 100 mm².',
+    'Đổi từ đơn vị lớn ra đơn vị bé thì nhân, từ đơn vị bé ra đơn vị lớn thì chia.',
   ],
 };

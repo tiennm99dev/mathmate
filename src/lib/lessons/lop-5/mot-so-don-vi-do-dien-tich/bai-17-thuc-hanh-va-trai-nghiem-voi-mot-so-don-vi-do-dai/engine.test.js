@@ -17,7 +17,7 @@ describe('area estimating challenge', () => {
     expect(measureText(room)).toBe('Dài 8 m, rộng 6 m. Diện tích: 8 × 6 = 48 (m²).');
     expect(verdict(room, nearest(room)).tone).toBe('ok');
     expect(verdict(PLACES[0], 0).text).toBe(
-      'Chưa sát rồi. Diện tích thật là 60 dm², đúng bằng 60 dm². Mặt bàn học rộng khoảng 60 dm², chưa tới 1 m².',
+      'Chưa sát rồi. Diện tích thật là 60 dm². Mặt bàn học chưa rộng tới 1 m² = 100 dm².',
     );
     expect(verdict(room, 0)).toEqual({
       tone: 'warn',

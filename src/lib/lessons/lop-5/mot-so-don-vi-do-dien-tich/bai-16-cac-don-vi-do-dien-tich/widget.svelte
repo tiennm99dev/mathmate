@@ -51,7 +51,7 @@
 
   <div class="overflow-x-auto pb-1">
     <div
-      class="mx-auto grid min-w-[24rem] max-w-lg grid-cols-7 gap-1"
+      class="mx-auto grid min-w-[19.25rem] max-w-lg grid-cols-6 gap-1"
       role="group"
       aria-label="Bảng đơn vị đo diện tích, lớn ở bên trái, bé ở bên phải"
       bind:this={table}
@@ -59,29 +59,29 @@
       {#each HEADINGS as h, i (h)}
         <button
           type="button"
-          class="flex min-h-16 flex-col items-center justify-center rounded-xl border-2 px-0 text-sm leading-tight font-bold {focusRing} {i ===
+          class="flex min-h-16 flex-col items-center justify-center rounded-xl border-2 px-0 text-base leading-tight font-bold {focusRing} {i ===
           col
             ? 'border-rose-500 bg-rose-100 text-rose-700'
             : i === from
               ? 'border-sky-400 bg-sky-50 text-slate-800'
               : 'border-slate-300 bg-white text-slate-700'}"
           aria-pressed={i === col}
-          aria-label="Đổi ra {unitAt(task, i)}"
+          aria-label="Đổi ra {unitAt(i)}"
           onclick={() => choose(i)}
         >
-          {#each h.split(' ') as part (part)}<span>{part}</span>{/each}
+          {h}
         </button>
       {/each}
     </div>
   </div>
 
   <p class="text-center text-base text-slate-600">
-    Sang phải một cột: nhân với 100. Sang trái một cột: chia cho 100.
+    Sang phải một cột: nhân với 100 (từ ha sang m²: nhân với 10 000). Sang trái thì chia.
   </p>
 
   <p class="text-center text-3xl font-bold text-slate-900 tabular-nums" aria-hidden="true">
     {valueAt(task, col)}
-    {unitAt(task, col)}
+    {unitAt(col)}
   </p>
 
   {#if steps.length}

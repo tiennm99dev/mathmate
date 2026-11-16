@@ -42,7 +42,7 @@ export const PLACES = [
     side: 'dm',
     unit: 'dm²',
     estimates: plain('dm²', 6, 60, 600),
-    remark: 'Mặt bàn học rộng khoảng 60 dm², chưa tới 1 m².',
+    remark: 'Mặt bàn học chưa rộng tới 1 m² = 100 dm².',
   },
   {
     place: 'Con tem',
@@ -136,6 +136,6 @@ export function verdict(p, chosen) {
     return { tone: 'ok', text: `Ước lượng rất sát! ${p.remark}` };
   }
   const real = `${fmt(areaOf(p))} ${p.unit}`;
-  const how = best.value === areaOf(p) ? `đúng bằng ${best.text}` : `gần ${best.text} nhất`;
-  return { tone: 'warn', text: `Chưa sát rồi. Diện tích thật là ${real}, ${how}. ${p.remark}` };
+  const how = best.value === areaOf(p) ? '' : `, gần ${best.text} nhất`;
+  return { tone: 'warn', text: `Chưa sát rồi. Diện tích thật là ${real}${how}. ${p.remark}` };
 }

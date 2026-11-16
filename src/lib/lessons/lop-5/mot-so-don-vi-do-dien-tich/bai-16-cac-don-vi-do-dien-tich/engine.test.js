@@ -7,7 +7,7 @@ const g = (s) => s.replace(/(\d) (?=\d{3})/g, '$1 ');
 
 describe('area unit table', () => {
   it('writes each task in the unit asked for', () => {
-    const got = TASKS.map((t) => `${valueAt(t, unitIndex(t.to))} ${unitAt(t, unitIndex(t.to))}`);
+    const got = TASKS.map((t) => `${valueAt(t, unitIndex(t.to))} ${unitAt(unitIndex(t.to))}`);
     expect(got).toEqual(
       [
         '500 ha',
@@ -25,8 +25,9 @@ describe('area unit table', () => {
   });
 
   it('explains each column it crosses', () => {
-    expect(stepLines(TASKS[6], unitIndex('m²'))).toEqual(
-      ['3 ha × 100 = 300 dam²', '300 dam² × 100 = 30 000 m²'].map(g),
+    expect(stepLines(TASKS[6], unitIndex('m²'))).toEqual(['3 ha × 10 000 = 30 000 m²'].map(g));
+    expect(stepLines(TASKS[8], unitIndex('m²'))).toEqual(
+      ['1 km² × 100 = 100 ha', '100 ha × 10 000 = 1 000 000 m²'].map(g),
     );
     expect(stepLines(TASKS[3], unitIndex('km²'))).toEqual(['600 ha : 100 = 6 km²']);
     expect(stepLines(TASKS[0], startCol(TASKS[0]))).toEqual([]);

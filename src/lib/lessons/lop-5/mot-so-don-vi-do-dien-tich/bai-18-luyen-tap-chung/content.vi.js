@@ -27,7 +27,7 @@ export default {
         {
           type: 'callout',
           tone: 'theorem',
-          text: 'Hai đơn vị đo diện tích liền nhau gấp hoặc kém nhau 100 lần.',
+          text: '1 km² = 100 ha và 1 ha = 10 000 m². Từ m² đến mm², hai đơn vị liền nhau gấp hoặc kém nhau 100 lần.',
         },
         {
           type: 'callout',
@@ -165,7 +165,7 @@ export default {
     },
   ],
   takeaways: [
-    '1 km² = 100 ha; 1 ha = 10 000 m²; hai đơn vị liền nhau gấp nhau 100 lần.',
+    '1 km² = 100 ha; 1 ha = 10 000 m²; 1 m² = 100 dm² = 10 000 cm²; 1 cm² = 100 mm².',
     'So sánh số đo diện tích: đổi về cùng một đơn vị rồi so sánh.',
     'Bài toán ruộng đất: tính diện tích theo m² rồi đổi ra ha khi cần.',
   ],
