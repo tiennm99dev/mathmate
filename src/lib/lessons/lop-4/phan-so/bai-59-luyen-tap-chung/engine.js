@@ -182,8 +182,9 @@ const MAKERS = {
   },
   thuong: (rand) => {
     const a = int(rand, 2, 9);
-    let b = int(rand, 2, 9);
-    if (b === a) b = a === 9 ? 2 : a + 1;
+    // b never divides a, so the share is not a whole number of cakes.
+    const bs = [2, 3, 4, 5, 6, 7, 8, 9].filter((x) => a % x !== 0);
+    const b = pick(rand, bs);
     return {
       kind: 'thuong',
       prompt: `Chia đều ${a} cái bánh cho ${b} bạn. Mỗi bạn được mấy phần cái bánh?`,
@@ -220,7 +221,7 @@ const MAKERS = {
       kind: 'rut-gon',
       prompt: 'Rút gọn phân số dưới đây. Em được phân số tối giản nào?',
       ...fracOptions(rand, [f], wrong.slice(0, 3)),
-      hint: `Tìm số lớn nhất mà cả ${f.n * k} và ${f.d * k} đều chia hết. Chia đến khi không chia được nữa.`,
+      hint: `Chia cả ${f.n * k} và ${f.d * k} cho cùng một số lớn hơn 1. Chia tiếp đến khi được phân số tối giản.`,
       solution: `Chia cả tử số và mẫu số cho ${k}: ${fracText(f.n * k, f.d * k)} = ${t(f)}. ${t(f)} là phân số tối giản.`,
       visual: { type: 'line', items: [{ n: f.n * k, d: f.d * k }, '=', '?'] },
     };

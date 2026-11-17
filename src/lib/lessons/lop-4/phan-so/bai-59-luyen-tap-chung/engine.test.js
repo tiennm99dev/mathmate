@@ -28,7 +28,7 @@ function isRight(q) {
   }
   if (q.kind === 'thuong') {
     const [, a, b] = /Chia đều (\d+) cái bánh cho (\d+) bạn/.exec(q.prompt) ?? [];
-    return f[0].n === Number(a) && f[0].d === Number(b);
+    return f[0].n === Number(a) && f[0].d === Number(b) && Number(a) % Number(b) !== 0;
   }
   if (v?.type !== 'line' && v?.type !== 'people') return false;
   if (q.kind === 'bang-nhau' && v.type === 'line') {
