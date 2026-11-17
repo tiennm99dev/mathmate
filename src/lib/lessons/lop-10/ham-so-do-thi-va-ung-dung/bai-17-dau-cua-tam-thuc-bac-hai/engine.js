@@ -4,7 +4,7 @@
  */
 
 import { formatNumber } from '#lib/core/number-format.js';
-import { discriminant, exactRoots } from '../_shared/quadratic.js';
+import { discriminant, exactRoots, quadAt } from '../_shared/quadratic.js';
 
 /** The values of a on the slider (never 0). */
 export const A_VALUES = [-2, -1, 1, 2];
@@ -38,7 +38,7 @@ export function caseSentence(a, b, c) {
  * @param {number} t
  */
 export function testSentence(a, b, c, t) {
-  const v = Math.round((a * t * t + b * t + c) * 1e9) / 1e9;
+  const v = quadAt(a, b, c, t);
   const ts = formatNumber(t);
   if (v === 0) return `f(${ts}) = 0: x = ${ts} là nghiệm của tam thức.`;
   return `f(${ts}) = ${formatNumber(v)} ${v > 0 ? '> 0' : '< 0'}: tại x = ${ts}, tam thức ${v > 0 ? 'dương' : 'âm'}, ${Math.sign(v) === Math.sign(a) ? 'cùng dấu' : 'trái dấu'} với a.`;

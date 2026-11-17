@@ -105,7 +105,8 @@ export default {
         'Cần giải $-5t^2 + 20t + 1 > 16 \\Leftrightarrow -5t^2 + 20t - 15 > 0 \\Leftrightarrow t^2 - 4t + 3 < 0$ (chia hai vế cho $-5$, đổi chiều).',
         'Tam thức $t^2 - 4t + 3$ có hai nghiệm $t = 1$, $t = 3$ và $a = 1 > 0$, nên nó âm khi $1 < t < 3$.',
       ],
-      answer: 'Quả bóng ở cao hơn $16$ m từ giây thứ $1$ đến giây thứ $3$, tức là trong $2$ giây.',
+      answer:
+        'Quả bóng ở cao hơn $16$ m khi $1 < t < 3$, tức là từ thời điểm $1$ giây đến thời điểm $3$ giây sau khi ném, trong $2$ giây.',
     },
   ],
   practice: [
