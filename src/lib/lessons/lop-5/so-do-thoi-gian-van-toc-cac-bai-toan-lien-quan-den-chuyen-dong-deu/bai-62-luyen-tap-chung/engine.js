@@ -19,10 +19,11 @@ import {
   subWorking,
 } from '../_shared/time-measure.js';
 
+/** @typedef {'car' | 'motorbike' | 'bicycle'} MoverKind */
 /**
  * What the widget draws above a motion question: the mover on its road with
  * the speed, distance and time it knows, the unknown one as '?'.
- * @typedef {{ mover: string, v: string, s: string, t: string }} Visual
+ * @typedef {{ mover: string, kind: MoverKind, v: string, s: string, t: string }} Visual
  */
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion<Visual>} Question */
 /** @typedef {import('../_shared/time-measure.js').Measure} Measure */
@@ -42,11 +43,15 @@ export const KIND_LABELS = /** @type {const} */ ({
 
 /** @typedef {keyof typeof KIND_LABELS} Kind */
 
-/** Who moves in a motion question, with its speed range in km/giờ. */
+/**
+ * Who moves in a motion question, the picture drawn for it and its speed
+ * range in km/giờ.
+ * @type {{ mover: string, kind: MoverKind, min: number, max: number }[]}
+ */
 const MOVERS = [
-  { mover: 'Ô tô', min: 36, max: 60 },
-  { mover: 'Xe máy', min: 24, max: 48 },
-  { mover: 'Người đi xe đạp', min: 12, max: 18 },
+  { mover: 'Ô tô', kind: 'car', min: 36, max: 60 },
+  { mover: 'Xe máy', kind: 'motorbike', min: 24, max: 48 },
+  { mover: 'Người đi xe đạp', kind: 'bicycle', min: 12, max: 18 },
 ];
 
 /**
@@ -199,7 +204,7 @@ const MAKERS = {
     };
   },
   'van-toc'(rand) {
-    const { mover, min, max } = pick(rand, MOVERS);
+    const { mover, kind, min, max } = pick(rand, MOVERS);
     const v = int(rand, min, max);
     const t = int(rand, 2, 5);
     const s = v * t;
@@ -208,7 +213,7 @@ const MAKERS = {
       ...slipOptions(v, [s - t, v + t, v * 2], { near: [5, -5, 10], min: 1, unit: 'km/giờ' }),
       hint: 'Vận tốc = quãng đường : thời gian.',
       solution: `Vận tốc là: ${fmt(s)} : ${t} = ${v} (km/giờ).`,
-      visual: { mover, v: '? km/giờ', s: `${fmt(s)} km`, t: `${t} giờ` },
+      visual: { mover, kind, v: '? km/giờ', s: `${fmt(s)} km`, t: `${t} giờ` },
     };
   },
   'doi-van-toc'(rand) {
@@ -240,7 +245,7 @@ const MAKERS = {
     };
   },
   'quang-duong'(rand) {
-    const { mover, min, max } = pick(rand, MOVERS);
+    const { mover, kind, min, max } = pick(rand, MOVERS);
     const v = 4 * int(rand, Math.ceil(min / 4), Math.floor(max / 4));
     const m = pick(rand, [15, 30, 45]);
     const s = (v * m) / 60;
@@ -249,11 +254,11 @@ const MAKERS = {
       ...slipOptions(s, [v * m, v, s * 2], { near: [2, -2, 4], min: 1, unit: 'km' }),
       hint: `Em đổi ${m} phút ra giờ trước: ${m} phút = ${formatNumber(m / 60)} giờ.`,
       solution: `${m} phút = ${formatNumber(m / 60)} giờ. Quãng đường là: ${v} × ${formatNumber(m / 60)} = ${s} (km).`,
-      visual: { mover, v: `${v} km/giờ`, s: '? km', t: `${m} phút` },
+      visual: { mover, kind, v: `${v} km/giờ`, s: '? km', t: `${m} phút` },
     };
   },
   'thoi-gian'(rand) {
-    const { mover, min, max } = pick(rand, MOVERS);
+    const { mover, kind, min, max } = pick(rand, MOVERS);
     const v = 12 * int(rand, Math.ceil(min / 12), Math.floor(max / 12));
     const t = { big: int(rand, 1, 3), small: pick(rand, [15, 30, 45]) };
     const hours = t.big + t.small / 60;
@@ -266,11 +271,11 @@ const MAKERS = {
       ...measureOptions(t, frac !== t.small ? [{ big: t.big, small: frac }] : [], pair),
       hint: 'Thời gian = quãng đường : vận tốc. Phần thập phân của số giờ em nhân với 60 để ra phút.',
       solution: `Thời gian là: ${fmt(s)} : ${v} = ${formatNumber(hours, 6)} (giờ) = ${measureText(t, pair)}.`,
-      visual: { mover, v: `${v} km/giờ`, s: `${fmt(s)} km`, t: '?' },
+      visual: { mover, kind, v: `${v} km/giờ`, s: `${fmt(s)} km`, t: '?' },
     };
   },
   'gio-den'(rand) {
-    const { mover, min, max } = pick(rand, MOVERS);
+    const { mover, kind, min, max } = pick(rand, MOVERS);
     const v = 12 * int(rand, Math.ceil(min / 12), Math.floor(max / 12));
     const t = { big: int(rand, 1, 3), small: pick(rand, [15, 30, 45]) };
     const s = (v * (t.big * 60 + t.small)) / 60;
@@ -291,7 +296,7 @@ const MAKERS = {
       ),
       hint: 'Em tính thời gian đi trước: thời gian = quãng đường : vận tốc. Rồi em cộng với giờ khởi hành.',
       solution: `Thời gian đi là: ${fmt(s)} : ${v} = ${formatNumber(s / v, 6)} (giờ) = ${measureText(t, pair)}. Giờ đến nơi: ${startText} + ${measureText(t, pair)} = ${measureText(right, pair)}.`,
-      visual: { mover, v: `${v} km/giờ`, s: `${fmt(s)} km`, t: '?' },
+      visual: { mover, kind, v: `${v} km/giờ`, s: `${fmt(s)} km`, t: '?' },
     };
   },
 };

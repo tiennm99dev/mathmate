@@ -142,3 +142,13 @@ describe('chapter practice round', () => {
     expect(buildRound(1)).toEqual(buildRound(1));
   });
 });
+
+describe('the mover picture', () => {
+  it('draws the mover the question names', () => {
+    const kinds = { 'Ô tô': 'car', 'Xe máy': 'motorbike', 'Người đi xe đạp': 'bicycle' };
+    const visuals = rounds.flat().flatMap((q) => (q.visual ? [q.visual] : []));
+    expect(visuals.length).toBeGreaterThan(0);
+    for (const v of visuals)
+      expect(v.kind).toBe(kinds[/** @type {keyof typeof kinds} */ (v.mover)]);
+  });
+});

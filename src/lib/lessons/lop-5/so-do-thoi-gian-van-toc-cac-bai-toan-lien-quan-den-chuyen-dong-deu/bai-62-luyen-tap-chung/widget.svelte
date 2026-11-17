@@ -36,10 +36,29 @@
           stroke-dasharray="10 8"
         />
         <g transform="translate(40 48)">
-          <rect x="-4" y="-10" width="30" height="14" rx="4" fill="#e11d48" />
-          <rect x="2" y="-17" width="16" height="9" rx="2" fill="#e11d48" />
-          <circle cx="4" cy="5" r="4" fill="#1e293b" />
-          <circle cx="20" cy="5" r="4" fill="#1e293b" />
+          {#if v.kind === 'motorbike'}
+            <circle cx="0" cy="3" r="6" fill="none" stroke="#1e293b" stroke-width="3" />
+            <circle cx="24" cy="3" r="6" fill="none" stroke="#1e293b" stroke-width="3" />
+            <path d="M 2 -4 L 22 -4 L 26 3" fill="none" stroke="#e11d48" stroke-width="3" />
+            <rect x="4" y="-10" width="12" height="6" rx="2" fill="#e11d48" />
+            <path d="M 20 -4 L 18 -14 L 23 -14" fill="none" stroke="#1e293b" stroke-width="2" />
+            <circle cx="10" cy="-20" r="4" fill="#f59e0b" />
+          {:else if v.kind === 'bicycle'}
+            <circle cx="0" cy="3" r="7" fill="none" stroke="#1e293b" stroke-width="2" />
+            <circle cx="24" cy="3" r="7" fill="none" stroke="#1e293b" stroke-width="2" />
+            <path
+              d="M 0 3 L 9 -7 L 20 -7 L 24 3 M 9 -7 L 12 3 L 20 -7 M 20 -7 L 19 -12"
+              fill="none"
+              stroke="#0f766e"
+              stroke-width="2"
+            />
+            <circle cx="11" cy="-18" r="4" fill="#f59e0b" />
+          {:else}
+            <rect x="-4" y="-10" width="30" height="14" rx="4" fill="#e11d48" />
+            <rect x="2" y="-17" width="16" height="9" rx="2" fill="#e11d48" />
+            <circle cx="4" cy="5" r="4" fill="#1e293b" />
+            <circle cx="20" cy="5" r="4" fill="#1e293b" />
+          {/if}
         </g>
         <path
           d="M 74 38 L 120 38 M 112 32 L 120 38 L 112 44"
