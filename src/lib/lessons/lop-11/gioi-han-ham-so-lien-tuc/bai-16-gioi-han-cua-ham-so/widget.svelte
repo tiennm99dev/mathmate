@@ -33,7 +33,7 @@
   const rows = $derived(approach(c.f, c.x0, TABLE_STEPS));
 
   const label = $derived(
-    `Đồ thị hàm số ${c.label} gần x₀ = ${formatNumber(c.x0)}${zoom ? ', đã phóng to' : ''}. Điểm xanh tại x = ${formatNumber(xl)} có giá trị ${valueCell(yl)}; điểm cam tại x = ${formatNumber(xr)} có giá trị ${valueCell(yr)}.`,
+    `Đồ thị ${c.name ?? `hàm số f(x) = ${c.label}`} gần x₀ = ${formatNumber(c.x0)}${zoom ? ', đã phóng to' : ''}. Điểm xanh tại x = ${formatNumber(xl)} có giá trị ${valueCell(yl)}; điểm cam tại x = ${formatNumber(xr)} có giá trị ${valueCell(yr)}.`,
   );
   /** @param {number} y */
   const valTex = (y) => (Number.isFinite(y) ? numTex(y, 4) : '\\text{không xác định}');

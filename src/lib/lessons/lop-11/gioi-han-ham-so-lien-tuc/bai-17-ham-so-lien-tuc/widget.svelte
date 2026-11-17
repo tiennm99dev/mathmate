@@ -26,7 +26,8 @@
   const ok = $derived(isContinuous(fam, m));
   const win = $derived(fam.view);
   const end = $derived(penX ?? win.xMax);
-  const lifted = $derived(!ok && end > fam.x0);
+  // The pen has lifted once it has passed a break; before it starts, nothing has lifted.
+  const lifted = $derived(penX !== null && !ok && end > fam.x0);
 
   const dots = $derived.by(() => {
     const out = [];

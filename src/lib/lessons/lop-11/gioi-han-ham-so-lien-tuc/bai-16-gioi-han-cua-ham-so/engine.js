@@ -13,6 +13,7 @@ import { zoomAround } from '../_shared/plot.js';
  * @typedef {object} LimitCase
  * @property {string} id
  * @property {string} label plain text for the switch
+ * @property {string} [name] how the graph's spoken label names the function, when the label is not a formula
  * @property {string} tex the formula, as TeX
  * @property {number} x0
  * @property {(x: number) => number} f NaN where undefined
@@ -54,6 +55,7 @@ export const CASES = [
   {
     id: 'jump',
     label: 'Hàm số cho bởi hai công thức',
+    name: 'hàm số cho bởi hai công thức',
     tex: 'f(x) = \\begin{cases} x + 1 & \\text{nếu } x < 1 \\\\ 4 - x & \\text{nếu } x \\ge 1 \\end{cases}',
     x0: 1,
     f: (x) => (x < 1 ? x + 1 : 4 - x),
