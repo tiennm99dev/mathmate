@@ -127,7 +127,9 @@ export const gtlnGtnn = {
         `$${derivativeTex(c)}$; $y' = 0 \\iff x = ${c.p}$ hoặc $x = ${c.q}$.`,
         inside.length === 2
           ? `Cả hai nghiệm đều thuộc khoảng $(${lo}; ${hi})$.`
-          : `Trong khoảng $(${lo}; ${hi})$ chỉ có nghiệm $x = ${inside[0]}$.`,
+          : inside.length === 1
+            ? `Trong khoảng $(${lo}; ${hi})$ chỉ có nghiệm $x = ${inside[0]}$.`
+            : `Khoảng $(${lo}; ${hi})$ không chứa nghiệm nào: hai nghiệm chính là hai đầu mút.`,
         `${values}.`,
         `Giá trị ${word} là $${answer}$.`,
       ],
@@ -214,7 +216,7 @@ export const khaoSat = {
             ? `Đường thẳng $y = ${m}$ đi qua một điểm cực trị: nó tiếp xúc với đồ thị tại đó và cắt đồ thị tại một điểm nữa.`
             : `$${m}$ nằm ngoài đoạn $[${c.yMin}; ${c.yMax}]$ nên đường thẳng $y = ${m}$ cắt đồ thị tại đúng một điểm.`;
       return {
-        prompt: `Phương trình $${polyTex(c.coefs)} = ${m}$ có bao nhiêu nghiệm thực?`,
+        prompt: `Phương trình $${polyTex(c.coefs)} = ${m}$ có bao nhiêu nghiệm thực phân biệt?`,
         answer: count,
         hints: [
           `Số nghiệm bằng số giao điểm của đồ thị $y = ${polyTex(c.coefs)}$ với đường thẳng $y = ${m}$.`,

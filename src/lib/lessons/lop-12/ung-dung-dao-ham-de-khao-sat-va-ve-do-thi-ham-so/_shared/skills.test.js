@@ -185,6 +185,17 @@ describe('chapter review skills', () => {
     expect(bad.slice(0, 5)).toEqual([]);
   });
 
+  it('writes steps with no missing values', () => {
+    const bad = [];
+    for (const skill of CHAPTER_SKILLS) {
+      for (const q of sample(skill, 1000)) {
+        const text = [q.prompt, ...q.steps, ...(q.hints ?? [])].join(' ');
+        if (/undefined|NaN|Infinity/.test(text)) bad.push(text);
+      }
+    }
+    expect(bad.slice(0, 3)).toEqual([]);
+  });
+
   it('draws every kind of question', () => {
     const prompts = CHAPTER_SKILLS.flatMap((s) => sample(s, 80).map((q) => q.prompt)).join('\n');
     for (const bit of [
