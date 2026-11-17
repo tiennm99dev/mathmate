@@ -1,11 +1,11 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Các quy tắc tính đạo hàm: đạo hàm của các hàm số sơ cấp cơ bản (luỹ thừa, căn, lượng giác, mũ, logarit), đạo hàm của tổng, hiệu, tích, thương và đạo hàm của hàm hợp.',
+    'Các quy tắc tính đạo hàm: đạo hàm của các hàm số sơ cấp cơ bản (luỹ thừa, căn, lượng giác, mũ, lôgarit), đạo hàm của tổng, hiệu, tích, thương và đạo hàm của hàm hợp.',
   intro:
     'Tính đạo hàm bằng định nghĩa nghĩa là mỗi lần lại lập tỉ số và tìm giới hạn, rất dài khi hàm số phức tạp như $y = \\dfrac{2x - 1}{x + 1}$ hay $y = \\left(x^2 + x\\right)^8$. Bài này xây dựng một bảng đạo hàm của các hàm số cơ bản và các quy tắc để ghép chúng lại, nhờ đó ta tính được đạo hàm của hầu hết các hàm số thường gặp chỉ bằng vài bước.',
   objectives: [
-    'Nhớ đạo hàm của các hàm số $y = x^n$, $y = \\sqrt{x}$, các hàm số lượng giác, hàm số mũ và hàm số logarit.',
+    'Nhớ đạo hàm của các hàm số $y = x^n$, $y = \\sqrt{x}$, các hàm số lượng giác, hàm số mũ và hàm số lôgarit.',
     'Tính đạo hàm của tổng, hiệu, tích, thương các hàm số.',
     'Nhận biết hàm hợp và tính đạo hàm của hàm hợp.',
   ],
@@ -34,7 +34,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Định lí',
-          text: "Giả sử $u = u(x)$, $v = v(x)$ là các hàm số có đạo hàm tại điểm $x$ thuộc khoảng xác định. Ta có: $$(u + v)' = u' + v'; \\quad (u - v)' = u' - v'; \\quad (uv)' = u'v + uv';$$ $$\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2} \\quad (v = v(x) \\ne 0).$$",
+          text: "Giả sử $u = u(x)$, $v = v(x)$ là các hàm số có đạo hàm tại điểm $x$ thuộc khoảng xác định. Ta có: $$(u + v)' = u' + v'; \\quad (u - v)' = u' - v';$$ $$(uv)' = u'v + uv';$$ $$\\left(\\dfrac{u}{v}\\right)' = \\dfrac{u'v - uv'}{v^2} \\quad (v = v(x) \\ne 0).$$",
         },
         {
           type: 'callout',
@@ -99,7 +99,7 @@ export default {
       ],
     },
     {
-      heading: 'Đạo hàm của hàm số mũ và hàm số logarit',
+      heading: 'Đạo hàm của hàm số mũ và hàm số lôgarit',
       blocks: [
         {
           type: 'p',

@@ -46,7 +46,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Chú ý',
-          text: "Đặt $h = x - x_0$ (hay $\\Delta x = x - x_0$, số gia của biến số) và $\\Delta y = f(x_0 + \\Delta x) - f(x_0)$ (số gia của hàm số). Khi đó $$f'(x_0) = \\lim\\limits_{h \\to 0} \\dfrac{f(x_0 + h) - f(x_0)}{h} = \\lim\\limits_{\\Delta x \\to 0} \\dfrac{\\Delta y}{\\Delta x}.$$",
+          text: "Đặt $h = x - x_0$ (hay $\\Delta x = x - x_0$, số gia của biến số) và $\\Delta y = f(x_0 + \\Delta x) - f(x_0)$ (số gia của hàm số). Khi đó $$f'(x_0) = \\lim\\limits_{h \\to 0} \\dfrac{f(x_0 + h) - f(x_0)}{h},$$ hay $$f'(x_0) = \\lim\\limits_{\\Delta x \\to 0} \\dfrac{\\Delta y}{\\Delta x}.$$",
         },
         {
           type: 'list',
@@ -89,7 +89,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Ý nghĩa hình học',
-          text: "Hệ số góc của tiếp tuyến của đồ thị hàm số $y = f(x)$ tại điểm $M_0(x_0; f(x_0))$ là đạo hàm $f'(x_0)$. Phương trình tiếp tuyến đó là $$y - y_0 = f'(x_0)(x - x_0), \\quad \\text{trong đó } y_0 = f(x_0).$$",
+          text: "Hệ số góc của tiếp tuyến của đồ thị hàm số $y = f(x)$ tại điểm $M_0(x_0; f(x_0))$ là đạo hàm $f'(x_0)$. Phương trình tiếp tuyến đó là $$y - y_0 = f'(x_0)(x - x_0),$$ trong đó $y_0 = f(x_0)$.",
         },
         {
           type: 'p',

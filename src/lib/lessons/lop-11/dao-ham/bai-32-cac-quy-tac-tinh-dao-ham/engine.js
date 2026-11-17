@@ -550,14 +550,14 @@ export const PRESETS = [
   },
   {
     id: 'exp',
-    label: 'Mũ nhân logarit',
+    label: 'Mũ nhân lôgarit',
     expr: mul(fn('exp', kx(2)), fn('ln', X)),
     final: '2e^{2x}\\ln x + \\dfrac{e^{2x}}{x}',
     check: (x) => 2 * Math.exp(2 * x) * Math.log(x) + Math.exp(2 * x) / x,
   },
   {
     id: 'log',
-    label: 'Logarit của u',
+    label: 'Lôgarit của u',
     expr: log(2, add(add(pow(X, 2), kx(2)), num(3))),
     final: '\\dfrac{2x + 2}{(x^2 + 2x + 3)\\ln 2}',
     check: (x) => (2 * x + 2) / ((x * x + 2 * x + 3) * Math.log(2)),

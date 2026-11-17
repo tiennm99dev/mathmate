@@ -31,7 +31,7 @@ export default {
               "$(x^n)' = nx^{n-1}$, $(\\sqrt{x})' = \\dfrac{1}{2\\sqrt{x}}$, $(\\sin x)' = \\cos x$, $(\\cos x)' = -\\sin x$, $(\\tan x)' = \\dfrac{1}{\\cos^2 x}$, $(\\cot x)' = -\\dfrac{1}{\\sin^2 x}$",
             ],
             [
-              'Hàm số mũ, logarit',
+              'Hàm số mũ, lôgarit',
               "$(e^x)' = e^x$, $(a^x)' = a^x \\ln a$, $(\\ln x)' = \\dfrac{1}{x}$, $(\\log_a x)' = \\dfrac{1}{x \\ln a}$",
             ],
             [
