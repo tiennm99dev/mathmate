@@ -2,7 +2,7 @@
   import Frac from '#lib/core/frac.svelte';
   import { passFocus } from '#lib/core/kid/pass-focus.js';
   import { button } from '#lib/core/ui.js';
-  import FractionNote from '../_shared/fraction-note.svelte';
+  import FractionNote from '#lib/core/kid/fraction-note.svelte';
   import { TASKS, divideNote, flipOptions, measureOf, optionWords, stripLabel } from './engine.js';
 
   const W = 400;

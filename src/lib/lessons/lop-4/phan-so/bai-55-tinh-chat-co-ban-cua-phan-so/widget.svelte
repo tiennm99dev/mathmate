@@ -2,7 +2,7 @@
   import Frac from '#lib/core/frac.svelte';
   import { button } from '#lib/core/ui.js';
   import FractionBars from '#lib/core/visuals/fraction-bars.svelte';
-  import FractionNote from '../_shared/fraction-note.svelte';
+  import FractionNote from '#lib/core/kid/fraction-note.svelte';
   import { TASKS, cutFraction, cutNote, maxCut, startCut } from './engine.js';
 
   let index = $state(0);

@@ -448,6 +448,12 @@ Other shared pieces:
     vạch", `countBy`, `totalOf`, `extremes`) and the tally strokes, read one
     word per stroke until `settled`. `chance.js`: the book's three words
     (`CHANCES`) and `wordOf(outcomes, holds)`.
+  - `fractions.js` with `fraction-note.svelte`: grade 4-5 fractions on
+    `{ n, d }`: `fracTex`, `fracRich`, `fracText`, `fracWords` ("ba phần tư")
+    and `denominatorWords` (a denominator of 1 collapses unless `{ keepOne:
+    true }`), `reduce`, `sameValue` and `add`/`sub`/`mul`/`div` in lowest
+    terms; `fraction-note` is the big live sentence with inline TeX under a
+    fraction widget. A chapter keeps only its own writers.
   - `decimals.js`: grade 5 decimals kept exact: `partsOf`, `toScaled`,
     `decText`, `trimZeros`, `placesText`, `readScaled` ("hai phẩy bốn mươi
     bảy"), `num` (a computed value written the book's way), `DECIMAL_PLACES`

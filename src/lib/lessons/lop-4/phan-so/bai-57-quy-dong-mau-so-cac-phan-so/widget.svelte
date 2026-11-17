@@ -4,7 +4,7 @@
   import CountStepper from '#lib/core/kid/count-stepper.svelte';
   import { button } from '#lib/core/ui.js';
   import FractionBars from '#lib/core/visuals/fraction-bars.svelte';
-  import FractionNote from '../_shared/fraction-note.svelte';
+  import FractionNote from '#lib/core/kid/fraction-note.svelte';
   import { TASKS, commonNote, cutTex, isGivenCommon, maxCut } from './engine.js';
 
   let index = $state(0);

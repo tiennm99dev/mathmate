@@ -5,51 +5,11 @@
  * denominator when it is a multiple of the other one, as the book does.
  * Pure and DOM-free.
  */
-import { readWhole } from '#lib/core/kid/whole-numbers.js';
-import { gcd } from '#lib/numtheory-engine/index.js';
+import { fracRich, fracTex, fracText, fracWords, reduce } from '#lib/core/kid/fractions.js';
+
+export { fracRich, fracTex, fracText, fracWords, reduce };
 
 /** @typedef {{ n: number, d: number }} Frac */
-
-/**
- * TeX of a fraction, without dollars: '\dfrac{3}{4}'; a whole number when
- * the denominator is 1.
- * @param {number} n
- * @param {number} d
- */
-export const fracTex = (n, d) => (d === 1 ? `${n}` : `\\dfrac{${n}}{${d}}`);
-
-/**
- * Inline rich text of a fraction: '$\dfrac{3}{4}$'.
- * @param {number} n
- * @param {number} d
- */
-export const fracRich = (n, d) => `$${fracTex(n, d)}$`;
-
-/**
- * Plain text of a fraction, for kid prompts and feedback: '3/4', or '2'.
- * @param {number} n
- * @param {number} d
- */
-export const fracText = (n, d) => (d === 1 ? `${n}` : `${n}/${d}`);
-
-/**
- * How the book reads a fraction: 5/6 is "năm phần sáu", 3/4 "ba phần tư".
- * @param {number} n
- * @param {number} d
- */
-export const fracWords = (n, d) =>
-  d === 1 ? readWhole(n) : `${readWhole(n)} phần ${d === 4 ? 'tư' : readWhole(d)}`;
-
-/**
- * The fraction in lowest terms.
- * @param {number} n
- * @param {number} d
- * @returns {Frac}
- */
-export function reduce(n, d) {
-  const g = gcd(n, d) || 1;
-  return { n: n / g, d: d / g };
-}
 
 /**
  * The common denominator the grade 4 book uses for two denominators: the

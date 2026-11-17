@@ -5,42 +5,26 @@
  * a child makes. Pure and DOM-free.
  */
 import { int, shuffle } from '#lib/core/drill.js';
-import { readWhole } from '#lib/core/kid/whole-numbers.js';
-import { fmt } from '#lib/core/number-format.js';
 import { gcd } from '#lib/numtheory-engine/index.js';
+import * as kid from '#lib/core/kid/fractions.js';
+import { sameValue } from '#lib/core/kid/fractions.js';
 
-/** @typedef {import('./visual.js').Frac} Frac */
+export { add, div, mul, reduce, sub } from '#lib/core/kid/fractions.js';
+export { sameValue };
 
 /**
  * Plain text of a fraction: '3/4', or '2' when the denominator is 1.
  * @param {Frac} f
  */
-export const fracText = (f) => (f.d === 1 ? fmt(f.n) : `${f.n}/${f.d}`);
+export const fracText = (f) => kid.fracText(f.n, f.d);
 
 /**
  * How the book reads a fraction: 5/6 is "năm phần sáu", 3/4 "ba phần tư".
  * @param {Frac} f
  */
-export const fracWords = (f) =>
-  f.d === 1 ? readWhole(f.n) : `${readWhole(f.n)} phần ${f.d === 4 ? 'tư' : readWhole(f.d)}`;
+export const fracWords = (f) => kid.fracWords(f.n, f.d);
 
-/**
- * The fraction in lowest terms.
- * @param {number} n
- * @param {number} d
- * @returns {Frac}
- */
-export function reduce(n, d) {
-  const g = gcd(n, d) || 1;
-  return { n: n / g, d: d / g };
-}
-
-/**
- * Whether two fractions have the same value.
- * @param {Frac} f
- * @param {Frac} g
- */
-export const sameValue = (f, g) => f.n * g.d === g.n * f.d;
+/** @typedef {import('./visual.js').Frac} Frac */
 
 /**
  * The sign between two fractions.
@@ -53,28 +37,6 @@ export function fracSign(f, g) {
   const r = g.n * f.d;
   return l < r ? '<' : l > r ? '>' : '=';
 }
-
-/**
- * f + g, f − g, f × g and f : g in lowest terms.
- * @param {Frac} f
- * @param {Frac} g
- */
-export const add = (f, g) => reduce(f.n * g.d + g.n * f.d, f.d * g.d);
-/**
- * @param {Frac} f
- * @param {Frac} g
- */
-export const sub = (f, g) => reduce(f.n * g.d - g.n * f.d, f.d * g.d);
-/**
- * @param {Frac} f
- * @param {Frac} g
- */
-export const mul = (f, g) => reduce(f.n * g.n, f.d * g.d);
-/**
- * @param {Frac} f
- * @param {Frac} g
- */
-export const div = (f, g) => reduce(f.n * g.d, f.d * g.n);
 
 /**
  * A fraction in lowest terms below 1, with a denominator from lo to hi.

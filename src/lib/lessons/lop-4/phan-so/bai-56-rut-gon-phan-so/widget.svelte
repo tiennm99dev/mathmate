@@ -2,7 +2,7 @@
   import Tex from '#lib/components/tex.svelte';
   import { button } from '#lib/core/ui.js';
   import FractionBars from '#lib/core/visuals/fraction-bars.svelte';
-  import FractionNote from '../_shared/fraction-note.svelte';
+  import FractionNote from '#lib/core/kid/fraction-note.svelte';
   import { TABLE_DIVISORS } from '../_shared/fractions.js';
   import {
     TASKS,

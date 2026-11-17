@@ -3,7 +3,7 @@
   import CountStepper from '#lib/core/kid/count-stepper.svelte';
   import Picture from '#lib/core/kid/picture.svelte';
   import { button } from '#lib/core/ui.js';
-  import FractionNote from '../_shared/fraction-note.svelte';
+  import FractionNote from '#lib/core/kid/fraction-note.svelte';
   import { MAX_GROUPS, TASKS, groupLabel, partNote, thing } from './engine.js';
 
   let index = $state(0);

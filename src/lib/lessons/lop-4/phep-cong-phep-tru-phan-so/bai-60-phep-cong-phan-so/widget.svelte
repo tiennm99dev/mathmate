@@ -3,7 +3,7 @@
   import Tex from '#lib/components/tex.svelte';
   import CountStepper from '#lib/core/kid/count-stepper.svelte';
   import { button } from '#lib/core/ui.js';
-  import FractionNote from '../_shared/fraction-note.svelte';
+  import FractionNote from '#lib/core/kid/fraction-note.svelte';
   import PieceStrip from '../_shared/piece-strip.svelte';
   import { scaleTex } from '../_shared/fractions.js';
   import { TASKS, cutState, maxCut, optionWords, sumNote, sumOptions } from './engine.js';

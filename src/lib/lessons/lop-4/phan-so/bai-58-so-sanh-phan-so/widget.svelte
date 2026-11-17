@@ -3,7 +3,7 @@
   import Tex from '#lib/components/tex.svelte';
   import { SIGNS, SIGN_WORDS } from '#lib/core/kid/numbers.js';
   import { button } from '#lib/core/ui.js';
-  import FractionNote from '../_shared/fraction-note.svelte';
+  import FractionNote from '#lib/core/kid/fraction-note.svelte';
   import FractionStrips from '../_shared/fraction-strips.svelte';
   import { KIND_TITLES, TASKS, compareNote, regroupTex, signOf, stripsOf } from './engine.js';
 

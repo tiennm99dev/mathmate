@@ -2,7 +2,7 @@
   import LiveRichText from '#lib/components/live-rich-text.svelte';
   import Frac from '#lib/core/frac.svelte';
   import { button } from '#lib/core/ui.js';
-  import FractionNote from '../_shared/fraction-note.svelte';
+  import FractionNote from '#lib/core/kid/fraction-note.svelte';
   import FractionShape from '../_shared/fraction-shape.svelte';
   import { SHAPE_NAMES, TASKS, askText, countOn, shadeNote, toggle } from './engine.js';
 

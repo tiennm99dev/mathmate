@@ -2,7 +2,7 @@
   import Frac from '#lib/core/frac.svelte';
   import CountStepper from '#lib/core/kid/count-stepper.svelte';
   import { button } from '#lib/core/ui.js';
-  import FractionNote from '../_shared/fraction-note.svelte';
+  import FractionNote from '#lib/core/kid/fraction-note.svelte';
   import {
     TASKS,
     cellKind,
