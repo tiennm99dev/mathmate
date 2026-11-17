@@ -33,7 +33,11 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Cách bỏ dấu giá trị tuyệt đối',
-          text: 'Giải phương trình $f(x) - g(x) = 0$ để tìm các nghiệm thuộc $(a; b)$, chẳng hạn $c$. Trên mỗi đoạn $[a; c]$, $[c; b]$ hiệu $f(x) - g(x)$ không đổi dấu, nên $$\\int_a^b |f(x) - g(x)|\\,\\mathrm{d}x = \\left|\\int_a^c [f(x) - g(x)]\\,\\mathrm{d}x\\right| + \\left|\\int_c^b [f(x) - g(x)]\\,\\mathrm{d}x\\right|.$$',
+          text: 'Giải phương trình $f(x) - g(x) = 0$ để tìm các nghiệm thuộc $(a; b)$, chẳng hạn $c$. Trên mỗi đoạn $[a; c]$, $[c; b]$ hiệu $f(x) - g(x)$ không đổi dấu, nên diện tích bằng tổng giá trị tuyệt đối của tích phân trên từng đoạn:',
+        },
+        {
+          type: 'tex',
+          tex: '\\int_a^b |f(x) - g(x)|\\,\\mathrm{d}x = \\left|\\int_a^c [f(x) - g(x)]\\,\\mathrm{d}x\\right| + \\left|\\int_c^b [f(x) - g(x)]\\,\\mathrm{d}x\\right|.',
         },
       ],
     },
@@ -233,9 +237,10 @@ export default {
       hints: [
         '$V = \\pi\\displaystyle\\int_0^{\\pi} \\sin^2 x\\,\\mathrm{d}x$.',
         'Hạ bậc: $\\sin^2 x = \\dfrac{1 - \\cos 2x}{2}$.',
+        "Vì $(\\sin 2x)' = 2\\cos 2x$ nên $\\dfrac{\\sin 2x}{2}$ là một nguyên hàm của $\\cos 2x$.",
       ],
       solution:
-        '$V = \\pi\\displaystyle\\int_0^{\\pi} \\dfrac{1 - \\cos 2x}{2}\\,\\mathrm{d}x = \\pi\\left(\\dfrac{x}{2} - \\dfrac{\\sin 2x}{4}\\right)\\Big|_0^{\\pi} = \\dfrac{\\pi^2}{2} \\approx 4{,}93$.',
+        "$V = \\pi\\displaystyle\\int_0^{\\pi} \\dfrac{1 - \\cos 2x}{2}\\,\\mathrm{d}x = \\pi\\left(\\dfrac{x}{2} - \\dfrac{\\sin 2x}{4}\\right)\\Big|_0^{\\pi} = \\dfrac{\\pi^2}{2} \\approx 4{,}93$ (kiểm tra: $\\left(\\dfrac{x}{2} - \\dfrac{\\sin 2x}{4}\\right)' = \\dfrac{1 - \\cos 2x}{2}$).",
     },
   ],
   takeaways: [

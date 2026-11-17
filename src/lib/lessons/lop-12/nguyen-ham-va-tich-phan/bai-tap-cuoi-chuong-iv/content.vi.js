@@ -204,9 +204,12 @@ export default {
         'Tính thể tích khối tròn xoay sinh ra khi quay hình phẳng giới hạn bởi đồ thị $y = e^x$, trục hoành và hai đường thẳng $x = 0$, $x = 1$ quanh trục $Ox$ (làm tròn đến hàng phần trăm).',
       answer: 10.04,
       tolerance: 0.005,
-      hints: ['$(e^x)^2 = e^{2x}$, và $\\int e^{2x}\\,\\mathrm{d}x = \\dfrac{e^{2x}}{2} + C$.'],
+      hints: [
+        '$(e^x)^2 = e^{2x} = (e^2)^x$.',
+        'Dùng $\\int a^x\\,\\mathrm{d}x = \\dfrac{a^x}{\\ln a} + C$ với $a = e^2$, $\\ln e^2 = 2$.',
+      ],
       solution:
-        '$V = \\pi\\displaystyle\\int_0^1 e^{2x}\\,\\mathrm{d}x = \\pi\\dfrac{e^{2x}}{2}\\Big|_0^1 = \\dfrac{\\pi(e^2 - 1)}{2} \\approx 10{,}04$.',
+        '$V = \\pi\\displaystyle\\int_0^1 (e^2)^x\\,\\mathrm{d}x = \\pi\\dfrac{(e^2)^x}{\\ln e^2}\\Big|_0^1 = \\pi\\dfrac{e^{2x}}{2}\\Big|_0^1 = \\dfrac{\\pi(e^2 - 1)}{2} \\approx 10{,}04$.',
     },
     {
       type: 'number',
