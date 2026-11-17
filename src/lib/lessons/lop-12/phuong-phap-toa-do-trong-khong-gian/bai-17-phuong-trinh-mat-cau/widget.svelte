@@ -89,9 +89,11 @@
   const lines = $derived([
     `$(S): ${sphereTex(centre, r * r)}$`,
     `Dạng khai triển: $${sphereExpandedTex(centre, r * r)}$.`,
-    ground
-      ? `Vùng phủ trên mặt đất là hình tròn bán kính $r = ${ground.tex}${Number.isInteger(ground.value) ? '' : ` \\approx ${numTex(ground.value, 2)}`}$ (km).`
-      : 'Mặt cầu không chạm mặt đất: trạm đặt quá cao so với bán kính phủ sóng.',
+    ground && ground.value === 0
+      ? 'Mặt cầu chỉ chạm mặt đất tại một điểm, ngay dưới trạm: $c = R$.'
+      : ground
+        ? `Vùng phủ trên mặt đất là hình tròn bán kính $r = ${ground.tex}${Number.isInteger(ground.value) ? '' : ` \\approx ${numTex(ground.value, 2)}`}$ (km).`
+        : 'Mặt cầu không chạm mặt đất: trạm đặt quá cao so với bán kính phủ sóng.',
     `Điểm $M_{${chosen + 1}}${coordTex(HOUSES[chosen])}$: $${distanceTex(centre, HOUSES[chosen])}$ ${pick.where === 'trong' ? '<' : pick.where === 'tren' ? '=' : '>'} $R^2 = ${r * r}$, nên $M_{${chosen + 1}}$ ${pick.where === 'trong' ? 'nằm trong mặt cầu, được phủ sóng' : pick.where === 'tren' ? 'nằm trên mặt cầu, vừa đủ được phủ sóng' : 'nằm ngoài mặt cầu, không được phủ sóng'}.`,
   ]);
 

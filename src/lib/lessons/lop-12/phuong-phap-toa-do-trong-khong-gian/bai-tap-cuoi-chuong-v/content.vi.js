@@ -91,14 +91,14 @@ export default {
     },
     {
       problem:
-        'Cho điểm $A(2; 3; 0)$ và mặt phẳng $(P): x + 2y - 2z + 1 = 0$. Viết phương trình đường thẳng $d$ đi qua $A$ và vuông góc với $(P)$; tìm hình chiếu vuông góc $H$ của $A$ trên $(P)$ và tính $d(A, (P))$.',
+        'Cho điểm $A(2; 3; 0)$ và mặt phẳng $(P): x + 2y - 2z + 1 = 0$. Viết phương trình đường thẳng $\\Delta$ đi qua $A$ và vuông góc với $(P)$; tìm hình chiếu vuông góc $H$ của $A$ trên $(P)$ và tính $d(A, (P))$.',
       steps: [
-        '$d$ nhận $\\vec{n} = (1; 2; -2)$ làm vectơ chỉ phương: $x = 2 + t$, $y = 3 + 2t$, $z = -2t$.',
+        '$\\Delta$ nhận $\\vec{n} = (1; 2; -2)$ làm vectơ chỉ phương: $x = 2 + t$, $y = 3 + 2t$, $z = -2t$.',
         'Thay vào $(P)$: $(2 + t) + 2(3 + 2t) - 2(-2t) + 1 = 9t + 9 = 0$, nên $t = -1$ và $H(1; 1; 2)$.',
         '$d(A, (P)) = \\dfrac{|2 + 6 - 0 + 1|}{\\sqrt{1 + 4 + 4}} = \\dfrac{9}{3} = 3$; kiểm tra: $AH = \\sqrt{1 + 4 + 4} = 3$.',
       ],
       answer:
-        '$d: \\begin{cases} x = 2 + t \\\\ y = 3 + 2t \\\\ z = -2t \\end{cases}$, $H(1; 1; 2)$, $d(A, (P)) = 3$.',
+        '$\\Delta: \\begin{cases} x = 2 + t \\\\ y = 3 + 2t \\\\ z = -2t \\end{cases}$, $H(1; 1; 2)$, $d(A, (P)) = 3$.',
     },
     {
       problem:
