@@ -59,14 +59,24 @@ export const BY_ANGLE = (() => {
   return groups;
 })();
 
+/** How often a question is a pair of parallel lines, which need no moving. */
+export const PARALLEL_SHARE = 0.1;
+
 /**
- * A question: a pair of lines, the four angles drawn about equally often and
- * mostly skew lines, since those are the ones that need moving.
+ * A question: a pair of lines, mostly skew lines at 45°, 60° or 90°, since
+ * those are the ones that need moving, and now and then a parallel pair.
  * @param {() => number} rand
+ * @param {{ parallel?: boolean }} [options] `parallel: false` never draws a parallel pair
  * @returns {[Seg, Seg]}
  */
-export function makePair(rand) {
-  const angle = pick(rand, ANGLES);
+export function makePair(rand, { parallel = true } = {}) {
+  const angle =
+    parallel && rand() < PARALLEL_SHARE
+      ? 0
+      : pick(
+          rand,
+          ANGLES.filter((a) => a !== 0),
+        );
   const all = BY_ANGLE[angle];
   const skew = all.filter(([s, t]) => relation(s, t) === 'cheo');
   const pool = skew.length && rand() < 0.75 ? skew : all;

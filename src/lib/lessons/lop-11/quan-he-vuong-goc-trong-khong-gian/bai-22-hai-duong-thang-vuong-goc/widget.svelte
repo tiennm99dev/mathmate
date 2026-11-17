@@ -32,7 +32,7 @@
   const MOVED = '#059669';
   const rand = rng(20231122);
 
-  let pair = $state(makePair(rand));
+  let pair = $state(makePair(rand, { parallel: false }));
   let moved = $state(false);
   /** @type {number | null} */
   let chosen = $state(null);

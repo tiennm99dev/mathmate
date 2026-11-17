@@ -47,7 +47,21 @@ describe('angles between lines of a cube', () => {
   it('draws questions of all four angles', () => {
     const rand = rng(11);
     const seen = new Set();
-    for (let i = 0; i < 40; i++) seen.add(angleOf(...makePair(rand)));
+    let parallel = 0;
+    for (let i = 0; i < 200; i++) {
+      const angle = angleOf(...makePair(rand));
+      seen.add(angle);
+      if (angle === 0) parallel += 1;
+    }
     expect([...seen].sort((a, b) => a - b)).toEqual(ANGLES);
+    expect(parallel).toBeLessThan(40);
+  });
+
+  it('can leave out parallel pairs, for the first question', () => {
+    const rand = rng(3);
+    const angles = Array.from({ length: 50 }, () =>
+      angleOf(...makePair(rand, { parallel: false })),
+    );
+    expect(angles).not.toContain(0);
   });
 });

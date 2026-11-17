@@ -14,7 +14,8 @@ describe('the dihedral angle of an open book', () => {
     // cos xOy = cos²α + sin²α cos φ: α = 45°, φ = 90° gives cos xOy = 1/2.
     expect(rayAngle(90, 45)).toBeCloseTo(60);
     expect(verdict(90, 45).tone).toBe('warn');
-    expect(verdict(90, 45).text).toContain('\\approx 60^\\circ');
+    expect(verdict(90, 45).text).toContain('\\widehat{xOy} = 60^\\circ');
+    expect(verdict(70, 60).text).toContain('\\widehat{xOy} \\approx');
   });
 
   it('names the kind of dihedral angle and the angle between the planes', () => {

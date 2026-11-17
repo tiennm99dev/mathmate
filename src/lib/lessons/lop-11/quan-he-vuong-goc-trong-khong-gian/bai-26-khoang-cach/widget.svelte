@@ -77,7 +77,7 @@
       to: 'N',
       color: s.least ? MN_ON : MN_OFF,
       width: s.least ? 3.4 : 2.2,
-      dash: false,
+      dash: /** @type {const} */ ('auto'),
     },
   ]);
 

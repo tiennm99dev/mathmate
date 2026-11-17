@@ -76,8 +76,9 @@ export function verdict(open, slant) {
     };
   }
   const xoy = rayAngle(open, slant);
+  const sign = Math.abs(xoy - Math.round(xoy * 10) / 10) < 1e-9 ? '=' : '\\approx';
   return {
     tone: 'warn',
-    text: `$Ox$, $Oy$ tạo với gáy $a$ góc $${slant}^\\circ$, không vuông góc với $a$, nên $\\widehat{xOy} \\approx ${texDeg(xoy)}$ không phải góc phẳng nhị diện. Số đo góc nhị diện vẫn là $${texDeg(open)}$.`,
+    text: `$Ox$, $Oy$ tạo với gáy $a$ góc $${slant}^\\circ$, không vuông góc với $a$, nên $\\widehat{xOy} ${sign} ${texDeg(xoy)}$ không phải góc phẳng nhị diện. Số đo góc nhị diện vẫn là $${texDeg(open)}$.`,
   };
 }
