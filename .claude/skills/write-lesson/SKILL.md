@@ -283,7 +283,9 @@ Other shared pieces:
   add up (four angles to 360°, shares to 100%). In generated TeX write numbers
   with `numTex` (`12\,345{,}5`: thin-space thousands, braced comma, ASCII
   minus), never `formatNumber` with a comma swap, and durations with
-  `hoursText` (`$1$ giờ $12$ phút`). `tidy(v, places = 9)` rounds away binary
+  `hoursText` (`$1$ giờ $12$ phút`), and powers of ten with `sciText`
+  (`3,6·10⁻³`), `sciTex` (`3{,}6 \cdot 10^{-3}`) and `sciParts`; never copy
+  a scientific-notation writer into a lesson. `tidy(v, places = 9)` rounds away binary
   noise (0.1 + 0.2) before comparing or writing a computed value.
 - `#lib/core/fractions.js`: `fracText` (`−3/4`), `fracOperand`, `mixedText`
   (`1 3/4`), `texFrac`, `texOperand`, `toFraction`, `valueText`,
