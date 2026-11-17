@@ -4,6 +4,7 @@ import { optionText } from '#lib/core/kid/quiz.js';
 import { AREA_SKILLS, PI } from './area-skills.js';
 import { DECIMAL_SKILLS, comparePair, roundScaled } from './decimal-skills.js';
 import { num, placesText, readDecimal, valueOptions } from './decimals.js';
+import { GENERAL_SKILLS, mixedSkill } from './general-skills.js';
 import { HEIGHT_POINTS, MEASURED, SHAPE_POINTS } from './figures.js';
 import { AREA, LENGTH, MASS, MEASURE_SKILLS, convertQuestion, ratio } from './measure-skills.js';
 import { OPERATION_SKILLS, misaligned } from './operation-skills.js';
@@ -11,7 +12,14 @@ import { SHAPE_SKILLS } from './shape-skills.js';
 
 /** @typedef {import('./visual.js').ReviewQuestion} Question */
 
-const SETS = [DECIMAL_SKILLS, OPERATION_SKILLS, SHAPE_SKILLS, AREA_SKILLS, MEASURE_SKILLS];
+const SETS = [
+  DECIMAL_SKILLS,
+  OPERATION_SKILLS,
+  SHAPE_SKILLS,
+  AREA_SKILLS,
+  MEASURE_SKILLS,
+  GENERAL_SKILLS,
+];
 
 /** @param {Question} q */
 const rightText = (q) => optionText(q.options[q.answer]);
@@ -221,5 +229,25 @@ describe('figures', () => {
       ...Object.values(MEASURED).flatMap((s) => [...s.pts, ...s.labelAt]),
     ];
     expect(pts.filter((p) => p.x < 0 || p.x > 240 || p.y < 0 || p.y > 170)).toEqual([]);
+  });
+});
+
+describe('the general review', () => {
+  it('writes mixed numbers and fractions with the right value', () => {
+    const bad = [];
+    for (let seed = 1; seed <= 200; seed++) {
+      const q = mixedSkill.make(rng(seed));
+      const right = rightText(q);
+      const mixed = /Hỗn số (\d+) (\d+)\/(\d+)/.exec(q.prompt);
+      const frac = /Phân số (\d+)\/(\d+)/.exec(q.prompt.replace(/\u202f/g, ''));
+      if (mixed) {
+        const [w, a, b] = mixed.slice(1).map(Number);
+        if (right !== `${w * b + a}/${b}`) bad.push([q.prompt, right]);
+      } else if (frac) {
+        const value = Number(frac[1]) / Number(frac[2]);
+        if (Math.abs(firstValue(right) - value) > 1e-9) bad.push([q.prompt, right]);
+      } else bad.push(['prompt', q.prompt]);
+    }
+    expect(bad).toEqual([]);
   });
 });
