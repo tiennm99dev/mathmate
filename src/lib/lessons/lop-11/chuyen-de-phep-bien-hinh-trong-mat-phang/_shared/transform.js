@@ -193,3 +193,45 @@ export function lineTex({ a, b, c }) {
   const head = term(a, 'x', true) + term(b, 'y', a === 0);
   return `${head}${term(c, '', a === 0 && b === 0)} = 0`;
 }
+
+/**
+ * The image of `p` under the homothety (phép vị tự) with centre `c` and ratio
+ * `k` ≠ 0: the vector from c to the image is k times the vector from c to p.
+ * @param {Pt} p @param {Pt} c @param {number} k @returns {Pt}
+ */
+export function homothety(p, c, k) {
+  return { x: tidy(c.x + k * (p.x - c.x)), y: tidy(c.y + k * (p.y - c.y)) };
+}
+
+/**
+ * A ratio as a whole number or a fraction with denominator up to 12, sign on
+ * the numerator: [1, 2] for 0.5, [-3, 1] for −3.
+ * @param {number} k @returns {[number, number]}
+ */
+function ratioParts(k) {
+  for (let d = 1; d <= 12; d++) {
+    const n = Math.round(k * d);
+    if (Math.abs(k * d - n) < 1e-9) return [n, d];
+  }
+  return [k, 1];
+}
+
+/**
+ * A ratio as TeX, a fraction when it is not whole: '2', '-\frac{1}{2}'.
+ * @param {number} k
+ */
+export function ratioTex(k) {
+  const [n, d] = ratioParts(k);
+  if (d === 1) return numTex(tidy(n, 6));
+  return `${n < 0 ? '-' : ''}\\frac{${Math.abs(n)}}{${d}}`;
+}
+
+/**
+ * A ratio as plain text with the book's minus: '2', '−1/2'.
+ * @param {number} k
+ */
+export function ratioText(k) {
+  const [n, d] = ratioParts(k);
+  if (d === 1) return numText(n);
+  return `${n < 0 ? MINUS : ''}${Math.abs(n)}/${d}`;
+}

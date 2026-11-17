@@ -2,10 +2,13 @@ import { describe, expect, it } from 'vitest';
 import {
   clipLine,
   halfTurn,
+  homothety,
   isLattice,
   lineTex,
   ptTex,
   ptText,
+  ratioTex,
+  ratioText,
   reflect,
   rotate,
   sameFigure,
@@ -71,5 +74,23 @@ describe('writing points and lines', () => {
     expect(clipLine({ a: 0, b: 1, c: -2 }, box)).toEqual([p(-6, 2), p(6, 2)]);
     expect(clipLine({ a: 1, b: -1, c: 0 }, box)).toEqual([p(-6, -6), p(6, 6)]);
     expect(clipLine({ a: 1, b: 0, c: -10 }, box)).toBeNull();
+  });
+
+  it('scales from a centre by a signed ratio', () => {
+    expect(homothety(p(3, 1), p(0, 0), 2)).toEqual(p(6, 2));
+    expect(homothety(p(3, 1), p(1, 1), -1)).toEqual(p(-1, 1));
+    expect(homothety(p(4, 3), p(2, 1), 0.5)).toEqual(p(3, 2));
+    expect(homothety(p(4, 3), p(2, 1), 1)).toEqual(p(4, 3));
+  });
+
+  it('writes a ratio as a whole number or a fraction', () => {
+    expect([2, -3, 0.5, -0.5, 1.5].map(ratioTex)).toEqual([
+      '2',
+      '-3',
+      '\\frac{1}{2}',
+      '-\\frac{1}{2}',
+      '\\frac{3}{2}',
+    ]);
+    expect([2, -0.5, 1 / 3].map(ratioText)).toEqual(['2', '\u22121/2', '1/3']);
   });
 });
