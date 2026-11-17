@@ -15,7 +15,7 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Cả lớp dọn dẹp phòng học. Mỗi bạn gieo xúc xắc 1 lần, mặt xúc xắc cho biết bạn vào nhóm nào. Lớp ghi lại số bạn mỗi nhóm vào bảng.',
+          text: 'Cả lớp dọn dẹp phòng học. Mỗi bạn gieo xúc xắc 1 lần, mặt xúc xắc cho biết bạn vào nhóm nào. Lớp ghi lại số bạn mỗi nhóm vào bảng. Em xem bảng này trong phiếu "Gieo xúc xắc chia nhóm" ở đầu trang.',
         },
         {
           type: 'p',
@@ -78,6 +78,7 @@ export default {
           type: 'p',
           text: 'Mục tiêu: tìm hiểu điều các bạn trong lớp nhớ nhất ở trường tiểu học (hoặc một câu hỏi em chọn).',
         },
+        { type: 'p', text: 'Chuẩn bị:' },
         {
           type: 'list',
           items: [
@@ -86,6 +87,7 @@ export default {
             'Thước kẻ.',
           ],
         },
+        { type: 'p', text: 'Các bước:' },
         {
           type: 'list',
           ordered: true,

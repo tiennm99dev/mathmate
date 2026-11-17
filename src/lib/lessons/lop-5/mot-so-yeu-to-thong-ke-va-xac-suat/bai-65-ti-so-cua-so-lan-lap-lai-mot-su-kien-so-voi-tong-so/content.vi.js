@@ -170,11 +170,14 @@ export default {
     {
       type: 'number',
       prompt:
-        'Việt tung đồng xu nhiều lần. Tỉ số mô tả số lần xuất hiện mặt sấp so với tổng số lần tung là $\\dfrac{7}{20}$. Có bao nhiêu lần xuất hiện mặt ngửa?',
+        'Việt tung đồng xu 20 lần. Tỉ số mô tả số lần xuất hiện mặt sấp so với tổng số lần tung là $\\dfrac{7}{20}$. Có bao nhiêu lần xuất hiện mặt ngửa?',
       answer: 13,
       unit: 'lần',
-      hints: ['Mẫu số 20 là tổng số lần tung, tử số 7 là số lần mặt sấp.'],
-      solution: 'Việt tung 20 lần, có 7 lần mặt sấp. Số lần mặt ngửa: 20 − 7 = 13 (lần).',
+      hints: [
+        'Tử số 7 là số lần xuất hiện mặt sấp.',
+        'Lấy tổng số lần tung trừ đi số lần mặt sấp.',
+      ],
+      solution: 'Có 7 lần mặt sấp trong 20 lần tung. Số lần mặt ngửa: 20 − 7 = 13 (lần).',
     },
   ],
   takeaways: [
