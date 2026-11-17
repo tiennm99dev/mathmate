@@ -32,7 +32,7 @@
     max-width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
-    padding-block: 0.25rem;
+    padding-block: 0.5rem;
   }
 
   /* Scrolling boxes that `use:scrollRegions` puts in the tab order get the
