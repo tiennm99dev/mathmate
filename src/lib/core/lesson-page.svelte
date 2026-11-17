@@ -11,6 +11,7 @@
   import PrevNext from './prev-next.svelte';
   import KidLessonPage from './kid-lesson-page.svelte';
   import { crumbs } from './crumbs.js';
+  import { scrollRegions } from '#lib/actions/scroll-focus.js';
   import { KID_MAX_GRADE } from './content-schema.js';
   import { lesson as copy } from './copy.vi.js';
   import { card } from './ui.js';
@@ -37,7 +38,7 @@
   <SiteShell>
     <Breadcrumbs items={crumbs(grade, chapter, lesson)} />
 
-    <article class="space-y-8">
+    <article class="space-y-8" use:scrollRegions>
       <header>
         <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">
           {chapter.label} · {site.kinds[lesson.kind]}
