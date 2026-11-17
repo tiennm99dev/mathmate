@@ -204,14 +204,14 @@ export default {
     {
       type: 'number',
       prompt:
-        'Cân bằng phương trình $\\mathrm{C_8H_{18}} + \\mathrm{O_2} \\to \\mathrm{CO_2} + \\mathrm{H_2O}$ với các hệ số nguyên dương nhỏ nhất. Hệ số của $\\mathrm{O_2}$ là bao nhiêu?',
-      answer: 25,
+        'Cân bằng phương trình đốt cháy ethane $\\mathrm{C_2H_6} + \\mathrm{O_2} \\to \\mathrm{CO_2} + \\mathrm{H_2O}$ với các hệ số nguyên dương nhỏ nhất. Hệ số của $\\mathrm{O_2}$ là bao nhiêu?',
+      answer: 7,
       hints: [
-        'Chọn hệ số của $\\mathrm{C_8H_{18}}$ là $1$ rồi bảo toàn C, H, O.',
-        'Được hệ số của $\\mathrm{O_2}$ là $\\dfrac{25}{2}$: nhân tất cả với $2$.',
+        'Chọn hệ số của $\\mathrm{C_2H_6}$ là $1$ rồi bảo toàn C, H, O.',
+        'Được hệ số của $\\mathrm{O_2}$ là một phân số: nhân tất cả các hệ số với mẫu của nó.',
       ],
       solution:
-        'Với hệ số $\\mathrm{C_8H_{18}}$ bằng $1$: $z = 8$, $t = 9$, $y = \\dfrac{2 \\cdot 8 + 9}{2} = \\dfrac{25}{2}$. Nhân với $2$: $2\\mathrm{C_8H_{18}} + 25\\mathrm{O_2} \\to 16\\mathrm{CO_2} + 18\\mathrm{H_2O}$.',
+        'Với hệ số $\\mathrm{C_2H_6}$ bằng $1$: C cho $z = 2$, H cho $2t = 6$ nên $t = 3$, O cho $2y = 2z + t = 7$ nên $y = \\dfrac{7}{2}$. Nhân với $2$: $2\\mathrm{C_2H_6} + 7\\mathrm{O_2} \\to 4\\mathrm{CO_2} + 6\\mathrm{H_2O}$.',
     },
     {
       type: 'number',

@@ -116,13 +116,32 @@ describe('Gauss elimination', () => {
     expect(classify(none).kind).toBe('none');
     const inf = classify(infinite);
     expect(inf.kind).toBe('infinite');
-    expect(generalTex(inf)).toBe('(-1 + z; 3 - 2z; z)');
+    expect(generalTex(inf)).toBe('(z - 1; 3 - 2z; z)');
+    const same = classify(
+      systemOf([
+        [1, -1, 1, 1],
+        [2, 1, -1, 2],
+        [4, -1, 1, 4],
+      ]),
+    );
+    expect(generalTex(same)).toBe('(1; z; z)');
   });
 
   it('leaves 0z = 2 after elimination of a system with no solution', () => {
     const t = eliminate(none);
     expect(rowTex(t[2])).toBe('0z = 2');
     expect(backSolve(t)).toBeNull();
+  });
+
+  it('starts with a swap when the first equation has no x, then back-substitutes', () => {
+    const sys = systemOf([
+      [0, 2, -1, 3],
+      [1, -1, 2, 0],
+      [2, 1, 1, 6],
+    ]);
+    expect(nextStep(sys)).toEqual({ op: 'swap', i: 0, j: 1 });
+    const back = backSolve(eliminate(sys));
+    expect(back && tupleTex(back.values)).toBe('(3; 1; -1)');
   });
 
   it('solves the textbook-style systems', () => {

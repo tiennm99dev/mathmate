@@ -68,35 +68,34 @@ export default {
   },
   examples: [
     {
-      problem:
-        'Tìm parabol $y = ax^2 + bx + c$ đi qua ba điểm $A(2; -1)$, $B(4; 3)$ và $C(-1; 8)$.',
+      problem: 'Tìm parabol $y = ax^2 + bx + c$ đi qua ba điểm $A(1; 2)$, $B(-1; 6)$ và $C(2; 3)$.',
       steps: [
-        'Thay toạ độ ba điểm: $\\begin{cases} 4a + 2b + c = -1 \\\\ 16a + 4b + c = 3 \\\\ a - b + c = 8. \\end{cases}$',
-        'Trừ phương trình thứ nhất khỏi hai phương trình kia: $12a + 2b = 4$ và $-3a - 3b = 9$, tức $6a + b = 2$ và $a + b = -3$.',
-        'Trừ hai phương trình mới: $5a = 5$, nên $a = 1$, $b = -4$, $c = -1 - 4 + 8 = 3$.',
-        'Thử lại với $C(-1; 8)$: $1 + 4 + 3 = 8$, đúng.',
+        'Thay toạ độ ba điểm: $\\begin{cases} a + b + c = 2 \\\\ a - b + c = 6 \\\\ 4a + 2b + c = 3. \\end{cases}$',
+        'Trừ phương trình thứ hai khỏi phương trình thứ nhất: $2b = -4$, nên $b = -2$; khi đó $a + c = 4$.',
+        'Thay $b = -2$ vào phương trình thứ ba: $4a + c = 7$. Trừ $a + c = 4$: $3a = 3$, nên $a = 1$, $c = 3$.',
+        'Thử lại với $C(2; 3)$: $4 - 4 + 3 = 3$, đúng.',
       ],
-      answer: 'Parabol cần tìm là $y = x^2 - 4x + 3$.',
+      answer: 'Parabol cần tìm là $y = x^2 - 2x + 3$.',
     },
     {
-      problem: 'Viết phương trình đường tròn đi qua ba điểm $A(0; 1)$, $B(2; 3)$ và $C(4; 1)$.',
+      problem: 'Viết phương trình đường tròn đi qua ba điểm $A(-1; 2)$, $B(5; 2)$ và $C(2; 5)$.',
       steps: [
-        'Gọi đường tròn $x^2 + y^2 - 2ax - 2by + c = 0$. Thay toạ độ ba điểm: $\\begin{cases} -2b + c = -1 \\\\ -4a - 6b + c = -13 \\\\ -8a - 2b + c = -17. \\end{cases}$',
-        'Trừ phương trình thứ nhất khỏi phương trình thứ ba: $-8a = -16$, nên $a = 2$.',
-        'Trừ phương trình thứ nhất khỏi phương trình thứ hai: $-4a - 4b = -12$, nên $b = 3 - a = 1$; $c = -1 + 2b = 1$.',
-        'Tâm $I(2; 1)$, bán kính $R = \\sqrt{4 + 1 - 1} = 2$.',
+        'Gọi đường tròn $x^2 + y^2 - 2ax - 2by + c = 0$. Thay toạ độ ba điểm: $\\begin{cases} 2a - 4b + c = -5 \\\\ -10a - 4b + c = -29 \\\\ -4a - 10b + c = -29. \\end{cases}$',
+        'Trừ phương trình thứ nhất khỏi phương trình thứ hai: $-12a = -24$, nên $a = 2$.',
+        'Trừ phương trình thứ nhất khỏi phương trình thứ ba: $-6a - 6b = -24$, nên $b = 4 - a = 2$; $c = -5 - 2a + 4b = -1$.',
+        'Tâm $I(2; 2)$, bán kính $R = \\sqrt{4 + 4 + 1} = 3$.',
       ],
-      answer: 'Đường tròn $x^2 + y^2 - 4x - 2y + 1 = 0$, tức $(x - 2)^2 + (y - 1)^2 = 4$.',
+      answer: 'Đường tròn $x^2 + y^2 - 4x - 4y - 1 = 0$, tức $(x - 2)^2 + (y - 2)^2 = 9$.',
     },
     {
       problem:
-        'Cân bằng phương trình phản ứng $\\mathrm{FeS_2} + \\mathrm{O_2} \\to \\mathrm{Fe_2O_3} + \\mathrm{SO_2}$.',
+        'Cân bằng phương trình phản ứng $\\mathrm{NH_3} + \\mathrm{O_2} \\to \\mathrm{NO} + \\mathrm{H_2O}$.',
       steps: [
-        'Gọi hệ số là $x$, $y$, $1$, $t$ (chọn hệ số của $\\mathrm{Fe_2O_3}$ bằng $1$): $x\\,\\mathrm{FeS_2} + y\\,\\mathrm{O_2} \\to \\mathrm{Fe_2O_3} + t\\,\\mathrm{SO_2}$.',
-        'Bảo toàn Fe: $x = 2$; S: $2x = t$; O: $2y = 3 + 2t$.',
-        'Giải: $x = 2$, $t = 4$, $y = \\dfrac{11}{2}$. Nhân với $2$: $4$, $11$, $2$, $8$.',
+        'Chọn hệ số của $\\mathrm{NH_3}$ bằng $1$ và gọi $y$, $z$, $t$ là hệ số của $\\mathrm{O_2}$, $\\mathrm{NO}$, $\\mathrm{H_2O}$: $\\mathrm{NH_3} + y\\,\\mathrm{O_2} \\to z\\,\\mathrm{NO} + t\\,\\mathrm{H_2O}$.',
+        'Bảo toàn N: $z = 1$; H: $2t = 3$; O: $2y = z + t$.',
+        'Giải: $z = 1$, $t = \\dfrac{3}{2}$, $y = \\dfrac{5}{4}$. Nhân với $4$: $4$, $5$, $4$, $6$.',
       ],
-      answer: '$4\\mathrm{FeS_2} + 11\\mathrm{O_2} \\to 2\\mathrm{Fe_2O_3} + 8\\mathrm{SO_2}$.',
+      answer: '$4\\mathrm{NH_3} + 5\\mathrm{O_2} \\to 4\\mathrm{NO} + 6\\mathrm{H_2O}$.',
     },
   ],
   practice: [

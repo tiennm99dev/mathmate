@@ -155,13 +155,13 @@ export default {
   examples: [
     {
       problem:
-        'Giải hệ phương trình $\\begin{cases} x + y - 2z = 3 \\\\ y + z = 7 \\\\ 2z = 4. \\end{cases}$',
+        'Giải hệ phương trình $\\begin{cases} 2x - y + 3z = 1 \\\\ 3y - z = 5 \\\\ 4z = -8. \\end{cases}$',
       steps: [
-        'Hệ có dạng tam giác. Từ phương trình thứ ba: $z = 2$.',
-        'Thay $z = 2$ vào phương trình thứ hai: $y + 2 = 7$, nên $y = 5$.',
-        'Thay $y = 5$, $z = 2$ vào phương trình thứ nhất: $x + 5 - 4 = 3$, nên $x = 2$.',
+        'Hệ có dạng tam giác. Từ phương trình thứ ba: $z = -2$.',
+        'Thay $z = -2$ vào phương trình thứ hai: $3y + 2 = 5$, nên $y = 1$.',
+        'Thay $y = 1$, $z = -2$ vào phương trình thứ nhất: $2x - 1 - 6 = 1$, nên $2x = 8$, $x = 4$.',
       ],
-      answer: 'Hệ có nghiệm duy nhất $(x; y; z) = (2; 5; 2)$.',
+      answer: 'Hệ có nghiệm duy nhất $(x; y; z) = (4; 1; -2)$.',
     },
     {
       problem:

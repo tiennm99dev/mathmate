@@ -265,7 +265,7 @@ export function backSolve(sys) {
 
 /**
  * The general solution when z is free and x, y are pivots, as TeX
- * '(-1 + z; 3 - 2z; z)'; null for any other shape.
+ * '(z - 1; 3 - 2z; z)', the z term first when it is positive; null for any other shape.
  * @param {Solution} sol
  */
 export function generalTex(sol) {
@@ -278,7 +278,8 @@ export function generalTex(sol) {
     const zTerm = t.sign === 0 ? '' : `${t.abs}z`;
     if (isZero(c)) return t.sign === 0 ? '0' : `${t.sign < 0 ? '-' : ''}${zTerm}`;
     if (t.sign === 0) return toTex(c);
-    return `${toTex(c)} ${t.sign < 0 ? '-' : '+'} ${zTerm}`;
+    if (t.sign > 0) return `${zTerm} ${c.n < 0 ? '-' : '+'} ${toTex(fraction(Math.abs(c.n), c.d))}`;
+    return `${toTex(c)} - ${zTerm}`;
   };
   return `(${part(sol.rref[0])}; ${part(sol.rref[1])}; z)`;
 }
