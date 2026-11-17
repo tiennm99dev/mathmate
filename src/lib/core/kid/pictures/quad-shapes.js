@@ -1,5 +1,5 @@
 /**
- * The quadrilaterals of the geometry review: where their corners go on a
+ * The quadrilaterals of the grade 4 geometry reviews: where their corners go on a
  * small grid, their names, and the side and angle facts the book teaches
  * (a rectangle has four right angles; a parallelogram has two pairs of
  * parallel opposite sides of equal length; a rhombus has two pairs of

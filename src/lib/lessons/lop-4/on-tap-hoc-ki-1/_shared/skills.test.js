@@ -13,7 +13,7 @@ import {
   plotStory,
 } from './measure-skills.js';
 import { NUMBER_SKILLS, classDigits, writingSlips } from './number-skills.js';
-import { oppositeSide, sideName, sidesAt } from './shapes.js';
+import { oppositeSide, sideName, sidesAt } from '#lib/core/kid/pictures/quad-shapes.js';
 
 /** @typedef {import('./visual.js').ReviewQuestion} Question */
 

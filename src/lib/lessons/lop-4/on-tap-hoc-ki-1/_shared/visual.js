@@ -13,7 +13,7 @@
  *   | { type: 'column', a: number, b: number, op: '+' | '-' }
  *   | { type: 'angle', m: number, side: 'phai' | 'trai', protractor: boolean, names: readonly string[] }
  *   | { type: 'clock', minutes: number }
- *   | { type: 'quad', shape: import('./shapes.js').QuadShape, names: readonly string[] }
+ *   | { type: 'quad', shape: import('#lib/core/kid/pictures/quad-shapes.js').QuadShape, names: readonly string[] }
  * )} Visual
  */
 

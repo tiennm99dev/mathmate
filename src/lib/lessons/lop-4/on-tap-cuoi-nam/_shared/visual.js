@@ -20,7 +20,7 @@
  *   | { type: 'fracs', items: Array<Frac | string> }
  *   | { type: 'shaded', parts: number, shaded: number, cols: number }
  *   | { type: 'angle', m: number, side: 'phai' | 'trai', protractor: boolean, names: readonly string[] }
- *   | { type: 'quad', shape: import('./shapes.js').QuadShape, names: readonly string[] }
+ *   | { type: 'quad', shape: import('#lib/core/kid/pictures/quad-shapes.js').QuadShape, names: readonly string[] }
  *   | { type: 'table', title: string, head: string, rows: Row[] }
  *   | { type: 'chart', title: string, unit: string, data: Row[] }
  *   | { type: 'tally', title: string, rows: Array<{ label: string, count: number }> }

@@ -1,14 +1,14 @@
 <script>
   import { labelSpot } from '#lib/geom-engine/plane.js';
   import { pointsAttr } from '#lib/utils/svg.js';
-  import { CORNERS, GRID, quadLabel } from './shapes.js';
+  import { CORNERS, GRID, quadLabel } from './quad-shapes.js';
 
   /**
    * A still rectangle, parallelogram or rhombus on squared paper with its
    * vertex names. No right-angle marks or equal-length ticks are drawn, and
    * screen readers hear only "Hình tứ giác ABCD", so the picture never names
    * the shape a question asks about.
-   * @type {{ shape: import('./shapes.js').QuadShape, names: readonly string[] }}
+   * @type {{ shape: import('./quad-shapes.js').QuadShape, names: readonly string[] }}
    */
   let { shape, names } = $props();
 

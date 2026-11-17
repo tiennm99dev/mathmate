@@ -6,7 +6,13 @@
 import { int, pick } from '#lib/core/drill.js';
 import { capitalize, mixOptions } from '#lib/core/kid/quiz.js';
 import { KINDS, KIND_NAME, clockAngle, kindOf } from '#lib/core/visuals/protractor.js';
-import { SHAPE_NAME, VERTEX_SETS, oppositeSide, sideName, sidesAt } from './shapes.js';
+import {
+  SHAPE_NAME,
+  VERTEX_SETS,
+  oppositeSide,
+  sideName,
+  sidesAt,
+} from '#lib/core/kid/pictures/quad-shapes.js';
 
 /** @typedef {import('./visual.js').ReviewQuestion} Question */
 /** @typedef {import('./visual.js').ReviewSkill} Skill */

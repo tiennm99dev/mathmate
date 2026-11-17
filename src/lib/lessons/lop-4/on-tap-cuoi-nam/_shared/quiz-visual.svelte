@@ -1,8 +1,8 @@
 <script>
-  import AnglePicture from './angle-picture.svelte';
+  import AnglePicture from '#lib/core/kid/pictures/angle-picture.svelte';
   import ColumnPicture from './column-picture.svelte';
   import FractionLine from './fraction-line.svelte';
-  import QuadPicture from './quad-picture.svelte';
+  import QuadPicture from '#lib/core/kid/pictures/quad-picture.svelte';
   import ShadedPicture from './shaded-picture.svelte';
   import TallyTable from './tally-table.svelte';
   import ValueTable from './value-table.svelte';

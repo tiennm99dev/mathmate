@@ -379,7 +379,11 @@ Other shared pieces:
   Vietnamese letters in TeX are allowed (`\text{số dư}`); any other strict-mode
   warning fails `content.test.js`.
 - `#lib/core/kid/picture.svelte` and `#lib/core/kid/pictures/index.js`
-  (`pictures`, `pictureGroups`).
+  (`pictures`, `pictureGroups`). `pictures/angle-picture.svelte` draws an
+  angle (with an optional protractor) and `pictures/quad-picture.svelte` a
+  rectangle, parallelogram or rhombus on a small grid, from
+  `pictures/quad-shapes.js` (`CORNERS`, `SHAPE_NAME`, `VERTEX_SETS`,
+  `sideName`, `oppositeSide`, `sidesAt`).
 - Kid building blocks for grades 1-5, `#lib/core/kid/` (each drawing has a
   `<name>.gallery.svelte` demo on `/_gallery/`). Use them before writing a
   `_shared/` copy:

@@ -12,7 +12,12 @@ import { toRoman } from '#lib/core/kid/whole-numbers.js';
 import { fmt } from '#lib/core/number-format.js';
 import { KINDS, KIND_NAME, kindOf } from '#lib/core/visuals/protractor.js';
 import { fracText, simplest } from './fractions.js';
-import { SHAPE_NAME, VERTEX_SETS, oppositeSide, sideName } from './shapes.js';
+import {
+  SHAPE_NAME,
+  VERTEX_SETS,
+  oppositeSide,
+  sideName,
+} from '#lib/core/kid/pictures/quad-shapes.js';
 
 /** @typedef {import('./visual.js').ReviewQuestion} Question */
 /** @typedef {import('./visual.js').ReviewSkill} Skill */

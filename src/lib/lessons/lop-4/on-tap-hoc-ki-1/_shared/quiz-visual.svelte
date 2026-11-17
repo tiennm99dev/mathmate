@@ -1,8 +1,8 @@
 <script>
   import ClockPicture from '#lib/core/kid/clock-picture.svelte';
-  import AnglePicture from './angle-picture.svelte';
+  import AnglePicture from '#lib/core/kid/pictures/angle-picture.svelte';
   import ColumnPicture from './column-picture.svelte';
-  import QuadPicture from './quad-picture.svelte';
+  import QuadPicture from '#lib/core/kid/pictures/quad-picture.svelte';
 
   /**
    * The picture of a review question (`Visual` in `visual.js`). A column
