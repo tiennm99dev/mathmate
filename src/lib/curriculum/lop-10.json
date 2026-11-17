@@ -444,7 +444,12 @@
           "title": "Bài 26. Biến cố và định nghĩa cổ điển của xác suất",
           "slug": "bai-26-bien-co-va-dinh-nghia-co-dien-cua-xac-suat",
           "kind": "theory",
-          "keyIdeas": ["Không gian mẫu, biến cố", "Biến cố đối", "Định nghĩa cổ điển của xác suất"],
+          "keyIdeas": [
+            "Không gian mẫu, biến cố",
+            "Biến cố đối",
+            "Định nghĩa cổ điển của xác suất",
+            "Nguyên lí xác suất bé"
+          ],
           "interactiveIdea": "Tung xúc xắc, rút thẻ ảo; tô các kết quả thuận lợi trong lưới không gian mẫu để tính xác suất."
         },
         {
@@ -453,9 +458,9 @@
           "slug": "bai-27-thuc-hanh-tinh-xac-suat-theo-dinh-nghia-co-dien",
           "kind": "theory",
           "keyIdeas": [
-            "Dùng sơ đồ cây và bảng để đếm",
             "Dùng tổ hợp để tính xác suất",
-            "Nguyên lí xác suất bé"
+            "Dùng sơ đồ hình cây để đếm",
+            "Xác suất của biến cố đối"
           ],
           "interactiveIdea": "Mô phỏng hàng nghìn lần thử để so tần suất với xác suất tính bằng tổ hợp."
         },
