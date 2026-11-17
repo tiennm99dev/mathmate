@@ -25,7 +25,11 @@ describe('fractionParts', () => {
   it('keeps a whole number before an improper fraction apart', () => {
     const text = 'Có 3 7/4';
     expect(fracs(text)).toEqual([{ kind: 'frac', n: 7, d: 4, text: '7/4' }]);
-    expect(fractionParts(text).map((p) => p.text).join('')).toBe(text);
+    expect(
+      fractionParts(text)
+        .map((p) => p.text)
+        .join(''),
+    ).toBe(text);
   });
 
   it('leaves units, brackets, decimals and dates as text', () => {
