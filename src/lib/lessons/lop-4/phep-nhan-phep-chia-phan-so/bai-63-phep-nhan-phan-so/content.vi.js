@@ -71,7 +71,7 @@ export default {
               '$\\dfrac{2}{3} \\times \\dfrac{4}{5} = \\dfrac{4}{5} \\times \\dfrac{2}{3}$',
             ],
             [
-              'Nhân với tích hai phân số',
+              'Nhân một tích hai phân số với phân số thứ ba',
               '$\\left(\\dfrac{1}{3} \\times \\dfrac{2}{5}\\right) \\times \\dfrac{3}{4} = \\dfrac{1}{3} \\times \\left(\\dfrac{2}{5} \\times \\dfrac{3}{4}\\right)$',
             ],
             [
@@ -83,7 +83,7 @@ export default {
         {
           type: 'callout',
           tone: 'theorem',
-          text: 'Khi đổi chỗ các phân số trong một tích thì tích không thay đổi.',
+          text: 'Khi đổi chỗ các phân số trong một tích thì tích không thay đổi. Trong một tích ba phân số, em có thể nhân hai phân số nào trước cũng được.',
         },
         {
           type: 'p',

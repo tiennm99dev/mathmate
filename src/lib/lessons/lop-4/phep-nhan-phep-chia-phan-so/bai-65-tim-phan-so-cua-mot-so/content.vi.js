@@ -143,11 +143,15 @@ export default {
     {
       type: 'number',
       prompt:
-        'Một con báo chạy được 198 m trong $\\dfrac{1}{10}$ phút. Biết 1 phút = 60 giây. $\\dfrac{1}{10}$ phút là bao nhiêu giây?',
-      answer: 6,
-      unit: 'giây',
-      hints: ['Tìm $\\dfrac{1}{10}$ của 60 giây.'],
-      solution: '$60 \\times \\dfrac{1}{10} = 6$ (giây).',
+        'Một con báo chạy được 198 m trong $\\dfrac{1}{10}$ phút. Biết 1 phút = 60 giây. Hỏi trung bình mỗi giây con báo chạy được bao nhiêu mét?',
+      answer: 33,
+      unit: 'm',
+      hints: [
+        'Đổi $\\dfrac{1}{10}$ phút ra giây: tìm $\\dfrac{1}{10}$ của 60 giây.',
+        'Lấy 198 m chia cho số giây vừa tìm.',
+      ],
+      solution:
+        '$\\dfrac{1}{10}$ phút $= 60 \\times \\dfrac{1}{10} = 6$ (giây). Mỗi giây con báo chạy được 198 : 6 = 33 (m).',
     },
     {
       type: 'number',
