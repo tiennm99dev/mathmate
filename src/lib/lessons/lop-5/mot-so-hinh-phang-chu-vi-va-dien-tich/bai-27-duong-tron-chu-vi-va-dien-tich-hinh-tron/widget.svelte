@@ -129,9 +129,9 @@
         {#if i % 2 === 0}
           <text
             x={START_X + i * SCALE}
-            y={GROUND_Y + 30}
+            y={GROUND_Y + 33}
             text-anchor="middle"
-            font-size="17"
+            font-size="23"
             fill="#334155">{i}</text
           >
         {/if}
@@ -179,7 +179,7 @@
       <line x1={w.cx} y1={w.cy} x2={w.cx} y2={w.cy - w.R} stroke="#047857" stroke-width="3" />
     </g>
     <circle cx={w.dot.x} cy={w.dot.y} r="6" fill="#DC2626" stroke="#fff" stroke-width="2" />
-    <text x={w.cx + 6} y={w.cy + 18} font-size="17" font-weight="700" fill="#1F2937">O</text>
+    <text x={w.cx + 6} y={w.cy + 22} font-size="22" font-weight="700" fill="#1F2937">O</text>
 
     <circle
       class="drag-handle"

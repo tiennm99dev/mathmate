@@ -114,7 +114,7 @@
     )} cm trên thước."
   >
     <rect x="0" y="0" width={X0 * 2 + RULER_CM * U} height="104" rx="8" class="fill-emerald-50" />
-    <text x="8" y="18" class="fill-slate-700 text-[14px] font-bold">Tỉ lệ {scaleText(s)}</text>
+    <text x="8" y="20" class="fill-slate-700 text-[17px] font-bold">Tỉ lệ {scaleText(s)}</text>
     <line
       x1={X0 - 10}
       y1={ROAD_Y}
@@ -142,11 +142,12 @@
         class={i === a || i === b ? 'fill-rose-700' : 'fill-white stroke-slate-700'}
         stroke-width="2"
       />
+      <!-- A name near the right edge ends at the edge instead of running past it. -->
       <text
-        x={xOf(p.at)}
+        x={p.at > RULER_CM - 1.5 ? X0 * 2 + RULER_CM * U - 4 : xOf(p.at)}
         y={i % 2 === 0 ? ROAD_Y - 14 : ROAD_Y + 26}
-        text-anchor="middle"
-        class="text-[15px] font-semibold {i === a || i === b ? 'fill-rose-800' : 'fill-slate-700'}"
+        text-anchor={p.at > RULER_CM - 1.5 ? 'end' : 'middle'}
+        class="text-[17px] font-semibold {i === a || i === b ? 'fill-rose-800' : 'fill-slate-700'}"
         >{p.name}</text
       >
     {/each}
@@ -174,13 +175,18 @@
       {#if h % 2 === 0}
         <text
           x={xOf(h / 2)}
-          y={RULER_Y + 28}
+          y={RULER_Y + 31}
           text-anchor="middle"
-          class="fill-slate-800 text-[14px] font-semibold">{h / 2}</text
+          class="fill-slate-800 text-[17px] font-semibold">{h / 2}</text
         >
       {/if}
     {/each}
-    <text x={xOf(RULER_CM) + 2} y={RULER_Y - 4} class="fill-slate-600 text-[12px]">cm</text>
+    <text
+      x={X0 * 2 + RULER_CM * U - 2}
+      y={RULER_Y - 4}
+      text-anchor="end"
+      class="fill-slate-600 text-[17px]">cm</text
+    >
   </svg>
 
   {#if asking}
