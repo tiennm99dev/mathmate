@@ -8,7 +8,7 @@
 import { countsAsNaturals, int, pick } from '#lib/core/drill.js';
 import { numTex, tidy } from '#lib/core/number-format.js';
 import { gcd } from '#lib/numtheory-engine/index.js';
-import { countTex } from './probability.js';
+import { countTex, isShortDecimal } from './probability.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 
@@ -87,7 +87,7 @@ export const congXacSuat = {
       const c = drawCards(rand);
       const u = c.p + c.q - c.pq;
       return {
-        prompt: `${cardStory(c)} Tính $P(E \\cup F)$, xác suất số trên thẻ chia hết cho $${c.a}$ hoặc cho $${c.b}$.`,
+        prompt: `${cardStory(c)} Tính $P(E \\cup F)$, xác suất số trên thẻ chia hết cho $${c.a}$ hoặc cho $${c.b}$${isShortDecimal(u / c.m) ? '' : ' (viết dạng phân số)'}.`,
         answer: u / c.m,
         hints: [
           'Dùng công thức cộng $P(E \\cup F) = P(E) + P(F) - P(EF)$.',
@@ -196,13 +196,13 @@ export const bienCoDoi = {
     const miss = 5 ** k;
     const word = k === 2 ? 'hai' : 'ba';
     return {
-      prompt: `Gieo một con xúc xắc cân đối ${word} lần. Tính xác suất có ít nhất một lần xuất hiện mặt $${face}$ chấm.`,
+      prompt: `Gieo một con xúc xắc cân đối ${word} lần. Tính xác suất có ít nhất một lần xuất hiện mặt $${face}$ chấm (viết dạng phân số).`,
       answer: (n - miss) / n,
       hints: [
-        `Biến cố đối: không lần nào ra mặt $${face}$ chấm. Mỗi lần, xác suất đó là $\\dfrac{5}{6}$; các lần gieo độc lập.`,
+        `Biến cố đối: không lần nào ra mặt $${face}$ chấm. Đếm số kết quả của biến cố đối: mỗi lần gieo có $5$ mặt khác mặt $${face}$ chấm.`,
       ],
       steps: [
-        `Xác suất không lần nào ra mặt $${face}$ chấm: $\\left(\\dfrac{5}{6}\\right)^${k} = \\dfrac{${miss}}{${n}}$.`,
+        `Không gian mẫu có $6^${k} = ${n}$ kết quả; biến cố "không lần nào ra mặt $${face}$ chấm" có $5^${k} = ${miss}$ kết quả, xác suất $\\dfrac{${miss}}{${n}}$.`,
         `Xác suất cần tìm: $1 - \\dfrac{${miss}}{${n}} = \\dfrac{${n - miss}}{${n}}$.`,
       ],
     };

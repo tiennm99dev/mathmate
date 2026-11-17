@@ -78,13 +78,13 @@ export default {
         },
         {
           type: 'callout',
-          tone: 'theorem',
+          tone: 'note',
           title: 'Nhận xét',
           text: 'Nếu $A$ và $B$ là hai biến cố độc lập thì $A$ và $\\overline{B}$; $\\overline{A}$ và $B$; $\\overline{A}$ và $\\overline{B}$ cũng là các cặp biến cố độc lập.',
         },
         {
           type: 'p',
-          text: 'Trong biểu đồ Ven ở trên, mọi kết quả đồng khả năng. Khi đó "$A$ xảy ra không làm thay đổi khả năng xảy ra của $B$" có nghĩa là tỉ lệ kết quả thuận lợi cho $B$ trong số các kết quả của $A$ bằng tỉ lệ kết quả thuận lợi cho $B$ trên cả không gian mẫu. Bài 30 sẽ cho một công thức để kiểm tra điều này.',
+          text: 'Khi gieo một con xúc xắc cân đối hai lần (như trong biểu đồ Ven ở phần khám phá), $36$ kết quả đồng khả năng. Khi đó "$A$ xảy ra không làm thay đổi khả năng xảy ra của $B$" có nghĩa là tỉ lệ kết quả thuận lợi cho $B$ trong số các kết quả của $A$ bằng tỉ lệ kết quả thuận lợi cho $B$ trên cả không gian mẫu. Bài 30 sẽ cho một công thức để kiểm tra điều này.',
         },
         {
           type: 'callout',

@@ -32,6 +32,11 @@ describe('review problems', () => {
     expect(checkTyped('0,56', shooters.answer)).toBe('wrong');
     expect(checkTyped('11/36', six.answer)).toBe('ok');
     expect(checkTyped('22/72', six.answer)).toBe('ok');
+    expect(checkTyped('0,31', six.answer)).toBe('close');
+    expect(checkTyped('0,3056', six.answer)).toBe('close');
+    expect(checkTyped('3/10', six.answer)).toBe('wrong');
+    expect(checkTyped('0,94', six.answer)).toBe('wrong');
+    expect(checkTyped('0,941', shooters.answer)).toBe('wrong');
     expect(checkTyped('', six.answer)).toBe('empty');
     expect(checkTyped('x', six.answer)).toBe('invalid');
   });

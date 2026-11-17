@@ -5,7 +5,7 @@
  */
 
 import { readProbability } from '#lib/core/fractions.js';
-import { runTrials } from '../_shared/probability.js';
+import { isShortDecimal, runTrials } from '../_shared/probability.js';
 
 /**
  * @typedef {object} Problem
@@ -120,14 +120,18 @@ export function runProblem(problem, rand, trials) {
 }
 
 /**
- * Checks the probability the learner typed.
+ * Checks the probability the learner typed. A decimal that only rounds to an
+ * answer with no short decimal form (0,31 for 11/36) is 'close': right
+ * working, but the exact value needs a fraction.
  * @param {string} text
  * @param {number} answer
- * @returns {'ok' | 'wrong' | 'empty' | 'invalid'}
+ * @returns {'ok' | 'close' | 'wrong' | 'empty' | 'invalid'}
  */
 export function checkTyped(text, answer) {
   if (!text.trim()) return 'empty';
   const v = readProbability(text);
   if (v === null) return 'invalid';
-  return Math.abs(v - answer) < 1e-9 ? 'ok' : 'wrong';
+  if (Math.abs(v - answer) < 1e-9) return 'ok';
+  const rounded = !text.includes('/') && !isShortDecimal(answer);
+  return rounded && Math.abs(v - answer) < 0.005 ? 'close' : 'wrong';
 }

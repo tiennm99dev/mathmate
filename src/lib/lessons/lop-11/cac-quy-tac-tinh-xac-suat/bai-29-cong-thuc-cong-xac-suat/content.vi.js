@@ -24,6 +24,10 @@ export default {
           text: 'Nếu $A$ và $B$ là hai biến cố xung khắc thì $P(A \\cup B) = P(A) + P(B)$.',
         },
         {
+          type: 'p',
+          text: 'Lập luận đếm như trên cũng cho: nếu ba biến cố $A$, $B$, $C$ đôi một xung khắc (không hai biến cố nào cùng xảy ra) thì xác suất để một trong ba biến cố xảy ra bằng $P(A) + P(B) + P(C)$.',
+        },
+        {
           type: 'callout',
           tone: 'note',
           title: 'Nhận xét',

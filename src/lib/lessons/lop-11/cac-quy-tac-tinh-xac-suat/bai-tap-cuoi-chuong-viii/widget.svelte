@@ -45,6 +45,10 @@
       tone: /** @type {const} */ ('warn'),
       text: 'Chưa đúng. Xác định các biến cố, xem chúng xung khắc hay độc lập, rồi chọn công thức cộng hay công thức nhân. Mô phỏng cũng gợi ý kết quả gần đúng.',
     },
+    close: {
+      tone: /** @type {const} */ ('info'),
+      text: 'Gần đúng rồi, nhưng đây là số làm tròn. Kết quả đúng không viết được thành số thập phân hữu hạn: hãy nhập dạng phân số $a/b$.',
+    },
     empty: {
       tone: /** @type {const} */ ('info'),
       text: 'Hãy nhập xác suất, ví dụ $0{,}25$ hoặc $1/4$.',
