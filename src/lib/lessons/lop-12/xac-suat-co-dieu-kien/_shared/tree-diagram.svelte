@@ -27,6 +27,22 @@
     { x: 118, y: 170, label: 'Ā', p: comp(pA), given: pBnA },
   ]);
   const leafY = [25, 85, 145, 205];
+
+  /** Branch labels: about 13 px on screen even when the tree is 390 px wide. */
+  const LABEL_SIZE = 15;
+
+  /**
+   * Where a branch label goes: ending at `x`, just clear of its line, above a
+   * line that rises to the right and below one that falls, so the text never
+   * sits on the line.
+   * @param {{ x: number; y: number }} from
+   * @param {{ x: number; y: number }} to
+   * @param {number} x
+   */
+  function labelAt(from, to, x) {
+    const y = from.y + ((to.y - from.y) * (x - from.x)) / (to.x - from.x);
+    return { x, y: to.y < from.y ? y - 4 : y + LABEL_SIZE + 2 };
+  }
   const shaded = $derived(new Set(marked));
 
   /**
@@ -62,21 +78,18 @@
   role="img"
   aria-label={label}
 >
-  {#each mids as m, i (m.label)}
+  {#each mids as m (m.label)}
     <line x1={root.x} y1={root.y} x2={m.x} y2={m.y} stroke="#475569" stroke-width="1.5" />
-    <text
-      x={(root.x + m.x) / 2 - 2}
-      y={(root.y + m.y) / 2 + (i === 0 ? -8 : 18)}
-      font-size="12"
-      fill="#0369a1"
-      text-anchor="middle">{show(m.p)}</text
+    {@const at = labelAt(root, m, m.x - 20)}
+    <text x={at.x} y={at.y} font-size={LABEL_SIZE} fill="#0369a1" text-anchor="end"
+      >{show(m.p)}</text
     >
     <circle cx={m.x} cy={m.y} r="13" fill="#e0f2fe" stroke="#0369a1" />
     <text x={m.x} y={m.y + 5} font-size="14" font-weight="700" text-anchor="middle" fill="#0c4a6e"
       >{m.label}</text
     >
   {/each}
-  {#each leaves as l, k (l.id)}
+  {#each leaves as l (l.id)}
     <line
       x1={l.from.x + 13}
       y1={l.from.y}
@@ -85,12 +98,9 @@
       stroke={shaded.has(l.id) ? '#059669' : '#94a3b8'}
       stroke-width={shaded.has(l.id) ? 2.5 : 1.5}
     />
-    <text
-      x={(l.from.x + 226) / 2 + 8}
-      y={(l.from.y + l.y) / 2 + (k % 2 === 0 ? -6 : 14)}
-      font-size="12"
-      fill="#b45309"
-      text-anchor="middle">{l.b ? 'B' : 'B̄'} {show(l.branch)}</text
+    {@const at = labelAt({ x: l.from.x + 13, y: l.from.y }, { x: 226, y: l.y }, 222)}
+    <text x={at.x} y={at.y} font-size={LABEL_SIZE} fill="#b45309" text-anchor="end"
+      >{l.b ? 'B' : 'B̄'} {show(l.branch)}</text
     >
     <rect
       x="228"
@@ -101,8 +111,11 @@
       fill={shaded.has(l.id) ? '#a7f3d0' : '#f1f5f9'}
       stroke={shaded.has(l.id) ? '#059669' : '#cbd5e1'}
     />
-    <text x="235" y={l.y + 5} font-size="13" font-weight="700" fill="#1e293b">{l.text}</text>
-    <text x="350" y={l.y + 5} font-size="13" text-anchor="end" fill="#1e293b">{show(l.p)}</text>
+    <text x="235" y={l.y + 5} font-size={LABEL_SIZE} font-weight="700" fill="#1e293b">{l.text}</text
+    >
+    <text x="350" y={l.y + 5} font-size={LABEL_SIZE} text-anchor="end" fill="#1e293b"
+      >{show(l.p)}</text
+    >
   {/each}
   <circle cx={root.x} cy={root.y} r="5" fill="#334155" />
 </svg>
