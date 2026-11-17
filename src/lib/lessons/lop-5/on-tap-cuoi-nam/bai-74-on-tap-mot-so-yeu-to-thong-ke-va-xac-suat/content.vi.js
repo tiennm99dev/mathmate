@@ -61,7 +61,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Mai tung đồng xu 29 lần, có 10 lần được mặt sấp. Tỉ số của số lần được mặt sấp so với tổng số lần tung là 10 : 29 hay 10/29.',
+          text: 'Mai tung hai đồng xu cùng lúc 29 lần, có 10 lần được hai mặt sấp. Tỉ số của số lần được hai mặt sấp so với tổng số lần tung là 10 : 29 hay 10/29.',
         },
         {
           type: 'table',

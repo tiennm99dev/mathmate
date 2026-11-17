@@ -276,8 +276,8 @@ const TRIES = /** @type {const} */ ([
     story: (/** @type {string} */ name, /** @type {number} */ n) =>
       `${name} gieo một con xúc xắc ${n} lần`,
     total: 'tổng số lần gieo',
-    a: 'được mặt 6 chấm',
-    b: 'không được mặt 6 chấm',
+    a: 'được mặt có số chấm chẵn',
+    b: 'được mặt có số chấm lẻ',
   },
 ]);
 
