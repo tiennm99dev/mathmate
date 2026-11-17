@@ -109,3 +109,23 @@ export function labelSpot(edge) {
     y: edge.from.y + (edge.step.y * edge.size) / 2 + edge.offset.y * 1.4,
   };
 }
+
+/**
+ * How far past the left and right of a `width`-wide frame some text runs,
+ * so the picture can be widened just enough to show it. Each text is
+ * guessed at 0.6 of its font size per character, which is generous for
+ * digits and short unit names in a bold sans-serif font.
+ * @param {number} width
+ * @param {{ x: number, anchor: 'start' | 'middle' | 'end', text: string, size: number }[]} texts
+ */
+export function overhang(width, texts) {
+  let left = 0;
+  let right = 0;
+  for (const { x, anchor, text, size } of texts) {
+    const w = text.length * size * 0.6;
+    const from = anchor === 'start' ? x : anchor === 'middle' ? x - w / 2 : x - w;
+    left = Math.max(left, -from);
+    right = Math.max(right, from + w - width);
+  }
+  return { left: Math.ceil(left) + 2, right: Math.ceil(right) + 2 };
+}

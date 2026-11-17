@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { boxLayout, rulerOn, tickStep } from './box-view.js';
+import { boxLayout, overhang, rulerOn, tickStep } from './box-view.js';
 
 describe('box drawn to scale', () => {
   it('keeps the box inside its frame', () => {
@@ -33,5 +33,23 @@ describe('box drawn to scale', () => {
 
   it('spaces the ticks by the size of the ruler', () => {
     expect([8, 30, 80].map(tickStep)).toEqual([1, 5, 10]);
+  });
+});
+
+describe('overhang', () => {
+  it('measures text running past either side of the frame', () => {
+    const room = overhang(100, [
+      { x: 10, anchor: 'end', text: '12 cm', size: 10 },
+      { x: 95, anchor: 'start', text: '6', size: 10 },
+      { x: 50, anchor: 'middle', text: '10', size: 10 },
+    ]);
+    expect(room).toEqual({ left: 22, right: 3 });
+  });
+
+  it('leaves a small margin when everything fits', () => {
+    expect(overhang(100, [{ x: 50, anchor: 'middle', text: '4', size: 14 }])).toEqual({
+      left: 2,
+      right: 2,
+    });
   });
 });

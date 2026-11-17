@@ -1,7 +1,7 @@
 <script>
   import { fmt } from '#lib/core/number-format.js';
   import { pointsAttr } from '#lib/utils/svg.js';
-  import { EDGES, boxLayout, labelSpot, rulerOn, tickStep } from './box-view.js';
+  import { EDGES, boxLayout, labelSpot, overhang, rulerOn, tickStep } from './box-view.js';
 
   /**
    * A box of length a, width b and height c drawn to scale, as the book draws
@@ -35,6 +35,7 @@
   } = $props();
 
   const view = $derived(boxLayout(a, b, c));
+
   const step = $derived(tickStep(rulerMax || Math.max(a, b, c)));
 
   const FILLS = {
@@ -51,10 +52,26 @@
       return m == null ? null : { edge, m, fit: !!fits[i], ...rulerOn(view.edges[edge], m, step) };
     }),
   );
+
+  /** Room on the left and right for labels that run past the drawing. */
+  const room = $derived(
+    overhang(view.width, [
+      ...EDGES.flatMap((edge, i) =>
+        labels[i]
+          ? [{ ...labelSpot(view.edges[edge]), anchor: ANCHOR[edge], text: labels[i], size: 15 }]
+          : [],
+      ),
+      ...marks.flatMap((mark) =>
+        mark && mark.m > 0
+          ? [{ x: mark.label.x, anchor: ANCHOR[mark.edge], text: fmt(mark.m), size: 14 }]
+          : [],
+      ),
+    ]),
+  );
 </script>
 
 <svg
-  viewBox="0 0 {view.width} {view.height}"
+  viewBox="{-room.left} 0 {view.width + room.left + room.right} {view.height}"
   class="mx-auto block h-auto w-full max-w-md"
   role="img"
   aria-label={label}
