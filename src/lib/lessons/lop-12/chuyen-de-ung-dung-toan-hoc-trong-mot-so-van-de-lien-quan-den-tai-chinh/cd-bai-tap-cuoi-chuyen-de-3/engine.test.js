@@ -9,10 +9,10 @@ describe('financial scenarios', () => {
   it('picks the book answers at the starting values', () => {
     const got = SCENARIOS.map((s) => [s.id, winner(s, s.param.start)]);
     expect(got).toEqual([
-      ['vay-ngan-han', 0],
+      ['vay-ngan-han', 1],
       ['gui-tiet-kiem', 0],
       ['tra-gop', 0],
-      ['nhan-thuong', 0],
+      ['nhan-thuong', 1],
     ]);
   });
 
@@ -22,9 +22,10 @@ describe('financial scenarios', () => {
   });
 
   it('judges a pick', () => {
-    expect(judge(get('nhan-thuong'), 0).tone).toBe('ok');
-    expect(judge(get('nhan-thuong'), 1).tone).toBe('warn');
+    expect(judge(get('nhan-thuong'), 1).tone).toBe('ok');
+    expect(judge(get('nhan-thuong'), 0).tone).toBe('warn');
     expect(compareText(get('nhan-thuong'), 3)).toContain('phương án B');
+    expect(compareText(get('nhan-thuong'), 9)).toContain('phương án A');
   });
 
   it('writes valid TeX', () => {

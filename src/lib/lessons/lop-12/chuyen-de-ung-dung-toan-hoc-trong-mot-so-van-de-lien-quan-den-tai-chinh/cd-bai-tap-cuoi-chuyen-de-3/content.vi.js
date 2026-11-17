@@ -195,12 +195,12 @@ export default {
       type: 'number',
       prompt:
         'Nếu thay vì vay, cặp vợ chồng ở câu trên gửi $17{,}995$ triệu đồng vào cuối mỗi tháng trong $20$ năm vào tài khoản lãi suất năm $9\\%$, lãi kép hằng tháng, thì cuối kì tài khoản có bao nhiêu triệu đồng? Làm tròn đến hàng đơn vị.',
-      answer: 12018,
+      answer: 12019,
       tolerance: 0.8,
       unit: 'triệu đồng',
       hints: ['Giá trị tích luỹ của niên kim với $i = 0{,}0075$, $n = 240$.'],
       solution:
-        '$A = 17{,}995 \\cdot \\dfrac{1{,}0075^{240} - 1}{0{,}0075} \\approx 12\\,018$ (triệu đồng), khoảng $12$ tỉ đồng.',
+        '$A = 17{,}995 \\cdot \\dfrac{1{,}0075^{240} - 1}{0{,}0075} \\approx 12\\,018{,}6 \\approx 12\\,019$ (triệu đồng), khoảng $12$ tỉ đồng.',
     },
     {
       type: 'number',

@@ -29,11 +29,11 @@ export const SCENARIOS = [
     story: 'Anh Nam cần vay $50$ triệu đồng và sẽ trả sau $6$ tháng.',
     options: [
       'A: lãi kép kì hạn $3$ tháng, lãi suất năm $9\\%$.',
-      'B: lãi đơn, lãi suất năm theo thanh trượt (ban đầu $10\\%$).',
+      'B: lãi đơn, lãi suất năm theo thanh trượt (ban đầu $9\\%$).',
     ],
     measure: 'tiền lãi phải trả',
     better: 'less',
-    param: { label: 'Lãi suất năm của B', min: 8, max: 11, step: 0.1, start: 10, unit: '%' },
+    param: { label: 'Lãi suất năm của B', min: 8, max: 11, step: 0.1, start: 9, unit: '%' },
     compute: (x) => {
       const a = compoundAmount(50, 0.09, 4, 0.5) - 50;
       const b = 50 * (x / 100) * 0.5;
@@ -105,18 +105,18 @@ export const SCENARIOS = [
       'Một giải thưởng cho hai cách nhận. Người nhận có thể đầu tư tiền với lãi kép theo năm, lãi suất theo thanh trượt (ban đầu $6\\%$).',
     options: [
       'A: nhận $500$ triệu đồng ngay hôm nay.',
-      'B: nhận $60$ triệu đồng vào cuối mỗi năm trong $10$ năm.',
+      'B: nhận $70$ triệu đồng vào cuối mỗi năm trong $10$ năm.',
     ],
     measure: 'giá trị hiện tại',
     better: 'more',
     param: { label: 'Lãi suất đầu tư', min: 2, max: 10, step: 0.1, start: 6, unit: '%' },
     compute: (x) => {
-      const b = annuityPresent(60, x / 100, 10);
+      const b = annuityPresent(70, x / 100, 10);
       return [
         { value: 500, tex: '$V_A = 500$' },
         {
           value: b,
-          tex: `$V_B = 60 \\cdot \\dfrac{1 - (1 + ${pct(x)})^{-10}}{${pct(x)}} \\approx ${t3(b)}$`,
+          tex: `$V_B = 70 \\cdot \\dfrac{1 - (1 + ${pct(x)})^{-10}}{${pct(x)}} \\approx ${t3(b)}$`,
         },
       ];
     },
