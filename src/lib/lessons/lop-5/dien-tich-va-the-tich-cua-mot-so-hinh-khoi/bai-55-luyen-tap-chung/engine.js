@@ -178,6 +178,11 @@ const MAKERS = {
     const e = pick(rand, [2, 3, 5]);
     const n = [int(rand, 2, 4), int(rand, 1, 3), int(rand, 1, 3)];
     const left = n.map(() => (e > 2 && rand() < 0.5 ? int(rand, 1, e - 1) : 0));
+    if (n[1] * e + left[1] > n[0] * e + left[0]) {
+      // The length of the crate is its longer bottom side.
+      [n[0], n[1]] = [n[1], n[0]];
+      [left[0], left[1]] = [left[1], left[0]];
+    }
     const [x, y, z] = n.map((k, i) => k * e + left[i]);
     const right = n[0] * n[1] * n[2];
     const byVolume = Math.floor((x * y * z) / (e * e * e));

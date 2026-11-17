@@ -77,6 +77,14 @@ describe('chapter practice round', () => {
     expect(bad).toEqual([]);
   });
 
+  it('never makes a box or crate wider than it is long', () => {
+    const bad = rounds
+      .flat()
+      .filter((q) => q.visual && q.visual.b > q.visual.a)
+      .map((q) => q.prompt);
+    expect(bad).toEqual([]);
+  });
+
   it('builds the same first round every time', () => {
     expect(buildRound(1)).toEqual(buildRound(1));
   });
