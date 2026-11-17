@@ -12,6 +12,7 @@ import { MINUS, fmt, formatNumber, intText, operand, sup } from '#lib/core/numbe
 import { fracText } from '#lib/core/fractions.js';
 import { factorText, linText, sumText } from '#lib/core/algebra-text.js';
 import { fraction, simplify } from '#lib/fraction-engine/index.js';
+import { cross3, sub3 } from '#lib/geom-engine/solid.js';
 
 /** @typedef {import('#lib/core/adaptive.js').ReviewSkill} ReviewSkill */
 /** @typedef {import('#lib/fraction-engine/fraction.js').Fraction} Fraction */
@@ -164,6 +165,30 @@ function wholeVector(rand) {
 }
 
 const COORD_NAMES = ['hoành độ', 'tung độ', 'cao độ'];
+
+/** @param {readonly number[]} v */
+const xyz = (v) => ({ x: v[0], y: v[1], z: v[2] });
+
+/**
+ * Whether three points lie on one line (two of them equal included).
+ * @param {readonly number[]} a
+ * @param {readonly number[]} b
+ * @param {readonly number[]} c
+ */
+export function collinear(a, b, c) {
+  const n = cross3(sub3(xyz(b), xyz(a)), sub3(xyz(c), xyz(a)));
+  return n.x === 0 && n.y === 0 && n.z === 0;
+}
+
+/**
+ * The length √n of a vector from its squared length, whole when it is one:
+ * 4 → '2', 2 → '√2'.
+ * @param {number} n
+ */
+const rootText = (n) => {
+  const r = Math.round(Math.sqrt(n));
+  return r * r === n ? fmt(r) : `√${fmt(n)}`;
+};
 
 // ---------------------------------------------------------------------------
 // Ứng dụng đạo hàm
@@ -402,9 +427,14 @@ export const vecto = {
     }
     if (v === 2) {
       const G = point(rand);
-      const A = point(rand);
-      const B = point(rand);
-      const C = G.map((g, i) => 3 * g - A[i] - B[i]);
+      let A = point(rand);
+      let B = point(rand);
+      let C = G.map((g, i) => 3 * g - A[i] - B[i]);
+      while (collinear(A, B, C)) {
+        A = point(rand);
+        B = point(rand);
+        C = G.map((g, i) => 3 * g - A[i] - B[i]);
+      }
       const i = int(rand, 0, 2);
       return {
         prompt: `Trong không gian Oxyz, cho tam giác ABC với A${pt3(A)}, B${pt3(B)}, C${pt3(C)}. Tìm ${COORD_NAMES[i]} của trọng tâm G của tam giác ABC.`,
@@ -419,9 +449,12 @@ export const vecto = {
     }
     if (v === 3) {
       const A = point(rand);
-      const B = point(rand);
+      let B = point(rand);
       let C = point(rand);
-      while (C.every((c, i) => c === B[i])) C = point(rand);
+      while (collinear(A, B, C)) {
+        B = point(rand);
+        C = point(rand);
+      }
       const D = A.map((a, i) => a + C[i] - B[i]);
       const i = int(rand, 0, 2);
       return {
@@ -911,7 +944,7 @@ export const matCauGoc = {
         ],
         steps: [
           `n_P = ${pt3(u)}, n_Q = ${pt3(w)}, n_P · n_Q = ${intText(dot(u, w))}.`,
-          `cos((P), (Q)) = ${fmt(Math.abs(dot(u, w)))}/(√${fmt(len2(u))} · √${fmt(len2(w))}) = ${cos}.`,
+          `cos((P), (Q)) = ${fmt(Math.abs(dot(u, w)))}/(${rootText(len2(u))} · ${rootText(len2(w))}) = ${cos}.`,
           `Góc giữa (P) và (Q) bằng ${fmt(deg)}°.`,
         ],
       };
@@ -931,7 +964,7 @@ export const matCauGoc = {
       ],
       steps: [
         `u = ${pt3(u)}, n = ${pt3(w)}, u · n = ${intText(dot(u, w))}.`,
-        `sin(d, (P)) = ${fmt(Math.abs(dot(u, w)))}/(√${fmt(len2(u))} · √${fmt(len2(w))}) = ${sin}.`,
+        `sin(d, (P)) = ${fmt(Math.abs(dot(u, w)))}/(${rootText(len2(u))} · ${rootText(len2(w))}) = ${sin}.`,
         `Góc giữa d và (P) bằng ${fmt(phi)}°.`,
       ],
     };

@@ -245,6 +245,15 @@ describe('answers recomputed from the prompt', () => {
       const ans = value(q.answer);
       const i = ['hoành độ', 'tung độ', 'cao độ'].findIndex((w) => q.prompt.includes(`Tìm ${w}`));
       let ok;
+      if (/trọng tâm|hình bình hành/.test(q.prompt)) {
+        const [A, B, C] = t;
+        const ab = B.map((c, k) => c - A[k]);
+        const ac = C.map((c, k) => c - A[k]);
+        const n = [0, 1, 2].map(
+          (k) => ab[(k + 1) % 3] * ac[(k + 2) % 3] - ab[(k + 2) % 3] * ac[(k + 1) % 3],
+        );
+        if (n.every((c) => c === 0)) bad.push(`collinear: ${q.prompt}`);
+      }
       if (q.prompt.includes('tích vô hướng')) ok = dot(t[0], t[1]) === ans;
       else if (q.prompt.includes('độ dài'))
         ok = close(Math.hypot(...t[1].map((c, k) => c - t[0][k])), ans);
