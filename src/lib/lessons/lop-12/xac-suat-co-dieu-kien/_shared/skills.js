@@ -40,7 +40,7 @@ const TABLES = [
 /** @type {Skill} */
 export const bangHaiChieu = {
   id: 'bang-hai-chieu',
-  label: 'Bài 18. Xác suất có điều kiện',
+  label: 'Xác suất có điều kiện từ bảng hai chiều',
   make(rand) {
     const t = pick(rand, TABLES);
     const c = [int(rand, 3, 25), int(rand, 5, 30), int(rand, 3, 25), int(rand, 5, 30)];
@@ -145,7 +145,7 @@ function totalTex({ a, u, v }) {
 /** @type {Skill} */
 export const toanPhan = {
   id: 'toan-phan',
-  label: 'Bài 19. Công thức xác suất toàn phần',
+  label: 'Công thức xác suất toàn phần',
   make(rand) {
     const t = drawTree(rand);
     return {
@@ -169,7 +169,7 @@ export const bayes = {
     const top = t.a * t.u;
     const all = top + (10 - t.a) * t.v;
     return {
-      prompt: `Cho hai biến cố $A$, $B$ với ${givenText(t)}. Tính $P(A|B)$ (viết dạng phân số tối giản hoặc số thập phân đúng).`,
+      prompt: `Cho hai biến cố $A$, $B$ với ${givenText(t)}. Tính $P(A|B)$ (viết dạng phân số hoặc số thập phân đúng, không làm tròn).`,
       answer: top / all,
       hints: [
         'Tính $P(B)$ bằng công thức xác suất toàn phần trước.',

@@ -60,7 +60,7 @@ export default {
       blocks: [
         {
           type: 'p',
-          text: 'Mỗi lượt có $12$ câu sinh ngẫu nhiên, ba câu cho mỗi kĩ năng: bảng hai chiều, công thức nhân, công thức xác suất toàn phần và công thức Bayes. Nhập xác suất dạng số thập phân (dấu phẩy) hoặc phân số $a/b$. Trả lời sai lần đầu em được gợi ý và thử lại; bản đồ kĩ năng tô màu theo lần trả lời đầu tiên.',
+          text: 'Mỗi lượt có $12$ câu sinh ngẫu nhiên, ba câu cho mỗi kĩ năng: bảng hai chiều, công thức nhân, công thức xác suất toàn phần và công thức Bayes. Nhập đúng giá trị của xác suất, không làm tròn: dạng số thập phân (dấu phẩy) khi viết được thành số thập phân hữu hạn, còn lại dạng phân số $a/b$. Trả lời sai lần đầu em được gợi ý và thử lại; bản đồ kĩ năng tô màu theo lần trả lời đầu tiên.',
         },
         { type: 'widget', name: 'drill' },
       ],

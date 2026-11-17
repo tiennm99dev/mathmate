@@ -64,7 +64,7 @@ export function explain(t, result) {
     const post = bayes(t);
     if (post === null)
       return `${total}. Không ai có kết quả dương tính, nên không tính được $P(A|B)$.`;
-    return `Công thức xác suất toàn phần: ${total}. Công thức Bayes: $P(A|B) = \\dfrac{P(A) \\cdot P(B|A)}{P(B)} = \\dfrac{${pTex(l.AB)}}{${pTex(pB)}} \\approx ${numTex(post, 4)}$. Người có kết quả dương tính chỉ mắc bệnh với xác suất khoảng ${percent(post)}, trong khi trước khi xét nghiệm là ${percent(pA)}.`;
+    return `Công thức xác suất toàn phần: ${total}. Công thức Bayes: $P(A|B) = \\dfrac{P(A) \\cdot P(B|A)}{P(B)} = \\dfrac{${pTex(l.AB)}}{${pTex(pB)}} \\approx ${numTex(post, 4)}$. Người có kết quả dương tính mắc bệnh với xác suất khoảng ${percent(post)}, còn trước khi xét nghiệm, xác suất đó là ${percent(pA)}.`;
   }
   const pnB = tidy(1 - pB, 12);
   const total = `$P(\\overline{B}) = P(A) \\cdot P(\\overline{B}|A) + P(\\overline{A}) \\cdot P(\\overline{B}|\\overline{A}) = ${pTex(pA)} \\cdot ${pTex(tidy(1 - pBA, 12))} + ${pTex(nA)} \\cdot ${pTex(tidy(1 - pBnA, 12))} = ${pTex(pnB)}$`;
