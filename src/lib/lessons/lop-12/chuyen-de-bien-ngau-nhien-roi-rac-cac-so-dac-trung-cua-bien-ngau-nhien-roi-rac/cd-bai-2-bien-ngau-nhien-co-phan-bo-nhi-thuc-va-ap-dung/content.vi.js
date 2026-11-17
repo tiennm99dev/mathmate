@@ -40,7 +40,7 @@ export default {
           type: 'callout',
           tone: 'definition',
           title: 'Phân bố nhị thức',
-          text: 'Xét dãy $n$ phép thử Bernoulli độc lập với xác suất thành công $p$. Gọi $X$ là số lần thành công. Khi đó $X$ nhận các giá trị $0, 1, \\dots, n$ và $$P(X = k) = C_n^kp^k(1 - p)^{n-k}, \\quad k = 0, 1, \\dots, n.$$ Ta nói $X$ có phân bố nhị thức với tham số $n$ và $p$, kí hiệu $X \\sim B(n; p)$.',
+          text: 'Xét dãy $n$ phép thử Bernoulli độc lập với xác suất thành công $p$. Gọi $X$ là số lần thành công. Khi đó $X$ nhận các giá trị $0, 1, \\dots, n$ và $$P(X = k) = C_n^kp^k(1 - p)^{n-k}$$ với $k = 0, 1, \\dots, n$. Ta nói $X$ có phân bố nhị thức với tham số $n$ và $p$, kí hiệu $X \\sim B(n; p)$.',
         },
         {
           type: 'p',
@@ -65,7 +65,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Kì vọng và phương sai',
-          text: 'Nếu $X \\sim B(n; p)$ thì $$E(X) = np, \\qquad V(X) = np(1 - p), \\qquad \\sigma(X) = \\sqrt{np(1 - p)}.$$',
+          text: 'Nếu $X \\sim B(n; p)$ thì $$\\begin{aligned} E(X) &= np, \\\\ V(X) &= np(1 - p), \\\\ \\sigma(X) &= \\sqrt{np(1 - p)}. \\end{aligned}$$',
         },
         {
           type: 'p',
@@ -227,12 +227,12 @@ export default {
     {
       type: 'number',
       prompt:
-        'Trong một lô hàng, tỉ lệ sản phẩm lỗi là $5\\%$. Lấy ngẫu nhiên $20$ sản phẩm (các lần lấy độc lập). Tính độ lệch chuẩn của số sản phẩm lỗi (làm tròn đến hàng phần trăm).',
-      answer: 0.97,
+        'Một cầu thủ sút $50$ quả phạt đền, xác suất sút hỏng mỗi quả là $0{,}1$, các quả độc lập với nhau. Tính độ lệch chuẩn của số quả sút hỏng (làm tròn đến hàng phần trăm).',
+      answer: 2.12,
       tolerance: 0.005,
-      hints: ['$\\sigma(X) = \\sqrt{np(1 - p)}$ với $n = 20$, $p = 0{,}05$.'],
+      hints: ['Số quả sút hỏng $X \\sim B(50; 0{,}1)$.', '$\\sigma(X) = \\sqrt{np(1 - p)}$.'],
       solution:
-        '$\\sigma(X) = \\sqrt{20 \\cdot 0{,}05 \\cdot 0{,}95} = \\sqrt{0{,}95} \\approx 0{,}97$.',
+        '$V(X) = 50 \\cdot 0{,}1 \\cdot 0{,}9 = 4{,}5$, nên $\\sigma(X) = \\sqrt{4{,}5} \\approx 2{,}12$.',
     },
   ],
   takeaways: [

@@ -35,7 +35,7 @@ describe('Galton board', () => {
 
   it('writes the formulas', () => {
     expect(pmfTex(6, 0.5, 3)).toBe(
-      '\\begin{aligned} P(X = 3) &= C_{6}^{3} \\cdot 0{,}5^{3} \\cdot 0{,}5^{3} \\\\ &= 20 \\cdot 0{,}5^{3} \\cdot 0{,}5^{3} = 0{,}3125 \\end{aligned}',
+      '\\begin{aligned} P(X = 3) &= C_{6}^{3} \\cdot 0{,}5^{3} \\cdot 0{,}5^{3} \\\\ &= 20 \\cdot 0{,}5^{3} \\cdot 0{,}5^{3} \\\\ &= 0{,}3125 \\end{aligned}',
     );
     expect(pmfTex(10, 0.25, 3)).toContain('\\approx 0{,}2503');
     expect(momentsTex(10, 0.3)).toBe(

@@ -78,13 +78,13 @@ export default {
           type: 'callout',
           tone: 'definition',
           title: 'Phương sai, độ lệch chuẩn',
-          text: 'Phương sai của $X$, kí hiệu $V(X)$, là $$V(X) = (x_1 - \\mu)^2p_1 + (x_2 - \\mu)^2p_2 + \\dots + (x_n - \\mu)^2p_n, \\quad \\mu = E(X).$$ Căn bậc hai của phương sai gọi là độ lệch chuẩn: $\\sigma(X) = \\sqrt{V(X)}$.',
+          text: 'Phương sai của $X$, kí hiệu $V(X)$, là $$\\begin{aligned} V(X) &= (x_1 - \\mu)^2p_1 + (x_2 - \\mu)^2p_2 \\\\ &\\quad + \\dots + (x_n - \\mu)^2p_n, \\end{aligned}$$ trong đó $\\mu = E(X)$. Căn bậc hai của phương sai gọi là độ lệch chuẩn: $\\sigma(X) = \\sqrt{V(X)}$.',
         },
         {
           type: 'callout',
           tone: 'theorem',
           title: 'Công thức tính phương sai',
-          text: '$$V(X) = x_1^2p_1 + x_2^2p_2 + \\dots + x_n^2p_n - [E(X)]^2.$$',
+          text: '$$\\begin{aligned} V(X) &= x_1^2p_1 + x_2^2p_2 + \\dots + x_n^2p_n \\\\ &\\quad - [E(X)]^2. \\end{aligned}$$',
         },
         {
           type: 'list',

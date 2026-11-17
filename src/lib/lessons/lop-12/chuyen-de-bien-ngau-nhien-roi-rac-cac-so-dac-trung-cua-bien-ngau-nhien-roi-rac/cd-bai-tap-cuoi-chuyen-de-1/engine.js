@@ -34,7 +34,7 @@ export const GAMES = [
     id: 'bau-cua',
     label: 'Ba con xúc xắc',
     story:
-      'Người chơi đặt $10$ nghìn đồng vào một mặt (chẳng hạn mặt $6$ chấm) rồi gieo ba con xúc xắc cân đối. Mặt đó xuất hiện $1$ hoặc $2$ lần thì người chơi được thưởng $10$ hoặc $20$ nghìn đồng (và nhận lại tiền đặt); xuất hiện cả $3$ lần thì được thưởng số tiền đặt ở thanh trượt; không xuất hiện thì mất $10$ nghìn đồng.',
+      'Người chơi đặt $10$ nghìn đồng vào một mặt (chẳng hạn mặt $6$ chấm) rồi gieo ba con xúc xắc cân đối. Mặt đó xuất hiện $1$ hoặc $2$ lần thì người chơi được thưởng $10$ hoặc $20$ nghìn đồng (và nhận lại tiền đặt); xuất hiện cả $3$ lần thì được thưởng số tiền chọn ở thanh trượt (và cũng nhận lại tiền đặt); không xuất hiện thì mất $10$ nghìn đồng.',
     knob: 'Tiền thưởng khi mặt đã đặt xuất hiện 3 lần',
     min: 30,
     max: 300,

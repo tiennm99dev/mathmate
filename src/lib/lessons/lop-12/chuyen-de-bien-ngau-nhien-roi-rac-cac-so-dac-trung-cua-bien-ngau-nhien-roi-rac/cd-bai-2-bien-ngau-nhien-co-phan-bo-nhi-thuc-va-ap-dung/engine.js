@@ -56,8 +56,8 @@ export function observedMean(counts) {
 }
 
 /**
- * P(X = k) written out on two lines, so it fits a phone:
- * 'P(X = 3) &= C_{6}^{3} \cdot 0{,}5^{3} \cdot 0{,}5^{3} \\ &= 20 \cdot … = 0{,}3125' in `aligned`.
+ * P(X = k) written out on three lines, so it fits a phone:
+ * 'P(X = 3) &= C_{6}^{3} \cdot 0{,}5^{3} \cdot 0{,}5^{3} \\ &= 20 \cdot … \\ &= 0{,}3125' in `aligned`.
  * @param {number} n @param {number} p @param {number} k
  */
 export function pmfTex(n, p, k) {
@@ -66,7 +66,7 @@ export function pmfTex(n, p, k) {
   const r = tidy(value, 4);
   const sign = tidy(value, 9) === r ? '=' : '\\approx';
   const powers = `${numTex(p)}^{${k}} \\cdot ${numTex(q)}^{${n - k}}`;
-  return `\\begin{aligned} P(X = ${k}) &= C_{${n}}^{${k}} \\cdot ${powers} \\\\ &= ${choose(n, k)} \\cdot ${powers} ${sign} ${numTex(r)} \\end{aligned}`;
+  return `\\begin{aligned} P(X = ${k}) &= C_{${n}}^{${k}} \\cdot ${powers} \\\\ &= ${choose(n, k)} \\cdot ${powers} \\\\ &${sign} ${numTex(r)} \\end{aligned}`;
 }
 
 /**
@@ -102,6 +102,6 @@ export function feedback(counts, n, p) {
   }
   return {
     tone: 'ok',
-    text: `Đã thả $${total}$ viên bi: trung bình số lần rẽ phải là $${meanText}$, rất gần $E(X) = np = ${numTex(e)}$, và các cột tần suất bám sát phân bố nhị thức $B(${n}; ${numTex(p)})$.`,
+    text: `Đã thả $${total}$ viên bi: trung bình số lần rẽ phải là $${meanText}$, so với $E(X) = np = ${numTex(e)}$. Thả càng nhiều bi, trung bình này càng gần $E(X)$ và các cột tần suất càng bám sát phân bố nhị thức $B(${n}; ${numTex(p)})$.`,
   };
 }
