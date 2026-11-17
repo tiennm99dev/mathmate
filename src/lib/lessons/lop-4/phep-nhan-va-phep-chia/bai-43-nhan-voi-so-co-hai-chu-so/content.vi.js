@@ -183,7 +183,7 @@ export default {
       type: 'number',
       prompt: 'Trường thuê 12 xe, mỗi xe có 45 chỗ ngồi. Hỏi các xe có tất cả bao nhiêu chỗ ngồi?',
       answer: 540,
-      unit: 'chỗ',
+      unit: 'chỗ ngồi',
       hints: ['Em tính 45 × 12.'],
       solution: '45 × 12: tích riêng 90 và 45 (lùi một cột). 90 + 450 = 540 (chỗ ngồi).',
     },

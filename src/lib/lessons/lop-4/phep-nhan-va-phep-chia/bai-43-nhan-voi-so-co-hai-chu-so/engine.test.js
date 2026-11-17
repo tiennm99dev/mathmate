@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
+import { checkAnswer } from '#lib/core/answer-check.js';
+import content from './content.vi.js';
 import {
   FIRST,
   cellsOf,
@@ -49,5 +51,14 @@ describe('the column sheet', () => {
   it('writes the second partial product one column to the left', () => {
     const rows = sheetOf({ a: 56, b: 23 }).map((r) => r.cells.join('.'));
     expect(rows).toEqual(['..5.6', '..2.3', '.1.6.8', '1.1.2.', '1.2.8.8']);
+  });
+});
+
+describe('the seats exercise', () => {
+  it('accepts the answer with or without the unit the question uses', () => {
+    const seats = content.practice.find((e) => e.type === 'number' && e.answer === 540);
+    if (!seats) throw new Error('missing the 12 × 45 seats exercise');
+    expect(checkAnswer(seats, '540').correct).toBe(true);
+    expect(checkAnswer(seats, '540 chỗ ngồi').correct).toBe(true);
   });
 });
