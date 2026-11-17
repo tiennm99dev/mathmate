@@ -30,7 +30,7 @@
     if (done) return doneText(task);
     if (slip) return slip;
     if (found === 1) return `Đúng rồi: ${stepQuestion(task, 0).sentence}. Đó là rút về đơn vị.`;
-    return problemText(task);
+    return `Trước hết, em tìm xem mỗi ${task.story.group} có mấy ${task.story.thing}.`;
   });
 
   /** @param {number} i */
