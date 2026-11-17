@@ -5,6 +5,10 @@
  * P(1 + r)^n = P + nPr + ... written out term by term.
  */
 
+import { choose } from '#lib/core/counting.js';
+
+export { choose };
+
 /** @typedef {'nam' | 'thang'} Period */
 
 /** Deposit terms the widget offers, with how many periods fit in a year. */
@@ -55,17 +59,6 @@ export function series(p, r, n) {
     simple: simpleAmount(p, r, k),
     compound: compoundAmount(p, r, k),
   }));
-}
-
-/**
- * Binomial coefficient C(n, k).
- * @param {number} n
- * @param {number} k
- */
-export function choose(n, k) {
-  let c = 1;
-  for (let i = 1; i <= k; i++) c = (c * (n - k + i)) / i;
-  return Math.round(c);
 }
 
 /**

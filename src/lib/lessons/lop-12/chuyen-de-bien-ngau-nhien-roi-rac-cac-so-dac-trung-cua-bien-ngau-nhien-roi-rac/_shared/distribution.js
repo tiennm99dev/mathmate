@@ -6,17 +6,9 @@
  */
 
 import { tidy } from '#lib/core/number-format.js';
+import { choose } from '#lib/core/counting.js';
 
-/**
- * C(n, k), exact for the small n of the chapter.
- * @param {number} n @param {number} k
- */
-export function choose(n, k) {
-  if (k < 0 || k > n) return 0;
-  let c = 1;
-  for (let i = 1; i <= Math.min(k, n - k); i += 1) c = (c * (n - i + 1)) / i;
-  return Math.round(c);
-}
+export { choose };
 
 /**
  * Sum of the probabilities, rounded away from binary noise.

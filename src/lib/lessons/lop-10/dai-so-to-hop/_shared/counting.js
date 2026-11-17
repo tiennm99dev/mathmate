@@ -4,35 +4,11 @@
  * rows of Pascal's triangle and the expansion of $(px + q)^n$.
  */
 
-/**
- * n! = 1 · 2 · … · n, with 0! = 1.
- * @param {number} n
- */
-export function factorial(n) {
-  let r = 1;
-  for (let i = 2; i <= n; i++) r *= i;
-  return r;
-}
+import { arrangeCount, choose, factorial, pascalRow } from '#lib/core/counting.js';
 
-/**
- * $A_n^k = n(n − 1)…(n − k + 1)$, the number of ordered picks of k out of n.
- * @param {number} n @param {number} k
- */
-export function arrangeCount(n, k) {
-  if (k < 0 || k > n) return 0;
-  let r = 1;
-  for (let i = 0; i < k; i++) r *= n - i;
-  return r;
-}
-
-/**
- * $C_n^k = \dfrac{n!}{k!(n − k)!}$, the number of k-element subsets of n.
- * @param {number} n @param {number} k
- */
-export function chooseCount(n, k) {
-  if (k < 0 || k > n) return 0;
-  return arrangeCount(n, k) / factorial(k);
-}
+export { arrangeCount, factorial, pascalRow };
+/** $C_n^k$ under the chapter's name. */
+export const chooseCount = choose;
 
 /**
  * Every ordered pick of k items (no repeats), in lexicographic order of the
@@ -63,14 +39,6 @@ export function combinations(items, k) {
   if (items.length < k) return [];
   const [first, ...rest] = items;
   return [...combinations(rest, k - 1).map((c) => [first, ...c]), ...combinations(rest, k)];
-}
-
-/**
- * Row n of Pascal's triangle: $C_n^0, C_n^1, …, C_n^n$.
- * @param {number} n
- */
-export function pascalRow(n) {
-  return Array.from({ length: n + 1 }, (_, k) => chooseCount(n, k));
 }
 
 /**

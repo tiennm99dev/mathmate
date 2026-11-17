@@ -6,29 +6,7 @@
  */
 
 import { ratioTex } from '#lib/core/fractions.js';
-
-/**
- * n! for a natural number n.
- * @param {number} n
- */
-export function factorial(n) {
-  let out = 1;
-  for (let i = 2; i <= n; i++) out *= i;
-  return out;
-}
-
-/**
- * The number of combinations C_n^k (0 when k is out of range).
- * @param {number} n
- * @param {number} k
- */
-export function choose(n, k) {
-  if (k < 0 || k > n) return 0;
-  const m = Math.min(k, n - k);
-  let out = 1;
-  for (let i = 1; i <= m; i++) out = (out * (n - m + i)) / i;
-  return Math.round(out);
-}
+export { choose, factorial } from '#lib/core/counting.js';
 
 /**
  * Draws k different indices from 0..n−1 at random (a partial Fisher–Yates

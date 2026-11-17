@@ -5,28 +5,12 @@
  */
 
 import { numTex } from '#lib/core/number-format.js';
+import { choose, pascalRow } from '#lib/core/counting.js';
+
+export { choose, pascalRow };
 
 /** The last row the widget draws. */
 export const TOP_ROW = 10;
-
-/**
- * C(n, k), exact for the small n of the lesson.
- * @param {number} n @param {number} k
- */
-export function choose(n, k) {
-  if (k < 0 || k > n) return 0;
-  let c = 1;
-  for (let i = 1; i <= Math.min(k, n - k); i += 1) c = (c * (n - i + 1)) / i;
-  return Math.round(c);
-}
-
-/**
- * Row n of Pascal's triangle.
- * @param {number} n
- */
-export function pascalRow(n) {
-  return Array.from({ length: n + 1 }, (_, k) => choose(n, k));
-}
 
 /**
  * @typedef {object} Form

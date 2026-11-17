@@ -12,6 +12,9 @@ import { fmt, formatNumber, intText, operand, sup } from '#lib/core/number-forma
 import { fracText } from '#lib/core/fractions.js';
 import { linText, substituteText, sumText } from '#lib/core/algebra-text.js';
 import { fraction, simplify } from '#lib/fraction-engine/index.js';
+import { choose } from '#lib/core/counting.js';
+
+export { choose };
 
 /** @typedef {import('#lib/core/adaptive.js').ReviewSkill} ReviewSkill */
 /** @typedef {import('#lib/fraction-engine/fraction.js').Fraction} Fraction */
@@ -41,18 +44,6 @@ export function valueShow(f) {
 /** A nonzero integer in [−max, −1] ∪ [1, max]. */
 const nonzero = (/** @type {() => number} */ rand, /** @type {number} */ max) =>
   int(rand, 1, max) * pick(rand, [1, -1]);
-
-/**
- * The number of k-element subsets of an n-element set.
- * @param {number} n
- * @param {number} k
- */
-export function choose(n, k) {
-  if (k < 0 || k > n) return 0;
-  let c = 1;
-  for (let i = 1; i <= k; i += 1) c = (c * (n - k + i)) / i;
-  return Math.round(c);
-}
 
 /**
  * n(n − 1)…(n − k + 1), the k-arrangements of n.

@@ -343,6 +343,8 @@ Other shared pieces:
 - `#lib/core/feedback-note.svelte` (a coloured live feedback line, tone `ok`,
   `warn` or `info`; its text is rich text, so `$C_M$` shows as math) and `#lib/core/right-wrong-sorter.svelte` (sort actions
   into "Làm đúng" and "Làm sai" on top of the card sorter).
+- `#lib/core/counting.js`: `factorial`, `arrangeCount` ($A_n^k$), `choose`
+  ($C_n^k$, 0 out of range) and `pascalRow`; never write a local copy.
 - `#lib/core/sentence-case.js`: `lowerFirst(text)` puts a name into the middle
   of a sentence (`Thiên địch` → `thiên địch`), keeping an abbreviation or
   formula that starts it (`DNA …`, `CO₂`); never write a local copy.
