@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  rolledShown,
   FULL,
   GROUND_Y,
   RADII,
@@ -17,8 +18,20 @@ import {
   wheelAt,
   wheelNote,
 } from './engine.js';
+import { tidy } from '#lib/core/number-format.js';
+import { circumference } from '../_shared/figures.js';
 
 describe('rolling the wheel', () => {
+  it('announces the rolled distance from the 3,14 circumference, never past it', () => {
+    for (const r of RADII) {
+      const max = tidy(circumference(r * 2), 2);
+      expect(rolledShown(r, 1)).toBe(max);
+      expect(rolledShown(r, 0.5)).toBeLessThanOrEqual(max);
+      expect(rolledShown(r, 0)).toBe(0);
+    }
+    expect(rolledShown(2, 1)).toBe(12.56);
+  });
+
   it('starts with the paint dot on the ground and ends one turn later on it again', () => {
     for (const r of RADII) {
       const start = wheelAt(r, 0);

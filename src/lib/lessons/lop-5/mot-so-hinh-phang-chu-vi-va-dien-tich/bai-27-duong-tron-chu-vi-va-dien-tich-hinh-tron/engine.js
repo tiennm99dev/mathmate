@@ -36,6 +36,15 @@ export const WHEEL_H = 215;
 export const trueTurn = (r) => 2 * Math.PI * r;
 
 /**
+ * The distance rolled after a part `t` of one turn, as the child reads it: a
+ * share of the circumference d × 3,14 printed on the board, so a full turn is
+ * exactly that circumference. For the slider's spoken value.
+ * @param {number} r
+ * @param {number} t
+ */
+export const rolledShown = (r, t) => tidy(circumference(tidy(r * 2)) * t, 2);
+
+/**
  * The wheel after rolling a part `t` of one turn (0 to 1): the centre, the
  * angle it turned (degrees, clockwise on screen) and the paint dot.
  * @param {number} r radius in cm

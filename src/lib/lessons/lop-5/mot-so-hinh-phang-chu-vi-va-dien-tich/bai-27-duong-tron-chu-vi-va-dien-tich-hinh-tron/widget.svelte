@@ -18,6 +18,7 @@
     WHEEL_W,
     diametersInTurn,
     trueTurn,
+    rolledShown,
     turnFromX,
     wheelAt,
     wheelLabel,
@@ -193,8 +194,8 @@
       aria-label="Tâm bánh xe. Kéo hoặc bấm phím mũi tên trái, phải để lăn bánh xe."
       aria-valuemin="0"
       aria-valuemax={tidy(circumference(d), 2)}
-      aria-valuenow={tidy(trueTurn(r) * t, 1)}
-      aria-valuetext="Đã lăn khoảng {num(tidy(trueTurn(r) * t, 1))} cm"
+      aria-valuenow={rolledShown(r, t)}
+      aria-valuetext="Đã lăn {num(rolledShown(r, t))} cm"
       style="cursor:grab; outline:none"
       use:draggable={drag}
     />
