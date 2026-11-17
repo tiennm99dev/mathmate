@@ -1,6 +1,7 @@
 <script>
   import KidNote from '#lib/core/kid/kid-note.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
+  import { passFocus } from '#lib/core/kid/pass-focus.js';
   import { button } from '#lib/core/ui.js';
   import Calculator from '../_shared/calculator.svelte';
   import { off, press, screenValue } from '../_shared/calc.js';
@@ -15,6 +16,11 @@
     tone: /** @type {'ok' | 'warn' | 'info'} */ ('info'),
     text: 'Em bấm ON/C để bật máy, tính rồi bấm "Nộp kết quả".',
   });
+
+  /** @type {HTMLButtonElement | undefined} */
+  let handInButton = $state();
+  /** @type {HTMLButtonElement | undefined} */
+  let restartButton = $state();
 
   const c = $derived(CHALLENGES[Number(pick)]);
   const finished = $derived(stepIndex >= c.steps.length);
@@ -39,6 +45,8 @@
     }
     stepIndex += 1;
     misses = 0;
+    // The last accepted step disables "Nộp kết quả"; keep keyboard focus on the page.
+    passFocus(handInButton, restartButton);
     if (stepIndex >= c.steps.length && !solved.includes(Number(pick))) {
       solved = [...solved, Number(pick)];
       note = {
@@ -92,10 +100,14 @@
       type="button"
       class="min-h-12 text-lg {button.primary}"
       disabled={finished}
+      bind:this={handInButton}
       onclick={handIn}>Nộp kết quả</button
     >
-    <button type="button" class="min-h-12 text-lg {button.quiet}" onclick={openChallenge}
-      >Làm lại</button
+    <button
+      type="button"
+      class="min-h-12 text-lg {button.quiet}"
+      bind:this={restartButton}
+      onclick={openChallenge}>Làm lại</button
     >
   </div>
 
