@@ -3,7 +3,7 @@ export default {
   summary:
     'Ôn tập cuối năm Toán 10: mệnh đề và tập hợp, bất phương trình bậc nhất hai ẩn, hàm số bậc hai, đại số tổ hợp, hệ thức lượng trong tam giác, vectơ, phương pháp toạ độ, các số đặc trưng của mẫu số liệu và xác suất cổ điển, kèm đề ôn thích ứng có bản đồ chủ đề.',
   intro:
-    'Năm lớp 10, em đã học mệnh đề và tập hợp, bất phương trình và hệ bất phương trình bậc nhất hai ẩn, hàm số bậc hai và tam thức bậc hai, đại số tổ hợp; về hình học là hệ thức lượng trong tam giác, vectơ và phương pháp toạ độ trong mặt phẳng; cuối cùng là các số đặc trưng của mẫu số liệu và xác suất theo định nghĩa cổ điển. Bài ôn tập này hệ thống lại ba mạch kiến thức đó theo cách sách Kết nối tri thức chia bài tập ôn tập cuối năm: Đại số, Hình học và đo lường, Thống kê và xác suất. Đề ôn thích ứng ở dưới có bản đồ chủ đề: chủ đề nào em còn làm sai, đề hỏi thêm chủ đề đó và cuối đề chỉ ra phần cần ôn lại.',
+    'Năm lớp 10, em đã học mệnh đề và tập hợp, bất phương trình và hệ bất phương trình bậc nhất hai ẩn, hàm số bậc hai và tam thức bậc hai, đại số tổ hợp; về hình học là hệ thức lượng trong tam giác, vectơ và phương pháp toạ độ trong mặt phẳng; cuối cùng là các số đặc trưng của mẫu số liệu và xác suất theo định nghĩa cổ điển. Bài ôn tập này hệ thống lại các kiến thức đó theo ba mạch: Đại số, Hình học và đo lường, Thống kê và xác suất. Đề ôn thích ứng ở dưới có bản đồ chủ đề: chủ đề nào em còn làm sai, đề hỏi thêm chủ đề đó và cuối đề chỉ ra phần cần ôn lại.',
   objectives: [
     'Xác định tính đúng sai, phủ định của mệnh đề; thực hiện các phép toán giao, hợp, hiệu, phần bù trên các khoảng, đoạn, nửa khoảng.',
     'Biểu diễn miền nghiệm của hệ bất phương trình bậc nhất hai ẩn và tìm giá trị lớn nhất, nhỏ nhất của $F = ax + by$ trên miền đó.',

@@ -519,7 +519,7 @@ export const soDacTrung = {
       const mean = frac(total, n);
       if (valueShow(mean).includes('/')) return soDacTrung.make(rand);
       return {
-        prompt: `Điểm kiểm tra của một nhóm học sinh là: ${listed}. Tính số trung bình của mẫu số liệu.`,
+        prompt: `Số giờ tự học trong một tuần của một nhóm học sinh là: ${listed}. Tính số trung bình của mẫu số liệu.`,
         answer: mean,
         display: valueShow(mean),
         hints: ['Số trung bình bằng tổng các giá trị chia cho số giá trị.', `Mẫu có ${n} giá trị.`],
