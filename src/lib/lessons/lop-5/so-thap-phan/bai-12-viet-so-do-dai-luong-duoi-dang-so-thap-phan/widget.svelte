@@ -8,7 +8,9 @@
     TASKS,
     cellsAt,
     givenText,
+    isTaught,
     noteAt,
+    slideFrom,
     startCol,
     unitsOf,
     valueIn,
@@ -22,9 +24,12 @@
   const cells = $derived(cellsAt(task, col));
   const note = $derived(noteAt(task, col));
 
-  /** @param {number} step */
+  const leftmost = $derived(slideFrom(task, col, -1) === col);
+  const rightmost = $derived(slideFrom(task, col, 1) === col);
+
+  /** @param {-1 | 1} step */
   function slide(step) {
-    col = Math.min(units.length - 1, Math.max(0, col + step));
+    col = slideFrom(task, col, step);
     passFocus(step < 0 ? left : right, step < 0 ? right : left);
   }
 
@@ -61,7 +66,7 @@
               scope="col"
               class="border border-slate-300 px-0 py-2 text-base font-bold {i === col
                 ? 'bg-rose-100 text-rose-700'
-                : 'bg-slate-50 text-slate-700'}">{u}</th
+                : 'bg-slate-50 text-slate-700'}">{isTaught(task, i) ? u : ''}</th
             >
           {/each}
         </tr>
@@ -99,14 +104,14 @@
       type="button"
       class="min-h-14 text-lg {button.secondary}"
       bind:this={left}
-      disabled={col === 0}
+      disabled={leftmost}
       onclick={() => slide(-1)}>← Dời sang trái</button
     >
     <button
       type="button"
       class="min-h-14 text-lg {button.secondary}"
       bind:this={right}
-      disabled={col === units.length - 1}
+      disabled={rightmost}
       onclick={() => slide(1)}>Dời sang phải →</button
     >
   </div>

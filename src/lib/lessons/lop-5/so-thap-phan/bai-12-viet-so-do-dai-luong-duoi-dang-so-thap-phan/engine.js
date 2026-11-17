@@ -8,11 +8,19 @@
 import { fmt } from '#lib/core/number-format.js';
 import { decText, trimZeros } from '../_shared/decimals.js';
 
-/** The two tables of the book, biggest unit first; each unit is 10 of the next. */
+/**
+ * The two tables, biggest unit first; each column is 10 of the next, so the
+ * comma slides one column per step. The 2018 programme no longer teaches hm,
+ * dam, hg and dag: their columns stay so the arithmetic holds, but they are
+ * drawn as unnamed spacers and the comma steps over them (`slideFrom`).
+ */
 export const TABLES = /** @type {const} */ ({
   length: { name: 'Độ dài', units: ['km', 'hm', 'dam', 'm', 'dm', 'cm', 'mm'] },
   mass: { name: 'Khối lượng', units: ['tấn', 'tạ', 'yến', 'kg', 'hg', 'dag', 'g'] },
 });
+
+/** Units kept only as spacer columns, never named or written. */
+const UNTAUGHT = new Set(['hm', 'dam', 'hg', 'dag']);
 
 /** @typedef {keyof typeof TABLES} TableKey */
 
@@ -163,3 +171,24 @@ export function noteAt(task, col) {
  * @param {Task} task
  */
 export const startCol = (task) => amountOf(task).base;
+
+/**
+ * Whether column `col` is a unit the child knows (not a spacer).
+ * @param {Task} task
+ * @param {number} col
+ */
+export const isTaught = (task, col) => !UNTAUGHT.has(unitsOf(task)[col]);
+
+/**
+ * The column the comma moves to from `col` one step left (-1) or right (1),
+ * stepping over spacer columns; `col` itself when there is none that way.
+ * @param {Task} task
+ * @param {number} col
+ * @param {-1 | 1} step
+ */
+export function slideFrom(task, col, step) {
+  for (let c = col + step; c >= 0 && c < unitsOf(task).length; c += step) {
+    if (isTaught(task, c)) return c;
+  }
+  return col;
+}

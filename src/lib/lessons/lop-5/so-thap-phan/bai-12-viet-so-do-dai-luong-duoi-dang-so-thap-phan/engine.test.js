@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { TASKS, cellsAt, noteAt, startCol, unitsOf, valueIn } from './engine.js';
+import {
+  TASKS,
+  cellsAt,
+  isTaught,
+  noteAt,
+  slideFrom,
+  startCol,
+  unitsOf,
+  valueIn,
+} from './engine.js';
 
 describe('sliding comma', () => {
   it('writes each task in the unit asked for', () => {
@@ -36,5 +45,35 @@ describe('sliding comma', () => {
       text: '3 m 5 cm = 305 cm. Em cần viết theo m: dời dấu phẩy sang trái.',
     });
     expect(noteAt(TASKS[0], 3).ok).toBe(true);
+  });
+});
+
+describe('untaught units', () => {
+  it('steps the comma over hm, dam, hg and dag', () => {
+    const length = TASKS[0];
+    expect(slideFrom(length, 3, -1)).toBe(0);
+    expect(slideFrom(length, 0, 1)).toBe(3);
+    expect(slideFrom(length, 0, -1)).toBe(0);
+    const mass = TASKS[6];
+    expect(slideFrom(mass, 3, 1)).toBe(6);
+    expect(slideFrom(mass, 6, -1)).toBe(3);
+    expect(slideFrom(mass, 6, 1)).toBe(6);
+  });
+
+  it('never rests on or writes an untaught unit', () => {
+    for (const t of TASKS) {
+      const seen = new Set([startCol(t)]);
+      for (let k = 0; k < 20; k++) {
+        for (const c of [...seen]) {
+          seen.add(slideFrom(t, c, -1));
+          seen.add(slideFrom(t, c, 1));
+        }
+      }
+      for (const c of seen) {
+        expect(isTaught(t, c)).toBe(true);
+        expect(noteAt(t, c).text).not.toMatch(/\b(hm|dam|hg|dag)\b/);
+      }
+      expect(isTaught(t, unitsOf(t).indexOf(t.target))).toBe(true);
+    }
   });
 });

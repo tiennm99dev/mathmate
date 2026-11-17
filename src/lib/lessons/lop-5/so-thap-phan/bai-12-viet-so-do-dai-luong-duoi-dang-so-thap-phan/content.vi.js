@@ -40,7 +40,7 @@ export default {
         {
           type: 'callout',
           tone: 'theorem',
-          text: 'Bảng đơn vị đo khối lượng: tấn, tạ, yến, kg, hg, dag, g. Hai đơn vị liền nhau cũng hơn kém nhau 10 lần. 1 tấn = 1 000 kg, 1 kg = 1 000 g.',
+          text: '1 tấn = 10 tạ, 1 tạ = 10 yến, 1 yến = 10 kg. 1 tấn = 1 000 kg, 1 kg = 1 000 g.',
         },
         {
           type: 'p',
