@@ -3,7 +3,7 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import Tex from '#lib/components/tex.svelte';
-  import { formatFixed, formatNumber, numTex } from '#lib/core/number-format.js';
+  import { formatFixed, formatNumber, numTex, tidy } from '#lib/core/number-format.js';
   import { niceAxis } from '#lib/stats-engine/index.js';
   import { METHODS, annuityPayment, monthlyRate, schedule, totals } from './engine.js';
 
@@ -49,14 +49,23 @@
   const texMoney = (v) => numTex(Math.round(v * 1000) / 1000, 3);
 
   const rateTex = $derived(numTex(r, 6));
-  const stepTex = $derived(`${texMoney(row.interest)} = ${rateTex} \\cdot ${texMoney(before)}`);
+  /** '=' when r has at most six decimals (9 %/năm), else '≈' (9,1 %/năm). */
+  const rateExact = $derived(tidy(r, 6) === tidy(r));
+  /** Whether an amount in million đồng needs no rounding to show it to the thousand đồng. @param {number} v */
+  const exact = (v) => tidy(Math.round(v * 1000) / 1000) === tidy(v);
+  /** '=' between written values that are exact, else '≈'. @param {...number} vs */
+  const rel = (...vs) => (vs.every(exact) ? '=' : '\\approx');
+  const stepTex = $derived(
+    `${texMoney(row.interest)} ${rateExact ? rel(row.interest, before) : '\\approx'} ${rateTex} \\cdot ${texMoney(before)}`,
+  );
+  const balanceRel = $derived(rel(before, row.principal, row.balance));
   const balanceTex = $derived(
-    `D_{${at}} = ${texMoney(before)} - ${texMoney(row.principal)} = ${texMoney(row.balance)}`,
+    `D_{${at}} ${balanceRel} ${texMoney(before)} - ${texMoney(row.principal)} ${balanceRel} ${texMoney(row.balance)}`,
   );
   const ruleTex = $derived(
     method === 'deu'
-      ? `x = \\dfrac{A\\,r\\,(1 + r)^N}{(1 + r)^N - 1} = \\dfrac{${texMoney(loan)} \\cdot ${rateTex} \\cdot ${numTex(1 + r, 6)}^{${months}}}{${numTex(1 + r, 6)}^{${months}} - 1} \\approx ${texMoney(annuityPayment(loan, r, months))}`
-      : `\\text{gốc mỗi tháng} = \\dfrac{A}{N} = \\dfrac{${texMoney(loan)}}{${months}} \\approx ${texMoney(loan / months)}`,
+      ? `x = \\dfrac{A\\,r\\,(1 + r)^N}{(1 + r)^N - 1} ${rateExact ? '=' : '\\approx'} \\dfrac{${texMoney(loan)} \\cdot ${rateTex} \\cdot ${numTex(1 + r, 6)}^{${months}}}{${numTex(1 + r, 6)}^{${months}} - 1} \\approx ${texMoney(annuityPayment(loan, r, months))}`
+      : `\\dfrac{A}{N} = \\dfrac{${texMoney(loan)}}{${months}} ${rel(loan / months)} ${texMoney(loan / months)}`,
   );
 
   /** @param {string | number} v */
@@ -107,10 +116,9 @@
     onchange={pickMethod}
   />
   <p class="text-sm text-slate-600">
-    Lãi suất mỗi tháng: r = {formatNumber(yearPct, 1)}% : 12 = {formatNumber(r * 100, 4)}% = {formatNumber(
-      r,
-      6,
-    )}.
+    Lãi suất mỗi tháng: r = {formatNumber(yearPct, 1)}% : 12 {rateExact ? '=' : '≈'}
+    {formatNumber(r * 100, 4)}% {rateExact ? '=' : '≈'}
+    {formatNumber(r, 6)}.
   </p>
 
   <svg
@@ -168,7 +176,10 @@
   </div>
 
   <div class="space-y-2 overflow-x-auto rounded-lg border border-slate-200 p-3 text-sm">
-    <p><Tex math={ruleTex} /></p>
+    <p>
+      {method === 'deu' ? 'Số tiền trả mỗi tháng:' : 'Tiền gốc trả mỗi tháng:'}
+      <Tex math={ruleTex} />
+    </p>
     <p>Tiền lãi tháng {at} = r · dư nợ đầu tháng: <Tex math={stepTex} /></p>
     <p>Dư nợ cuối tháng: <Tex math={balanceTex} /></p>
   </div>

@@ -137,6 +137,12 @@
       : [],
   );
 
+  /** '= 41,5' or '≈ 37,67' after a symbol in a sentence. @param {number} v */
+  const relText = (v) => {
+    const t = approxText(v);
+    return t.startsWith('≈') ? t : `= ${t}`;
+  };
+
   const status = $derived.by(() => {
     if (parsed.bad.length)
       return {
@@ -153,13 +159,24 @@
         tone: /** @type {const} */ ('warn'),
         text: `Độ dài nhóm $h = ${width}$ tạo ra ${groups.length} nhóm, quá nhiều để đọc. Hãy tăng độ dài nhóm.`,
       };
-    const raw = `Từ số liệu gốc: trung bình ${formatNumber(mean(values), 2)}, trung vị ${formatNumber(median(values), 2)}`;
-    const compare = otherValues.length
-      ? ` Số giọt trung bình với ${liquid === 'nuoc' ? 'nước xà phòng' : 'nước sạch'} là ${formatNumber(mean(otherValues), 2)}: ${liquid === 'nuoc' ? 'nước sạch giữ được nhiều giọt hơn vì lực căng mặt ngoài lớn hơn.' : 'xà phòng làm giảm lực căng mặt ngoài nên đồng xu giữ được ít giọt hơn.'}`
-      : '';
+    const rawMean = mean(values);
+    const rawMedian = median(values);
+    const close = Math.abs(xBar - rawMean) < 1 && Math.abs(quarts[1].q.value - rawMedian) < 1;
+    const raw = `Từ số liệu gốc: trung bình ${formatNumber(rawMean, 2)}, trung vị ${formatNumber(rawMedian, 2)}`;
+    const otherName = liquid === 'nuoc' ? 'nước xà phòng' : 'nước sạch';
+    let compare = '';
+    if (otherValues.length) {
+      const otherMean = mean(otherValues);
+      const cleanMore = liquid === 'nuoc' ? rawMean > otherMean : otherMean > rawMean;
+      compare = ` Số giọt trung bình với ${otherName} là ${formatNumber(otherMean, 2)}: ${
+        cleanMore
+          ? 'nước sạch giữ được nhiều giọt hơn, vì xà phòng làm giảm lực căng mặt ngoài.'
+          : 'số liệu này không cho thấy nước sạch giữ được nhiều giọt hơn; hãy kiểm tra lại cách đo (cỡ giọt, độ cao khi nhỏ, đồng xu đã khô chưa).'
+      }`;
+    }
     return {
       tone: /** @type {const} */ ('ok'),
-      text: `${values.length} lần đo, ${groups.length} nhóm. Ước lượng từ bảng ghép nhóm: $\\overline{x}$ ${approxText(xBar)}, $M_e$ ${approxText(quarts[1].q.value)}. ${raw}: hai cách cho kết quả gần nhau.${compare}`,
+      text: `${values.length} lần đo, ${groups.length} nhóm. Ước lượng từ bảng ghép nhóm: $\\overline{x}$ ${relText(xBar)}, $M_e$ ${relText(quarts[1].q.value)}. ${raw}: ${close ? 'hai cách cho kết quả gần nhau' : 'ước lượng từ bảng ghép nhóm chênh khá nhiều so với số liệu gốc, hãy thử độ dài nhóm nhỏ hơn'}.${compare}`,
     };
   });
 </script>
