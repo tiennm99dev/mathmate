@@ -1,6 +1,12 @@
 import { dot3, sub3 } from '#lib/geom-engine/solid.js';
 import { pick } from '#lib/core/drill.js';
-import { lineRelation, meetLines, meetPlane, onPlane, planeThrough } from '../_shared/space.js';
+import {
+  lineRelation,
+  meetLines,
+  meetPlane,
+  onPlane,
+  planeThrough,
+} from '#lib/geom-engine/space.js';
 
 /**
  * Two lines through the vertices of the box ABCD.A'B'C'D' (hình hộp chữ

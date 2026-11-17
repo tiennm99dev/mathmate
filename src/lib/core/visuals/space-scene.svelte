@@ -3,7 +3,7 @@
   import { focusRing } from '#lib/core/ui.js';
   import { facesViewer, viewPoint } from '#lib/geom-engine/solid.js';
   import { pointsAttr } from '#lib/utils/svg.js';
-  import { isHidden, orientFaces } from './space.js';
+  import { isHidden, orientFaces } from '#lib/geom-engine/space.js';
 
   /**
    * A figure in space drawn the book's way (nét liền for what is seen, nét
@@ -22,13 +22,13 @@
    * - `view`: `{ yaw, pitch }` in degrees (bindable);
    * - `label`: what the drawing shows, for screen readers.
    * @type {{
-   *   points: Record<string, import('./space.js').P3>;
+   *   points: Record<string, import('#lib/geom-engine/space.js').P3>;
    *   faces?: string[][];
-   *   segments?: import('./space.js').SceneSegment[];
-   *   polygons?: import('./space.js').ScenePolygon[];
-   *   dots?: Array<{ at: import('./space.js').Spot, color?: string }>;
-   *   labels?: import('./space.js').SceneLabel[];
-   *   centre?: import('./space.js').P3;
+   *   segments?: import('#lib/geom-engine/space.js').SceneSegment[];
+   *   polygons?: import('#lib/geom-engine/space.js').ScenePolygon[];
+   *   dots?: Array<{ at: import('#lib/geom-engine/space.js').Spot, color?: string }>;
+   *   labels?: import('#lib/geom-engine/space.js').SceneLabel[];
+   *   centre?: import('#lib/geom-engine/space.js').P3;
    *   radius?: number;
    *   view?: { yaw: number, pitch: number };
    *   label: string;
@@ -55,9 +55,9 @@
   const scale = $derived((Math.min(W, H) / 2 - PAD) / radius);
   const mid = $derived(viewPoint(centre, view));
 
-  /** @param {import('./space.js').Spot} s @returns {import('./space.js').P3} */
+  /** @param {import('#lib/geom-engine/space.js').Spot} s @returns {import('#lib/geom-engine/space.js').P3} */
   const where = (s) => (typeof s === 'string' ? points[s] : s);
-  /** @param {import('./space.js').Spot} s */
+  /** @param {import('#lib/geom-engine/space.js').Spot} s */
   const at = (s) => {
     const v = viewPoint(where(s), view);
     return { x: W / 2 + scale * (v.x - mid.x), y: H / 2 + scale * (v.y - mid.y) };
@@ -75,7 +75,7 @@
   );
 
   const writes = $derived.by(() => {
-    /** @type {import('./space.js').SceneLabel[]} */
+    /** @type {import('#lib/geom-engine/space.js').SceneLabel[]} */
     const list = labels ?? Object.keys(points).map((k) => ({ text: k, at: k }));
     const c = { x: W / 2, y: H / 2 };
     return list.map((l) => {

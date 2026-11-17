@@ -5,7 +5,7 @@
   import LiveRichText from '#lib/components/live-rich-text.svelte';
   import { formatNumber } from '#lib/core/number-format.js';
   import { button, focusRing } from '#lib/core/ui.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
   import { EDGES, FACES, PRESETS, PYRAMID, SHAPE_NAME, judge, sectionOf } from './engine.js';
 
   /**
@@ -55,7 +55,7 @@
   }
 
   const segments = $derived.by(() => {
-    /** @type {import('../_shared/space.js').SceneSegment[]} */
+    /** @type {import('#lib/geom-engine/space.js').SceneSegment[]} */
     const list = EDGES.map((e) => ({
       key: e,
       from: e[0],
@@ -95,7 +95,7 @@
   ]);
 
   const labels = $derived.by(() => {
-    /** @type {import('../_shared/space.js').SceneLabel[]} */
+    /** @type {import('#lib/geom-engine/space.js').SceneLabel[]} */
     const list = Object.keys(PYRAMID).map((k) => ({ text: k, at: k }));
     for (const g of s.given) list.push({ text: g.name, at: g.point, color: GIVEN, dx: 12, dy: -4 });
     if (done) {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { rayDirection } from '../_shared/space.js';
+import { rayDirection } from '#lib/geom-engine/space.js';
 import { SHAPES, facts, figure, flattens, project } from './engine.js';
 
 const DIRECTIONS = [

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { sub3 } from '#lib/geom-engine/solid.js';
-import { angle3, dist3, footOnPlane, lineAngle, planeThrough } from '../_shared/space.js';
+import { angle3, dist3, footOnPlane, lineAngle, planeThrough } from '#lib/geom-engine/space.js';
 import { CASES, QUESTIONS, answerOf, figure, guideOf, isRight, solutionOf } from './engine.js';
 
 describe('review questions on the pyramid S.ABCD with SA perpendicular to the base', () => {

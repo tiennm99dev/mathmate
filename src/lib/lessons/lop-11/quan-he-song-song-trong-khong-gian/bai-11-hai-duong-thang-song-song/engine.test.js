@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { lineRelation } from '../_shared/space.js';
+import { lineRelation } from '#lib/geom-engine/space.js';
 import { BOX, PAIRS, classify, commonPlane, explain, makePair, segName } from './engine.js';
 
 describe('pairs of lines in the box', () => {

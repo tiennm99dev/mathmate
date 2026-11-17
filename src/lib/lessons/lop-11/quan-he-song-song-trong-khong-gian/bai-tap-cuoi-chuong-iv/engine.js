@@ -1,5 +1,5 @@
 import { cross3, dot3, mul3, sub3 } from '#lib/geom-engine/solid.js';
-import { centroid3, dist3, len3, lerp3, side } from '../_shared/space.js';
+import { centroid3, dist3, len3, lerp3, side } from '#lib/geom-engine/space.js';
 
 /**
  * Cross-sections (thiết diện) of the pyramid S.ABCD with a parallelogram base
@@ -9,7 +9,7 @@ import { centroid3, dist3, len3, lerp3, side } from '../_shared/space.js';
  */
 
 /** @typedef {import('#lib/geom-engine/solid.js').P3} P3 */
-/** @typedef {import('../_shared/space.js').Plane} Plane */
+/** @typedef {import('#lib/geom-engine/space.js').Plane} Plane */
 /** @typedef {'cut' | 'vertex' | 'none'} EdgeHit */
 /**
  * @typedef {{ name: string, edge: string, t: number }} GivenPoint

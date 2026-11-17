@@ -3,8 +3,8 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
   import LiveRichText from '#lib/components/live-rich-text.svelte';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { rayDirection } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { rayDirection } from '#lib/geom-engine/space.js';
   import { SHAPES, facts, figure, flattens, project } from './engine.js';
 
   /**
@@ -73,7 +73,7 @@
   ]);
 
   const segments = $derived.by(() => {
-    /** @type {import('../_shared/space.js').SceneSegment[]} */
+    /** @type {import('#lib/geom-engine/space.js').SceneSegment[]} */
     const out = [];
     for (const k of fig.names) {
       out.push({ key: `ray-${k}`, from: k, to: `${k}'`, color: RAY, width: 1.2, dash: true });

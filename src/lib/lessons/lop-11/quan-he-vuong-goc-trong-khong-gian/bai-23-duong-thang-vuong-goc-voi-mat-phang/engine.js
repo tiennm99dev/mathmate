@@ -1,4 +1,4 @@
-import { P, direction, lineAngle } from '../_shared/space.js';
+import { P, direction, lineAngle } from '#lib/geom-engine/space.js';
 
 /**
  * A flagpole d standing at the point O of a flat yard (P). Two lines a and b

@@ -247,7 +247,12 @@ board), `polygonArea`, and for quadrilaterals `quadAngles`, `splittingSide`
 and `isConvex`. `#lib/geom-engine/centers.js` has the circles of a
 triangle: `circumcircle` and `incircle` (`{ center, radius }`, null when
 flat) and `touchPoints` (where the incircle meets the sides).
-`#lib/geom-engine/solid.js` draws solids in a turning orthographic view:
+`#lib/geom-engine/space.js` is points, lines and planes in space (`planeThrough`,
+`meetPlane`, `lineRelation`, `meetLines`, `projectAlong`, `footOnPlane`,
+`footOnLine`, `lineAngle`, `linePlaneAngle`, `commonPerpendicular`,
+`orientFaces`, `isHidden`, `cube`, `angleFan`), drawn by
+`#lib/core/visuals/space-scene.svelte` (a turning scene with dashed hidden
+edges). `#lib/geom-engine/solid.js` draws solids in a turning orthographic view:
 `add3`, `sub3`, `mul3`, `dot3`, `cross3` on `{ x, y, z }`, `viewPoint`,
 `facesViewer`, `drawOrder` (faces far to near) and the view controls
 `clampPitch`, `wrapYaw`, `dragView` and `arrowView` (the near side follows

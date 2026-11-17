@@ -5,8 +5,8 @@
   import { button } from '#lib/core/ui.js';
   import { passFocus } from '#lib/core/kid/pass-focus.js';
   import { add3, mul3 } from '#lib/geom-engine/solid.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { angleFan, lerp3, unit3 } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { angleFan, lerp3, unit3 } from '#lib/geom-engine/space.js';
   import {
     ANGLES,
     CUBE,
@@ -102,7 +102,7 @@
   });
 
   const labels = $derived.by(() => {
-    /** @type {import('../_shared/space.js').SceneLabel[]} */
+    /** @type {import('#lib/geom-engine/space.js').SceneLabel[]} */
     const list = Object.keys(CUBE).map((k) => ({ text: k, at: k }));
     if (shown && move && move.name === 'O') list.push({ text: 'O', at: move.at, dx: 0, dy: 18 });
     if (chosen !== null && move) {

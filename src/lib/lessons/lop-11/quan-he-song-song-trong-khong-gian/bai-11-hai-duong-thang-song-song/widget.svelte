@@ -4,8 +4,8 @@
   import { rng } from '#lib/core/drill.js';
   import { button } from '#lib/core/ui.js';
   import { passFocus } from '#lib/core/kid/pass-focus.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { lerp3 } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { lerp3 } from '#lib/geom-engine/space.js';
   import {
     BOX,
     EDGES,

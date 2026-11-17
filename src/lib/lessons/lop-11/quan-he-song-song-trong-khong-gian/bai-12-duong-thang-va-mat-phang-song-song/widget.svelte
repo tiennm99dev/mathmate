@@ -2,8 +2,8 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
   import { formatNumber } from '#lib/core/number-format.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { lerp3 } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { lerp3 } from '#lib/geom-engine/space.js';
   import { HALF, cutBy, lineOf } from './engine.js';
 
   /**
@@ -38,7 +38,7 @@
   const points = $derived({ A: s.A, B: s.B });
 
   const segments = $derived.by(() => {
-    /** @type {import('../_shared/space.js').SceneSegment[]} */
+    /** @type {import('#lib/geom-engine/space.js').SceneSegment[]} */
     const list = [];
     const t = s.t;
     const lo = t !== null && s.seen ? Math.min(-0.4, t - 0.3) : -0.4;
@@ -80,7 +80,7 @@
   });
 
   const polygons = $derived.by(() => {
-    /** @type {import('../_shared/space.js').ScenePolygon[]} */
+    /** @type {import('#lib/geom-engine/space.js').ScenePolygon[]} */
     const list = [{ key: 'P', pts: plane, fill: planeColor, opacity: 0.3, stroke: '#475569' }];
     if (cut) {
       list.push({
@@ -100,7 +100,7 @@
   });
 
   const labels = $derived.by(() => {
-    /** @type {import('../_shared/space.js').SceneLabel[]} */
+    /** @type {import('#lib/geom-engine/space.js').SceneLabel[]} */
     const list = [
       { text: 'A', at: s.A },
       { text: 'B', at: s.B },

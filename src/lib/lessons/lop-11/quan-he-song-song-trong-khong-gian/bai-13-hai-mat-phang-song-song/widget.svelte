@@ -3,7 +3,7 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import LiveRichText from '#lib/components/live-rich-text.svelte';
   import { formatFixed, formatNumber, numTex } from '#lib/core/number-format.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
   import { FACES, SOLID, pieces, planePatch, sectionAt } from './engine.js';
 
   /**

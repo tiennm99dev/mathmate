@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { add3, sub3 } from '#lib/geom-engine/solid.js';
-import { onPlane, planeThrough } from '../_shared/space.js';
+import { onPlane, planeThrough } from '#lib/geom-engine/space.js';
 import { PRESETS, PYRAMID, judge, meetEdge, sectionOf, shapeOf } from './engine.js';
 
 const preset = (/** @type {string} */ id) =>
@@ -74,7 +74,7 @@ describe('sections of the pyramid', () => {
 describe('edges met by a plane', () => {
   it('tells a cut, a vertex and a miss apart', () => {
     const { S, A, B, D } = PYRAMID;
-    const plane = /** @type {import('../_shared/space.js').Plane} */ (
+    const plane = /** @type {import('#lib/geom-engine/space.js').Plane} */ (
       planeThrough(D, add3(B, sub3(S, B)), add3(A, { x: 0, y: 0.5, z: 0 }))
     );
     expect(meetEdge('SD', plane).hit).toBe('vertex');

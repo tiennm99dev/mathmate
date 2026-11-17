@@ -1,6 +1,6 @@
 import { numTex } from '#lib/core/number-format.js';
 import { sub3 } from '#lib/geom-engine/solid.js';
-import { P, angleFan, footOnLine, mid3 } from '../_shared/space.js';
+import { P, angleFan, footOnLine, mid3 } from '#lib/geom-engine/space.js';
 
 /**
  * A set of review questions on one pyramid that turns on the screen:

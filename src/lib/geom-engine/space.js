@@ -1,11 +1,13 @@
 import { add3, cross3, dot3, mul3, sub3 } from '#lib/geom-engine/solid.js';
 
 /**
- * Points, lines and planes in space for the chapter on perpendicular
- * relations: planes through three points, how two lines lie, the angle
- * between two lines and between a line and a plane, the foot of a
- * perpendicular on a plane or a line, the common perpendicular of two skew
- * lines and the hidden (dashed) lines of a convex solid.
+ * Points, lines and planes in space for the grade 11 chapters on parallel and
+ * perpendicular relations: planes through three points, where a line meets a
+ * plane, how two lines lie (cắt nhau, song song, trùng nhau, chéo nhau),
+ * parallel projection onto a plane, the angle between two lines and between a
+ * line and a plane, the foot of a perpendicular on a plane or a line, the
+ * common perpendicular of two skew lines and the hidden (dashed) lines of a
+ * convex solid, drawn by `#lib/core/visuals/space-scene.svelte`.
  *
  * Model space as in `#lib/geom-engine/solid.js`: z points up.
  */
@@ -143,6 +145,45 @@ export function lineAngle(u, v) {
 export function linePlaneAngle(u, plane) {
   const sin = Math.abs(dot3(u, plane.n)) / len3(u);
   return Math.asin(Math.min(1, sin)) * DEG;
+}
+
+/**
+ * Where the line through p and q meets a plane: the parameter t of
+ * p + t (q − p) and the point, or null when the line is parallel to the plane
+ * or lies in it.
+ * @param {P3} p @param {P3} q @param {Plane} plane
+ * @returns {{ t: number, point: P3 } | null}
+ */
+export function meetPlane(p, q, plane) {
+  const dir = sub3(q, p);
+  const den = dot3(plane.n, dir);
+  if (Math.abs(den) < EPS * Math.max(1, len3(dir))) return null;
+  const t = (plane.d - dot3(plane.n, p)) / den;
+  return { t, point: lerp3(p, q, t) };
+}
+
+/**
+ * The parallel projection of a point onto a plane along a direction, or null
+ * when the direction is parallel to the plane.
+ * @param {P3} p @param {P3} dir @param {Plane} plane
+ * @returns {P3 | null}
+ */
+export function projectAlong(p, dir, plane) {
+  const hit = meetPlane(p, add3(p, dir), plane);
+  return hit ? hit.point : null;
+}
+
+/**
+ * The direction with turn `azimuth` (from the x axis, degrees) and rise
+ * `elevation` above the ground (degrees), pointing downwards: a light ray
+ * coming down at that angle.
+ * @param {number} azimuth @param {number} elevation
+ * @returns {P3}
+ */
+export function rayDirection(azimuth, elevation) {
+  const a = (azimuth * Math.PI) / 180;
+  const e = (elevation * Math.PI) / 180;
+  return { x: Math.cos(a) * Math.cos(e), y: Math.sin(a) * Math.cos(e), z: -Math.sin(e) };
 }
 
 /**

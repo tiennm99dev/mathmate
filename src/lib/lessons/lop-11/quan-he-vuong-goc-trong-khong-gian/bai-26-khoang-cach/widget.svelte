@@ -4,8 +4,8 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import { formatNumber } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { lerp3 } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { lerp3 } from '#lib/geom-engine/space.js';
   import {
     CUBE,
     EDGES,
@@ -81,7 +81,7 @@
     },
   ]);
 
-  /** @type {import('../_shared/space.js').SceneLabel[]} */
+  /** @type {import('#lib/geom-engine/space.js').SceneLabel[]} */
   const labels = $derived([
     ...Object.keys(CUBE).map((k) => ({ text: k, at: k })),
     { text: 'M', at: 'M', color: A_COLOR, dx: -14, dy: -6 },

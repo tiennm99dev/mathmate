@@ -3,8 +3,8 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import { button } from '#lib/core/ui.js';
   import { facesViewer } from '#lib/geom-engine/solid.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { P, isHidden, orientFaces } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { P, isHidden, orientFaces } from '#lib/geom-engine/space.js';
   import {
     BOX,
     BOX_EDGES,
@@ -55,7 +55,7 @@
 
   /**
    * The edges of one solid, dashed when hidden behind it.
-   * @param {Record<string, import('../_shared/space.js').P3>} pts
+   * @param {Record<string, import('#lib/geom-engine/space.js').P3>} pts
    * @param {[string, string][]} edges
    * @param {ReturnType<typeof orientFaces>} solid
    */

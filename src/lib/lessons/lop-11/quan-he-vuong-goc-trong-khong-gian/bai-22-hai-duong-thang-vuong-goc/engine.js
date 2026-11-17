@@ -1,6 +1,6 @@
 import { add3, dot3, sub3 } from '#lib/geom-engine/solid.js';
 import { pick } from '#lib/core/drill.js';
-import { cube, dist3, lineAngle, lineRelation, meetLines } from '../_shared/space.js';
+import { cube, dist3, lineAngle, lineRelation, meetLines } from '#lib/geom-engine/space.js';
 
 /**
  * Pairs of lines through the vertices of the cube ABCD.A'B'C'D' (its 12

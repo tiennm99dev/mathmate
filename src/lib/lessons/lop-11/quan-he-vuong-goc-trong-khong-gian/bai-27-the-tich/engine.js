@@ -1,5 +1,5 @@
 import { numTex } from '#lib/core/number-format.js';
-import { P } from '../_shared/space.js';
+import { P } from '#lib/geom-engine/space.js';
 
 /**
  * Pouring water from a pyramid into a prism with the same base and the same

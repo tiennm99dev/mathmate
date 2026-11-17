@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { dist3, lineRelation } from '../_shared/space.js';
+import { dist3, lineRelation } from '#lib/geom-engine/space.js';
 import { SOLID, pieces, sectionAt } from './engine.js';
 
 describe('the section of the box parallel to its bases', () => {

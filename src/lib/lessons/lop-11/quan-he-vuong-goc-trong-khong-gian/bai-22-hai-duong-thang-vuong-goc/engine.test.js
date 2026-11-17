@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { lineAngle } from '../_shared/space.js';
+import { lineAngle } from '#lib/geom-engine/space.js';
 import { ANGLES, BY_ANGLE, angleOf, explain, makePair, segName, translation } from './engine.js';
 
 const all = Object.values(BY_ANGLE).flat();

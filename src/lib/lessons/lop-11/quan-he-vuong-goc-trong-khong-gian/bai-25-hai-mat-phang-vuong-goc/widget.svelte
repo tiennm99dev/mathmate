@@ -2,8 +2,8 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
   import { sub3 } from '#lib/geom-engine/solid.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { P, angleFan } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { P, angleFan } from '#lib/geom-engine/space.js';
   import { LENGTH, WIDTH, pages, rays, verdict } from './engine.js';
 
   /**

@@ -1,6 +1,13 @@
 import { add3, dot3, mul3 } from '#lib/geom-engine/solid.js';
 import { numTex } from '#lib/core/number-format.js';
-import { angle3, dist3, lineRelation, mid3, planeThrough, projectAlong } from '../_shared/space.js';
+import {
+  angle3,
+  dist3,
+  lineRelation,
+  mid3,
+  planeThrough,
+  projectAlong,
+} from '#lib/geom-engine/space.js';
 
 /**
  * Parallel projection of a flat figure (a square, an equilateral triangle or a
@@ -29,7 +36,7 @@ const W = { x: 0, y: Math.cos((TILT * Math.PI) / 180), z: Math.sin((TILT * Math.
 /** Unit normal of the figure's plane. */
 export const NORMAL = { x: 0, y: -W.z, z: W.y };
 
-export const GROUND = /** @type {import('../_shared/space.js').Plane} */ (
+export const GROUND = /** @type {import('#lib/geom-engine/space.js').Plane} */ (
   planeThrough({ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 0, y: 1, z: 0 })
 );
 

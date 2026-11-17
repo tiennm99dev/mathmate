@@ -1,4 +1,4 @@
-import { centroid3, meetLines, mid3, onPlane, planeThrough } from '../_shared/space.js';
+import { centroid3, meetLines, mid3, onPlane, planeThrough } from '#lib/geom-engine/space.js';
 
 /**
  * The pyramid S.ABCD of the "tìm giao tuyến" widget and its tasks. The base

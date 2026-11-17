@@ -1,5 +1,5 @@
 import { add3 } from '#lib/geom-engine/solid.js';
-import { centroid3, dist3, lerp3 } from '../_shared/space.js';
+import { centroid3, dist3, lerp3 } from '#lib/geom-engine/space.js';
 
 /**
  * A slanted box (hình hộp) ABCD.A'B'C'D' and a plane (α) parallel to its

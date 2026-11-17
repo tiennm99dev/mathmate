@@ -1,6 +1,6 @@
 import { numTex } from '#lib/core/number-format.js';
 import { sub3 } from '#lib/geom-engine/solid.js';
-import { commonPerpendicular, cube, dist3, lerp3, lineAngle } from '../_shared/space.js';
+import { commonPerpendicular, cube, dist3, lerp3, lineAngle } from '#lib/geom-engine/space.js';
 
 /**
  * Two skew lines through vertices of the cube ABCD.A'B'C'D' of edge a, a

@@ -1,5 +1,5 @@
 import { numTex } from '#lib/core/number-format.js';
-import { P, angle3 } from '../_shared/space.js';
+import { P, angle3 } from '#lib/geom-engine/space.js';
 
 /**
  * An open book (opened 10° to 170°): the spine is the edge a (the x axis), one page (P) lies on

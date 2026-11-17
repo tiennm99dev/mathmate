@@ -3,8 +3,8 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import LiveRichText from '#lib/components/live-rich-text.svelte';
   import { focusRing } from '#lib/core/ui.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { lerp3 } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { lerp3 } from '#lib/geom-engine/space.js';
   import { CANDIDATES, POINTS, TASKS, answerText, judge } from './engine.js';
 
   /**
@@ -59,7 +59,7 @@
   }
 
   const segments = $derived.by(() => {
-    /** @type {import('../_shared/space.js').SceneSegment[]} */
+    /** @type {import('#lib/geom-engine/space.js').SceneSegment[]} */
     const list = EDGES.map((e) => ({ key: e, from: e[0], to: e[1] }));
     const thin = { color: GREY, width: 1.4 };
     list.push(

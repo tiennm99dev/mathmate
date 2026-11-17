@@ -3,8 +3,8 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import LiveRichText from '#lib/components/live-rich-text.svelte';
   import { add3, mul3 } from '#lib/geom-engine/solid.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { P, groundSquare } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { P, groundSquare } from '#lib/geom-engine/space.js';
   import { C_TURN, check, poleDir, texDeg, verdict, yardDir } from './engine.js';
 
   /**

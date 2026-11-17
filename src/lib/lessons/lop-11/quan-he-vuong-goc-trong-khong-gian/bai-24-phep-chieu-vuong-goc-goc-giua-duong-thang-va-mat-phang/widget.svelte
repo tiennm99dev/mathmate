@@ -2,8 +2,8 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
   import { add3, mul3, sub3 } from '#lib/geom-engine/solid.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { P, angleFan, groundSquare, unit3 } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { P, angleFan, groundSquare, unit3 } from '#lib/geom-engine/space.js';
   import { figure, measure, planeText, threeText } from './engine.js';
 
   /**

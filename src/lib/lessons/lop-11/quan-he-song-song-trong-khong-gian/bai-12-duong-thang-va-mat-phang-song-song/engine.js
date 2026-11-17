@@ -1,4 +1,4 @@
-import { lerp3 } from '../_shared/space.js';
+import { lerp3 } from '#lib/geom-engine/space.js';
 
 /**
  * A line a = AB above the ground plane (P): z = 0, given by the heights of A

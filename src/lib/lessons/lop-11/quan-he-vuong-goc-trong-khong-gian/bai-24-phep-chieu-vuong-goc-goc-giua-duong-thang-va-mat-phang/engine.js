@@ -1,5 +1,5 @@
 import { numTex } from '#lib/core/number-format.js';
-import { P, lineAngle } from '../_shared/space.js';
+import { P, lineAngle } from '#lib/geom-engine/space.js';
 
 /**
  * An oblique line a = SA with its foot A on the plane (P) (z = 0) and the

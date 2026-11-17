@@ -4,7 +4,7 @@
   import LiveRichText from '#lib/components/live-rich-text.svelte';
   import { readNumber } from '#lib/core/decimal.js';
   import { button, textInput } from '#lib/core/ui.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
   import {
     CASES,
     EDGES,

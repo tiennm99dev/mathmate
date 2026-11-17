@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { lineRelation, meetPlane, planeThrough, onPlane } from '../_shared/space.js';
+import { lineRelation, meetPlane, planeThrough, onPlane } from '#lib/geom-engine/space.js';
 import { cutBy, lineOf } from './engine.js';
 
-const GROUND = /** @type {import('../_shared/space.js').Plane} */ (
+const GROUND = /** @type {import('#lib/geom-engine/space.js').Plane} */ (
   planeThrough({ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 0, y: 1, z: 0 })
 );
 
