@@ -432,7 +432,9 @@ Other shared pieces:
     word per stroke until `settled`. `chance.js`: the book's three words
     (`CHANCES`) and `wordOf(outcomes, holds)`.
   - `pass-focus.js`: `passFocus(from, to)` hands keyboard focus on when a
-    press has just disabled the button that had it.
+    press has just disabled the button that had it; `to` may be a getter
+    (`() => restartButton`), read after the update, for a target that only
+    renders then. Never write a lesson's own tick-then-focus code.
   - `shapes.js` with `shape-figure.svelte` and `object-figure.svelte`: the
     four plane shapes and two solids (`FIGURE_NAMES`, `plainFigure(kind)` for
     a picture-card look, or a full `Figure` with colour, size, turn and
