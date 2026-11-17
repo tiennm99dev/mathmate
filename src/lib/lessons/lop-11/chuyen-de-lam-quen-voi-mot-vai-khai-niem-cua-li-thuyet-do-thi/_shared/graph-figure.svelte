@@ -59,7 +59,7 @@
 <svg
   viewBox="0 0 {width} {height}"
   class="block h-auto w-full touch-manipulation rounded-xl border border-slate-200 bg-white select-none"
-  role="img"
+  role={onvertex ? 'group' : 'img'}
   aria-label={label}
 >
   {#each shapes as s, i (i)}

@@ -5,7 +5,7 @@ export default {
   intro:
     'Trong một bữa tiệc, mỗi người bắt tay một số người khác. Có thể xảy ra chuyện đúng một người bắt tay một số lẻ lần không? Vẽ mỗi người là một điểm, mỗi cái bắt tay là một đoạn nối hai điểm, ta được một đồ thị, và câu hỏi được trả lời ngay bằng một định lí rất đơn giản.',
   objectives: [
-    'Nhận biết đỉnh, cạnh, khuyên, cạnh bội, đơn đồ thị và đồ thị đầy đủ.',
+    'Nhận biết đỉnh, cạnh, khuyên, cạnh bội, đơn đồ thị, đồ thị đầy đủ và đồ thị con.',
     'Tính bậc của đỉnh và dùng định lí bắt tay: tổng các bậc bằng hai lần số cạnh.',
     'Nhận biết đường đi, chu trình, chu trình sơ cấp và đồ thị liên thông.',
   ],
@@ -37,6 +37,12 @@ export default {
         {
           type: 'p',
           text: 'Ví dụ: bảng đấu có $4$ đội thi đấu vòng tròn một lượt được mô tả bằng $K_4$: mỗi đội là một đỉnh, mỗi trận là một cạnh, nên có $\\dfrac{4 \\cdot 3}{2} = 6$ trận.',
+        },
+        {
+          type: 'callout',
+          tone: 'definition',
+          title: 'Đồ thị con',
+          text: 'Đồ thị $H$ gọi là đồ thị con của đồ thị $G$ nếu mọi đỉnh của $H$ đều là đỉnh của $G$ và mọi cạnh của $H$ đều là cạnh của $G$. Chẳng hạn, bỏ đi một số cạnh (hoặc một số đỉnh cùng các cạnh có đầu mút tại chúng) của $G$, ta được một đồ thị con của $G$.',
         },
       ],
     },
@@ -267,6 +273,21 @@ export default {
       hints: ['Khuyên được tính hai lần vào bậc.', 'Thử ghép $K_5$ với một đỉnh cô lập.'],
       solution:
         'Ba khẳng định đầu đúng: hai khẳng định đầu là định lí bắt tay và hệ quả của nó; trong đơn đồ thị mỗi đỉnh kề với nhiều nhất $n - 1$ đỉnh còn lại. Khuyên làm bậc tăng $2$. Đồ thị gồm $K_5$ và một đỉnh cô lập có $6$ đỉnh, $10$ cạnh nhưng không liên thông.',
+    },
+    {
+      type: 'choice',
+      prompt:
+        'Đồ thị $G$ có các đỉnh $A, B, C, D$ và các cạnh $AB, BC, CD, DA$. Đồ thị nào dưới đây là đồ thị con của $G$?',
+      options: [
+        'Đỉnh $A, B, C$; cạnh $AB, BC$.',
+        'Đỉnh $A, B, C$; cạnh $AB, BC, CA$.',
+        'Đỉnh $A, B, D$; cạnh $AB, BD$.',
+        'Đỉnh $A, B, C, D, E$; cạnh $AB, BC$.',
+      ],
+      answer: 0,
+      hints: ['Mọi đỉnh và mọi cạnh của đồ thị con phải là đỉnh và cạnh của $G$.'],
+      solution:
+        'Đồ thị có đỉnh $A, B, C$ và cạnh $AB, BC$ là đồ thị con của $G$. Các đồ thị còn lại không phải: cạnh $CA$ và cạnh $BD$ không phải cạnh của $G$, còn $E$ không phải đỉnh của $G$.',
     },
     {
       type: 'text',

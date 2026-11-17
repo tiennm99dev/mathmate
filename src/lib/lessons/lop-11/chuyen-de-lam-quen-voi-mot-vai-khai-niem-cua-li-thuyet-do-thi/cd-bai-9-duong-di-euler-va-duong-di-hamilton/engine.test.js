@@ -69,5 +69,6 @@ describe('one-stroke board', () => {
     expect(theoryNote(BOARDS.bowtie, 'hamilton')).toContain('không có chu trình Hamilton');
     expect(theoryNote(BOARDS.cube, 'hamilton')).toContain('Dirac');
     expect(theoryNote(BOARDS.envelope, 'hamilton')).toContain('chu trình Hamilton');
+    expect(theoryNote(BOARDS.konigsberg, 'hamilton')).toContain('không dùng được định lí Dirac');
   });
 });

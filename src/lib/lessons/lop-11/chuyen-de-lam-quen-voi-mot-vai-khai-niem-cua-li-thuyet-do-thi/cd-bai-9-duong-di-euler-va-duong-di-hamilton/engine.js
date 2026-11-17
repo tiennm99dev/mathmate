@@ -209,7 +209,9 @@ export function theoryNote(board, mode) {
   const path = cycle ? null : hamilton(n, edges, false);
   const head = dirac
     ? `Mọi đỉnh có bậc ít nhất $\\dfrac{${n}}{2}$, nên theo định lí Dirac đồ thị có chu trình Hamilton.`
-    : `Điều kiện của định lí Dirac (mọi bậc ít nhất $\\dfrac{${n}}{2}$) không thoả mãn, nên phải tự tìm.`;
+    : !isSimple(edges)
+      ? 'Đồ thị có cạnh bội nên không phải đơn đồ thị: không dùng được định lí Dirac, phải tự tìm.'
+      : `Điều kiện của định lí Dirac (mọi bậc ít nhất $\\dfrac{${n}}{2}$) không thoả mãn, nên phải tự tìm.`;
   if (cycle) return `${head} Một chu trình Hamilton: $${walkText(cycle)}$.`;
   if (path)
     return `${head} Đồ thị không có chu trình Hamilton nhưng có đường đi Hamilton, ví dụ $${walkText(path)}$.`;
