@@ -53,7 +53,8 @@ export const OBJECTS = [
   {
     id: 'ban',
     name: 'Góc bàn giáo viên',
-    where: 'là góc trên mặt bàn cao $1$ m',
+    where:
+      'là góc mặt bàn (cao $1$ m) xa bức tường thuộc mặt phẳng $(Oyz)$ nhất và gần bức tường đối diện với mặt phẳng $(Ozx)$ nhất',
     at: P(3, 5, 1),
   },
   {

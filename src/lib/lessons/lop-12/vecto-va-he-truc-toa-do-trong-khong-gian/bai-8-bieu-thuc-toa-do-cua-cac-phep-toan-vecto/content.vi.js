@@ -20,13 +20,19 @@ export default {
           title: 'Biểu thức toạ độ',
           text: "Trong không gian $Oxyz$, cho $\\vec{a} = (x; y; z)$, $\\vec{b} = (x'; y'; z')$ và số $k$. Khi đó: $\\vec{a} + \\vec{b} = (x + x'; y + y'; z + z')$; $\\vec{a} - \\vec{b} = (x - x'; y - y'; z - z')$; $k\\vec{a} = (kx; ky; kz)$.",
         },
+        { type: 'p', text: 'Toạ độ trung điểm $M$ của đoạn thẳng $AB$:' },
         {
-          type: 'list',
-          items: [
-            'Trung điểm $M$ của đoạn thẳng $AB$: $M\\left(\\dfrac{x_A + x_B}{2}; \\dfrac{y_A + y_B}{2}; \\dfrac{z_A + z_B}{2}\\right)$.',
-            'Trọng tâm $G$ của tam giác $ABC$: $G\\left(\\dfrac{x_A + x_B + x_C}{3}; \\dfrac{y_A + y_B + y_C}{3}; \\dfrac{z_A + z_B + z_C}{3}\\right)$.',
-            "Với $\\vec{a} \\ne \\vec{0}$: $\\vec{b}$ cùng phương với $\\vec{a}$ khi và chỉ khi có số $k$ sao cho $x' = kx$, $y' = ky$, $z' = kz$.",
-          ],
+          type: 'tex',
+          tex: 'M\\left(\\dfrac{x_A + x_B}{2}; \\dfrac{y_A + y_B}{2}; \\dfrac{z_A + z_B}{2}\\right)',
+        },
+        { type: 'p', text: 'Toạ độ trọng tâm $G$ của tam giác $ABC$:' },
+        {
+          type: 'tex',
+          tex: 'G\\left(\\dfrac{x_A + x_B + x_C}{3}; \\dfrac{y_A + y_B + y_C}{3}; \\dfrac{z_A + z_B + z_C}{3}\\right)',
+        },
+        {
+          type: 'p',
+          text: "Với $\\vec{a} \\ne \\vec{0}$: $\\vec{b}$ cùng phương với $\\vec{a}$ khi và chỉ khi có số $k$ sao cho $x' = kx$, $y' = ky$, $z' = kz$.",
         },
       ],
     },
@@ -62,8 +68,12 @@ export default {
       ],
     },
     {
-      heading: 'Tích có hướng của hai vectơ',
+      heading: 'Mở rộng: tích có hướng của hai vectơ',
       blocks: [
+        {
+          type: 'p',
+          text: 'Phần này mở rộng nội dung chính của bài: nó cho một cách tìm nhanh vectơ vuông góc với hai vectơ đã cho và tính diện tích hình bình hành, tam giác bằng toạ độ.',
+        },
         {
           type: 'callout',
           tone: 'definition',
@@ -121,7 +131,7 @@ export default {
         'Cho $A(1; 2; 3)$, $B(3; 0; -1)$, $C(-1; 1; 1)$. Tìm toạ độ trung điểm $M$ của $AB$, trọng tâm $G$ của tam giác $ABC$ và độ dài $AB$.',
       steps: [
         '$M\\left(\\dfrac{1 + 3}{2}; \\dfrac{2 + 0}{2}; \\dfrac{3 + (-1)}{2}\\right) = (2; 1; 1)$.',
-        '$G\\left(\\dfrac{1 + 3 - 1}{3}; \\dfrac{2 + 0 + 1}{3}; \\dfrac{3 - 1 + 1}{3}\\right) = (1; 1; 1)$.',
+        '$x_G = \\dfrac{1 + 3 - 1}{3} = 1$, $y_G = \\dfrac{2 + 0 + 1}{3} = 1$, $z_G = \\dfrac{3 - 1 + 1}{3} = 1$, nên $G(1; 1; 1)$.',
         '$\\overrightarrow{AB} = (2; -2; -4)$ nên $AB = \\sqrt{2^2 + (-2)^2 + (-4)^2} = \\sqrt{24} = 2\\sqrt{6}$.',
       ],
       answer: '$M(2; 1; 1)$, $G(1; 1; 1)$, $AB = 2\\sqrt{6}$.',
@@ -218,7 +228,7 @@ export default {
       answer: 0,
       hints: ['Cộng từng loại toạ độ của ba đỉnh rồi chia cho $3$.'],
       solution:
-        '$G\\left(\\dfrac{2 + 0 + 1}{3}; \\dfrac{1 + 3 - 1}{3}; \\dfrac{-1 + 2 + 5}{3}\\right) = (1; 1; 2)$.',
+        '$x_G = \\dfrac{2 + 0 + 1}{3} = 1$, $y_G = \\dfrac{1 + 3 - 1}{3} = 1$, $z_G = \\dfrac{-1 + 2 + 5}{3} = 2$, nên $G(1; 1; 2)$.',
     },
     {
       type: 'choice',

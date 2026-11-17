@@ -39,7 +39,9 @@ export const coords = (a) => [a.x + 0, a.y + 0, a.z + 0];
  * @param {P3} u @param {P3} v
  */
 export function angleDeg(u, v) {
-  const l = len3(u) * len3(v);
+  // One square root of the product keeps |u|·|v| exact when it is whole
+  // (√5 · √5 would give 5.000000000000001 and a false 0.000001°).
+  const l = Math.sqrt(dot3(u, u) * dot3(v, v));
   if (l === 0) return null;
   const cos = Math.max(-1, Math.min(1, dot3(u, v) / l));
   return (Math.acos(cos) * 180) / Math.PI;

@@ -37,6 +37,13 @@ describe('space helpers', () => {
     expect(degreeTex(54.7356)).toBe('\\approx 54{,}7^\\circ');
   });
 
+  it('gives exact angles for equal and opposite vectors of irrational length', () => {
+    expect(degreeTex(/** @type {number} */ (angleDeg(P(2, 0, 1), P(2, 0, 1))))).toBe('= 0^\\circ');
+    expect(degreeTex(/** @type {number} */ (angleDeg(P(1, 2, 3), P(-2, -4, -6))))).toBe(
+      '= 180^\\circ',
+    );
+  });
+
   it('computes dot products in the cube of edge a', () => {
     const d = cubeDot(cubeVector('A', 'B'), cubeVector("A'", "C'"));
     expect(d.k).toBe(1);

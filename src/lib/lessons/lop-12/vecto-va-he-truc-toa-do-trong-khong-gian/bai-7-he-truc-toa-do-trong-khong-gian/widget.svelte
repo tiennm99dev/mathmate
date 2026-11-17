@@ -46,6 +46,8 @@
   const h = $derived(project(m, plane));
   const planeName = $derived(PLANES.find((p) => p.id === plane)?.name ?? '');
   const hit = $derived(challenge && same3(m, target));
+  /** M lies in the chosen plane: it is its own projection. */
+  const inPlane = $derived(same3(m, h));
 
   /** The shaded part of the chosen plane, a square around O. */
   const planeRect = $derived(planeSquare(plane, LIMIT + 0.6));
@@ -67,7 +69,7 @@
           dash: true,
         }))
       : []),
-    { key: 'proj', from: m, to: h, color: PROJ, width: 2, dash: false },
+    ...(inPlane ? [] : [{ key: 'proj', from: m, to: h, color: PROJ, width: 2, dash: false }]),
   ]);
 
   const arrows = $derived([{ key: 'om', from: P(), to: m, color: M_COLOR, width: 2.6 }]);
@@ -78,7 +80,7 @@
 
   const dots = $derived([
     ...(challenge ? [{ key: 'n', at: target, color: N_COLOR, r: 6 }] : []),
-    { key: 'h', at: h, color: PROJ },
+    ...(inPlane ? [] : [{ key: 'h', at: h, color: PROJ }]),
     { key: 'm', at: m, color: M_COLOR, r: 5 },
     ...[1, 2, 4].map((bit) => ({ key: `axis-${bit}`, at: corner(m, bit), color: '#475569', r: 3 })),
   ]);
@@ -86,7 +88,7 @@
   const labels = $derived([
     { key: 'O', text: 'O', at: P(), dx: -12, dy: 12 },
     { key: 'M', text: 'M', at: m, color: M_COLOR },
-    { key: 'H', text: "M'", at: h, color: PROJ },
+    ...(inPlane ? [] : [{ key: 'H', text: "M'", at: h, color: PROJ }]),
     ...(challenge ? [{ key: 'N', text: 'N', at: target, color: N_COLOR, dx: 14, dy: -10 }] : []),
   ]);
 
@@ -139,7 +141,7 @@
     </p>
     <p>
       <LiveRichText
-        text={`Hình chiếu của $M$ trên mặt phẳng $${planeName}$ là $M'${coordTex(h)}$.`}
+        text={`Hình chiếu của $M$ trên mặt phẳng $${planeName}$ là $M'${coordTex(h)}$${inPlane ? `: $M$ thuộc mặt phẳng $${planeName}$ nên $M'$ trùng $M$` : ''}.`}
       />
     </p>
   </div>

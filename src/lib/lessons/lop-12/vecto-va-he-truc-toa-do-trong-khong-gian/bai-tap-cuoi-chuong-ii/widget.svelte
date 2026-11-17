@@ -34,7 +34,8 @@
   let x = $state(0);
   let y = $state(0);
   let z = $state(0);
-  let found = $state(0);
+  /** @type {string[]} the objects placed right at least once */
+  let foundIds = $state([]);
   let view = $state({ yaw: -35, pitch: 28 });
 
   const obj = $derived(OBJECTS[index]);
@@ -126,7 +127,7 @@
   ]);
 
   function next() {
-    if (hit) found += 1;
+    if (hit && !foundIds.includes(obj.id)) foundIds = [...foundIds, obj.id];
     index = (index + 1) % OBJECTS.length;
   }
 
@@ -169,7 +170,9 @@
   <div class="flex flex-wrap items-center gap-3">
     <button type="button" class={button.secondary} onclick={next}>Vật tiếp theo</button>
     <p class="text-sm text-slate-600" aria-live="polite">
-      Đã định vị đúng {found + (hit ? 1 : 0)} vật.
+      Đã định vị đúng {foundIds.length +
+        (hit && !foundIds.includes(obj.id) ? 1 : 0)}/{OBJECTS.length}
+      vật.
     </p>
   </div>
 </div>
