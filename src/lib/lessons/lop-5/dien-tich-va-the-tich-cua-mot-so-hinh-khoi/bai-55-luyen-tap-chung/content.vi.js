@@ -5,6 +5,7 @@ export default {
   intro:
     'Em ôn lại cách tính diện tích xung quanh, diện tích toàn phần và thể tích của hình hộp chữ nhật, hình lập phương. Rồi em giải các bài toán về bể bơi, thùng xe và hộp nhé!',
   objectives: [
+    'Nhận biết hình khai triển của hình lập phương, hình hộp chữ nhật.',
     'Tính diện tích xung quanh, diện tích toàn phần của hình hộp chữ nhật và hình lập phương.',
     'Tính thể tích của hình hộp chữ nhật và hình lập phương.',
     'Vận dụng để giải các bài toán thực tế.',
@@ -13,6 +14,11 @@ export default {
     {
       heading: 'Nhớ lại',
       blocks: [
+        {
+          type: 'callout',
+          tone: 'definition',
+          text: 'Hình khai triển của hình lập phương gồm 6 hình vuông bằng nhau. Hình khai triển của hình hộp chữ nhật gồm 6 hình chữ nhật, hai mặt đối diện bằng nhau.',
+        },
         {
           type: 'table',
           head: ['Cách tính', 'Hình hộp chữ nhật', 'Hình lập phương'],
@@ -65,6 +71,32 @@ export default {
     },
   ],
   practice: [
+    {
+      type: 'choice',
+      prompt: 'Hình khai triển của hình lập phương gồm bao nhiêu hình vuông bằng nhau?',
+      options: ['6 hình vuông', '4 hình vuông', '8 hình vuông'],
+      answer: 0,
+      hints: ['Hình lập phương có bao nhiêu mặt? Mỗi mặt là một hình vuông.'],
+      solution:
+        'Hình lập phương có 6 mặt là các hình vuông bằng nhau, nên hình khai triển của nó gồm 6 hình vuông.',
+    },
+    {
+      type: 'choice',
+      prompt:
+        'Hình khai triển của hình hộp chữ nhật dài 5 cm, rộng 3 cm, cao 2 cm gồm những hình chữ nhật nào?',
+      options: [
+        'Hai hình 5 cm × 3 cm, hai hình 5 cm × 2 cm, hai hình 3 cm × 2 cm',
+        'Sáu hình 5 cm × 3 cm',
+        'Hai hình 5 cm × 3 cm và bốn hình 5 cm × 2 cm',
+      ],
+      answer: 0,
+      hints: [
+        'Hình hộp chữ nhật có 6 mặt, hai mặt đối diện bằng nhau.',
+        'Hai mặt đáy, hai mặt trước sau, hai mặt bên.',
+      ],
+      solution:
+        'Hai mặt đáy là hình 5 cm × 3 cm, hai mặt trước và sau là hình 5 cm × 2 cm, hai mặt bên là hình 3 cm × 2 cm.',
+    },
     {
       type: 'match',
       prompt: 'Nối mỗi đại lượng với cách tính của nó.',
