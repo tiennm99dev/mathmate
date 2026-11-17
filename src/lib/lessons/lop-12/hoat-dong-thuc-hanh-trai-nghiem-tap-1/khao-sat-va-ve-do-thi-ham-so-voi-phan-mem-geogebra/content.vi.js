@@ -80,7 +80,7 @@ export default {
           items: [
             'Tìm đạo hàm cấp một, cấp hai, các điểm cực trị và vẽ đồ thị của các hàm số $y = 3x^2 + \\sqrt{3}x + 1$, $y = x^3 - 6x^2 + 9$, $y = x^4 - 4x^2 + 3$.',
             'Tìm đạo hàm, các đường tiệm cận và vẽ đồ thị của các hàm số $y = \\dfrac{x}{x + \\sqrt{2}}$, $y = \\dfrac{2x - 1}{x + 1}$, $y = \\dfrac{x^2 - 2x - 8}{x - 1}$, $y = 5x + 1 + \\dfrac{3}{2x - 3}$.',
-            'Tìm giá trị lớn nhất và giá trị nhỏ nhất của $y = x^3 - 3x^2 - 9x + 35$ trên $[-4; 4]$ và của $y = \\sin 2x - x$ trên $\\left[-\\dfrac{\\pi}{2}; \\dfrac{\\pi}{2}\\right]$.',
+            'Tìm giá trị lớn nhất và giá trị nhỏ nhất của các hàm số $y = x^3 - 3x^2 - 9x + 35$ trên đoạn $[-4; 4]$, $y = -3x^4 + 4x^2 + \\sqrt{2}$ trên đoạn $[-1; 1]$, $y = x + \\dfrac{\\sqrt{5}}{x}$ trên đoạn $[1; 10]$ và $y = \\sin 2x - x$ trên đoạn $\\left[-\\dfrac{\\pi}{2}; \\dfrac{\\pi}{2}\\right]$.',
           ],
         },
         {
@@ -124,6 +124,34 @@ export default {
             ],
           ],
           caption: 'Kết quả khảo sát các hàm số ở yêu cầu 1 và 2.',
+        },
+        {
+          type: 'table',
+          head: ['Hàm số và đoạn', 'Giá trị lớn nhất', 'Giá trị nhỏ nhất'],
+          rows: [
+            [
+              '$y = x^3 - 3x^2 - 9x + 35$ trên $[-4; 4]$',
+              '$40$, tại $x = -1$',
+              '$-41$, tại $x = -4$',
+            ],
+            [
+              '$y = -3x^4 + 4x^2 + \\sqrt{2}$ trên $[-1; 1]$',
+              '$\\dfrac{4}{3} + \\sqrt{2} \\approx 2{,}75$, tại $x = \\pm\\dfrac{\\sqrt{6}}{3}$',
+              '$\\sqrt{2} \\approx 1{,}41$, tại $x = 0$',
+            ],
+            [
+              '$y = x + \\dfrac{\\sqrt{5}}{x}$ trên $[1; 10]$',
+              '$10 + \\dfrac{\\sqrt{5}}{10} \\approx 10{,}22$, tại $x = 10$',
+              '$2\\sqrt[4]{5} \\approx 2{,}99$, tại $x = \\sqrt[4]{5}$',
+            ],
+            [
+              '$y = \\sin 2x - x$ trên $\\left[-\\dfrac{\\pi}{2}; \\dfrac{\\pi}{2}\\right]$',
+              '$\\dfrac{\\pi}{2}$, tại $x = -\\dfrac{\\pi}{2}$',
+              '$-\\dfrac{\\pi}{2}$, tại $x = \\dfrac{\\pi}{2}$',
+            ],
+          ],
+          caption:
+            'Kết quả yêu cầu 3, đã so sánh giá trị tại các điểm cực trị bên trong đoạn với giá trị tại hai đầu mút.',
         },
         {
           type: 'callout',
@@ -301,6 +329,19 @@ export default {
       ],
       solution:
         '$y\\left(\\dfrac{\\pi}{6}\\right) = \\dfrac{\\sqrt{3}}{2} - \\dfrac{\\pi}{6} \\approx 0{,}34$, $y\\left(-\\dfrac{\\pi}{6}\\right) \\approx -0{,}34$, $y\\left(-\\dfrac{\\pi}{2}\\right) = \\sin(-\\pi) + \\dfrac{\\pi}{2} = \\dfrac{\\pi}{2} \\approx 1{,}57$, $y\\left(\\dfrac{\\pi}{2}\\right) = -\\dfrac{\\pi}{2}$. Giá trị lớn nhất là $\\dfrac{\\pi}{2} \\approx 1{,}57$, đạt tại đầu mút $x = -\\dfrac{\\pi}{2}$.',
+    },
+    {
+      type: 'number',
+      prompt:
+        'Tìm giá trị nhỏ nhất của hàm số $y = x + \\dfrac{\\sqrt{5}}{x}$ trên đoạn $[1; 10]$ (làm tròn đến hàng phần trăm).',
+      answer: 2.99,
+      tolerance: 0.005,
+      hints: [
+        "$y' = 1 - \\dfrac{\\sqrt{5}}{x^2} = 0$ khi $x^2 = \\sqrt{5}$.",
+        'So sánh giá trị tại $x = \\sqrt[4]{5}$ với giá trị tại hai đầu mút $x = 1$ và $x = 10$.',
+      ],
+      solution:
+        "$y' = 0 \\Leftrightarrow x = \\sqrt[4]{5} \\approx 1{,}50 \\in [1; 10]$, $y\\left(\\sqrt[4]{5}\\right) = \\sqrt[4]{5} + \\dfrac{\\sqrt{5}}{\\sqrt[4]{5}} = 2\\sqrt[4]{5} \\approx 2{,}99$. Hai đầu mút: $y(1) = 1 + \\sqrt{5} \\approx 3{,}24$, $y(10) = 10 + \\dfrac{\\sqrt{5}}{10} \\approx 10{,}22$. Giá trị nhỏ nhất là $2\\sqrt[4]{5} \\approx 2{,}99$.",
     },
     {
       type: 'number',

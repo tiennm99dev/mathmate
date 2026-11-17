@@ -5,11 +5,13 @@
  * grade 11 and 12 books for grouped samples: the mean from the group
  * midpoints, the range from the first to the last non-empty group, the
  * quartiles by interpolation inside their group, the interquartile range,
- * the variance s² = (1/n)·Σ m_i (x_i − x̄)² and the standard deviation s.
+ * the variance s² = (1/n)·Σ m_i (x_i − x̄)², the standard deviation s and
+ * the coefficient of variation CV = s / x̄ that the activity asks for to
+ * compare the spread of two samples with different means.
  */
 
 import { readNumber } from '#lib/core/decimal.js';
-import { formatNumber, tidy } from '#lib/core/number-format.js';
+import { formatFixed, formatNumber, tidy } from '#lib/core/number-format.js';
 
 /** @typedef {{ lo: number, hi: number, count: number }} Group */
 
@@ -105,6 +107,7 @@ export function quartile(groups, k) {
  * @property {number} iqr ΔQ = Q_3 − Q_1
  * @property {number} variance s²
  * @property {number} std s
+ * @property {number} cv the coefficient of variation s / x̄
  */
 
 /**
@@ -120,6 +123,7 @@ export function measures(groups) {
   const full = groups.filter((g) => g.count > 0);
   const q1 = quartile(groups, 1);
   const q3 = quartile(groups, 3);
+  const std = Math.sqrt(variance);
   return {
     n,
     mean,
@@ -129,7 +133,8 @@ export function measures(groups) {
     q3,
     iqr: tidy(q3 - q1),
     variance,
-    std: Math.sqrt(variance),
+    std,
+    cv: std / mean,
   };
 }
 
@@ -145,10 +150,18 @@ export function valueText(v) {
   return `${tidy(v) === r ? '' : '≈ '}${formatNumber(r, 2)}`;
 }
 
+/** A coefficient of variation as a percentage: 0.05503 → '≈ 5,5%'. @param {number} cv */
+export function percentText(cv) {
+  const p = tidy(cv * 100, 9);
+  const r = tidy(p, 1);
+  return `${p === r ? '' : '≈ '}${formatFixed(r, 1)}%`;
+}
+
 /**
- * The comparison of the two samples: who has the longer hand span on
- * average, and which sample is more spread out by the standard deviation,
- * noting when the interquartile range says otherwise.
+ * The comparison of the two samples, the way the activity asks: who has the
+ * longer hand span on average, and which sample is more spread out by the
+ * coefficient of variation, noting when the standard deviation or the
+ * interquartile range says otherwise.
  * @param {Measures} boys @param {Measures} girls
  */
 export function compareText(boys, girls) {
@@ -156,17 +169,24 @@ export function compareText(boys, girls) {
     boys.mean === girls.mean
       ? 'Gang tay trung bình của nam và nữ bằng nhau'
       : `Gang tay trung bình của ${boys.mean > girls.mean ? 'nam' : 'nữ'} dài hơn ${valueText(Math.abs(boys.mean - girls.mean))} cm`;
-  const sBoys = tidy(boys.std, 6);
-  const sGirls = tidy(girls.std, 6);
-  if (sBoys === sGirls) {
-    return `${longer}. Hai mẫu có độ lệch chuẩn bằng nhau, nên mức độ phân tán như nhau.`;
+  const cvBoys = tidy(boys.cv, 6);
+  const cvGirls = tidy(girls.cv, 6);
+  if (cvBoys === cvGirls) {
+    return `${longer}. Hai mẫu có hệ số biến thiên bằng nhau, nên mức độ phân tán như nhau.`;
   }
-  const wider = sBoys > sGirls ? 'nam' : 'nữ';
+  const wider = cvBoys > cvGirls ? 'nam' : 'nữ';
   const other = wider === 'nam' ? 'nữ' : 'nam';
-  const iqrWider = boys.iqr === girls.iqr ? null : boys.iqr > girls.iqr ? 'nam' : 'nữ';
-  const note =
+  /** @param {number} a @param {number} b */
+  const larger = (a, b) => (a === b ? null : a > b ? 'nam' : 'nữ');
+  const stdWider = larger(tidy(boys.std, 6), tidy(girls.std, 6));
+  const iqrWider = larger(boys.iqr, girls.iqr);
+  const stdNote =
+    stdWider && stdWider !== wider
+      ? ` Độ lệch chuẩn lại lớn hơn ở nhóm ${stdWider}: hệ số biến thiên so độ lệch chuẩn với số trung bình của từng nhóm.`
+      : '';
+  const iqrNote =
     iqrWider && iqrWider !== wider
       ? ` Khoảng tứ phân vị lại lớn hơn ở nhóm ${iqrWider}: khoảng tứ phân vị chỉ đo độ phân tán của nửa giữa mẫu, còn độ lệch chuẩn tính đến mọi giá trị.`
       : '';
-  return `${longer}. Độ lệch chuẩn của nhóm ${wider} lớn hơn, nên độ dài gang tay của nhóm ${wider} phân tán hơn, của nhóm ${other} đồng đều hơn.${note}`;
+  return `${longer}. Hệ số biến thiên của nhóm ${wider} lớn hơn (${percentText(wider === 'nam' ? boys.cv : girls.cv)} so với ${percentText(wider === 'nam' ? girls.cv : boys.cv)}), nên độ dài gang tay của nhóm ${wider} phân tán hơn, của nhóm ${other} đồng đều hơn.${stdNote}${iqrNote}`;
 }

@@ -153,7 +153,7 @@
   </div>
 
   <div class="flex flex-wrap gap-2">
-    <button type="button" class={button.quiet} aria-pressed={tracing} onclick={toggleTrace}>
+    <button type="button" class={button.quiet} onclick={toggleTrace}>
       {tracing ? 'Tắt vết' : 'Hiện vết'}
     </button>
     {#if tracing}

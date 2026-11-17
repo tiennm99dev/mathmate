@@ -138,7 +138,7 @@
       value={mode}
       onchange={pickMode}
     />
-    <button type="button" class={button.quiet} aria-pressed={challenge} onclick={toggleChallenge}>
+    <button type="button" class={button.quiet} onclick={toggleChallenge}>
       {challenge ? 'Thoát thử thách' : 'Thử thách'}
     </button>
   </div>

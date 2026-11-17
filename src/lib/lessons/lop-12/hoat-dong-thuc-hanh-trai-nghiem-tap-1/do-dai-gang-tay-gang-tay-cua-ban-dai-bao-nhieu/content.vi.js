@@ -1,13 +1,13 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Hoạt động thực hành: đo độ dài gang tay của các bạn trong lớp, ghép nhóm số liệu, vẽ biểu đồ tần số, tính số trung bình, khoảng biến thiên, khoảng tứ phân vị, phương sai, độ lệch chuẩn và so sánh gang tay của nam và nữ.',
+    'Hoạt động thực hành: đo độ dài gang tay của các bạn trong lớp, ghép nhóm số liệu, vẽ biểu đồ tần số, tính số trung bình, khoảng biến thiên, khoảng tứ phân vị, phương sai, độ lệch chuẩn, hệ số biến thiên và so sánh gang tay của nam và nữ.',
   intro:
     'Ngày xưa, người ta hay đo độ dài bằng gang tay. Nhưng gang tay mỗi người dài ngắn khác nhau: gang tay của bạn dài bao nhiêu, của các bạn nam có dài hơn của các bạn nữ không, và nhóm nào có độ dài gang tay đồng đều hơn? Trong hoạt động này, cả lớp tự thu thập số liệu và dùng các số đặc trưng của mẫu số liệu ghép nhóm để trả lời.',
   objectives: [
     'Thu thập số liệu về độ dài gang tay của các bạn trong lớp.',
     'Lập bảng tần số ghép nhóm và vẽ biểu đồ tần số cho số liệu của nam và của nữ.',
-    'Tính số trung bình, khoảng biến thiên, khoảng tứ phân vị, phương sai và độ lệch chuẩn của mẫu số liệu ghép nhóm.',
+    'Tính số trung bình, khoảng biến thiên, khoảng tứ phân vị, phương sai, độ lệch chuẩn và hệ số biến thiên của mẫu số liệu ghép nhóm.',
     'Dùng các số đặc trưng để so sánh và rút ra kết luận về hai nhóm.',
   ],
   sections: [
@@ -76,6 +76,7 @@ export default {
             'Khoảng biến thiên $R$: hiệu giữa đầu mút phải của nhóm cuối và đầu mút trái của nhóm đầu (chỉ xét các nhóm có số liệu).',
             'Tứ phân vị $Q_1$, $Q_3$: tìm nhóm chứa nó rồi tính $Q = a + \\dfrac{\\frac{kn}{4} - C}{m} \\cdot h$ như ở lớp 11; khoảng tứ phân vị $\\Delta_Q = Q_3 - Q_1$.',
             'Phương sai: $s^2 = \\dfrac{m_1(x_1 - \\overline{x})^2 + \\cdots + m_k(x_k - \\overline{x})^2}{n}$; độ lệch chuẩn $s = \\sqrt{s^2}$.',
+            'Hệ số biến thiên: $CV = \\dfrac{s}{\\overline{x}}$, thường viết dưới dạng phần trăm. Hệ số biến thiên so độ lệch chuẩn với số trung bình, nên dùng để so sánh độ phân tán của hai mẫu có số trung bình khác nhau: mẫu nào có hệ số biến thiên lớn hơn thì phân tán hơn.',
           ],
         },
         {
@@ -89,6 +90,11 @@ export default {
             ['Khoảng tứ phân vị $\\Delta_Q$ (cm)', '$\\approx 1{,}66$', '$1{,}5$'],
             ['Phương sai $s^2$', '$1{,}3024$', '$1{,}7275$'],
             ['Độ lệch chuẩn $s$ (cm)', '$\\approx 1{,}14$', '$\\approx 1{,}31$'],
+            [
+              'Hệ số biến thiên $CV$',
+              '$\\approx 0{,}055 = 5{,}5\\%$',
+              '$\\approx 0{,}070 = 7{,}0\\%$',
+            ],
           ],
           caption: 'Các số đặc trưng của lớp mẫu.',
         },
@@ -96,7 +102,7 @@ export default {
           type: 'callout',
           tone: 'note',
           title: 'Kết luận cho lớp mẫu',
-          text: 'Trung bình, gang tay của nam dài hơn của nữ khoảng $2{,}09$ cm. Độ lệch chuẩn của nữ lớn hơn nên độ dài gang tay của các bạn nữ phân tán hơn, của các bạn nam đồng đều hơn. Khoảng tứ phân vị của nam lại lớn hơn một chút: khoảng tứ phân vị chỉ phản ánh nửa giữa của mẫu, còn độ lệch chuẩn tính đến mọi giá trị, kể cả các giá trị ở hai đầu.',
+          text: 'Trung bình, gang tay của nam dài hơn của nữ khoảng $2{,}09$ cm. Hệ số biến thiên (và cả độ lệch chuẩn) của nữ lớn hơn nên độ dài gang tay của các bạn nữ phân tán hơn, của các bạn nam đồng đều hơn. Khoảng tứ phân vị của nam lại lớn hơn một chút: khoảng tứ phân vị chỉ phản ánh nửa giữa của mẫu, còn độ lệch chuẩn tính đến mọi giá trị, kể cả các giá trị ở hai đầu.',
         },
       ],
     },
@@ -118,8 +124,8 @@ export default {
           items: [
             'Đo và ghi độ dài gang tay của mọi bạn trong lớp theo cách thống nhất ở phần Thu thập dữ liệu.',
             'Tách số liệu của nam và của nữ, chọn cách ghép nhóm chung (chẳng hạn độ dài nhóm $1$ cm), lập bảng tần số ghép nhóm và vẽ hai biểu đồ tần số.',
-            'Tính số trung bình, khoảng biến thiên, khoảng tứ phân vị, phương sai và độ lệch chuẩn cho từng nhóm (có thể nhập số liệu vào khung tương tác để kiểm tra).',
-            'So sánh hai nhóm: độ dài trung bình, mức độ phân tán; thử đổi độ dài nhóm và xem các số đặc trưng thay đổi thế nào.',
+            'Tính số trung bình, khoảng biến thiên, khoảng tứ phân vị, phương sai, độ lệch chuẩn và hệ số biến thiên cho từng nhóm (có thể nhập số liệu vào khung tương tác để kiểm tra).',
+            'So sánh hai nhóm: độ dài trung bình, mức độ phân tán (dựa vào hệ số biến thiên); thử đổi độ dài nhóm và xem các số đặc trưng thay đổi thế nào.',
           ],
         },
         {
@@ -219,6 +225,20 @@ export default {
     },
     {
       type: 'number',
+      prompt:
+        'Ở lớp mẫu, gang tay của nữ có số trung bình $18{,}65$ cm và độ lệch chuẩn khoảng $1{,}314$ cm. Tính hệ số biến thiên (theo %, làm tròn đến hàng phần mười).',
+      answer: 7,
+      tolerance: 0.05,
+      unit: '%',
+      hints: [
+        'Hệ số biến thiên là $CV = \\dfrac{s}{\\overline{x}}$.',
+        'Nhân thương với $100\\%$ để viết dưới dạng phần trăm.',
+      ],
+      solution:
+        '$CV = \\dfrac{s}{\\overline{x}} \\approx \\dfrac{1{,}314}{18{,}65} \\approx 0{,}0705 \\approx 7{,}0\\%$.',
+    },
+    {
+      type: 'number',
       prompt: 'Tìm tứ phân vị thứ nhất $Q_1$ độ dài gang tay của các bạn nữ ở lớp mẫu (theo cm).',
       answer: 18,
       unit: 'cm',
@@ -265,6 +285,6 @@ export default {
   takeaways: [
     'Đo gang tay từ đầu ngón cái đến đầu ngón út khi xoè hết cỡ, thống nhất cách đo cho cả lớp.',
     'Ghép nhóm chung cho hai nhóm cần so sánh; giá trị đại diện của nhóm là trung điểm của nhóm.',
-    'Số trung bình cho biết nhóm nào có gang tay dài hơn; độ lệch chuẩn (và khoảng tứ phân vị) cho biết nhóm nào phân tán hơn.',
+    'Số trung bình cho biết nhóm nào có gang tay dài hơn; hệ số biến thiên $CV = \\dfrac{s}{\\overline{x}}$ (cùng độ lệch chuẩn, khoảng tứ phân vị) cho biết nhóm nào phân tán hơn.',
   ],
 };

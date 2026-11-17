@@ -7,6 +7,7 @@ import {
   groupText,
   measures,
   parseSpans,
+  percentText,
   valueText,
 } from './engine.js';
 
@@ -59,6 +60,7 @@ describe('measures of the sample class', () => {
     expect(m.q3).toBeCloseTo(21.535714, 5);
     expect(m.std).toBeCloseTo(1.14123, 4);
     expect(valueText(m.iqr)).toBe('≈ 1,66');
+    expect(percentText(m.cv)).toBe('≈ 5,5%');
   });
 
   it('girls', () => {
@@ -68,16 +70,35 @@ describe('measures of the sample class', () => {
       20, 18.65, 6, 1.7275, 18, 19.5, 1.5,
     ]);
     expect(valueText(m.std)).toBe('≈ 1,31');
+    expect(percentText(m.cv)).toBe('≈ 7,0%');
   });
 
-  it('compares the spread by the standard deviation and notes the quartiles', () => {
+  it('compares the spread by the coefficient of variation and notes the quartiles', () => {
     const b = measures(gb);
     const g = measures(gg);
     if (!b || !g) throw new Error('empty');
     const t = compareText(b, g);
     expect(t).toContain('nam dài hơn 2,09 cm');
+    expect(t).toContain('Hệ số biến thiên của nhóm nữ lớn hơn (≈ 7,0% so với ≈ 5,5%)');
     expect(t).toContain('nhóm nữ phân tán hơn');
+    expect(t).not.toContain('Độ lệch chuẩn lại');
     expect(t).toContain('Khoảng tứ phân vị lại lớn hơn ở nhóm nam');
     expect(measures([])).toBeNull();
+  });
+
+  it('notes when the standard deviation disagrees with the coefficient of variation', () => {
+    const [a, b] = groupSamples(
+      [
+        [20, 20, 22, 22],
+        [10, 10, 11, 12],
+      ],
+      1,
+    );
+    const ma = measures(a);
+    const mb = measures(b);
+    if (!ma || !mb) throw new Error('empty');
+    const t = compareText(ma, mb);
+    expect(t).toContain('Hệ số biến thiên của nhóm nữ lớn hơn');
+    expect(t).toContain('Độ lệch chuẩn lại lớn hơn ở nhóm nam');
   });
 });

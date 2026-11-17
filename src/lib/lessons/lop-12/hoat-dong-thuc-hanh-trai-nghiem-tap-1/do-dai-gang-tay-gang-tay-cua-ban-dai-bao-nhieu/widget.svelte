@@ -17,6 +17,7 @@
     measures,
     midpoint,
     parseSpans,
+    percentText,
     valueText,
   } from './engine.js';
 
@@ -81,7 +82,7 @@
   }
 
   /** @param {import('./engine.js').Measures | null} m @param {keyof import('./engine.js').Measures} k */
-  const cell = (m, k) => (m ? valueText(m[k]) : '–');
+  const cell = (m, k) => (m ? (k === 'cv' ? percentText(m.cv) : valueText(m[k])) : '–');
 
   const ROWS = /** @type {Array<[keyof import('./engine.js').Measures, string]>} */ ([
     ['n', 'Cỡ mẫu n'],
@@ -93,6 +94,7 @@
     ['iqr', 'Khoảng tứ phân vị ΔQ (cm)'],
     ['variance', 'Phương sai s²'],
     ['std', 'Độ lệch chuẩn s (cm)'],
+    ['cv', 'Hệ số biến thiên CV'],
   ]);
 
   const verdict = $derived(
@@ -157,9 +159,7 @@
     <button type="button" class={button.quiet} onclick={restore}>Số liệu mẫu</button>
     <button type="button" class={button.quiet} onclick={clearAll}>Xoá hết</button>
   </form>
-  {#if entryNote}
-    <p class="text-sm text-slate-700" aria-live="polite">{entryNote}</p>
-  {/if}
+  <p class="text-sm text-slate-700" aria-live="polite">{entryNote}</p>
 
   <SegmentedControl
     label="Độ dài mỗi nhóm h"
