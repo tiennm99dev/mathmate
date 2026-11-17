@@ -48,7 +48,7 @@ export default {
         },
         {
           type: 'table',
-          head: ['Hình hộp', 'Diện tích xung quanh', 'Diện tích toàn phần'],
+          head: ['Dài, rộng, cao', 'Diện tích xung quanh', 'Diện tích toàn phần'],
           rows: [
             ['5 dm, 4 dm, 3 dm', '(5 + 4) × 2 × 3 = 54 (dm²)', '54 + 5 × 4 × 2 = 94 (dm²)'],
             ['8 cm, 6 cm, 3 cm', '(8 + 6) × 2 × 3 = 84 (cm²)', '84 + 8 × 6 × 2 = 180 (cm²)'],

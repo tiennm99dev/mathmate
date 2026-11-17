@@ -42,8 +42,14 @@
 
 <div class="space-y-4">
   <div class="grid gap-2 sm:grid-cols-3">
-    <Stepper label="Chiều dài (cm)" bind:value={a} min={1} max={7} />
-    <Stepper label="Chiều rộng (cm)" bind:value={b} min={1} max={6} />
+    <Stepper
+      label="Chiều dài (cm)"
+      bind:value={a}
+      min={1}
+      max={7}
+      onchange={(v) => (b = Math.min(b, v))}
+    />
+    <Stepper label="Chiều rộng (cm)" bind:value={b} min={1} max={Math.min(6, a)} />
     <Stepper label="Chiều cao (cm)" bind:value={c} min={1} max={6} />
   </div>
 
