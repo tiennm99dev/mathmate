@@ -57,7 +57,7 @@ export default {
           ordered: true,
           items: [
             'Cô Hường mua 7 chiếc vòng, mỗi chiếc 25 000 đồng. Tính số tiền cô phải trả.',
-            'Ai mua nhiều hơn 10 chiếc thì được giảm 20%. Chú Hải mua 18 chiếc. Tính số tiền chú phải trả.',
+            'Ai mua nhiều hơn 10 chiếc thì được giảm 20%. Thầy Hải mua 18 chiếc. Tính số tiền thầy phải trả.',
             'Một công ty mua hết số vòng còn lại với giá 3 000 000 đồng. Tính giá mỗi chiếc vòng.',
             'Nhà trường ủng hộ thêm 20% số tiền lớp bán được. Tính số tiền lớp góp vào quỹ từ thiện.',
             'Ước lượng để kiểm tra từng kết quả.',
@@ -68,7 +68,7 @@ export default {
           head: ['Người mua', 'Số vòng', 'Số tiền (đồng)'],
           rows: [
             ['Cô Hường', '7', '…'],
-            ['Chú Hải', '18', '…'],
+            ['Thầy Hải', '18', '…'],
             ['Công ty', '…', '3 000 000'],
           ],
           caption: 'Bảng ghi kết quả bán vòng tay',
@@ -88,17 +88,17 @@ export default {
   examples: [
     {
       problem:
-        'Chú Hải mua 18 chiếc vòng tay, mỗi chiếc 25 000 đồng, được giảm 20%. Chú Hải phải trả bao nhiêu tiền?',
+        'Thầy Hải mua 18 chiếc vòng tay, mỗi chiếc 25 000 đồng, được giảm 20%. Thầy Hải phải trả bao nhiêu tiền?',
       steps: [
         'Giá khi chưa giảm: bấm 25000 × 18 =, được 450 000 đồng.',
         'Số tiền được giảm: bấm 450000 × 20 %, được 90 000 đồng.',
         'Số tiền phải trả: bấm 450000 − 90000 =, được 360 000 đồng.',
       ],
-      answer: 'Chú Hải phải trả 360 000 đồng.',
+      answer: 'Thầy Hải phải trả 360 000 đồng.',
     },
     {
       problem:
-        'Lớp làm 100 chiếc vòng. Cô Hường mua 7 chiếc, chú Hải mua 18 chiếc. Công ty mua hết số vòng còn lại với giá 3 000 000 đồng. Hỏi mỗi chiếc vòng công ty mua giá bao nhiêu?',
+        'Lớp làm 100 chiếc vòng. Cô Hường mua 7 chiếc, thầy Hải mua 18 chiếc. Công ty mua hết số vòng còn lại với giá 3 000 000 đồng. Hỏi mỗi chiếc vòng công ty mua giá bao nhiêu?',
       steps: [
         'Số vòng còn lại: 100 − 7 − 18 = 75 (chiếc).',
         'Giá mỗi chiếc: bấm 3000000 ÷ 75 =, được 40 000 đồng.',
@@ -119,7 +119,7 @@ export default {
     {
       type: 'number',
       prompt:
-        'Ai mua nhiều hơn 10 chiếc vòng tay thì được giảm 20%. Chú Hải mua 18 chiếc, mỗi chiếc 25 000 đồng. Chú phải trả bao nhiêu tiền?',
+        'Ai mua nhiều hơn 10 chiếc vòng tay thì được giảm 20%. Thầy Hải mua 18 chiếc, mỗi chiếc 25 000 đồng. Thầy phải trả bao nhiêu tiền?',
       answer: 360000,
       unit: 'đồng',
       hints: [
@@ -151,7 +151,8 @@ export default {
     },
     {
       type: 'choice',
-      prompt: 'Mai bấm 25000 × 7 = và màn hình hiện 17500. Em ước lượng xem kết quả này thế nào?',
+      prompt:
+        'Mai bấm máy để tính 25 000 × 7 và màn hình hiện 17500. Em ước lượng xem kết quả này thế nào?',
       options: [
         'Sai, vì 7 chiếc giá khoảng 175 nghìn đồng',
         'Đúng, vì máy tính không bao giờ sai',
@@ -160,7 +161,7 @@ export default {
       answer: 0,
       hints: ['25 nghìn nhân 7 được khoảng bao nhiêu nghìn?'],
       solution:
-        '25 × 7 = 175, nên kết quả phải khoảng 175 nghìn đồng, tức là 175 000. Mai đã bấm thiếu một chữ số 0.',
+        '25 × 7 = 175, nên kết quả phải khoảng 175 nghìn đồng, tức là 175 000. Mai đã bấm thiếu một chữ số 0 (bấm 2500 thay cho 25000).',
     },
     {
       type: 'number',

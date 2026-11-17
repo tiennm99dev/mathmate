@@ -27,19 +27,19 @@ export const CHALLENGES = /** @type {Challenge[]} */ ([
     steps: [{ ask: 'Cô Hường phải trả bao nhiêu tiền?', value: 175000, keys: '25000 × 7 =' }],
   },
   {
-    title: 'Chú Hải được giảm giá',
+    title: 'Thầy Hải được giảm giá',
     story:
-      'Ai mua nhiều hơn 10 chiếc vòng tay thì được giảm 20%. Chú Hải mua 18 chiếc, mỗi chiếc 25 000 đồng.',
+      'Ai mua nhiều hơn 10 chiếc vòng tay thì được giảm 20%. Thầy Hải mua 18 chiếc, mỗi chiếc 25 000 đồng.',
     steps: [
       { ask: 'Giá 18 chiếc vòng khi chưa giảm là bao nhiêu?', value: 450000, keys: '25000 × 18 =' },
-      { ask: 'Chú Hải được giảm bao nhiêu tiền?', value: 90000, keys: '450000 × 20 %' },
-      { ask: 'Chú Hải phải trả bao nhiêu tiền?', value: 360000, keys: '450000 − 90000 =' },
+      { ask: 'Thầy Hải được giảm bao nhiêu tiền?', value: 90000, keys: '450000 × 20 %' },
+      { ask: 'Thầy Hải phải trả bao nhiêu tiền?', value: 360000, keys: '450000 − 90000 =' },
     ],
   },
   {
     title: 'Công ty mua số vòng còn lại',
     story:
-      'Lớp làm 100 chiếc vòng. Cô Hường mua 7 chiếc, chú Hải mua 18 chiếc. Một công ty mua hết số vòng còn lại với giá 3 000 000 đồng.',
+      'Lớp làm 100 chiếc vòng. Cô Hường mua 7 chiếc, thầy Hải mua 18 chiếc. Một công ty mua hết số vòng còn lại với giá 3 000 000 đồng.',
     steps: [
       { ask: 'Công ty trả mỗi chiếc vòng bao nhiêu tiền?', value: 40000, keys: '3000000 ÷ 75 =' },
     ],
