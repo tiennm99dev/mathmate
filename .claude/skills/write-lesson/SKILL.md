@@ -345,7 +345,14 @@ Other shared pieces:
   `reducedMotion()` and `wrap` for animated widgets.
 - `#lib/core/tex-text.js`: `texText` turns TeX into the words screen readers
   hear (`căn bậc hai của 144`, `x mũ 2`, `nhỏ hơn hoặc bằng`, `trừ 1`, `3/4`,
-  `K C` for `K_C`, a bond `\mathrm{O{-}H}` as `O–H`, never "trừ");
+  `K C` for `K_C`, a bond `\mathrm{O{-}H}` as `O–H`, never "trừ"; a mixed
+  number `2\dfrac{3}{4}` as `2 và 3/4`; `x^{n-1}` as `x mũ (n trừ 1)`;
+  `\int_a^b` as `tích phân từ a đến b của`, `\int` alone as `nguyên hàm của`
+  and `\Big|_a^b` as `lấy cận từ a đến b`; `\vec{AB}` as `vectơ AB`;
+  `\not\subset` as `⊄`; `{}^{14}_{7}\mathrm{N}` as `N, A bằng 14, Z bằng 7`;
+  `\overset` and `\underset` keep their annotation: `\overset{+5}{N}` is
+  `N (số oxi hoá +5)`, `\overset{+}{C}` is `C⁺`, `\overset{\frown}{AB}` is
+  `cung AB` and an arrow keeps its condition);
   `richText` does the same for rich text with `$...$`;
   prerendered content and `tex.svelte` already use it, so TeX in options, labels
   and buttons keeps a distinct accessible name. `htmlText` reads rendered rich
