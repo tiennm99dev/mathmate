@@ -21,6 +21,8 @@ import {
   sumDiffStory,
   trainStory,
 } from './operation-skills.js';
+import { GENERAL_SKILLS } from './general-skills.js';
+import { CHARTS, STATS_SKILLS, TRIALS, averageRows, missingCount } from './stats-skills.js';
 
 /** @typedef {import('./visual.js').ReviewQuestion} Question */
 /** @typedef {import('./visual.js').Frac} Frac */
@@ -31,6 +33,7 @@ const SETS = [
   FRACTION_SKILLS,
   FRACTION_OP_SKILLS,
   GEOMETRY_MEASURE_SKILLS,
+  STATS_SKILLS,
 ];
 
 /** @param {Question} q */
@@ -182,6 +185,79 @@ describe('the answers', () => {
   it('builds the smallest and largest numbers from the cards', () => {
     expect(cardNumbers([0, 1, 2, 3]).filter((v) => v % 2 === 0)[0]).toBe(1032);
     expect(cardNumbers([0, 1, 2, 3]).at(-1)).toBe(3210);
+  });
+
+  it('reads the tables, charts and tallies', () => {
+    const bad = [];
+    for (const skill of STATS_SKILLS) {
+      for (let seed = 1; seed <= 80; seed++) {
+        const q = skill.make(rng(seed));
+        const v = q.visual;
+        const right = rightText(q);
+        if (v?.type === 'chart' && skill.id === 'trung-binh') {
+          const mean = v.data.reduce((s, x) => s + x.value, 0) / v.data.length;
+          if (numberIn(right) !== mean) bad.push([skill.id, v.data, right]);
+        } else if (v?.type === 'chart' && /nhiều hơn/.test(q.prompt)) {
+          const [a, b] = v.data.filter((x) => q.prompt.includes(x.label));
+          if (numberIn(right) !== Math.abs(a.value - b.value)) bad.push([skill.id, q.prompt]);
+        } else if (v?.type === 'chart') {
+          const top = [...v.data].sort((x, y) => y.value - x.value);
+          const want = /nhiều/.test(q.prompt) ? top[0] : top.at(-1);
+          if (right !== want?.label) bad.push([skill.id, q.prompt, right]);
+        } else if (v?.type === 'table' && skill.id === 'sap-xep') {
+          const want = [...v.rows].sort((x, y) => x.value - y.value).map((x) => x.label);
+          if (right !== want.join(', ')) bad.push([skill.id, right]);
+        } else if (v?.type === 'table' && /bao nhiêu bạn/.test(q.prompt)) {
+          const ref = v.rows.find((x) => q.prompt.endsWith(`bạn ${x.label}?`));
+          const up = /(cao|nhiều điểm 10) hơn/.test(q.prompt);
+          const want = v.rows.filter((x) =>
+            up ? x.value > (ref?.value ?? 0) : x.value < (ref?.value ?? 0),
+          ).length;
+          if (!ref || numberIn(right) !== want) bad.push([skill.id, q.prompt, right]);
+        } else if (v?.type === 'tally' && /bao nhiêu lần/.test(q.prompt)) {
+          const row = v.rows.find((x) => q.solution.startsWith(`Hàng ${x.label.toLowerCase()} `));
+          if (numberIn(right) !== row?.count) bad.push([skill.id, q.prompt, right]);
+        } else if (v?.type === 'tally') {
+          const sorted = [...v.rows].sort((x, y) => y.count - x.count);
+          const want = /nhiều lần/.test(q.prompt) ? sorted[0] : sorted.at(-1);
+          if (right !== want?.label) bad.push([skill.id, q.prompt, right]);
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it('keeps the chart averages whole and the columns different', () => {
+    const bad = [];
+    for (const story of CHARTS) {
+      for (let seed = 1; seed <= 80; seed++) {
+        const rows = averageRows(rng(seed), story);
+        const sum = rows.reduce((s, x) => s + x.value, 0);
+        if (sum % rows.length || (sum / rows.length) % story.step) bad.push(rows);
+        if (new Set(rows.map((x) => x.value)).size !== rows.length) bad.push(rows);
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
+  it('finds the count left from the number of trials', () => {
+    const q = missingCount(TRIALS[0], [10, 12, 8]);
+    expect(q.prompt).toContain('30 lần');
+    expect(rightText(q)).toBe('8 lần');
+  });
+
+  it('asks each area of the general review from its own parts', () => {
+    const bad = [];
+    for (const skill of GENERAL_SKILLS) {
+      for (let seed = 1; seed <= 60; seed++) {
+        const q = skill.make(rng(seed));
+        const texts = q.options.map(optionText);
+        if (new Set(texts).size !== texts.length || q.answer < 0 || q.answer >= texts.length)
+          bad.push([skill.id, texts]);
+      }
+    }
+    expect(bad).toEqual([]);
+    expect(new Set(GENERAL_SKILLS.map((s) => s.id)).size).toBe(6);
   });
 
   it('solves the stories of the book', () => {

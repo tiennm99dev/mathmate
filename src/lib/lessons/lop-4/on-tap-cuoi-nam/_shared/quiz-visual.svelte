@@ -4,10 +4,14 @@
   import FractionLine from './fraction-line.svelte';
   import QuadPicture from './quad-picture.svelte';
   import ShadedPicture from './shaded-picture.svelte';
+  import TallyTable from './tally-table.svelte';
+  import ValueTable from './value-table.svelte';
+  import BarChart from '#lib/core/visuals/bar-chart.svelte';
 
   /**
    * The picture of a review question (`Visual` in `visual.js`). A column
-   * calculation and an angle's measure show only once the question has ended.
+   * calculation, an angle's measure and the count of a tally show only once
+   * the question has ended.
    * @type {{ visual: import('./visual.js').Visual, settled: boolean }}
    */
   let { visual, settled } = $props();
@@ -27,6 +31,14 @@
     names={visual.names}
     {settled}
   />
+{:else if visual.type === 'table'}
+  <ValueTable title={visual.title} head={visual.head} rows={visual.rows} />
+{:else if visual.type === 'chart'}
+  <div class="rounded-2xl bg-sky-50 p-2">
+    <BarChart data={visual.data} unit={visual.unit} title="Biểu đồ cột: {visual.title}" />
+  </div>
+{:else if visual.type === 'tally'}
+  <TallyTable title={visual.title} rows={visual.rows} {settled} />
 {:else}
   <QuadPicture shape={visual.shape} names={visual.names} />
 {/if}
