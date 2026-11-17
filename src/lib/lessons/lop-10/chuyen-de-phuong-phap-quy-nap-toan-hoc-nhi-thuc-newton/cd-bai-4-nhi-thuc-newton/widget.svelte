@@ -18,9 +18,11 @@
   let n = $state(6);
   let k = $state(2);
   let formId = $state('x-2y');
+  /** The last row drawn: the largest n reached, so picking an upper row keeps the triangle. */
+  let depth = $state(6);
 
   const f = $derived(FORMS.find((x) => x.id === formId) ?? FORMS[0]);
-  const rows = $derived(Array.from({ length: n + 1 }, (_, r) => pascalRow(r)));
+  const rows = $derived(Array.from({ length: Math.max(n, depth) + 1 }, (_, r) => pascalRow(r)));
   const formOptions = FORMS.map((x) => ({
     value: x.id,
     label: binomialTex(x).replace(/ /g, '').replace('-', '−'),
@@ -55,6 +57,7 @@
       max={TOP_ROW}
       onchange={(v) => {
         if (k > v) k = v;
+        depth = Math.max(depth, v);
       }}
     />
     <Stepper label="Chỉ số k" bind:value={k} min={0} max={n} />
@@ -64,7 +67,7 @@
     <div
       class="w-max min-w-full space-y-1"
       role="group"
-      aria-label="Tam giác Pascal, hàng 0 đến hàng {n}"
+      aria-label="Tam giác Pascal, hàng 0 đến hàng {rows.length - 1}"
     >
       {#each rows as row, r (r)}
         <div class="flex justify-center gap-1">
@@ -85,7 +88,7 @@
     </div>
   </div>
 
-  {#if n >= 7}
+  {#if rows.length > 7}
     <p class="text-xs text-slate-600 sm:hidden">Vuốt ngang tam giác để xem hết các hàng dài.</p>
   {/if}
 

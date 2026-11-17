@@ -80,7 +80,7 @@
         <button
           type="button"
           class={button.primary}
-          disabled={pushed}
+          disabled={pushed || !baseShown || !stepShown}
           onclick={() => (pushed = true)}
         >
           Đẩy quân số {s.start}
@@ -122,6 +122,9 @@
       {/each}
       <span class="pb-6 text-lg font-bold text-slate-500" aria-hidden="true">…</span>
     </div>
+    {#if !baseShown || !stepShown}
+      <p class="text-xs text-slate-600">Kiểm tra cả hai bước ở trên để mở nút đẩy domino.</p>
+    {/if}
     <p class="text-xs text-slate-600">
       Chạm vào một quân để kiểm tra P(n) với số n đó. Quân viền đứt nằm trước n₀ nên không thuộc
       mệnh đề.

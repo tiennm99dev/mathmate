@@ -47,7 +47,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Nhị thức Newton',
-          text: 'Với mọi số tự nhiên $n \\ge 1$: $$(a + b)^n = C_n^0a^n + C_n^1a^{n-1}b + \\dots + C_n^ka^{n-k}b^k + \\dots + C_n^{n-1}ab^{n-1} + C_n^nb^n.$$',
+          text: 'Với mọi số tự nhiên $n \\ge 1$: $$\\begin{aligned} (a + b)^n = {} & C_n^0a^n + C_n^1a^{n-1}b + \\dots \\\\ & + C_n^ka^{n-k}b^k + \\dots \\\\ & + C_n^{n-1}ab^{n-1} + C_n^nb^n. \\end{aligned}$$',
         },
         {
           type: 'list',
