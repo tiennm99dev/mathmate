@@ -49,9 +49,13 @@ export const rectangleSkill = {
         near: [2, 4],
         unit: u,
       }),
-      hint: area
-        ? 'Diện tích hình chữ nhật bằng chiều dài nhân với chiều rộng (cùng đơn vị đo).'
-        : 'Chu vi hình chữ nhật bằng tổng chiều dài và chiều rộng rồi nhân với 2.',
+      hint: square
+        ? area
+          ? 'Diện tích hình vuông bằng độ dài một cạnh nhân với chính nó.'
+          : 'Chu vi hình vuông bằng độ dài một cạnh nhân với 4.'
+        : area
+          ? 'Diện tích hình chữ nhật bằng chiều dài nhân với chiều rộng (cùng đơn vị đo).'
+          : 'Chu vi hình chữ nhật bằng tổng chiều dài và chiều rộng rồi nhân với 2.',
       solution: area
         ? square
           ? `Diện tích hình vuông: ${a} × ${a} = ${fmt(right)} (${u}).`

@@ -164,7 +164,7 @@ export const compareSkill = {
     const left = (tenths * k) / 10;
     const kind = pick(rand, ['bang', 'chu-so', 'gan']);
     let count = left;
-    if (kind === 'chu-so') count = tenths * (k >= 100 ? 10 : 1);
+    if (kind === 'chu-so') count = tenths * (k >= 1000 ? 10 : 1);
     if (kind === 'gan') count = left + pick(rand, [-1, 1]) * (k >= 100 ? k / 100 : 1);
     if (count === left && kind !== 'bang') count = left + 1;
     const sign = compareSign(left, count);

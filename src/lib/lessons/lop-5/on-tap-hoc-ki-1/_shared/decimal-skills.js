@@ -22,7 +22,9 @@ export const readSkill = {
     const whole = int(rand, 1, 99);
     const top = 10 ** places;
     // A decimal part with a zero right after the comma half of the time.
-    const frac = rand() < 0.5 ? int(rand, 1, top / 10 - 1) : int(rand, top / 10, top - 1);
+    let frac = rand() < 0.5 ? int(rand, 1, top / 10 - 1) : int(rand, top / 10, top - 1);
+    // No zero at the end, so no option reads an equal decimal written shorter.
+    if (frac % 10 === 0) frac += 1;
     const n = whole * top + frac;
     const rest = String(frac).replace(/0+$/, '');
     const wrong = [

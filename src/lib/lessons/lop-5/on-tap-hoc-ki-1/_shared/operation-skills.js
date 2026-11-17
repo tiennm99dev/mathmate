@@ -230,7 +230,7 @@ export const storySkill = {
         prompt: `Một cuộn dây dài ${num(total / 10)} m. Cắt thành các đoạn dài ${num(piece / 10)} m. Cắt được nhiều nhất bao nhiêu đoạn như thế?`,
         ...slipOptions(count, [count + 1, count - 1], { min: 1, unit: 'đoạn' }),
         hint: `Em tìm xem ${num(total / 10)} m chứa được bao nhiêu lần ${num(piece / 10)} m. Phần dây thừa không đủ một đoạn thì không tính.`,
-        solution: `${count} đoạn dài ${num(piece / 10)} × ${count} = ${num((piece * count) / 10)} (m), còn thừa ${num(left / 10)} m, không đủ cắt thêm một đoạn. Vậy cắt được nhiều nhất ${count} đoạn.`,
+        solution: `${count} đoạn dây dài: ${num(piece / 10)} × ${count} = ${num((piece * count) / 10)} (m), còn thừa ${num(left / 10)} m, không đủ cắt thêm một đoạn. Vậy cắt được nhiều nhất ${count} đoạn.`,
       };
     }
     const mai = decimal(rand, 11, 49, 1).value;

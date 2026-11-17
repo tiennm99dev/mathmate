@@ -73,6 +73,17 @@ describe('every review question', () => {
 });
 
 describe('decimals', () => {
+  it('asks to read only decimals with no zero at the end', () => {
+    const read = DECIMAL_SKILLS.find((s) => s.id === 'doc-so');
+    const bad = [];
+    for (let seed = 1; seed <= 200; seed++) {
+      const q = read?.make(rng(seed));
+      const shown = /Số ([\d\u202f ]+,\d+)/.exec(q?.prompt ?? '')?.[1] ?? '';
+      if (!shown || shown.endsWith('0')) bad.push(q?.prompt);
+    }
+    expect(bad).toEqual([]);
+  });
+
   it('reads and writes decimals the book way', () => {
     expect(readDecimal(247, 2)).toBe('hai phẩy bốn mươi bảy');
     expect(readDecimal(5, 2)).toBe('không phẩy không năm');
