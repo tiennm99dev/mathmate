@@ -49,7 +49,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Chia cho số thập phân: em chuyển dấu phẩy của số chia và số bị chia sang phải cùng một số chữ số, rồi chia.',
+          text: 'Chia cho số thập phân: phần thập phân của số chia có bao nhiêu chữ số thì em chuyển dấu phẩy của số bị chia sang phải bấy nhiêu chữ số, bỏ dấu phẩy ở số chia, rồi chia như chia cho số tự nhiên.',
         },
         {
           type: 'table',

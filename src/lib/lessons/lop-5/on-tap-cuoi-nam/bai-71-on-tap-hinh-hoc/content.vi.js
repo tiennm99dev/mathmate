@@ -24,6 +24,10 @@ export default {
           text: 'Hình thang có một cặp cạnh đối diện song song, gọi là hai đáy.',
         },
         {
+          type: 'p',
+          text: 'Hình bình hành có hai cặp cạnh đối diện song song và bằng nhau. Hình thoi có hai cặp cạnh đối diện song song và bốn cạnh bằng nhau.',
+        },
+        {
           type: 'callout',
           tone: 'theorem',
           text: 'Diện tích hình tam giác bằng độ dài đáy nhân với chiều cao (cùng đơn vị đo) rồi chia cho 2.',

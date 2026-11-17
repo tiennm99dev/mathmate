@@ -200,6 +200,7 @@ export default {
       type: 'number',
       prompt: 'Một bể nước chứa đầy 1,2 m³ nước. Bể chứa được bao nhiêu lít nước?',
       answer: 1200,
+      unit: 'l',
       hints: ['1 m³ = 1 000 dm³ và 1 dm³ = 1 l.'],
       solution: '1,2 m³ = 1 200 dm³ = 1 200 l. Bể chứa được 1 200 lít nước.',
     },

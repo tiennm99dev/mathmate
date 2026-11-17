@@ -23,7 +23,24 @@ const NAMES = /** @type {const} */ ({
   'hinh-thang': 'Hình thang',
   'hinh-binh-hanh': 'Hình bình hành',
   'hinh-thoi': 'Hình thoi',
+  'hinh-chu-nhat': 'Hình chữ nhật',
+  'hinh-vuong': 'Hình vuông',
 });
+
+/**
+ * The shapes asked about, each with the names that are wrong for it. A
+ * rhombus is also a parallelogram, and a parallelogram has a pair of parallel
+ * sides, so neither name is offered as a wrong answer for those shapes.
+ * @type {Record<string, (keyof typeof NAMES)[]>}
+ */
+const WRONG = {
+  'tam-giac-nhon': ['tam-giac-vuong', 'tam-giac-tu'],
+  'tam-giac-vuong': ['tam-giac-nhon', 'tam-giac-tu'],
+  'tam-giac-tu': ['tam-giac-nhon', 'tam-giac-vuong'],
+  'hinh-thang': ['hinh-binh-hanh', 'hinh-thoi', 'hinh-chu-nhat'],
+  'hinh-binh-hanh': ['hinh-thoi', 'hinh-chu-nhat', 'hinh-vuong'],
+  'hinh-thoi': ['hinh-vuong', 'hinh-chu-nhat'],
+};
 
 /** What tells each shape apart, said once the question ends. */
 const WHY = /** @type {const} */ ({
@@ -40,21 +57,20 @@ export const nameSkill = {
   id: 'nhan-dang-hinh',
   label: 'Nhận dạng hình',
   make(rand) {
-    const shape = pick(rand, /** @type {(keyof typeof NAMES)[]} */ (Object.keys(NAMES)));
-    const triangle = shape.startsWith('tam-giac');
-    const family = /** @type {(keyof typeof NAMES)[]} */ (Object.keys(NAMES)).filter(
-      (k) => k !== shape && k.startsWith('tam-giac') === triangle,
+    const shape = /** @type {keyof typeof WHY} */ (
+      pick(rand, /** @type {(keyof typeof WHY)[]} */ (Object.keys(WHY)))
     );
+    const triangle = shape.startsWith('tam-giac');
     return {
       prompt: 'Hình dưới đây là hình gì?',
       ...mixOptions(
         rand,
         NAMES[shape],
-        family.map((k) => NAMES[k]),
+        WRONG[shape].map((k) => NAMES[k]),
       ),
       hint: triangle
         ? 'Em nhìn các góc của hình tam giác: có góc vuông, góc tù hay cả ba góc đều nhọn?'
-        : 'Em đếm số cặp cạnh đối diện song song, rồi xem các cạnh có bằng nhau không.',
+        : 'Em đếm số cặp cạnh đối diện song song, rồi xem các cạnh có bằng nhau không và các góc có vuông không.',
       solution: `${WHY[shape]} Đó là ${NAMES[shape].toLowerCase()}.`,
       visual: { type: 'figure', shape, alt: 'Một hình phẳng cần gọi tên.' },
     };

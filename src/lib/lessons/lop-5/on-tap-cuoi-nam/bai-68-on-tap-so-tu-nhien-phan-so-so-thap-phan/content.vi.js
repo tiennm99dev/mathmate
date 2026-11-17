@@ -124,7 +124,7 @@ export default {
         'Hai triệu ba trăm linh năm nghìn không trăm sáu mươi',
         'Hai triệu ba trăm năm nghìn sáu mươi',
         'Hai trăm ba mươi nghìn năm trăm linh sáu',
-        'Hai triệu ba mươi năm nghìn không trăm sáu mươi',
+        'Hai triệu ba mươi lăm nghìn không trăm sáu mươi',
       ],
       answer: 0,
       hints: [

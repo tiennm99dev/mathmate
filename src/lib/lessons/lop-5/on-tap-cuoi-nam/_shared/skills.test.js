@@ -175,4 +175,40 @@ describe('measures', () => {
     expect(hoursMinutes(120)).toBe('2 giờ');
     expect(hoursMinutes(45)).toBe('45 phút');
   });
+
+  it('never offers a wrong time that is the right time written another way', () => {
+    const skill = MEASURE_SKILLS.find((s) => s.id === 'cong-tru-thoi-gian');
+    /** @param {string} t */
+    const minutes = (t) =>
+      Number(/(\d+) giờ/.exec(t)?.[1] ?? 0) * 60 + Number(/(\d+) phút/.exec(t)?.[1] ?? 0);
+    const bad = [];
+    for (let seed = 1; seed <= 300; seed++) {
+      const q = skill?.make(rng(seed));
+      if (!q) continue;
+      const texts = q.options.map(optionText);
+      const right = minutes(texts[q.answer]);
+      if (texts.some((t, i) => i !== q.answer && minutes(t) === right)) bad.push(texts);
+    }
+    expect(bad).toEqual([]);
+  });
+});
+
+describe('geometry', () => {
+  it('never offers a name that also fits the drawn shape', () => {
+    const skill = GEOMETRY_SKILLS.find((s) => s.id === 'nhan-dang-hinh');
+    /** Names that are also true of a shape besides its own. */
+    const alsoTrue = {
+      'Hình thoi': ['Hình bình hành', 'Hình thang'],
+      'Hình bình hành': ['Hình thang'],
+    };
+    const bad = [];
+    for (let seed = 1; seed <= 200; seed++) {
+      const q = skill?.make(rng(seed));
+      if (!q) continue;
+      const texts = q.options.map(optionText);
+      const right = /** @type {keyof typeof alsoTrue} */ (texts[q.answer]);
+      if ((alsoTrue[right] ?? []).some((t) => texts.includes(t))) bad.push(texts);
+    }
+    expect(bad).toEqual([]);
+  });
 });

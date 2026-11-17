@@ -250,9 +250,10 @@ export const timeSumSkill = {
     const bh = Math.floor(b / 60);
     const am = a % 60;
     const bm = b % 60;
-    // Not changing 60 minutes into an hour, or not borrowing one.
+    // Changing 60 minutes into an hour without adding that hour, or taking
+    // the smaller number of minutes from the bigger one instead of borrowing.
     const slip = add
-      ? `${ah + bh} giờ ${am + bm} phút`
+      ? hoursMinutes((ah + bh) * 60 + ((am + bm) % 60))
       : `${ah - bh} giờ ${Math.abs(am - bm)} phút`;
     const sign = add ? '+' : '−';
     return {
