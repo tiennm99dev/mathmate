@@ -18,6 +18,7 @@ All notable changes to **MathMax** are documented here. Format: [Keep a Changelo
 
 ### Added
 
+- `/sitemap.xml` được prerender từ chương trình: trang chủ, mọi trang lớp, chương, mạch kiến thức và bài học, với URL tuyệt đối theo `paths.origin` (`SITE_ORIGIN`).
 - Lớp 9 — Hệ phương trình bậc nhất hai ẩn (`/dai-so/he-phuong-trinh-bac-nhat/`): hai đường thẳng dạng `ax + by = c`, kéo để tịnh tiến, ba nút xem nhanh trường hợp cắt nhau / song song / trùng nhau.
 - `subtendedArc` / `angleOnCircle` trong `geom-engine/circle.js`; `morphSquareA` / `morphSquareB` trong bài Pythagoras; test hồi quy cho cả ba lỗi trên.
 - Vitest nạp được module rune `*.svelte.js` (thêm plugin Svelte + alias `$lib`), nhờ đó logic tương tác mới có thể kiểm thử.

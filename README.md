@@ -37,7 +37,7 @@ Live URL: https://tiennm99dev.github.io/mathmax/
 
 ## Architecture
 
-- **Static**: SvelteKit + `@sveltejs/adapter-static`, cấu hình trong `vite.config.js`: `paths.base` là `/<tên package>` (`/mathmax`; đổi bằng `SITE_BASE`), output `build/`, `static/404.html` cho GitHub Pages.
+- **Static**: SvelteKit + `@sveltejs/adapter-static`, cấu hình trong `vite.config.js`: `paths.base` là `/<tên package>` (`/mathmax`; đổi bằng `SITE_BASE`), `paths.origin` là host xuất bản (`https://tiennm99dev.github.io`; đổi bằng `SITE_ORIGIN`), output `build/`, `static/404.html` cho GitHub Pages. `/sitemap.xml` liệt kê trang chủ, mọi trang lớp, chương, mạch kiến thức và bài học.
 - **CSP**: chế độ `hash` — mỗi trang prerender có thẻ meta CSP với hash của script inline; `style-src` cho phép `'unsafe-inline'` vì Svelte và KaTeX ghi style inline.
 - **Styling**: Tailwind 4 (PostCSS qua `@tailwindcss/postcss`) + Be Vietnam Pro (woff2 qua `@fontsource`). `src/app.css` nạp Tailwind bằng `@import 'tailwindcss/index.css'`; tick palette `colors.pair.{1,2,3,4}` vẫn khai báo trong `tailwind.config.js` và được nạp qua `@config`.
 - **Language**: JavaScript only (Svelte 5, JSDoc qua `jsconfig.json` với `checkJs: true`).
