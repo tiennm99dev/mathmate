@@ -658,7 +658,7 @@
           "title": "Bài 10. Bài toán tìm đường đi tối ưu trong một vài trường hợp đơn giản",
           "slug": "cd-bai-10-bai-toan-tim-duong-di-toi-uu-trong-mot-vai-truong-hop-don-gian",
           "kind": "chuyen-de",
-          "keyIdeas": ["Đồ thị có trọng số", "Thuật toán Dijkstra", "Bài toán người giao hàng"],
+          "keyIdeas": ["Đồ thị có trọng số", "Thuật toán Dijkstra", "Bài toán người đưa thư"],
           "interactiveIdea": "Bản đồ thành phố chạy Dijkstra từng bước, tô màu đỉnh đã chốt khoảng cách."
         },
         {
