@@ -318,9 +318,12 @@ const MAKERS = {
     return {
       kind: 'so-tu-nhien',
       prompt: 'Kết quả của phép tính là phân số nào?',
+      // Slips: the whole number added to the numerator (or the subtraction
+      // turned into an addition), w read as w/1 with the terms combined, and
+      // the denominator added (or the numerators subtracted as they stand).
       ...fracOptions(rand, result, [
-        { n: op === '+' ? w + g.n : w * g.d - g.n - 1, d: g.d },
-        { n: op === '+' ? w + g.n : g.n, d: op === '+' ? g.d + 1 : g.d - w },
+        { n: op === '+' ? w + g.n : w * g.d + g.n, d: g.d },
+        { n: op === '+' ? w + g.n : w - g.n, d: op === '+' ? g.d + 1 : g.d - 1 },
         { n: op === '+' ? w * g.d + g.n : Math.abs(w - g.n), d: op === '+' ? 2 * g.d : g.d },
       ]),
       hint: `Viết ${w} thành phân số có mẫu số ${g.d}: ${w} = ${t(whole)}.`,
@@ -345,7 +348,7 @@ const MAKERS = {
         { n: round, d },
         { n: z, d },
       ]),
-      hint: `Nhóm hai phân số có tổng tròn trước: ${x} + ${y} = ${round}.`,
+      hint: `Nhóm trước hai phân số có tổng bằng ${round === d ? 1 : 2}: ${x} + ${y} = ${round}.`,
       solution: `(${x}/${d} + ${y}/${d}) + ${z}/${d} = ${round}/${d} + ${z}/${d} = ${t(total)}${tail}.`,
       visual: {
         type: 'line',

@@ -23,26 +23,26 @@ export default {
           head: ['Phép tính', 'Cách làm', 'Kết quả'],
           rows: [
             [
-              '$\\dfrac{2}{3} + \\dfrac{4}{9}$',
-              '$\\dfrac{6}{9} + \\dfrac{4}{9}$',
-              '$\\dfrac{10}{9}$',
+              '$\\dfrac{3}{4} + \\dfrac{5}{8}$',
+              '$\\dfrac{6}{8} + \\dfrac{5}{8}$',
+              '$\\dfrac{11}{8}$',
             ],
             [
-              '$\\dfrac{5}{6} - \\dfrac{5}{12}$',
-              '$\\dfrac{10}{12} - \\dfrac{5}{12}$',
-              '$\\dfrac{5}{12}$',
+              '$\\dfrac{7}{10} - \\dfrac{2}{5}$',
+              '$\\dfrac{7}{10} - \\dfrac{4}{10}$',
+              '$\\dfrac{3}{10}$',
             ],
             [
-              '$\\dfrac{1}{10} + \\dfrac{2}{5}$',
-              '$\\dfrac{1}{10} + \\dfrac{4}{10} = \\dfrac{5}{10}$',
-              '$\\dfrac{1}{2}$',
+              '$\\dfrac{1}{12} + \\dfrac{1}{4}$',
+              '$\\dfrac{1}{12} + \\dfrac{3}{12} = \\dfrac{4}{12}$',
+              '$\\dfrac{1}{3}$',
             ],
           ],
         },
         {
           type: 'callout',
           tone: 'note',
-          text: 'Tính thuận tiện: nhóm các phân số có tổng tròn trước. $\\dfrac{599}{1000} + \\dfrac{377}{1000} + \\dfrac{1}{1000} = \\dfrac{600}{1000} + \\dfrac{377}{1000} = \\dfrac{977}{1000}$.',
+          text: 'Tính thuận tiện: nhóm trước hai phân số có tổng tử số tròn trăm. $\\dfrac{13}{100} + \\dfrac{41}{100} + \\dfrac{87}{100} = \\left(\\dfrac{13}{100} + \\dfrac{87}{100}\\right) + \\dfrac{41}{100} = \\dfrac{100}{100} + \\dfrac{41}{100} = \\dfrac{141}{100}$.',
         },
       ],
     },
@@ -55,11 +55,11 @@ export default {
         },
         {
           type: 'tex',
-          tex: '1 + \\dfrac{4}{9} = \\dfrac{9}{9} + \\dfrac{4}{9} = \\dfrac{13}{9}',
+          tex: '2 + \\dfrac{3}{7} = \\dfrac{14}{7} + \\dfrac{3}{7} = \\dfrac{17}{7}',
         },
         {
           type: 'tex',
-          tex: '3 - \\dfrac{5}{6} = \\dfrac{18}{6} - \\dfrac{5}{6} = \\dfrac{13}{6}',
+          tex: '1 - \\dfrac{3}{8} = \\dfrac{8}{8} - \\dfrac{3}{8} = \\dfrac{5}{8}',
         },
       ],
     },
@@ -210,14 +210,14 @@ export default {
     {
       type: 'fraction',
       prompt:
-        'Cây gỗ dài $\\dfrac{17}{4}$ m. Cắt khúc thứ nhất dài $\\dfrac{3}{2}$ m, khúc thứ hai dài $\\dfrac{9}{8}$ m. Khúc còn lại dài bao nhiêu mét? Em viết kết quả dạng phân số, ví dụ 3/4.',
-      answer: [13, 8],
+        'Sợi dây dài $\\dfrac{5}{2}$ m. Lần thứ nhất cắt đi $\\dfrac{3}{4}$ m, lần thứ hai cắt đi $\\dfrac{5}{8}$ m. Sợi dây còn lại dài bao nhiêu mét? Em viết kết quả dạng phân số, ví dụ 3/4.',
+      answer: [9, 8],
       hints: [
         'Chọn mẫu số chung là 8.',
-        '$\\dfrac{17}{4} = \\dfrac{34}{8}$, $\\dfrac{3}{2} = \\dfrac{12}{8}$.',
+        '$\\dfrac{5}{2} = \\dfrac{20}{8}$, $\\dfrac{3}{4} = \\dfrac{6}{8}$.',
       ],
       solution:
-        '$\\dfrac{34}{8} - \\dfrac{12}{8} - \\dfrac{9}{8} = \\dfrac{13}{8}$. Khúc còn lại dài $\\dfrac{13}{8}$ m.',
+        '$\\dfrac{20}{8} - \\dfrac{6}{8} - \\dfrac{5}{8} = \\dfrac{9}{8}$. Sợi dây còn lại dài $\\dfrac{9}{8}$ m.',
     },
     {
       type: 'choice',
@@ -236,6 +236,6 @@ export default {
   takeaways: [
     'Cộng, trừ hai phân số khác mẫu số: quy đồng mẫu số rồi cộng, trừ hai tử số.',
     'Cộng, trừ số tự nhiên với phân số: viết số tự nhiên thành phân số có cùng mẫu số.',
-    'Kết quả rút gọn được thì rút gọn; nhóm các phân số có tổng tròn để tính thuận tiện.',
+    'Kết quả rút gọn được thì rút gọn; nhóm trước các phân số có tổng tử số tròn để tính thuận tiện.',
   ],
 };

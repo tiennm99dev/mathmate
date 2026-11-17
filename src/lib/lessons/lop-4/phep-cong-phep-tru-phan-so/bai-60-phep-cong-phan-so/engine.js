@@ -60,12 +60,14 @@ export function cutState(task, k1, k2) {
  */
 export function sumOptions(task, A, C, D) {
   const right = { n: A + C, d: D };
-  const all = [
-    right,
-    { n: task.a + task.c, d: task.b + task.d },
-    { n: A + C + 1, d: D },
-    { n: A + C - 1, d: D },
-  ];
+  const more = { n: A + C + 1, d: D };
+  const fewer = { n: A + C - 1, d: D };
+  // The slip of adding the denominators is nearly always the smallest
+  // value, so which neighbour is kept decides where the sum lands: it
+  // changes with the task and the cut, and the sum is not always the
+  // middle button.
+  const near = (A + C + D) % 2 === 0 ? [more, fewer] : [fewer, more];
+  const all = [right, { n: task.a + task.c, d: task.b + task.d }, ...near];
   const seen = new Set();
   const options = all
     .filter((f) => {
@@ -99,7 +101,8 @@ export const sumTex = (task, D) =>
  * @param {Task} task
  * @param {number} k1
  * @param {number} k2
- * @param {'read' | 'wrong' | 'right'} step reading the sum, after a wrong pick, or done
+ * @param {'read' | 'wrong' | 'miscount' | 'right'} step reading the sum, after
+ *   picking a sum with the denominators added, after picking a miscount, or done
  * @returns {{ tone: 'ok' | 'warn' | 'info', text: string }}
  */
 export function sumNote(task, k1, k2, step) {
@@ -115,6 +118,12 @@ export function sumNote(task, k1, k2, step) {
     return {
       tone: 'ok',
       text: `Đúng rồi! ${A} mảnh và ${C} mảnh ghép lại được ${S} mảnh: $${sumTex(task, d1)}$. Cộng hai tử số, giữ nguyên mẫu số.`,
+    };
+  }
+  if (step === 'miscount') {
+    return {
+      tone: 'warn',
+      text: `Chưa đúng. Em đếm lại các mảnh tô màu ở băng tổng: ${A} mảnh và ${C} mảnh. Mẫu số vẫn là ${d1}.`,
     };
   }
   if (step === 'wrong') {

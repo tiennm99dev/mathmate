@@ -3,7 +3,7 @@ export default {
   summary:
     'Phép trừ phân số: trừ hai phân số cùng mẫu số bằng cách trừ hai tử số và giữ nguyên mẫu số; trừ hai phân số khác mẫu số bằng cách quy đồng mẫu số rồi trừ.',
   intro:
-    'Băng giấy có $\\dfrac{4}{5}$ đã tô màu. Em cắt bỏ $\\dfrac{1}{5}$ băng giấy tô màu. Phần tô màu còn lại là bao nhiêu? Em cùng học phép trừ phân số nhé!',
+    'Một băng giấy đã tô màu $\\dfrac{4}{5}$. Em cắt bỏ $\\dfrac{1}{5}$ băng giấy ở phần tô màu. Phần tô màu còn lại là bao nhiêu? Em cùng học phép trừ phân số nhé!',
   objectives: [
     'Trừ được hai phân số cùng mẫu số.',
     'Trừ được hai phân số khác mẫu số bằng cách quy đồng mẫu số.',
@@ -102,13 +102,14 @@ export default {
     },
     {
       type: 'number',
-      prompt: '$\\dfrac{3}{4} - \\dfrac{1}{8} = \\dfrac{?}{8}$. Số nào thích hợp với dấu ?',
-      answer: 5,
+      prompt: '$\\dfrac{5}{6} - \\dfrac{1}{12} = \\dfrac{?}{12}$. Số nào thích hợp với dấu ?',
+      answer: 9,
       hints: [
-        'Quy đồng: $\\dfrac{3}{4} = \\dfrac{6}{8}$.',
-        'Tính $\\dfrac{6}{8} - \\dfrac{1}{8}$.',
+        'Quy đồng: $\\dfrac{5}{6} = \\dfrac{10}{12}$.',
+        'Tính $\\dfrac{10}{12} - \\dfrac{1}{12}$.',
       ],
-      solution: '$\\dfrac{3}{4} - \\dfrac{1}{8} = \\dfrac{6}{8} - \\dfrac{1}{8} = \\dfrac{5}{8}$.',
+      solution:
+        '$\\dfrac{5}{6} - \\dfrac{1}{12} = \\dfrac{10}{12} - \\dfrac{1}{12} = \\dfrac{9}{12}$.',
     },
     {
       type: 'number',
@@ -122,28 +123,28 @@ export default {
     {
       type: 'choice',
       prompt:
-        'Dế Trũi có $\\dfrac{3}{8}$ chiếc lá, cho Dế Mèn $\\dfrac{1}{4}$ chiếc lá. Dế Trũi còn lại mấy phần chiếc lá?',
-      options: ['$\\dfrac{1}{8}$', '$\\dfrac{2}{4}$', '$\\dfrac{2}{8}$'],
+        'Dế Mèn có $\\dfrac{5}{6}$ chiếc bánh. Dế Mèn cho Dế Trũi $\\dfrac{1}{3}$ chiếc bánh. Dế Mèn còn lại mấy phần chiếc bánh?',
+      options: ['$\\dfrac{1}{2}$', '$\\dfrac{4}{3}$', '$\\dfrac{4}{6}$'],
       answer: 0,
-      hints: ['Mẫu số chung là 8.', '$\\dfrac{1}{4} = \\dfrac{2}{8}$.'],
+      hints: ['Mẫu số chung là 6.', '$\\dfrac{1}{3} = \\dfrac{2}{6}$. Nhớ rút gọn kết quả.'],
       solution:
-        '$\\dfrac{3}{8} - \\dfrac{1}{4} = \\dfrac{3}{8} - \\dfrac{2}{8} = \\dfrac{1}{8}$. Dế Trũi còn lại $\\dfrac{1}{8}$ chiếc lá.',
+        '$\\dfrac{5}{6} - \\dfrac{1}{3} = \\dfrac{5}{6} - \\dfrac{2}{6} = \\dfrac{3}{6} = \\dfrac{1}{2}$. Dế Mèn còn lại $\\dfrac{1}{2}$ chiếc bánh.',
     },
     {
       type: 'match',
       prompt: 'Rút gọn rồi tính. Em nối mỗi phép tính với kết quả của nó.',
       left: [
         '$\\dfrac{2}{3} - \\dfrac{2}{6}$',
-        '$\\dfrac{5}{6} - \\dfrac{3}{18}$',
+        '$\\dfrac{9}{12} - \\dfrac{1}{4}$',
         '$\\dfrac{8}{14} - \\dfrac{2}{7}$',
         '$\\dfrac{12}{20} - \\dfrac{2}{5}$',
       ],
       right: [
         '$\\dfrac{1}{3}$',
-        '$\\dfrac{2}{3}$',
+        '$\\dfrac{1}{2}$',
         '$\\dfrac{2}{7}$',
         '$\\dfrac{1}{5}$',
-        '$\\dfrac{1}{2}$',
+        '$\\dfrac{2}{3}$',
       ],
       pairs: [
         [0, 0],
@@ -152,10 +153,10 @@ export default {
         [3, 3],
       ],
       hints: [
-        'Rút gọn: $\\dfrac{2}{6} = \\dfrac{1}{3}$, $\\dfrac{3}{18} = \\dfrac{1}{6}$, $\\dfrac{8}{14} = \\dfrac{4}{7}$, $\\dfrac{12}{20} = \\dfrac{3}{5}$.',
+        'Rút gọn: $\\dfrac{2}{6} = \\dfrac{1}{3}$, $\\dfrac{9}{12} = \\dfrac{3}{4}$, $\\dfrac{8}{14} = \\dfrac{4}{7}$, $\\dfrac{12}{20} = \\dfrac{3}{5}$.',
       ],
       solution:
-        '$\\dfrac{2}{3} - \\dfrac{1}{3} = \\dfrac{1}{3}$; $\\dfrac{5}{6} - \\dfrac{1}{6} = \\dfrac{4}{6} = \\dfrac{2}{3}$; $\\dfrac{4}{7} - \\dfrac{2}{7} = \\dfrac{2}{7}$; $\\dfrac{3}{5} - \\dfrac{2}{5} = \\dfrac{1}{5}$.',
+        '$\\dfrac{2}{3} - \\dfrac{1}{3} = \\dfrac{1}{3}$; $\\dfrac{3}{4} - \\dfrac{1}{4} = \\dfrac{2}{4} = \\dfrac{1}{2}$; $\\dfrac{4}{7} - \\dfrac{2}{7} = \\dfrac{2}{7}$; $\\dfrac{3}{5} - \\dfrac{2}{5} = \\dfrac{1}{5}$.',
     },
     {
       type: 'choice',

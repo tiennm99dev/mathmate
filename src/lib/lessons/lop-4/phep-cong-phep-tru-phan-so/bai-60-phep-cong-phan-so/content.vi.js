@@ -75,7 +75,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Tính thuận tiện: nhóm hai phân số có tổng tròn trước. $\\dfrac{16}{15} + \\dfrac{7}{15} + \\dfrac{4}{15} = \\left(\\dfrac{16}{15} + \\dfrac{4}{15}\\right) + \\dfrac{7}{15} = \\dfrac{20}{15} + \\dfrac{7}{15} = \\dfrac{27}{15} = \\dfrac{9}{5}$.',
+          text: 'Tính thuận tiện: nhóm trước hai phân số có tổng tử số tròn chục. $\\dfrac{16}{15} + \\dfrac{7}{15} + \\dfrac{4}{15} = \\left(\\dfrac{16}{15} + \\dfrac{4}{15}\\right) + \\dfrac{7}{15} = \\dfrac{20}{15} + \\dfrac{7}{15} = \\dfrac{27}{15} = \\dfrac{9}{5}$.',
         },
       ],
     },
@@ -125,12 +125,12 @@ export default {
     },
     {
       type: 'choice',
-      prompt: 'Tính $\\dfrac{3}{5} + \\dfrac{1}{10}$.',
-      options: ['$\\dfrac{7}{10}$', '$\\dfrac{4}{15}$', '$\\dfrac{4}{10}$', '$\\dfrac{4}{5}$'],
+      prompt: 'Tính $\\dfrac{2}{3} + \\dfrac{1}{9}$.',
+      options: ['$\\dfrac{7}{9}$', '$\\dfrac{3}{12}$', '$\\dfrac{3}{9}$', '$\\dfrac{7}{12}$'],
       answer: 0,
-      hints: ['Mẫu số chung là 10.', 'Nhân cả tử số và mẫu số của $\\dfrac{3}{5}$ với 2.'],
+      hints: ['Mẫu số chung là 9.', 'Nhân cả tử số và mẫu số của $\\dfrac{2}{3}$ với 3.'],
       solution:
-        '$\\dfrac{3}{5} + \\dfrac{1}{10} = \\dfrac{6}{10} + \\dfrac{1}{10} = \\dfrac{7}{10}$.',
+        '$\\dfrac{2}{3} + \\dfrac{1}{9} = \\dfrac{6}{9} + \\dfrac{1}{9} = \\dfrac{7}{9}$. Không cộng hai mẫu số, và khi quy đồng phải nhân cả tử số.',
     },
     {
       type: 'number',
@@ -145,20 +145,20 @@ export default {
       prompt: 'Rút gọn rồi tính. Em nối mỗi phép tính với kết quả của nó.',
       left: [
         '$\\dfrac{21}{15} + \\dfrac{2}{5}$',
-        '$\\dfrac{6}{16} + \\dfrac{1}{8}$',
+        '$\\dfrac{10}{16} + \\dfrac{1}{8}$',
         '$\\dfrac{3}{12} + \\dfrac{3}{4}$',
       ],
-      right: ['$\\dfrac{9}{5}$', '$\\dfrac{1}{2}$', '$1$', '$\\dfrac{23}{20}$'],
+      right: ['$\\dfrac{9}{5}$', '$\\dfrac{3}{4}$', '$1$', '$\\dfrac{11}{16}$'],
       pairs: [
         [0, 0],
         [1, 1],
         [2, 2],
       ],
       hints: [
-        'Rút gọn: $\\dfrac{21}{15} = \\dfrac{7}{5}$, $\\dfrac{6}{16} = \\dfrac{3}{8}$, $\\dfrac{3}{12} = \\dfrac{1}{4}$.',
+        'Rút gọn: $\\dfrac{21}{15} = \\dfrac{7}{5}$, $\\dfrac{10}{16} = \\dfrac{5}{8}$, $\\dfrac{3}{12} = \\dfrac{1}{4}$.',
       ],
       solution:
-        '$\\dfrac{7}{5} + \\dfrac{2}{5} = \\dfrac{9}{5}$; $\\dfrac{3}{8} + \\dfrac{1}{8} = \\dfrac{4}{8} = \\dfrac{1}{2}$; $\\dfrac{1}{4} + \\dfrac{3}{4} = \\dfrac{4}{4} = 1$.',
+        '$\\dfrac{7}{5} + \\dfrac{2}{5} = \\dfrac{9}{5}$; $\\dfrac{5}{8} + \\dfrac{1}{8} = \\dfrac{6}{8} = \\dfrac{3}{4}$; $\\dfrac{1}{4} + \\dfrac{3}{4} = \\dfrac{4}{4} = 1$.',
     },
     {
       type: 'multi',

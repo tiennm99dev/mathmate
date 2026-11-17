@@ -14,7 +14,7 @@
   let index = $state(0);
   let k1 = $state(1);
   let k2 = $state(1);
-  let step = $state(/** @type {'read' | 'wrong' | 'right'} */ ('read'));
+  let step = $state(/** @type {'read' | 'wrong' | 'miscount' | 'right'} */ ('read'));
   /** @type {number[]} */
   let tried = $state([]);
 
@@ -40,7 +40,11 @@
   ]);
   const stripLabel = $derived(
     `Băng trên: ${cut.A} mảnh tô màu, mỗi băng ${cut.d1} mảnh. Băng dưới: ${cut.C} mảnh tô màu, mỗi băng ${cut.d2} mảnh.` +
-      (cut.same ? ` Băng tổng: ${cut.A + cut.C} mảnh tô màu, mỗi băng ${cut.d1} mảnh.` : ''),
+      (cut.same
+        ? step === 'right'
+          ? ` Băng tổng: ${cut.A + cut.C} mảnh tô màu, mỗi băng ${cut.d1} mảnh.`
+          : ` Băng tổng: ${cut.A} mảnh của băng trên ghép với ${cut.C} mảnh của băng dưới, mỗi băng ${cut.d1} mảnh.`
+        : ''),
   );
 
   /** @param {number} v */
@@ -62,7 +66,7 @@
     if (step === 'right') return;
     if (i === choice.answer) step = 'right';
     else {
-      step = 'wrong';
+      step = choice.options[i].d === cut.d1 ? 'miscount' : 'wrong';
       tried = [...tried, i];
     }
   }
