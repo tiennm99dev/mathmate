@@ -1,7 +1,7 @@
 /** @type {import('#lib/core/content-schema.js').LessonContent} */
 export default {
   summary:
-    'Ôn tập chương II: vectơ trong không gian, quy tắc hình hộp, tích vô hướng, hệ trục toạ độ Oxyz, toạ độ của điểm và vectơ, biểu thức toạ độ của các phép toán vectơ và tích có hướng; kèm trò định vị đồ vật trong phòng học và bộ đề tự sinh có bản đồ kĩ năng.',
+    'Ôn tập chương II: vectơ trong không gian, quy tắc hình hộp, tích vô hướng, hệ trục toạ độ Oxyz, toạ độ của điểm và vectơ, biểu thức toạ độ của các phép toán vectơ và phần mở rộng về tích có hướng; kèm trò định vị đồ vật trong phòng học và bộ đề tự sinh có bản đồ kĩ năng.',
   intro:
     'Chương II đưa vectơ từ mặt phẳng ra không gian, rồi gắn vào không gian một hệ trục toạ độ để mọi điểm, mọi vectơ trở thành bộ ba số. Nhờ đó, các câu hỏi hình học như hai đường có vuông góc không, đoạn thẳng dài bao nhiêu, diện tích tam giác bằng bao nhiêu đều được trả lời bằng tính toán. Bài ôn tập này hệ thống lại kiến thức, cho em luyện đọc toạ độ đồ vật trong một phòng học, và một bộ đề tự sinh chỉ ra phần nào cần ôn thêm.',
   objectives: [
@@ -47,7 +47,7 @@ export default {
               "$\\vec{a} \\cdot \\vec{b} = xx' + yy' + zz'$; $|\\vec{a}| = \\sqrt{x^2 + y^2 + z^2}$",
             ],
             [
-              'Tích có hướng',
+              'Mở rộng: tích có hướng',
               "$[\\vec{u}, \\vec{v}] = (yz' - zy'; zx' - xz'; xy' - yx')$, vuông góc với $\\vec{u}$ và $\\vec{v}$",
             ],
           ],
@@ -84,7 +84,7 @@ export default {
         '$\\overrightarrow{AB} = (1; 2; 2)$, $\\overrightarrow{AC} = (2; -2; 1)$.',
         '$\\overrightarrow{AB} \\cdot \\overrightarrow{AC} = 1 \\cdot 2 + 2 \\cdot (-2) + 2 \\cdot 1 = 0$, nên $AB \\perp AC$.',
         '$AB = \\sqrt{1 + 4 + 4} = 3$ và $AC = \\sqrt{4 + 4 + 1} = 3$, nên tam giác $ABC$ vuông cân tại $A$.',
-        '$S_{ABC} = \\dfrac{1}{2} AB \\cdot AC = \\dfrac{9}{2}$. Kiểm tra bằng tích có hướng: $[\\overrightarrow{AB}, \\overrightarrow{AC}] = (6; 3; -6)$ có độ dài $9$, và $\\dfrac{1}{2} \\cdot 9 = \\dfrac{9}{2}$.',
+        '$S_{ABC} = \\dfrac{1}{2} AB \\cdot AC = \\dfrac{9}{2}$. Mở rộng, kiểm tra bằng tích có hướng: $[\\overrightarrow{AB}, \\overrightarrow{AC}] = (6; 3; -6)$ có độ dài $9$, và $\\dfrac{1}{2} \\cdot 9 = \\dfrac{9}{2}$.',
       ],
       answer: 'Tam giác $ABC$ vuông cân tại $A$, $S_{ABC} = \\dfrac{9}{2}$.',
     },
@@ -195,7 +195,7 @@ export default {
       options: [
         'Tam giác $ABC$ là tam giác đều.',
         'Trọng tâm của tam giác $ABC$ là $G\\left(\\dfrac{1}{3}; \\dfrac{1}{3}; \\dfrac{1}{3}\\right)$.',
-        '$[\\overrightarrow{AB}, \\overrightarrow{AC}] = (1; 1; 1)$.',
+        'Mở rộng: $[\\overrightarrow{AB}, \\overrightarrow{AC}] = (1; 1; 1)$.',
         '$\\overrightarrow{AB} \\perp \\overrightarrow{AC}$.',
       ],
       answers: [0, 1, 2],
@@ -204,17 +204,17 @@ export default {
         'Tính độ dài ba cạnh và tích vô hướng $\\overrightarrow{AB} \\cdot \\overrightarrow{AC}$.',
       ],
       solution:
-        '$AB = BC = CA = \\sqrt{2}$ nên tam giác đều; $G = \\left(\\dfrac{1}{3}; \\dfrac{1}{3}; \\dfrac{1}{3}\\right)$; $[\\overrightarrow{AB}, \\overrightarrow{AC}] = (1 \\cdot 1 - 0 \\cdot 0; 0 \\cdot (-1) - (-1) \\cdot 1; (-1) \\cdot 0 - 1 \\cdot (-1)) = (1; 1; 1)$. Còn $\\overrightarrow{AB} \\cdot \\overrightarrow{AC} = 1 \\ne 0$, nên hai vectơ không vuông góc (góc $A$ bằng $60^\\circ$).',
+        '$AB = BC = CA = \\sqrt{2}$ nên tam giác đều; $G = \\left(\\dfrac{1}{3}; \\dfrac{1}{3}; \\dfrac{1}{3}\\right)$; mở rộng: $[\\overrightarrow{AB}, \\overrightarrow{AC}] = (1 \\cdot 1 - 0 \\cdot 0; 0 \\cdot (-1) - (-1) \\cdot 1; (-1) \\cdot 0 - 1 \\cdot (-1)) = (1; 1; 1)$. Còn $\\overrightarrow{AB} \\cdot \\overrightarrow{AC} = 1 \\ne 0$, nên hai vectơ không vuông góc (góc $A$ bằng $60^\\circ$).',
     },
     {
       type: 'number',
       prompt: 'Tính diện tích tam giác $ABC$ với $A(1; 1; 1)$, $B(3; 1; 1)$, $C(1; 4; 5)$.',
       answer: 5,
       hints: [
-        '$S_{ABC} = \\dfrac{1}{2}\\left|[\\overrightarrow{AB}, \\overrightarrow{AC}]\\right|$.',
+        'Mở rộng: $S_{ABC} = \\dfrac{1}{2}\\left|[\\overrightarrow{AB}, \\overrightarrow{AC}]\\right|$.',
       ],
       solution:
-        '$\\overrightarrow{AB} = (2; 0; 0)$, $\\overrightarrow{AC} = (0; 3; 4)$, $[\\overrightarrow{AB}, \\overrightarrow{AC}] = (0 \\cdot 4 - 0 \\cdot 3; 0 \\cdot 0 - 2 \\cdot 4; 2 \\cdot 3 - 0 \\cdot 0) = (0; -8; 6)$, có độ dài $10$. Vậy $S_{ABC} = 5$. (Cũng có thể thấy $AB \\perp AC$, $AB = 2$, $AC = 5$.)',
+        'Mở rộng: $\\overrightarrow{AB} = (2; 0; 0)$, $\\overrightarrow{AC} = (0; 3; 4)$, $[\\overrightarrow{AB}, \\overrightarrow{AC}] = (0 \\cdot 4 - 0 \\cdot 3; 0 \\cdot 0 - 2 \\cdot 4; 2 \\cdot 3 - 0 \\cdot 0) = (0; -8; 6)$, có độ dài $10$. Vậy $S_{ABC} = 5$. (Cũng có thể thấy $AB \\perp AC$, $AB = 2$, $AC = 5$.)',
     },
     {
       type: 'number',
@@ -234,6 +234,6 @@ export default {
   takeaways: [
     "Quy tắc hình hộp $\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'}$ và tích vô hướng $|\\vec{u}| \\cdot |\\vec{v}| \\cdot \\cos(\\vec{u}, \\vec{v})$ dùng được cả khi chưa có toạ độ.",
     'Gắn hệ trục $Oxyz$ phù hợp (gốc ở một đỉnh, trục theo các cạnh vuông góc) để đổi bài hình học thành tính toán.',
-    "Với toạ độ: $\\overrightarrow{AB} = (x_B - x_A; \\ldots)$, $\\vec{a} \\cdot \\vec{b} = xx' + yy' + zz'$, $|\\vec{a}| = \\sqrt{x^2 + y^2 + z^2}$, và $[\\vec{u}, \\vec{v}]$ cho vectơ vuông góc với cả hai vectơ.",
+    "Với toạ độ: $\\overrightarrow{AB} = (x_B - x_A; \\ldots)$, $\\vec{a} \\cdot \\vec{b} = xx' + yy' + zz'$, $|\\vec{a}| = \\sqrt{x^2 + y^2 + z^2}$, và (mở rộng) $[\\vec{u}, \\vec{v}]$ cho vectơ vuông góc với cả hai vectơ.",
   ],
 };

@@ -271,7 +271,7 @@ export const centroid = {
 /** @type {Skill} */
 export const crossProduct = {
   id: 'tich-co-huong',
-  label: 'Bài 8. Tích có hướng',
+  label: 'Mở rộng. Tích có hướng',
   make(rand) {
     const u = vector(rand, -2, 3);
     const v = vector(rand, -2, 3);

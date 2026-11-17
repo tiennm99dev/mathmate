@@ -95,12 +95,8 @@
           "title": "Bài 8. Biểu thức toạ độ của các phép toán vectơ",
           "slug": "bai-8-bieu-thuc-toa-do-cua-cac-phep-toan-vecto",
           "kind": "theory",
-          "keyIdeas": [
-            "Toạ độ tổng, hiệu, tích với số",
-            "Tích vô hướng, độ dài, góc",
-            "Tích có hướng"
-          ],
-          "interactiveIdea": "Nhập toạ độ hai vectơ, xem vectơ tổng, tích có hướng vuông góc và hình bình hành dựng trên chúng."
+          "keyIdeas": ["Toạ độ tổng, hiệu, tích với số", "Tích vô hướng, độ dài, góc"],
+          "interactiveIdea": "Nhập toạ độ hai vectơ, xem vectơ tổng, hiệu, tích vô hướng và góc giữa chúng."
         },
         {
           "no": 4,
@@ -240,7 +236,8 @@
           "slug": "bai-14-phuong-trinh-mat-phang",
           "kind": "theory",
           "keyIdeas": [
-            "Vectơ pháp tuyến, cặp vectơ chỉ phương",
+            "Vectơ pháp tuyến",
+            "Tích có hướng, cặp vectơ chỉ phương",
             "Phương trình tổng quát mặt phẳng",
             "Khoảng cách từ điểm đến mặt phẳng"
           ],
