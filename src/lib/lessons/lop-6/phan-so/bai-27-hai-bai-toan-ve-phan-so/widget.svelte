@@ -131,7 +131,7 @@
     viewBox="0 0 {W} {H}"
     class="mx-auto block w-full max-w-xl select-none"
     style:aspect-ratio="{W} / {H}"
-    role="img"
+    role="group"
     aria-label="Sơ đồ đoạn thẳng: cả số là {wholeLabel === '?'
       ? 'chưa biết'
       : wholeLabel}, chia {n} phần bằng nhau; {m} phần tô màu ứng với {partLabel === '?'
