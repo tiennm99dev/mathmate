@@ -23,6 +23,19 @@ describe('what the risk widget shows', () => {
     expect(v.text).toContain('đầu tư vào lĩnh vực A rủi ro hơn');
     expect(verdict(b, a).text).toContain('lĩnh vực B rủi ro hơn');
     expect(verdict(a, a).text).toContain('như nhau');
+    expect(v.text).toContain('s_A \\approx 2{,}53');
+    // midpoints −1 and 7 around the mean 3 give s = 4 exactly, written with '='
+    expect(verdict(riskView(groupsOf([1, 0, 0, 0, 1])), b).text).toContain('s_A = 4');
+  });
+
+  it('calls two deviations equal to the hundredth nearly the same risk', () => {
+    // s² = 3,2 and 3,2 + 1/400 give s ≈ 1,79 both
+    const near = verdict(
+      { ...a, mean: 3, std: Math.sqrt(3.2) },
+      { ...b, mean: 3, std: Math.sqrt(3.2025) },
+    );
+    expect(near.tone).toBe('info');
+    expect(near.text).toContain('gần như nhau');
   });
 
   it('keeps the strip on the chart and warns on an empty field', () => {

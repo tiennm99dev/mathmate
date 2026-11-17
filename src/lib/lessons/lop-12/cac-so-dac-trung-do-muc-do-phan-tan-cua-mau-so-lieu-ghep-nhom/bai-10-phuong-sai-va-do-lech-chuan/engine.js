@@ -5,7 +5,7 @@
  * m_i(x_i − x̄)² of the variance, and which investment is the riskier one.
  */
 
-import { formatNumber, numTex, tidy } from '#lib/core/number-format.js';
+import { formatNumber, tidy } from '#lib/core/number-format.js';
 import {
   approxText,
   eqTex,
@@ -110,11 +110,6 @@ export function riskView(groups) {
   };
 }
 
-/** A number rounded to hundredths for TeX. @param {number} v */
-function hundredths(v) {
-  return numTex(tidy(Math.round(v * 100) / 100));
-}
-
 /**
  * The verdict on the two fields: which one is riskier and why.
  * @param {View} a
@@ -132,12 +127,18 @@ export function verdict(a, b) {
     Math.abs(a.mean - b.mean) < 1e-9
       ? `Hai lĩnh vực có cùng lợi nhuận trung bình $\\overline{x} ${eqTex(a.mean)}\\%$.`
       : `Lợi nhuận trung bình: $\\overline{x}_A ${eqTex(a.mean)}\\%$, $\\overline{x}_B ${eqTex(b.mean)}\\%$.`;
-  const sA = `s_A \\approx ${hundredths(a.std)}`;
-  const sB = `s_B \\approx ${hundredths(b.std)}`;
+  const sA = `s_A ${eqTex(a.std)}`;
+  const sB = `s_B ${eqTex(b.std)}`;
   if (Math.abs(a.std - b.std) < 1e-9) {
     return {
       tone: 'info',
       text: `${means} Hai độ lệch chuẩn bằng nhau ($${sA}$, $${sB}$): mức độ rủi ro như nhau.`,
+    };
+  }
+  if (Math.round(a.std * 100) === Math.round(b.std * 100)) {
+    return {
+      tone: 'info',
+      text: `${means} Hai độ lệch chuẩn gần như bằng nhau ($${sA}$, $${sB}$): mức độ rủi ro gần như nhau.`,
     };
   }
   const [risky, safe] = a.std > b.std ? ['A', 'B'] : ['B', 'A'];

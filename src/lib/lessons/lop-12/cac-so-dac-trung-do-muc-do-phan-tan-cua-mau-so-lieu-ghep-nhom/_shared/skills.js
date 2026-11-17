@@ -8,10 +8,12 @@
  */
 
 import { int, pick, retryMake, rounded } from '#lib/core/drill.js';
-import { numTex } from '#lib/core/number-format.js';
+import { readNumber } from '#lib/core/decimal.js';
+import { numTex, tidy } from '#lib/core/number-format.js';
 import {
   cumulative,
   eqTex,
+  groupedMean,
   groupTex,
   groupedIqr,
   groupedRange,
@@ -51,6 +53,38 @@ export function tableText(groups) {
 const ROUND = ' (làm tròn đến hàng phần trăm nếu cần)';
 
 /**
+ * Reads a typed ΔQ and takes any value within a hundredth of the answer as
+ * the answer itself: a learner who rounds Q_1 and Q_3 to hundredths before
+ * subtracting can land one hundredth away from the rounded exact value.
+ * @param {number} answer
+ * @returns {(text: string) => number | null}
+ */
+export function nearHundredth(answer) {
+  return (text) => {
+    const v = readNumber(text);
+    if (v === null) return null;
+    return Math.abs(v - answer) <= 0.01 + 1e-9 ? answer : v;
+  };
+}
+
+/**
+ * The hints of a variance question: compute the mean, then the shortcut
+ * formula; when the mean is not a short decimal, keep it exact, since a
+ * rounded mean squared drifts far from the answer.
+ * @param {readonly Group[]} groups
+ */
+function varianceHints(groups) {
+  const m = groupedMean(groups);
+  const short = tidy(Math.round(m * 100) / 100) === m;
+  return [
+    'Thay mỗi nhóm bằng giá trị đại diện rồi tính số trung bình $\\overline{x}$.',
+    short
+      ? 'Dùng $s^2 = \\dfrac{1}{n}\\left(m_1x_1^2 + \\cdots + m_kx_k^2\\right) - \\overline{x}^2$.'
+      : 'Dùng $s^2 = \\dfrac{1}{n}\\left(m_1x_1^2 + \\cdots + m_kx_k^2\\right) - \\overline{x}^2$, giữ $\\overline{x}$ ở dạng phân số: làm tròn $\\overline{x}$ trước khi bình phương sẽ làm sai kết quả.',
+  ];
+}
+
+/**
  * The range question on a table.
  * @param {readonly Group[]} groups
  * @returns {Draft}
@@ -87,6 +121,7 @@ export function iqrQuestion(groups) {
   return {
     prompt: `Cho mẫu số liệu ghép nhóm: ${tableText(groups)}. Tính khoảng tứ phân vị $\\Delta_Q$${ROUND}.`,
     answer,
+    read: nearHundredth(answer),
     hints: [
       'Tính $\\dfrac{n}{4}$, $\\dfrac{3n}{4}$ và tần số tích luỹ để tìm nhóm chứa $Q_1$, nhóm chứa $Q_3$.',
       `Nhóm chứa $Q_1$ là $${groupTex(groups[q1.index])}$, nhóm chứa $Q_3$ là $${groupTex(groups[q3.index])}$.`,
@@ -123,10 +158,7 @@ export function varianceQuestion(groups) {
   return {
     prompt: `Cho mẫu số liệu ghép nhóm: ${tableText(groups)}. Tính phương sai $s^2$${ROUND}.`,
     answer,
-    hints: [
-      'Thay mỗi nhóm bằng giá trị đại diện rồi tính số trung bình $\\overline{x}$.',
-      'Dùng $s^2 = \\dfrac{1}{n}\\left(m_1x_1^2 + \\cdots + m_kx_k^2\\right) - \\overline{x}^2$.',
-    ],
+    hints: varianceHints(groups),
     steps: varianceSteps(groups),
   };
 }
@@ -142,7 +174,10 @@ export function stdQuestion(groups) {
   return {
     prompt: `Cho mẫu số liệu ghép nhóm: ${tableText(groups)}. Tính độ lệch chuẩn $s$${ROUND}.`,
     answer,
-    hints: ['Tính phương sai $s^2$ trước.', 'Độ lệch chuẩn là căn bậc hai số học của phương sai.'],
+    hints: [
+      ...varianceHints(groups),
+      'Độ lệch chuẩn là căn bậc hai số học của phương sai; lấy căn của phương sai chưa làm tròn.',
+    ],
     steps: [...varianceSteps(groups), `$${stdTex(groups)}$.`],
   };
 }

@@ -59,6 +59,26 @@ describe('spread drill skills', () => {
     expect(wrong).toEqual([]);
   });
 
+  it('takes an interquartile range one hundredth off, from rounded quartiles', () => {
+    // Q1 = 45/7 ≈ 6,43 and Q3 = 15: 15 − 6,43 = 8,57, and 8,56 or 8,58 also pass
+    const q = iqrQuestion(makeGroups(0, 5, [6, 14, 10, 7, 3]));
+    const read = q?.read;
+    expect(read && ['8,57', '8,56', '8.58', '8,6', 'x'].map(read)).toEqual([
+      8.57,
+      8.57,
+      8.57,
+      8.6,
+      null,
+    ]);
+  });
+
+  it('warns to keep a long mean exact in the variance hints', () => {
+    const long = varianceQuestion(makeGroups(40, 10, [2, 5, 9, 10, 3, 1]));
+    const short = varianceQuestion(makeGroups(150, 5, [3, 7, 12, 10, 5, 3]));
+    expect(long?.hints?.join(' ')).toContain('dạng phân số');
+    expect(short?.hints?.join(' ')).not.toContain('dạng phân số');
+  });
+
   it('rounds every answer to hundredths', () => {
     const odd = buildSet(CHAPTER_SKILLS, 3, 99).filter(
       (q) => Math.abs(q.answer * 100 - Math.round(q.answer * 100)) > 1e-6,
