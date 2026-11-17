@@ -6,7 +6,7 @@
   import { button } from '#lib/core/ui.js';
   import CoordinatePlane from '#lib/core/visuals/coordinate-plane.svelte';
   import { planeScale } from '#lib/core/visuals/svg-math.js';
-  import VectorArrow from '../_shared/vector-arrow.svelte';
+  import VectorArrow from '#lib/core/visuals/vector-arrow.svelte';
   import { add, coordTex, coordText, crossV, scale } from '../_shared/vectors.js';
   import {
     BOX,

@@ -8,8 +8,8 @@
   import CoordinatePlane from '#lib/core/visuals/coordinate-plane.svelte';
   import { planeScale } from '#lib/core/visuals/svg-math.js';
   import { pointsAttr } from '#lib/utils/svg.js';
-  import { gridHandle } from '../_shared/grid-handle.js';
-  import VectorArrow from '../_shared/vector-arrow.svelte';
+  import { gridHandle } from '#lib/core/visuals/grid-handle.js';
+  import VectorArrow from '#lib/core/visuals/vector-arrow.svelte';
   import { add, coordTex, coordText, relation } from '../_shared/vectors.js';
   import { BOX, fits, kLimit, opTex, parallelTex, pointLines, result } from './engine.js';
 

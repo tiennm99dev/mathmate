@@ -8,8 +8,8 @@
   import { arcPath, directionTo, rightMarkPath } from '#lib/core/visuals/angle-math.js';
   import CoordinatePlane from '#lib/core/visuals/coordinate-plane.svelte';
   import { planeScale } from '#lib/core/visuals/svg-math.js';
-  import { gridHandle } from '../_shared/grid-handle.js';
-  import VectorArrow from '../_shared/vector-arrow.svelte';
+  import { gridHandle } from '#lib/core/visuals/grid-handle.js';
+  import VectorArrow from '#lib/core/visuals/vector-arrow.svelte';
   import { coordText, dot, len, scale } from '../_shared/vectors.js';
   import { NEWTONS, dotLines, dotNote, kindOf, projection, work } from './engine.js';
 

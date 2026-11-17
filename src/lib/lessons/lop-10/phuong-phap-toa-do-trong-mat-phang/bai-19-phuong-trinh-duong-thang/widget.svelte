@@ -7,7 +7,7 @@
   import { coordText, lineText } from '../_shared/coords.js';
   import LinePath from '../_shared/line-path.svelte';
   import PointHandle from '../_shared/point-handle.svelte';
-  import VectorArrow from '../_shared/vector-arrow.svelte';
+  import VectorArrow from '#lib/core/visuals/vector-arrow.svelte';
   import { BOX, lineInfo, panelTex, specialText } from './engine.js';
 
   const plane = planeScale(BOX);

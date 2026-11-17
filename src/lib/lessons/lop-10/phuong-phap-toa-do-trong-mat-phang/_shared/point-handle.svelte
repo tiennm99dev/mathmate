@@ -24,7 +24,7 @@
 
   import { draggable } from '#lib/actions/draggable.svelte.js';
   import { coordText } from './coords.js';
-  import { gridHandle } from './grid-handle.js';
+  import { gridHandle } from '#lib/core/visuals/grid-handle.js';
 
   const opts = $derived(gridHandle({ at, plane, svg, onmove }));
   const text = $derived(`${name}${coordText(at.x, at.y)}`);

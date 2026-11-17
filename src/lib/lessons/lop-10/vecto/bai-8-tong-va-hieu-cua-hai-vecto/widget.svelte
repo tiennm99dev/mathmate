@@ -8,8 +8,8 @@
   import { planeScale } from '#lib/core/visuals/svg-math.js';
   import { pointsAttr } from '#lib/utils/svg.js';
   import GridLines from '../_shared/grid-lines.svelte';
-  import { gridHandle } from '../_shared/grid-handle.js';
-  import VectorArrow from '../_shared/vector-arrow.svelte';
+  import { gridHandle } from '#lib/core/visuals/grid-handle.js';
+  import VectorArrow from '#lib/core/visuals/vector-arrow.svelte';
   import { BOX, COLOR, figure, fits, fourth } from './engine.js';
 
   const plane = planeScale({ ...BOX, width: 400, pad: 16 });

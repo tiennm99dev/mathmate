@@ -5,7 +5,7 @@
  * vectors ending where 3MG ends.
  */
 import { numTex } from '#lib/core/number-format.js';
-import { add, isZero, len, lengthTex, scale, sub } from '../_shared/vectors.js';
+import { add, inBox, isZero, len, lengthTex, scale, sub } from '../_shared/vectors.js';
 
 /** @typedef {{ x: number, y: number }} V */
 
@@ -54,8 +54,7 @@ export function centroidChain(A, B, C, M) {
 export const BOX = { xMin: -6, xMax: 6, yMin: -4, yMax: 4 };
 
 /** @param {V} p */
-export const onBoard = (p) =>
-  p.x >= BOX.xMin && p.x <= BOX.xMax && p.y >= BOX.yMin && p.y <= BOX.yMax;
+export const onBoard = (p) => inBox(p, BOX);
 
 /**
  * The k nearest to the wanted one, in half steps towards 0, for which

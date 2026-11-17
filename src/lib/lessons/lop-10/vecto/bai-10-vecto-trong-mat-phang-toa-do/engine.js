@@ -5,7 +5,7 @@
  * ABC, each written the book's way.
  */
 import { numTex, tidy } from '#lib/core/number-format.js';
-import { add, coordTex, rootTex, scale, sub } from '../_shared/vectors.js';
+import { add, coordTex, inBox, rootTex, scale, sub } from '../_shared/vectors.js';
 
 /** @typedef {{ x: number, y: number }} V */
 /** @typedef {'cong' | 'tru' | 'nhan'} Op */
@@ -76,8 +76,7 @@ export function pointLines(A, B, C) {
 export const BOX = { xMin: -6, xMax: 6, yMin: -5, yMax: 5 };
 
 /** @param {V} p */
-export const onBoard = (p) =>
-  p.x >= BOX.xMin && p.x <= BOX.xMax && p.y >= BOX.yMin && p.y <= BOX.yMax;
+export const onBoard = (p) => inBox(p, BOX);
 
 /**
  * Whether the result of an operation stays on the board.

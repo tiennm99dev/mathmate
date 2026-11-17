@@ -7,7 +7,7 @@
  */
 import { numTex } from '#lib/core/number-format.js';
 import { int, nonZero, pick, rng } from '#lib/core/drill.js';
-import { add, coordTex, crossV, scale, sub } from '../_shared/vectors.js';
+import { add, coordTex, crossV, inBox, scale, sub } from '../_shared/vectors.js';
 
 /** @typedef {{ x: number, y: number }} V */
 /** @typedef {{ A: V, a: V, b: V, m: number, n: number, T: V }} Round */
@@ -19,8 +19,7 @@ export const BOX = { xMin: -6, xMax: 6, yMin: -5, yMax: 5 };
 export const MAX_STEPS = 4;
 
 /** @param {V} p */
-export const onBoard = (p) =>
-  p.x >= BOX.xMin && p.x <= BOX.xMax && p.y >= BOX.yMin && p.y <= BOX.yMax;
+export const onBoard = (p) => inBox(p, BOX);
 
 /** Short vectors the rounds are built from: no zero vector, at most 2 per side. */
 /** @type {V[]} */

@@ -7,7 +7,7 @@
   import { button } from '#lib/core/ui.js';
   import CoordinatePlane from '#lib/core/visuals/coordinate-plane.svelte';
   import { clamp, planeScale } from '#lib/core/visuals/svg-math.js';
-  import { gridHandle } from '../_shared/grid-handle.js';
+  import { gridHandle } from '#lib/core/visuals/grid-handle.js';
   import PlaneFigure from '../_shared/plane-figure.svelte';
   import { ptText } from '../_shared/transform.js';
   import { NAMES, TRIANGLE, arcPath, imageTex, rotationNote, turned } from './engine.js';

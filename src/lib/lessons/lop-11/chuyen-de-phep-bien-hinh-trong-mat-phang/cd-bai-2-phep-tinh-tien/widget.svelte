@@ -5,10 +5,10 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import CoordinatePlane from '#lib/core/visuals/coordinate-plane.svelte';
   import { clamp, planeScale } from '#lib/core/visuals/svg-math.js';
-  import { gridHandle } from '../_shared/grid-handle.js';
+  import { gridHandle } from '#lib/core/visuals/grid-handle.js';
   import PlaneFigure from '../_shared/plane-figure.svelte';
   import { clipLine, ptText, translate } from '../_shared/transform.js';
-  import VectorArrow from '../_shared/vector-arrow.svelte';
+  import VectorArrow from '#lib/core/visuals/vector-arrow.svelte';
   import {
     CIRCLE,
     LINE,

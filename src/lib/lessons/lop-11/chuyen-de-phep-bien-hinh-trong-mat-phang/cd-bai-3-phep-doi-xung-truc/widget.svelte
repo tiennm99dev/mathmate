@@ -5,7 +5,7 @@
   import { button } from '#lib/core/ui.js';
   import CoordinatePlane from '#lib/core/visuals/coordinate-plane.svelte';
   import { planeScale } from '#lib/core/visuals/svg-math.js';
-  import { gridHandle } from '../_shared/grid-handle.js';
+  import { gridHandle } from '#lib/core/visuals/grid-handle.js';
   import PlaneFigure from '../_shared/plane-figure.svelte';
   import { AXIS_TEXT, clipLine, ptText, reflect, samePoint } from '../_shared/transform.js';
   import {

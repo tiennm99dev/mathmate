@@ -23,6 +23,14 @@ const ORIGIN = { x: 0, y: 0 };
 const EPS = 1e-9;
 
 /** @param {V} u */
+/**
+ * Whether a point lies inside a board's box (edges included).
+ * @param {V} p
+ * @param {{ xMin: number, xMax: number, yMin: number, yMax: number }} box
+ */
+export const inBox = (p, box) =>
+  p.x >= box.xMin && p.x <= box.xMax && p.y >= box.yMin && p.y <= box.yMax;
+
 export const isZero = (u) => Math.abs(u.x) < EPS && Math.abs(u.y) < EPS;
 
 /** Cross product u × v (zero exactly when u and v are parallel). @param {V} u @param {V} v */

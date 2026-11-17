@@ -207,6 +207,7 @@ Core visuals, `#lib/core/visuals/<name>.svelte`:
 | `coordinate-plane` | Cartesian plane; children snippet gets the scale (`planeScale()` in `svg-math.js`) |
 | `geometry-board` | SVG surface for geometry drawings with drag handles |
 | `drag-point` | round drag handle for a point (pointer and arrow keys) |
+| `vector-arrow` | an arrow from one plane point to another; `grid-handle.js` (`gridHandle`) snaps a dragged point to the grid of a `planeScale` |
 | `tick-marks` | equal-length marks on a segment |
 | `number-line` | number line with marker, marks and hop arcs |
 | `fraction-bars` | fraction strips, numerators draggable |
