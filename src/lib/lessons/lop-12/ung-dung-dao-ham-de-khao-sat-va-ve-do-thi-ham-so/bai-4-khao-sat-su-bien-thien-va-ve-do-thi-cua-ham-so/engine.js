@@ -7,6 +7,7 @@
  * conclusions, special points) and gives what the graph needs.
  */
 
+import { gcd } from '#lib/numtheory-engine/index.js';
 import { variationOf } from '../_shared/variation.js';
 import { num, polyTex, polyText, quadRoots, rel, shown } from './numbers.js';
 
@@ -404,7 +405,12 @@ function quad([a, b, c, m, n]) {
     deriv += `tử số luôn ${am === '+' ? 'dương' : 'âm'} nên $y' ${am === '+' ? '>' : '<'} 0$ với mọi $x \\ne ${x0.tex}$.`;
   }
   const slant = polyTexFrac(p, q);
-  const limits = `Chia tử cho mẫu: $y = ${slant} + \\dfrac{r}{${polyTex([m, n])}}$ với $r$ là hằng số khác $0$, nên $\\lim\\limits_{x \\to \\pm\\infty} [y - (${slant})] = 0$: tiệm cận xiên là $y = ${slant}$. Giới hạn của $y$ khi $x \\to ${side(x0.tex, '-')}$ và $x \\to ${side(x0.tex, '+')}$ là vô cực nên tiệm cận đứng là $x = ${x0.tex}$.`;
+  // The remainder of the division is r = key / m², never 0 here; write
+  // r / (mx + n) as one fraction with an integer numerator.
+  const g = gcd(Math.abs(key), m * m);
+  const restDen = (m * m) / g === 1 ? polyTex([m, n]) : `${(m * m) / g}(${polyTex([m, n])})`;
+  const restTex = `${key < 0 ? '-' : '+'} \\dfrac{${Math.abs(key) / g}}{${restDen}}`;
+  const limits = `Chia tử cho mẫu: $y = ${slant} ${restTex}$, nên $\\lim\\limits_{x \\to \\pm\\infty} [y - (${slant})] = 0$: tiệm cận xiên là $y = ${slant}$. Giới hạn của $y$ khi $x \\to ${side(x0.tex, '-')}$ và $x \\to ${side(x0.tex, '+')}$ là vô cực nên tiệm cận đứng là $x = ${x0.tex}$.`;
   const xs =
     roots.length === 2
       ? ['-\\infty', roots[0].tex, x0.tex, roots[1].tex, '+\\infty']

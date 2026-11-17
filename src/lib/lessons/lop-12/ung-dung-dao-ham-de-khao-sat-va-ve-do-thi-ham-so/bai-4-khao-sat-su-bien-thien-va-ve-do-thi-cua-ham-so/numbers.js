@@ -85,7 +85,7 @@ export function surd(n) {
  */
 export function quadRoots(A, B, C) {
   const disc = B * B - 4 * A * C;
-  if (disc < 0) return [];
+  if (!Number.isFinite(disc) || disc < 0) return [];
   if (disc === 0) return [num(-B / (2 * A))];
   const [k, r] = surd(disc);
   const values = [(-B - Math.sqrt(disc)) / (2 * A), (-B + Math.sqrt(disc)) / (2 * A)].sort(

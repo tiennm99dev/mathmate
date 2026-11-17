@@ -24,6 +24,10 @@ describe('exact numbers', () => {
     expect(quadRoots(1, 0, -2).map((v) => v.tex)).toEqual(['-\\sqrt{2}', '\\sqrt{2}']);
   });
 
+  it('returns no roots for a missing coefficient instead of looping', () => {
+    expect(quadRoots(1, Number.NaN, 2)).toEqual([]);
+  });
+
   it('writes polynomials the book way', () => {
     expect(polyTex([1, -3, 0, 2])).toBe('x^3 - 3x^2 + 2');
     expect(polyTex([-1, 0, 1, 0])).toBe('-x^3 + x');
@@ -153,5 +157,16 @@ describe('surveying fractions', () => {
 describe('x-axis crossings', () => {
   it('skips a sign change through a pole', () => {
     expect(crossings((x) => 1 / x, -2, 2, [0])).toEqual([]);
+  });
+});
+
+describe('the quadratic over linear survey', () => {
+  it('writes the remainder of the division exactly', () => {
+    // (x² + x + 1)/(x − 1) = x + 2 + 3/(x − 1)
+    expect(survey('quad', [1, 1, 1, 1, -1]).steps[2]).toContain('x + 2 + \\dfrac{3}{x - 1}');
+    // (x² + 1)/(2x + 1) = x/2 − 1/4 + 5/(4(2x + 1))
+    expect(survey('quad', [1, 0, 1, 2, 1]).steps[2]).toContain('+ \\dfrac{5}{4(2x + 1)}');
+    // (−x² + 2)/(x) = −x + 2/x
+    expect(survey('quad', [-1, 0, 2, 1, 0]).steps[2]).toContain('-x + \\dfrac{2}{x}');
   });
 });

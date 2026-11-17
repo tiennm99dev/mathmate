@@ -23,19 +23,27 @@
 
   /** @type {import('./engine.js').FamilyId} */
   let id = $state('cubic');
-  let coefs = $state([...FAMILIES[0].start]);
+  // One coefficient list per family, so the family and its coefficients
+  // always change together: a quadratic over linear survey never sees the
+  // four coefficients of a cubic while the switch is changing.
+  /** @type {Record<import('./engine.js').FamilyId, number[]>} */
+  let coefsBy = $state({
+    cubic: [...FAMILIES[0].start],
+    linear: [...FAMILIES[1].start],
+    quad: [...FAMILIES[2].start],
+  });
   let shownSteps = $state(1);
   let progress = $state(1);
   /** @type {(() => void) | null} */
   let stop = null;
 
   const fam = $derived(FAMILIES.find((f) => f.id === id) ?? FAMILIES[0]);
-  const s = $derived(survey(id, coefs));
+  const s = $derived(survey(id, coefsBy[id]));
 
   /** @param {string | number} next */
   function choose(next) {
     const f = FAMILIES.find((v) => v.id === next) ?? FAMILIES[0];
-    coefs = [...f.start];
+    coefsBy[f.id] = [...f.start];
     restart();
   }
   function restart() {
@@ -111,7 +119,7 @@
     {#each fam.names as name, i (name)}
       <Stepper
         label={name}
-        bind:value={coefs[i]}
+        bind:value={coefsBy[id][i]}
         min={fam.ranges[i][0]}
         max={fam.ranges[i][1]}
         format={intText}
