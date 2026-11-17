@@ -212,6 +212,6 @@ export function verdict(poured, y) {
   const out = frustum(BASE, s2, HEIGHT - y);
   return {
     tone: 'info',
-    text: `Phần nước đã rót là khối chóp cụt đều có $S = ${BASE}$, $S' = ${t(s2)}$, chiều cao $${HEIGHT - y}$: $V = \\dfrac{1}{3} \\cdot ${HEIGHT - y} \\cdot (${BASE} + \\sqrt{${BASE} \\cdot ${t(s2)}} + ${t(s2)}) ${is(out)}$ cm³. Nước trong lăng trụ cao $${is(w.level).replace(/^= /, '')}$ cm.`,
+    text: `Phần nước đã rót là khối chóp cụt đều có $S = ${BASE}$, $S' = ${t(s2)}$, chiều cao $${HEIGHT - y}$ cm: $V = \\dfrac{1}{3} \\cdot ${HEIGHT - y} \\cdot (${BASE} + \\sqrt{${BASE} \\cdot ${t(s2)}} + ${t(s2)}) ${is(out)}$ cm³. Nước trong lăng trụ cao $${is(w.level).replace(/^= /, '')}$ cm.`,
   };
 }

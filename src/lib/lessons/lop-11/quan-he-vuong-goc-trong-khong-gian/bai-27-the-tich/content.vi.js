@@ -231,7 +231,10 @@ export default {
         "$V = \\dfrac{1}{2}h\\left(S + S'\\right)$",
       ],
       answer: 0,
-      hints: ["Khi $S' = 0$, công thức phải trở thành thể tích khối chóp $\\dfrac{1}{3}Sh$."],
+      hints: [
+        "Khi $S' = 0$, công thức phải trở thành thể tích khối chóp $\\dfrac{1}{3}Sh$.",
+        "Khi $S' = S$, hai đáy bằng nhau và công thức phải cho $Sh$ như khối lăng trụ.",
+      ],
       solution:
         "$V = \\dfrac{1}{3}h\\left(S + \\sqrt{SS'} + S'\\right)$. Kiểm tra: với $S' = 0$ được $\\dfrac{1}{3}Sh$, đúng thể tích khối chóp; với $S' = S$ được $Sh$, đúng thể tích khối lăng trụ. Công thức $\\dfrac{1}{3}h(S + S')$ cho $\\dfrac{2}{3}Sh$ khi $S' = S$, nên sai.",
     },

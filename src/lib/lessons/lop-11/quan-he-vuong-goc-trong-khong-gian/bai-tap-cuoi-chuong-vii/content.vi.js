@@ -26,7 +26,7 @@ export default {
             ['$(P) \\perp (Q)$', '$(P)$ chứa một đường thẳng vuông góc với $(Q)$'],
             [
               'Định lí ba đường vuông góc',
-              "$a \\subset (P)$, $b$ không vuông góc với $(P)$, $b'$ là hình chiếu của $b$ trên $(P)$: $a \\perp b \\Leftrightarrow a \\perp b'$",
+              "$a \\subset (P)$, $b$ không nằm trong $(P)$ và không vuông góc với $(P)$, $b'$ là hình chiếu của $b$ trên $(P)$: $a \\perp b \\Leftrightarrow a \\perp b'$",
             ],
           ],
         },
@@ -181,7 +181,7 @@ export default {
         'Xét các đường thẳng $BC$, $AD$, $SA$.',
       ],
       solution:
-        '$BC \\perp AB$, $BC \\perp SA$ nên $BC \\perp (SAB)$, suy ra $(SBC) \\perp (SAB)$. Tương tự $AD \\perp (SAB)$ nên $(SAD) \\perp (SAB)$. $SA \\perp (ABCD)$ và $SA \\subset (SAB)$ nên $(ABCD) \\perp (SAB)$. Góc nhị diện giữa $(SAC)$ và $(SAB)$ là $\\widehat{BAC} = 45^\\circ$; góc giữa $(SCD)$ và $(SAB)$ là $\\widehat{ASD} < 90^\\circ$: hai mặt này không vuông góc với $(SAB)$.',
+        '$BC \\perp AB$, $BC \\perp SA$ nên $BC \\perp (SAB)$, suy ra $(SBC) \\perp (SAB)$. Tương tự $AD \\perp (SAB)$ nên $(SAD) \\perp (SAB)$. $SA \\perp (ABCD)$ và $SA \\subset (SAB)$ nên $(ABCD) \\perp (SAB)$. Hai mặt phẳng $(SAC)$ và $(SAB)$ cắt nhau theo $SA \\perp (ABCD)$ nên góc giữa chúng là $\\widehat{BAC} = 45^\\circ$; $(SCD)$ và $(SAB)$ cắt nhau theo đường thẳng qua $S$ song song với $AB$, mà $AB \\perp (SAD)$, nên góc giữa chúng là $\\widehat{ASD} < 90^\\circ$: hai mặt này không vuông góc với $(SAB)$.',
     },
     {
       type: 'number',
@@ -260,7 +260,7 @@ export default {
         '$SA = AB \\tan 60^\\circ$.',
       ],
       solution:
-        '$BC \\perp AB$, $BC \\perp SB$ nên góc giữa $(SBC)$ và đáy là $\\widehat{SBA} = 60^\\circ$; $SA = 3\\tan 60^\\circ = 3\\sqrt{3}$ cm. $V = \\dfrac{1}{3} \\cdot 9 \\cdot 3\\sqrt{3} = 9\\sqrt{3} \\approx 15{,}59$ cm³.',
+        '$BC \\perp AB$, $BC \\perp SA$ nên $BC \\perp (SAB)$, suy ra $BC \\perp SB$. Do đó góc giữa $(SBC)$ và đáy là $\\widehat{SBA} = 60^\\circ$; $SA = 3\\tan 60^\\circ = 3\\sqrt{3}$ cm. $V = \\dfrac{1}{3} \\cdot 9 \\cdot 3\\sqrt{3} = 9\\sqrt{3} \\approx 15{,}59$ cm³.',
     },
   ],
   takeaways: [
