@@ -39,8 +39,17 @@
       : `h = \\dfrac{${t.bTex} - ${t.aTex}}{${n}} ${approxTex((t.b - t.a) / n, 4)}`,
   );
 
+  // The bracket of the rule written out in full for small n, with dots from n = 4 on.
+  const bracket = $derived(
+    n === 1
+      ? 'f(x_0) + f(x_1)'
+      : n <= 3
+        ? `f(x_0) + ${Array.from({ length: n - 1 }, (_, i) => `2f(x_${i + 1})`).join(' + ')} + f(x_${n})`
+        : `f(x_0) + 2f(x_1) + \\dots + 2f(x_{${n - 1}}) + f(x_{${n}})`,
+  );
+
   const lines = $derived([
-    `$${hTex}$, $T_{${n}} = \\dfrac{h}{2}[f(x_0) + 2f(x_1) + \\dots + 2f(x_{${n - 1}}) + f(x_{${n}})] ${approxTex(tr.sum, 4)}$.`,
+    `$${hTex}$, $T_{${n}} = \\dfrac{h}{2}[${bracket}] ${approxTex(tr.sum, 4)}$.`,
     `Giá trị của tích phân: $${range} ${t.exactTex ? `= ${t.exactTex} ` : ''}${approxTex(t.exact, 4)}$.`,
     `Sai số thực sự: $|I - T_{${n}}| ${approxTex(err, 4)}$; ước lượng của sách: $\\dfrac{(b - a)^3 M}{12n^2} ${approxTex(bound, 4)}$ với $M = ${t.mTex}$.`,
   ]);

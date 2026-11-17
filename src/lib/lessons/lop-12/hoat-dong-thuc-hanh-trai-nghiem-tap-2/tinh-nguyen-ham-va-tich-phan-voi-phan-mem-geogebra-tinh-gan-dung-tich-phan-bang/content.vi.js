@@ -278,7 +278,12 @@ export default {
       type: 'text',
       prompt:
         'Gõ lệnh GeoGebra để tính tổng hình thang với $5$ đoạn chia cho hàm số $f$ trên đoạn $[1; 2]$.',
-      accept: ['TrapezoidalSum(f, 1, 2, 5)', 'TrapezoidalSum(f,1,2,5)'],
+      accept: [
+        'TrapezoidalSum(f, 1, 2, 5)',
+        'TrapezoidalSum(f,1,2,5)',
+        'TrapezoidalSum(f(x), 1, 2, 5)',
+        'TrapezoidalSum(f(x),1,2,5)',
+      ],
       hints: ['Lệnh có dạng TrapezoidalSum(hàm số, a, b, n).'],
       solution:
         'TrapezoidalSum(f, 1, 2, 5). Với $f(x) = \\dfrac{e^x}{x}$, phần mềm cho khoảng $3{,}07$ và vẽ năm hình thang.',

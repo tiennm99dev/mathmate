@@ -259,12 +259,12 @@
           text={lineOk ? `$d: ${paramTex(m, u)}$` : '$\\vec{u} = \\vec{0}$: chưa có đường thẳng.'}
         />
       </p>
-      <div class="grid gap-2 sm:grid-cols-2">
+      <div class="grid gap-2 sm:grid-flow-col sm:grid-cols-2 sm:grid-rows-3">
         <Stepper label="x của M" bind:value={mx} min={-4} max={4} format={intText} />
-        <Stepper label="a của u" bind:value={ux} min={-3} max={3} format={intText} />
         <Stepper label="y của M" bind:value={my} min={-4} max={4} format={intText} />
-        <Stepper label="b của u" bind:value={uy} min={-3} max={3} format={intText} />
         <Stepper label="z của M" bind:value={mz} min={-4} max={4} format={intText} />
+        <Stepper label="a của u" bind:value={ux} min={-3} max={3} format={intText} />
+        <Stepper label="b của u" bind:value={uy} min={-3} max={3} format={intText} />
         <Stepper label="c của u" bind:value={uz} min={-3} max={3} format={intText} />
       </div>
     </div>
