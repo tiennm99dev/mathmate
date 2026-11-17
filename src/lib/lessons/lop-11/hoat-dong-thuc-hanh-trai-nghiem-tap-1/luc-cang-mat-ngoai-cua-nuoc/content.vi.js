@@ -76,7 +76,7 @@ export default {
             ],
             [
               'Mốt',
-              '$M_O = a_j + \\dfrac{m_j - m_{j-1}}{(m_j - m_{j-1}) + (m_j - m_{j+1})} \\cdot h$, với $[a_j; a_{j+1})$ là nhóm có tần số lớn nhất',
+              '$M_o = a_j + \\dfrac{m_j - m_{j-1}}{(m_j - m_{j-1}) + (m_j - m_{j+1})} \\cdot h$, với $[a_j; a_{j+1})$ là nhóm có tần số lớn nhất',
             ],
           ],
         },
@@ -106,7 +106,7 @@ export default {
             'Giữ ống nhỏ giọt thẳng đứng, cách mặt đồng xu khoảng $1$ cm, nhỏ từng giọt nước sạch và đếm. Ghi lại số giọt đồng xu giữ được trước khi nước tràn (không tính giọt làm tràn).',
             'Mỗi bạn trong nhóm làm ít nhất $2$ lần, lau khô đồng xu trước mỗi lần. Gộp kết quả của cả lớp thành một mẫu số liệu.',
             'Lặp lại với nước xà phòng để được mẫu số liệu thứ hai.',
-            'Với mỗi mẫu: lập bảng tần số ghép nhóm (có thể dùng khung tương tác), vẽ biểu đồ, tính $\\overline{x}$, $M_e$, $Q_1$, $Q_3$, $M_O$.',
+            'Với mỗi mẫu: lập bảng tần số ghép nhóm (có thể dùng khung tương tác), vẽ biểu đồ, tính $\\overline{x}$, $M_e$, $Q_1$, $Q_3$, $M_o$.',
           ],
         },
         {
@@ -149,11 +149,11 @@ export default {
       steps: [
         '$\\dfrac{n}{4} = 10$: nhóm chứa $Q_1$ là $[30; 35)$, $C = 3$, $m = 9$, nên $Q_1 = 30 + \\dfrac{10 - 3}{9} \\cdot 5 \\approx 33{,}89$.',
         '$\\dfrac{3n}{4} = 30$: nhóm chứa $Q_3$ là $[40; 45)$, $C = 27$, $m = 10$, nên $Q_3 = 40 + \\dfrac{30 - 27}{10} \\cdot 5 = 41{,}5$.',
-        'Nhóm chứa mốt là $[35; 40)$ với $m_j = 15$, $m_{j-1} = 9$, $m_{j+1} = 10$: $M_O = 35 + \\dfrac{15 - 9}{(15 - 9) + (15 - 10)} \\cdot 5 = 35 + \\dfrac{30}{11} \\approx 37{,}73$.',
+        'Nhóm chứa mốt là $[35; 40)$ với $m_j = 15$, $m_{j-1} = 9$, $m_{j+1} = 10$: $M_o = 35 + \\dfrac{15 - 9}{(15 - 9) + (15 - 10)} \\cdot 5 = 35 + \\dfrac{30}{11} \\approx 37{,}73$.',
         'Các giá trị ước lượng từ bảng ghép nhóm chênh với số liệu gốc chưa tới $1$ giọt.',
       ],
       answer:
-        '$Q_1 \\approx 33{,}89$, $Q_3 = 41{,}5$, $M_O \\approx 37{,}73$: một đồng xu thường giữ được khoảng $37$ đến $38$ giọt nước sạch.',
+        '$Q_1 \\approx 33{,}89$, $Q_3 = 41{,}5$, $M_o \\approx 37{,}73$: một đồng xu thường giữ được khoảng $37$ đến $38$ giọt nước sạch.',
     },
   ],
   practice: [
@@ -226,15 +226,15 @@ export default {
     {
       type: 'number',
       prompt:
-        'Với bảng số giọt nước xà phòng ở trên, tính mốt $M_O$ (làm tròn đến hàng phần trăm).',
+        'Với bảng số giọt nước xà phòng ở trên, tính mốt $M_o$ (làm tròn đến hàng phần trăm).',
       answer: 20.86,
       tolerance: 0.006,
       unit: 'giọt',
       hints: [
         'Nhóm chứa mốt là $[20; 23)$ với $m_j = 11$; nhóm liền trước có tần số $9$, liền sau có tần số $6$.',
-        '$M_O = 20 + \\dfrac{11 - 9}{(11 - 9) + (11 - 6)} \\cdot 3$.',
+        '$M_o = 20 + \\dfrac{11 - 9}{(11 - 9) + (11 - 6)} \\cdot 3$.',
       ],
-      solution: '$M_O = 20 + \\dfrac{2}{7} \\cdot 3 = 20 + \\dfrac{6}{7} \\approx 20{,}86$ (giọt).',
+      solution: '$M_o = 20 + \\dfrac{2}{7} \\cdot 3 = 20 + \\dfrac{6}{7} \\approx 20{,}86$ (giọt).',
     },
     {
       type: 'choice',

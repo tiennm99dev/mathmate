@@ -38,9 +38,9 @@ export default {
               '$Q_3 = a_q + \\dfrac{\\frac{3n}{4} - C}{m_q}(a_{q+1} - a_q)$',
             ],
             [
-              'Mốt $M_O$',
+              'Mốt $M_o$',
               'Nhóm có tần số lớn nhất $[a_j; a_{j+1})$',
-              '$M_O = a_j + \\dfrac{m_j - m_{j-1}}{(m_j - m_{j-1}) + (m_j - m_{j+1})} \\cdot h$',
+              '$M_o = a_j + \\dfrac{m_j - m_{j-1}}{(m_j - m_{j-1}) + (m_j - m_{j+1})} \\cdot h$',
             ],
           ],
           caption: '$C$ là tổng tần số các nhóm đứng trước nhóm đang xét, $h$ là độ dài nhóm.',
@@ -84,11 +84,11 @@ export default {
       steps: [
         'Giá trị đại diện: $152{,}5$; $157{,}5$; $162{,}5$; $167{,}5$; $172{,}5$; $177{,}5$. Ta có $\\overline{x} = \\dfrac{1 \\cdot 152{,}5 + 4 \\cdot 157{,}5 + 9 \\cdot 162{,}5 + 12 \\cdot 167{,}5 + 8 \\cdot 172{,}5 + 6 \\cdot 177{,}5}{40} = \\dfrac{6\\,700}{40} = 167{,}5$.',
         'Tần số tích luỹ: $1$; $5$; $14$; $26$; $34$; $40$. Với $\\dfrac{n}{2} = 20$, nhóm chứa trung vị là $[165; 170)$, $C = 14$, $m_p = 12$: $M_e = 165 + \\dfrac{20 - 14}{12} \\cdot 5 = 167{,}5$.',
-        'Nhóm chứa mốt là $[165; 170)$ với $m_j = 12$, $m_{j-1} = 9$, $m_{j+1} = 8$: $M_O = 165 + \\dfrac{12 - 9}{(12 - 9) + (12 - 8)} \\cdot 5 = 165 + \\dfrac{15}{7} \\approx 167{,}14$.',
+        'Nhóm chứa mốt là $[165; 170)$ với $m_j = 12$, $m_{j-1} = 9$, $m_{j+1} = 8$: $M_o = 165 + \\dfrac{12 - 9}{(12 - 9) + (12 - 8)} \\cdot 5 = 165 + \\dfrac{15}{7} \\approx 167{,}14$.',
         'So với mẫu gốc, các số tính từ mẫu ghép nhóm lệch không quá $1$ cm: chúng là những giá trị xấp xỉ tốt, dù không bằng đúng.',
       ],
       answer:
-        '$\\overline{x} = 167{,}5$ cm, $M_e = 167{,}5$ cm, $M_O \\approx 167{,}14$ cm; đều gần với các số $166{,}9$; $167$; $168$ của mẫu gốc.',
+        '$\\overline{x} = 167{,}5$ cm, $M_e = 167{,}5$ cm, $M_o \\approx 167{,}14$ cm; đều gần với các số $166{,}9$; $167$; $168$ của mẫu gốc.',
     },
     {
       problem: 'Với bảng chiều cao ở ví dụ trên, tính các tứ phân vị $Q_1$, $Q_3$ và nêu ý nghĩa.',
@@ -175,7 +175,7 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Với bảng quãng đường xe máy điện ở trên, tính mốt $M_O$ (km).',
+      prompt: 'Với bảng quãng đường xe máy điện ở trên, tính mốt $M_o$ (km).',
       answer: 74,
       tolerance: 0.005,
       unit: 'km',
@@ -184,7 +184,7 @@ export default {
         '$m_{j-1} = 15$, $m_{j+1} = 12$, $h = 10$.',
       ],
       solution:
-        '$M_O = 70 + \\dfrac{21 - 15}{(21 - 15) + (21 - 12)} \\cdot 10 = 70 + \\dfrac{6}{15} \\cdot 10 = 74$ (km).',
+        '$M_o = 70 + \\dfrac{21 - 15}{(21 - 15) + (21 - 12)} \\cdot 10 = 70 + \\dfrac{6}{15} \\cdot 10 = 74$ (km).',
     },
     {
       type: 'choice',
@@ -204,12 +204,12 @@ export default {
     {
       type: 'number',
       prompt:
-        'Điểm kiểm tra của $25$ học sinh được ghép nhóm: $[4; 6)$: $3$; $[6; 8)$: $8$; $[8; 10]$: $14$. Tính mốt $M_O$.',
+        'Điểm kiểm tra của $25$ học sinh được ghép nhóm: $[4; 6)$: $3$; $[6; 8)$: $8$; $[8; 10]$: $14$. Tính mốt $M_o$.',
       answer: 8.6,
       tolerance: 0.005,
       hints: ['Nhóm chứa mốt $[8; 10]$ là nhóm cuối cùng, nên lấy $m_{j+1} = 0$.'],
       solution:
-        '$M_O = 8 + \\dfrac{14 - 8}{(14 - 8) + (14 - 0)} \\cdot 2 = 8 + \\dfrac{6}{20} \\cdot 2 = 8{,}6$.',
+        '$M_o = 8 + \\dfrac{14 - 8}{(14 - 8) + (14 - 0)} \\cdot 2 = 8 + \\dfrac{6}{20} \\cdot 2 = 8{,}6$.',
     },
     {
       type: 'number',

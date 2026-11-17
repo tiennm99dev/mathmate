@@ -222,7 +222,7 @@ export function quartileTex(q, k) {
  */
 export function modeTex(m) {
   const tail = m.value === null ? '' : ` ${eqTex(m.value)}`;
-  return `M_O = ${numTex(m.lo)} + \\dfrac{${m.count} - ${m.prev}}{(${m.count} - ${m.prev}) + (${m.count} - ${m.next})} \\cdot ${numTex(m.width)}${tail}`;
+  return `M_o = ${numTex(m.lo)} + \\dfrac{${m.count} - ${m.prev}}{(${m.count} - ${m.prev}) + (${m.count} - ${m.next})} \\cdot ${numTex(m.width)}${tail}`;
 }
 
 /**

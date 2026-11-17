@@ -224,7 +224,7 @@ export function quartileTex(q, k) {
 /** The mode formula with its numbers, as TeX. @param {Mode} m */
 export function modeTex(m) {
   const tail = m.value === null ? '' : ` ${eqTex(m.value)}`;
-  return `M_O = ${m.lo} + \\dfrac{${m.count} - ${m.prev}}{(${m.count} - ${m.prev}) + (${m.count} - ${m.next})} \\cdot ${m.width}${tail}`;
+  return `M_o = ${m.lo} + \\dfrac{${m.count} - ${m.prev}}{(${m.count} - ${m.prev}) + (${m.count} - ${m.next})} \\cdot ${m.width}${tail}`;
 }
 
 /** The mean formula with its numbers, as TeX. @param {readonly Group[]} groups */

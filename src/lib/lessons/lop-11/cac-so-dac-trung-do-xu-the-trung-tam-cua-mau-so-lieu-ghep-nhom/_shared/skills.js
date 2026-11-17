@@ -161,7 +161,7 @@ export const modeSkill = {
             ? ' Đây là nhóm cuối cùng nên lấy $m_{j+1} = 0$.'
             : '';
       return {
-        prompt: `Cho mẫu số liệu ghép nhóm: ${tableText(groups)}. Tính mốt $M_O$${ROUND}.`,
+        prompt: `Cho mẫu số liệu ghép nhóm: ${tableText(groups)}. Tính mốt $M_o$${ROUND}.`,
         answer,
         hints: [
           'Nhóm chứa mốt là nhóm có tần số lớn nhất.',

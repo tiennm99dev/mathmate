@@ -70,7 +70,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Mốt của mẫu số liệu ghép nhóm',
-          text: 'Giả sử nhóm chứa mốt là $[a_j; a_{j+1})$, có tần số $m_j$; $m_{j-1}$ và $m_{j+1}$ là tần số của nhóm liền trước và liền sau, $h$ là độ dài nhóm. Khi đó $M_O = a_j + \\dfrac{m_j - m_{j-1}}{(m_j - m_{j-1}) + (m_j - m_{j+1})} \\cdot h$.',
+          text: 'Giả sử nhóm chứa mốt là $[a_j; a_{j+1})$, có tần số $m_j$; $m_{j-1}$ và $m_{j+1}$ là tần số của nhóm liền trước và liền sau, $h$ là độ dài nhóm. Khi đó $M_o = a_j + \\dfrac{m_j - m_{j-1}}{(m_j - m_{j-1}) + (m_j - m_{j+1})} \\cdot h$.',
         },
         {
           type: 'callout',
@@ -80,7 +80,7 @@ export default {
         },
         {
           type: 'p',
-          text: 'Trên biểu đồ, nối đỉnh trái của cột cao nhất với đỉnh cột liền sau và đỉnh phải của nó với đỉnh cột liền trước: hai đoạn thẳng cắt nhau tại điểm có hoành độ đúng bằng $M_O$.',
+          text: 'Trên biểu đồ, nối đỉnh trái của cột cao nhất với đỉnh cột liền sau và đỉnh phải của nó với đỉnh cột liền trước: hai đoạn thẳng cắt nhau tại điểm có hoành độ đúng bằng $M_o$.',
         },
         {
           type: 'callout',
@@ -121,11 +121,11 @@ export default {
       problem: 'Với bảng thời gian tự học ở trên, tìm mốt và giải thích ý nghĩa của nó.',
       steps: [
         'Nhóm có tần số lớn nhất là $[40; 60)$ với $m_3 = 12$; nhóm liền trước có $m_2 = 9$, nhóm liền sau có $m_4 = 10$, độ dài nhóm $h = 20$.',
-        '$M_O = 40 + \\dfrac{12 - 9}{(12 - 9) + (12 - 10)} \\cdot 20 = 40 + \\dfrac{3}{5} \\cdot 20 = 52$.',
+        '$M_o = 40 + \\dfrac{12 - 9}{(12 - 9) + (12 - 10)} \\cdot 20 = 40 + \\dfrac{3}{5} \\cdot 20 = 52$.',
         'Mốt lệch khỏi điểm giữa $50$ của nhóm về phía nhóm $[60; 80)$, vì nhóm đó đông hơn nhóm $[20; 40)$.',
       ],
       answer:
-        '$M_O = 52$: thời gian tự học khoảng $52$ phút mỗi ngày là phổ biến nhất trong nhóm học sinh này.',
+        '$M_o = 52$: thời gian tự học khoảng $52$ phút mỗi ngày là phổ biến nhất trong nhóm học sinh này.',
     },
   ],
   practice: [
@@ -195,7 +195,7 @@ export default {
     },
     {
       type: 'number',
-      prompt: 'Với bảng cân nặng ở trên, tính mốt $M_O$ (kg).',
+      prompt: 'Với bảng cân nặng ở trên, tính mốt $M_o$ (kg).',
       answer: 53,
       tolerance: 0.005,
       unit: 'kg',
@@ -204,17 +204,17 @@ export default {
         '$m_{j-1} = 10$, $m_{j+1} = 12$, $h = 5$.',
       ],
       solution:
-        '$M_O = 50 + \\dfrac{16 - 10}{(16 - 10) + (16 - 12)} \\cdot 5 = 50 + \\dfrac{6}{10} \\cdot 5 = 53$ (kg).',
+        '$M_o = 50 + \\dfrac{16 - 10}{(16 - 10) + (16 - 12)} \\cdot 5 = 50 + \\dfrac{6}{10} \\cdot 5 = 53$ (kg).',
     },
     {
       type: 'number',
       prompt:
-        'Số lỗi chính tả trong bài của một lớp được ghép nhóm: $[0; 10)$: $15$; $[10; 20)$: $10$; $[20; 30)$: $5$. Tính mốt $M_O$.',
+        'Số lỗi chính tả trong bài của một lớp được ghép nhóm: $[0; 10)$: $15$; $[10; 20)$: $10$; $[20; 30)$: $5$. Tính mốt $M_o$.',
       answer: 7.5,
       tolerance: 0.005,
       hints: ['Nhóm chứa mốt là nhóm đầu tiên, không có nhóm liền trước.', 'Lấy $m_{j-1} = 0$.'],
       solution:
-        '$M_O = 0 + \\dfrac{15 - 0}{(15 - 0) + (15 - 10)} \\cdot 10 = \\dfrac{15}{20} \\cdot 10 = 7{,}5$.',
+        '$M_o = 0 + \\dfrac{15 - 0}{(15 - 0) + (15 - 10)} \\cdot 10 = \\dfrac{15}{20} \\cdot 10 = 7{,}5$.',
     },
     {
       type: 'choice',
@@ -243,7 +243,7 @@ export default {
     'Giá trị đại diện của nhóm $[a_i; a_{i+1})$ là $x_i = \\dfrac{a_i + a_{i+1}}{2}$; số trung bình $\\overline{x} = \\dfrac{m_1x_1 + \\cdots + m_kx_k}{n}$.',
     'Nhóm chứa trung vị là nhóm đầu tiên có tần số tích luỹ $\\ge \\dfrac{n}{2}$; $M_e = a_p + \\dfrac{\\frac{n}{2} - C}{m_p}(a_{p+1} - a_p)$.',
     '$Q_1$, $Q_3$ tính như trung vị với $\\dfrac{n}{4}$ và $\\dfrac{3n}{4}$ thay cho $\\dfrac{n}{2}$; $Q_2 = M_e$.',
-    'Nhóm chứa mốt có tần số lớn nhất; $M_O = a_j + \\dfrac{m_j - m_{j-1}}{(m_j - m_{j-1}) + (m_j - m_{j+1})} \\cdot h$.',
+    'Nhóm chứa mốt có tần số lớn nhất; $M_o = a_j + \\dfrac{m_j - m_{j-1}}{(m_j - m_{j-1}) + (m_j - m_{j+1})} \\cdot h$.',
     'Các số đặc trưng của mẫu ghép nhóm chỉ xấp xỉ các số tương ứng của mẫu gốc.',
   ],
 };

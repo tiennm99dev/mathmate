@@ -114,7 +114,7 @@ describe('the formulas as TeX', () => {
       'Q_1 = 45 + \\dfrac{12{,}5 - 4}{10} \\cdot 5 = 49{,}25',
     );
     expect(modeTex(groupedModes(STUDY)[0])).toBe(
-      'M_O = 40 + \\dfrac{12 - 9}{(12 - 9) + (12 - 10)} \\cdot 20 = 52',
+      'M_o = 40 + \\dfrac{12 - 9}{(12 - 9) + (12 - 10)} \\cdot 20 = 52',
     );
   });
 
