@@ -157,7 +157,7 @@ export const multiply = {
     const right = mul(f, g);
     const raw = { n: f.n * g.n, d: f.d * g.d };
     return {
-      prompt: 'Kết quả của phép nhân là phân số nào?',
+      prompt: `Kết quả của phép nhân là ${right.d === 1 ? 'số' : 'phân số'} nào?`,
       ...fracOptions(rand, right, [
         { n: f.n * g.n, d: f.d + g.d },
         { n: f.n * g.d, d: f.d * g.n },
@@ -184,7 +184,7 @@ export const divide = {
     const right = div(f, g);
     const raw = { n: f.n * flip.n, d: f.d * flip.d };
     return {
-      prompt: 'Kết quả của phép chia là phân số nào?',
+      prompt: `Kết quả của phép chia là ${right.d === 1 ? 'số' : 'phân số'} nào?`,
       ...fracOptions(rand, right, [
         mul(f, g),
         { n: f.d * g.n, d: f.n * g.d },
@@ -263,18 +263,16 @@ export const convenient = {
 /** Stories where a whole is used for two things and the rest is asked. */
 export const PART_STORIES = /** @type {const} */ ([
   {
-    whole: 'Bác Tư có một khu đất',
-    first: 'xây nhà',
-    second: 'trồng cây',
-    rest: 'làm sân và lối đi',
     of: 'diện tích khu đất',
+    tell: (/** @type {string} */ f, /** @type {string} */ g) =>
+      `Bác Tư dùng ${f} diện tích khu đất để xây nhà và ${g} diện tích khu đất để trồng cây, phần còn lại làm sân và lối đi.`,
+    ask: 'Sân và lối đi chiếm bao nhiêu phần diện tích khu đất?',
   },
   {
-    whole: 'Mai có một quyển truyện',
-    first: 'đọc trong ngày thứ nhất',
-    second: 'đọc trong ngày thứ hai',
-    rest: 'đọc trong ngày thứ ba',
     of: 'quyển truyện',
+    tell: (/** @type {string} */ f, /** @type {string} */ g) =>
+      `Ngày thứ nhất Mai đọc ${f} quyển truyện, ngày thứ hai Mai đọc ${g} quyển truyện. Ngày thứ ba Mai đọc hết phần còn lại.`,
+    ask: 'Ngày thứ ba Mai đọc bao nhiêu phần quyển truyện?',
   },
 ]);
 
@@ -294,14 +292,14 @@ export const partLeft = {
       if (right.n <= 0) continue;
       const usedN = (f.n * D) / f.d + g.n;
       return {
-        prompt: `${story.whole}. Phần thứ nhất bằng ${fracText(f)} ${story.of} để ${story.first}, phần thứ hai bằng ${fracText(g)} ${story.of} để ${story.second}, phần còn lại để ${story.rest}. Phần để ${story.rest} bằng bao nhiêu phần ${story.of}?`,
+        prompt: `${story.tell(fracText(f), fracText(g))} ${story.ask}`,
         ...fracOptions(rand, right, [
           used,
           { n: Math.abs(D - f.n - g.n), d: D },
           { n: D - g.n, d: D },
         ]),
-        hint: `Em cộng hai phần đã dùng, rồi lấy 1 (cả ${story.of}) trừ đi.`,
-        solution: `Hai phần đã dùng: ${raiseText(f, D)}; ${fracText(f)} + ${fracText(g)} = ${usedN}/${D}${reducedTail(usedN, D)}. Phần còn lại: 1 − ${fracText(used)} = ${fracText(right)} ${story.of}.`,
+        hint: `Em cộng hai phần đã biết, rồi lấy 1 (cả ${story.of}) trừ đi.`,
+        solution: `Hai phần đã biết: ${raiseText(f, D)}; ${fracText(f)} + ${fracText(g)} = ${usedN}/${D}${reducedTail(usedN, D)}. Phần còn lại: 1 − ${fracText(used)} = ${fracText(right)} ${story.of}.`,
       };
     }
   },

@@ -336,7 +336,7 @@ export const rounding = {
     const other = right === low ? low + unit : low;
     const place = PLACE_NAMES[Math.round(Math.log10(unit))];
     return {
-      prompt: `Số dân của một tỉnh là ${fmt(n)} người. Làm tròn số đó đến hàng ${place} được số nào?`,
+      prompt: `Số dân của một nước là ${fmt(n)} người. Làm tròn số đó đến hàng ${place} được số nào?`,
       ...slipOptions(right, [other, roundTo(n, unit * 10), roundTo(n, unit / 10)], {
         near: [unit * 2, -unit * 2],
       }),
@@ -398,7 +398,7 @@ export const cards = {
         },
       ),
       hint: `${even ? 'Số chẵn' : 'Số lẻ'} có chữ số hàng đơn vị là ${ends}. Chữ số hàng nghìn không thể là 0.`,
-      solution: `Chữ số hàng đơn vị phải là một trong các chữ số ${ends}. Em đặt các chữ số ${small ? 'bé' : 'lớn'} vào hàng cao trước. ${capitalize(kind)} ${word} là ${fmt(right)}.`,
+      solution: `Chữ số hàng đơn vị phải là một trong các chữ số ${ends}. Em chọn chữ số ${right % 10} ở hàng đơn vị, rồi đặt các chữ số còn lại từ ${small ? 'bé' : 'lớn'} đến ${small ? 'lớn' : 'bé'} vào các hàng cao${small ? ' (hàng nghìn khác 0)' : ''}. ${capitalize(kind)} ${word} là ${fmt(right)}.`,
     };
   },
 };
