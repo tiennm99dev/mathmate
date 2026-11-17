@@ -18,8 +18,12 @@ import { dist } from '#lib/geom-engine/plane.js';
 /** Radius of the circle (A; R) in the book's construction, in cm. */
 export const R = 3;
 
-/** How close to the circle, in cm, B counts as lying on it. */
-export const ON_CIRCLE = 0.05;
+/**
+ * How close to the circle, in cm, B counts as lying on it: only rounding
+ * noise, since B snaps to half centimetres and a point such as (3; 0,5) from
+ * A, 3,04 cm away, still traces a (thin) hyperbola.
+ */
+export const ON_CIRCLE = 1e-6;
 
 /**
  * Point C on the circle (A; r) at `deg` degrees.
@@ -96,7 +100,7 @@ const tex = (v) => cm(v).replace(',', '{,}');
 export function locusNote(A, B, r, M) {
   const kind = kindOf(A, B, r);
   if (kind === 'on') {
-    return 'B nằm trên đường tròn: đường trung trực của $BC$ luôn đi qua $A$, nên $M$ luôn trùng $A$. Kéo $B$ ra khỏi đường tròn.';
+    return '$B$ nằm trên đường tròn: đường trung trực của $BC$ luôn đi qua $A$, nên $M$ luôn trùng $A$. Kéo $B$ ra khỏi đường tròn.';
   }
   if (!M) {
     return 'Lúc này đường thẳng $AC$ song song với đường trung trực của $BC$, nên không có điểm $M$: đây là phương của một đường tiệm cận.';
@@ -104,9 +108,9 @@ export function locusNote(A, B, r, M) {
   const ma = dist(M, A);
   const mb = dist(M, B);
   if (kind === 'ellipse') {
-    return `B nằm trong đường tròn: $MA + MB = ${tex(ma)} + ${tex(mb)} = ${tex(ma + mb)} = R$. Tổng không đổi nên $M$ chạy trên elip tiêu điểm $A$, $B$.`;
+    return `$B$ nằm trong đường tròn: $MA + MB = ${tex(ma)} + ${tex(mb)} = ${tex(ma + mb)} = R$. Tổng không đổi nên $M$ chạy trên elip tiêu điểm $A$, $B$.`;
   }
-  return `B nằm ngoài đường tròn: $|MA - MB| = |${tex(ma)} - ${tex(mb)}| = ${tex(Math.abs(ma - mb))} = R$. Hiệu không đổi nên $M$ chạy trên hypebol tiêu điểm $A$, $B$.`;
+  return `$B$ nằm ngoài đường tròn: $|MA - MB| = |${tex(ma)} - ${tex(mb)}| = ${tex(Math.abs(ma - mb))} = R$. Hiệu không đổi nên $M$ chạy trên hypebol tiêu điểm $A$, $B$.`;
 }
 
 /**

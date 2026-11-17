@@ -53,6 +53,11 @@ describe('locus of M', () => {
     expect(kindOf(A, { x: 2, y: 0 }, R)).toBe('on');
     expect(locusNote(A, { x: 2, y: 0 }, R, null)).toContain('trùng $A$');
   });
+  it('keeps a snapped B just off the circle as a real conic', () => {
+    // A = (−1; 0): B = (2; 0,5) is √9,25 ≈ 3,04 cm away, B = (1,5; 1,5) √8,5 ≈ 2,92 cm.
+    expect(kindOf(A, { x: 2, y: 0.5 }, R)).toBe('hyperbola');
+    expect(kindOf(A, { x: 1.5, y: 1.5 }, R)).toBe('ellipse');
+  });
   it('writes the note with the decimal comma', () => {
     const B = { x: 1, y: 0 };
     const { M } = locusPoint(A, B, R, 90);
