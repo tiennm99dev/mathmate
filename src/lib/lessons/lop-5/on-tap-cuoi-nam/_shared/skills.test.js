@@ -6,11 +6,23 @@ import { MEASURE_SKILLS, hoursMinutes } from './measure-skills.js';
 import { NUMBER_SKILLS, roundDecimalSkill } from './number-skills.js';
 import { OPERATION_SKILLS, fractionOptions } from './operation-skills.js';
 import { RATIO_SKILLS } from './ratio-skills.js';
+import { GENERAL_SKILLS } from './general-skills.js';
+import { MOTION_SKILLS } from './motion-skills.js';
+import { STATS_SKILLS } from './stats-skills.js';
 import { num, readDecimal, simplest, valueOptions } from './values.js';
 
 /** @typedef {import('./visual.js').ReviewQuestion} Question */
 
-const SETS = [NUMBER_SKILLS, OPERATION_SKILLS, RATIO_SKILLS, GEOMETRY_SKILLS, MEASURE_SKILLS];
+const SETS = [
+  NUMBER_SKILLS,
+  OPERATION_SKILLS,
+  RATIO_SKILLS,
+  GEOMETRY_SKILLS,
+  MEASURE_SKILLS,
+  MOTION_SKILLS,
+  STATS_SKILLS,
+  GENERAL_SKILLS,
+];
 
 /** @param {Question} q */
 const rightText = (q) => optionText(q.options[q.answer]);
