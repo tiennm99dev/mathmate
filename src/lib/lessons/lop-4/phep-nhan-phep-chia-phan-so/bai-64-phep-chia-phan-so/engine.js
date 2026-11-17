@@ -68,10 +68,13 @@ export function flipOptions(t) {
 }
 
 /**
- * The spoken name of an option.
+ * The spoken name of an option. A reciprocal is read as it is drawn, with its
+ * denominator 1 (tám phần một), since the lesson swaps numerator and
+ * denominator.
  * @param {{ n: number, d: number }} f
  */
-export const optionWords = (f) => fracWords(f.n, f.d);
+export const optionWords = (f) =>
+  f.d === 1 ? `${fracWords(f.n, 1)} phần một` : fracWords(f.n, f.d);
 
 /**
  * The live sentence under the strips.

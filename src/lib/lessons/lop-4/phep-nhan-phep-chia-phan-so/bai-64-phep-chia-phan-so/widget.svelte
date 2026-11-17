@@ -150,7 +150,7 @@
             ? button.primary
             : button.quiet} {tried.includes(i) ? 'opacity-50' : ''}"
           aria-label={tried.includes(i) ? `${optionWords(f)}, chưa đúng` : optionWords(f)}
-          onclick={() => pick(i)}><Frac n={f.n} d={f.d} size="lg" /></button
+          onclick={() => pick(i)}><Frac n={f.n} d={f.d} size="lg" keepOne /></button
         >
       {/each}
     </div>

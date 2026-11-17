@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { TASKS, divideNote, flipOptions, measureOf, stripLabel } from './engine.js';
+import { TASKS, divideNote, flipOptions, measureOf, optionWords, stripLabel } from './engine.js';
 
 describe('dividing fractions by measuring on a strip', () => {
   it('fits a whole number of pieces, equal to a/b × d/c', () => {
@@ -40,5 +40,12 @@ describe('dividing fractions by measuring on a strip', () => {
       text: 'Đúng rồi! Lấy $\\dfrac{3}{4}$ nhân với phân số đảo ngược của $\\dfrac{1}{8}$: $\\dfrac{3}{4} : \\dfrac{1}{8} = \\dfrac{3}{4} \\times 8 = \\dfrac{24}{4} = 6$. Cũng là 6 đoạn!',
     });
     expect(stripLabel(t, 2)).toContain('đã đặt 2 đoạn');
+  });
+});
+
+describe('option names', () => {
+  it('reads a reciprocal with denominator 1 as it is drawn', () => {
+    expect(optionWords({ n: 8, d: 1 })).toBe('tám phần một');
+    expect(optionWords({ n: 3, d: 4 })).toBe('ba phần tư');
   });
 });
