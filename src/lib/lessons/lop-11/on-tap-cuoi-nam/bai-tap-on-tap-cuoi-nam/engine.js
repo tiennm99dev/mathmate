@@ -606,7 +606,9 @@ export const gioiHan = {
           `Tử số có nhân tử ${factorText(r)}.`,
         ],
         steps: [
-          `${polyText([1, -(r + s), r * s])} = (${factorText(r)})(${factorText(s)}).`,
+          s === 0
+            ? `${polyText([1, -r, 0])} = x(${factorText(r)}).`
+            : `${polyText([1, -(r + s), r * s])} = (${factorText(r)})(${factorText(s)}).`,
           `Với x ≠ ${intText(r)}, phân thức bằng ${factorText(s)}.`,
           `Giới hạn bằng ${intText(r)} − ${operand(s)} = ${intText(value)}.`,
         ],
@@ -688,7 +690,7 @@ export const muLogarit = {
         display: valueShow(value),
         hints: [
           `Viết ${fmt(a ** m)} và ${fmt(a ** n)} thành luỹ thừa của ${a}.`,
-          'log_{aᵐ} aⁿ = n/m (với 0 < a ≠ 1).',
+          'Với 0 < a ≠ 1, logarit cơ số aᵐ của aⁿ bằng n/m.',
         ],
         steps: [
           `${fmt(a ** m)} = ${a}${sup(m)} và ${fmt(a ** n)} = ${a}${sup(n)}.`,
@@ -1009,8 +1011,8 @@ export const daoHam = {
         answer: whole(value),
         display: intText(value),
         hints: second
-          ? ["Tính f'(x), rồi lấy đạo hàm của f'(x) để được f''(x).", '(xⁿ)′ = nxⁿ⁻¹.']
-          : ['(xⁿ)′ = nxⁿ⁻¹, đạo hàm của hằng số bằng 0.', 'Tính f′(x) rồi thay x.'],
+          ? ["Tính f'(x), rồi lấy đạo hàm của f'(x) để được f''(x).", "(xⁿ)' = nxⁿ⁻¹."]
+          : ["(xⁿ)' = nxⁿ⁻¹, đạo hàm của hằng số bằng 0.", "Tính f'(x) rồi thay x."],
         steps: [
           `f'(x) = ${polyText(d1)}.`,
           ...(second ? [`f''(x) = ${polyText(g)}.`] : []),
@@ -1073,7 +1075,7 @@ export const daoHam = {
       prompt: `Tính f'(${intText(x0)}), biết f(x) = √(${inner}).`,
       answer: value,
       display: valueShow(value),
-      hints: ['(√u)′ = u′/(2√u).', `Với u = ${inner} thì u′ = ${a}.`],
+      hints: ["(√u)' = u'/(2√u).", `Với u = ${inner} thì u' = ${a}.`],
       steps: [
         `f'(x) = ${a}/(2√(${inner})).`,
         `Tại x = ${intText(x0)}: ${inner.replace('x', ` · ${operand(x0)}`).replace(/^ · /, '')} = ${r * r}, nên f'(${intText(x0)}) = ${a}/(2 · ${r}) = ${ratio(a, 2 * r)}.`,

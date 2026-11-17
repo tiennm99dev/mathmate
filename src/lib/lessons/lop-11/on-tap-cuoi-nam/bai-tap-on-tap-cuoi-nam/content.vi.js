@@ -66,11 +66,11 @@ export default {
           rows: [
             [
               'Quan hệ song song',
-              'Đường thẳng $a \\not\\subset (P)$ song song với một đường thẳng nằm trong $(P)$ thì $a \\parallel (P)$. Mặt phẳng $(P)$ chứa hai đường thẳng cắt nhau cùng song song với $(Q)$ thì $(P) \\parallel (Q)$. Hai mặt phẳng song song bị mặt phẳng thứ ba cắt theo hai giao tuyến song song. Phép chiếu song song giữ nguyên tỉ số độ dài của hai đoạn thẳng song song hoặc cùng nằm trên một đường thẳng.',
+              'Đường thẳng $a$ không nằm trong $(P)$ và song song với một đường thẳng nằm trong $(P)$ thì $a \\parallel (P)$. Mặt phẳng $(P)$ chứa hai đường thẳng cắt nhau cùng song song với $(Q)$ thì $(P) \\parallel (Q)$. Hai mặt phẳng song song bị mặt phẳng thứ ba cắt theo hai giao tuyến song song. Phép chiếu song song giữ nguyên tỉ số độ dài của hai đoạn thẳng song song hoặc cùng nằm trên một đường thẳng.',
             ],
             [
               'Đường thẳng vuông góc với mặt phẳng',
-              "$d$ vuông góc với hai đường thẳng cắt nhau nằm trong $(P)$ thì $d \\perp (P)$, khi đó $d$ vuông góc với mọi đường thẳng nằm trong $(P)$. Định lí ba đường vuông góc: $a \\subset (P)$, $b$ có hình chiếu vuông góc trên $(P)$ là $b'$; $a \\perp b \\Leftrightarrow a \\perp b'$.",
+              "$d$ vuông góc với hai đường thẳng cắt nhau nằm trong $(P)$ thì $d \\perp (P)$, khi đó $d$ vuông góc với mọi đường thẳng nằm trong $(P)$. Định lí ba đường vuông góc: cho $a \\subset (P)$ và đường thẳng $b$ không nằm trong $(P)$, không vuông góc với $(P)$, có hình chiếu vuông góc trên $(P)$ là $b'$; khi đó $a \\perp b \\Leftrightarrow a \\perp b'$.",
             ],
             [
               'Góc',
@@ -320,7 +320,7 @@ export default {
         'Một đường thẳng không nằm trong mặt phẳng và song song với một đường thẳng của mặt phẳng đó thì song song với mặt phẳng.',
       ],
       solution:
-        '$MN \\parallel BC$ (đường trung bình của tam giác $ABC$) và $BC \\subset (BCD)$, $MN \\not\\subset (BCD)$, nên $MN \\parallel (BCD)$. $MN$ nằm trong $(ABC)$ và cắt $(ABD)$ tại $M$, cắt $(ACD)$ tại $N$.',
+        '$MN \\parallel BC$ (đường trung bình của tam giác $ABC$) và $BC \\subset (BCD)$, $MN$ không nằm trong $(BCD)$, nên $MN \\parallel (BCD)$. $MN$ nằm trong $(ABC)$ và cắt $(ABD)$ tại $M$, cắt $(ACD)$ tại $N$.',
     },
     {
       type: 'number',
