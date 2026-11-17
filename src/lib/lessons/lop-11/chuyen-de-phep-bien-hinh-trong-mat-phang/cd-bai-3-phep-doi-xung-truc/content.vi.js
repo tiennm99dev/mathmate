@@ -236,7 +236,7 @@ export default {
       answer: 0,
       hints: ['Phép đối xứng trục bảo toàn khoảng cách.'],
       solution:
-        "Phép đối xứng trục bảo toàn khoảng cách nên $A'B' = AB = 7$ cm. $A'B'$ chỉ song song với $AB$ trong vài trường hợp đặc biệt (chẳng hạn $AB$ song song hoặc vuông góc với $d$).",
+        "Phép đối xứng trục bảo toàn khoảng cách nên $A'B' = AB = 7$ cm. Nói chung $A'B'$ không song song với $AB$ (chẳng hạn khi $AB$ cắt $d$ mà không vuông góc với $d$), và $A'B'$ chỉ vuông góc với $d$ khi $AB$ vuông góc với $d$.",
     },
   ],
   takeaways: [

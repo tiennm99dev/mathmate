@@ -112,7 +112,7 @@ export default {
   explore: {
     title: 'Xoay hình quanh tâm',
     instruction:
-      "Kéo thanh trượt để đổi góc quay $\\alpha$ và kéo tâm $O$ (hoặc dùng phím mũi tên). Quan sát các cung tròn: $OA' = OA$ và tam giác $A'B'C'$ luôn bằng tam giác $ABC$. Đặt $\\alpha = 180^\\circ$ để được phép đối xứng tâm.",
+      "Kéo thanh trượt để đổi góc quay $\\alpha$ và kéo tâm quay $I$ (hoặc dùng phím mũi tên). Quan sát các cung tròn: $IA' = IA$ và tam giác $A'B'C'$ luôn bằng tam giác $ABC$. Đặt $\\alpha = 180^\\circ$ để được phép đối xứng tâm.",
   },
   examples: [
     {

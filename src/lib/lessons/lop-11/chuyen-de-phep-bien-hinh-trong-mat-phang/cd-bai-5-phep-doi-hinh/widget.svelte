@@ -84,7 +84,7 @@
     <PlaneFigure
       {plane}
       points={puzzle.target}
-      names={["A'", "B'", "C'"]}
+      names={done ? [] : ["A'", "B'", "C'"]}
       color={GREEN}
       dashed
       fill={0.12}

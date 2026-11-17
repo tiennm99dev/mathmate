@@ -24,6 +24,7 @@
 
   const img = $derived(turned(o, deg));
   const half = $derived(Math.abs(deg) === 180);
+  const offBoard = $derived(img.some((p) => Math.abs(p.x) > 7 || Math.abs(p.y) > 7));
 
   /** @type {SVGSVGElement | undefined} */
   let svgEl = $state();
@@ -39,7 +40,7 @@
   /** @param {number} v */
   const degText = (v) => `${v < 0 ? MINUS : ''}${Math.abs(v)}°`;
   const label = $derived(
-    `Mặt phẳng Oxy. Tâm quay O${ptText(o)}, góc quay ${degText(deg)}. ` +
+    `Mặt phẳng Oxy. Tâm quay I${ptText(o)}, góc quay ${degText(deg)}. ` +
       `Tam giác ABC có ảnh ${img.map((p, i) => `${NAMES[i]}'${ptText(p)}`).join(', ')}.`,
   );
 </script>
@@ -99,7 +100,7 @@
       class="drag-handle"
       role="button"
       tabindex="0"
-      aria-label="Tâm quay O{ptText(o)}: kéo hoặc dùng phím mũi tên"
+      aria-label="Tâm quay I{ptText(o)}: kéo hoặc dùng phím mũi tên"
       style="cursor:grab; outline:none"
       use:draggable={oOpts}
     >
@@ -124,16 +125,22 @@
       stroke="#fff"
       stroke-width="3"
       paint-order="stroke"
-      style="pointer-events:none">O</text
+      style="pointer-events:none">I</text
     >
   </CoordinatePlane>
 
   <div class="space-y-1 overflow-x-auto rounded-lg border border-slate-200 bg-white p-3">
     <p>
       <Tex
-        math={`${half ? `\\text{Đ}_O = ` : ''}Q_{(O,\\ ${deg}^\\circ)}:\\quad ${img.map((p, i) => imageTex(`${NAMES[i]}'`, p)).join(',\\ ')}`}
+        math={`${half ? `\\text{Đ}_I = ` : ''}Q_{(I,\\ ${deg}^\\circ)}:\\quad ${img.map((p, i) => imageTex(`${NAMES[i]}'`, p)).join(',\\ ')}`}
       />
     </p>
   </div>
   <FeedbackNote tone={half ? 'ok' : 'info'} text={rotationNote(o, deg)} />
+  {#if offBoard}
+    <FeedbackNote
+      tone="warn"
+      text="Một phần của tam giác $A'B'C'$ nằm ngoài bảng. Kéo tâm quay $I$ lại gần tam giác $ABC$ hơn để thấy trọn ảnh."
+    />
+  {/if}
 </div>

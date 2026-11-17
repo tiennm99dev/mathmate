@@ -188,8 +188,13 @@
     <FeedbackNote tone="info" text={penNote(pen, axis)} />
   {:else}
     <p class="text-sm text-slate-700">
-      Trong bốn đường thẳng đang xét, đã tìm được {foundHere.length} / {total} trục đối xứng của
-      {shape.name.toLowerCase()}.
+      {#if total === 0}
+        Không đường thẳng nào trong bốn đường đang xét là trục đối xứng của
+        {shape.name.toLowerCase()}.
+      {:else}
+        Trong bốn đường thẳng đang xét, đã tìm được {foundHere.length} / {total} trục đối xứng của
+        {shape.name.toLowerCase()}.
+      {/if}
     </p>
     <FeedbackNote tone={hit ? 'ok' : 'warn'} text={huntNote(shape, axis)} />
   {/if}

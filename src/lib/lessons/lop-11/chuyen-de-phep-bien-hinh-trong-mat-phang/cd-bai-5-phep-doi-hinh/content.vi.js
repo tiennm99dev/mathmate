@@ -238,7 +238,7 @@ export default {
       answer: 0,
       hints: ['Thử từng phương án với đỉnh $B(4;\\ 1)$.'],
       solution:
-        "$\\text{Đ}_{Oy}$ biến $A, B, C$ thành $(-1;\\ 1)$, $(-4;\\ 1)$, $(-1;\\ 3)$; tịnh tiến theo $(0;\\ -4)$ được đúng $A'$, $B'$, $C'$. Phương án tịnh tiến theo $(-2;\\ -4)$ đưa $B$ tới $(2;\\ -3) \\ne B'$; đối xứng tâm $O$ đưa $A$ tới $(-1;\\ -1) \\ne A'$; đối xứng trục $Ox$ rồi tịnh tiến đưa $B$ tới $(4;\\ -5)$.",
+        "$\\text{Đ}_{Oy}$ biến $A, B, C$ thành $(-1;\\ 1)$, $(-4;\\ 1)$, $(-1;\\ 3)$; tịnh tiến theo $(0;\\ -4)$ được đúng $A'$, $B'$, $C'$. Phương án tịnh tiến theo $(-2;\\ -4)$ đưa $B$ tới $(2;\\ -3)$, không phải đỉnh nào của tam giác $A'B'C'$; đối xứng tâm $O$ đưa $B$ tới $(-4;\\ -1)$, không phải đỉnh nào của tam giác $A'B'C'$; đối xứng trục $Ox$ rồi tịnh tiến đưa $B$ tới $(4;\\ -5)$, cũng không phải một đỉnh.",
     },
   ],
   takeaways: [

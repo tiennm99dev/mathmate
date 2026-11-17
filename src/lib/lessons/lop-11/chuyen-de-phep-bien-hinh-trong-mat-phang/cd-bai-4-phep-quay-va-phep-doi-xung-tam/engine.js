@@ -1,7 +1,8 @@
 /**
- * The rotation board: a triangle turned about a movable centre O by an
+ * The rotation board: a triangle turned about a movable centre I by an
  * angle α, positive counterclockwise; at α = ±180° it is the central
- * symmetry about O.
+ * symmetry about I. The centre is named I, not O, so it is never mistaken
+ * for the origin of the axes.
  */
 import { numTex } from '#lib/core/number-format.js';
 import { isLattice, ptTex, rotate } from '../_shared/transform.js';
@@ -43,7 +44,7 @@ export function imageTex(name, p) {
 }
 
 /**
- * The SVG path of the arc from P to its image about O, drawn the way the
+ * The SVG path of the arc from P to its image about the centre, drawn the way the
  * rotation turns (counterclockwise for a positive angle).
  * @param {import('#lib/core/visuals/svg-math.js').PlaneScale} plane
  * @param {Pt} o @param {Pt} p @param {number} deg
@@ -65,12 +66,12 @@ export function arcPath(plane, o, p, deg) {
  */
 export function rotationNote(o, deg) {
   const a = rotate(TRIANGLE[0], o, deg);
-  const q = `$Q_{(O,\\ ${degTex(deg)})}$`;
+  const q = `$Q_{(I,\\ ${degTex(deg)})}$`;
   if (deg === 0)
     return `${q} biến mỗi điểm thành chính nó: phép quay góc $0^\\circ$ là phép đồng nhất.`;
   if (Math.abs(deg) === 180)
-    return `${q} là phép đối xứng tâm $O$: $O$ là trung điểm của $AA'$, $BB'$, $CC'$. Ở đây $${imageTex("A'", a)}$.`;
+    return `${q} là phép đối xứng tâm $I$: $I$ là trung điểm của $AA'$, $BB'$, $CC'$. Ở đây $${imageTex("A'", a)}$.`;
   const way =
     deg > 0 ? 'ngược chiều kim đồng hồ (chiều dương)' : 'cùng chiều kim đồng hồ (chiều âm)';
-  return `Tam giác quay ${way}. $OA' = OA$ và góc lượng giác $(OA,\\ OA') = ${degTex(deg)}$; ảnh $${imageTex("A'", a)}$. Tam giác $A'B'C'$ bằng tam giác $ABC$.`;
+  return `Tam giác quay ${way}. $IA' = IA$ và góc lượng giác $(IA,\\ IA') = ${degTex(deg)}$; ảnh $${imageTex("A'", a)}$. Tam giác $A'B'C'$ bằng tam giác $ABC$.`;
 }
