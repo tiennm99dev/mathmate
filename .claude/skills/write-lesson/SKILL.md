@@ -405,7 +405,10 @@ Other shared pieces:
     up from offsets `near` within `min`..`max`, digits grouped); `weakLabels`,
     `tapOption` and `feedbackText` (the line under the options; a wrong first
     tap always shows a hint) are the round logic, so an engine never
-    re-implements them.
+    re-implements them. Write fractions in prompts, hints and solutions as
+    plain `3/8` or `2 3/4`: the prompt and the feedback line draw them
+    stacked (`fraction-text.svelte`, `fractionParts` in `fraction-text.js`),
+    so never put a date or a ratio with a slash in a kid quiz line.
   - `whole-numbers.js`: natural numbers of any length (grades 3-4):
     `PLACE_NAMES`/`CLASS_NAMES` by power of ten, `placeColumns(count)` (a
     place table's columns with titles, units and the blocks of the first four),
