@@ -41,3 +41,17 @@ export const mass = (m0, T, t) => m0 * 0.5 ** (t / T);
  * @param {number} T @param {number} p
  */
 export const timeToFall = (T, p) => T * Math.log2(100 / p);
+
+/**
+ * The years the graph shows: at least `years`, and always past the time
+ * `hit` the target is reached, rounded up to a whole ten with room after it.
+ * @param {number} hit @param {number} years
+ */
+export const yearsShown = (hit, years) => Math.max(years, Math.ceil((hit * 1.15) / 10) * 10);
+
+/**
+ * Whether the time slider, moving in steps of `step`, stands on the time
+ * `hit`: the nearest reachable time counts.
+ * @param {number} now @param {number} hit @param {number} step
+ */
+export const atHit = (now, hit, step) => Math.abs(now - hit) <= step / 2 + 1e-9;

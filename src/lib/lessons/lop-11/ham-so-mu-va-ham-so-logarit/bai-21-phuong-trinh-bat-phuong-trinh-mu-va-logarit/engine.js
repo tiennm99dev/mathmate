@@ -30,6 +30,18 @@ export const SETUP = {
 };
 
 /**
+ * The window for a solution: the set-up window, widened to the right for a
+ * logarithm whose x₀ = aᵇ lies past it (3³ = 27), so the meeting point and
+ * the shaded set stay in view.
+ * @param {Kind} kind @param {number | null} x0
+ */
+export function windowFor(kind, x0) {
+  const win = SETUP[kind].win;
+  if (kind !== 'log' || x0 === null || x0 * 1.15 <= win.xMax) return win;
+  return { ...win, xMax: Math.ceil(x0 * 1.15) };
+}
+
+/**
  * @typedef {object} Interval
  * @property {number} lo @property {number} hi (±Infinity for an open end)
  * @property {boolean} loIn @property {boolean} hiIn whether each end belongs

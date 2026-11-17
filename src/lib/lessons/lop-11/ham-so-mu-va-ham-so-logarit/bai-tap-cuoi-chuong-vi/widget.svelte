@@ -5,7 +5,7 @@
   import Tex from '#lib/components/tex.svelte';
   import { formatNumber, numTex } from '#lib/core/number-format.js';
   import GraphBox from '../_shared/graph-box.svelte';
-  import { MODELS, mass, population, timeToFall, timeToGrow } from './engine.js';
+  import { MODELS, atHit, mass, population, timeToFall, timeToGrow, yearsShown } from './engine.js';
 
   const CURVE = '#4f46e5';
   const TARGET = '#059669';
@@ -23,19 +23,20 @@
 
   const growth = $derived(model === 'growth');
   const r = $derived(rate / 100);
-  const tMax = $derived(growth ? YEARS : 5 * half);
+  const level = $derived(growth ? k * A : (M0 * p) / 100);
+  const hit = $derived(growth ? timeToGrow(r, k) : timeToFall(half, p));
+  const tMax = $derived(growth ? yearsShown(hit, YEARS) : 5 * half);
+  const step = $derived(growth ? 1 : 0.5);
   const f = $derived(
     growth
       ? (/** @type {number} */ x) => population(A, r, x)
       : (/** @type {number} */ x) => mass(M0, half, x),
   );
-  const level = $derived(growth ? k * A : (M0 * p) / 100);
-  const hit = $derived(growth ? timeToGrow(r, k) : timeToFall(half, p));
   const win = $derived({
     xMin: 0,
     xMax: tMax,
     yMin: 0,
-    yMax: growth ? Math.max(population(A, r, YEARS), level) * 1.08 : M0 * 1.08,
+    yMax: growth ? Math.max(population(A, r, tMax), level) * 1.08 : M0 * 1.08,
   });
   const now = $derived(Math.min(t, tMax));
 
@@ -65,11 +66,11 @@
   const solved = $derived(
     growth
       ? `$${A} \\cdot e^{${numTex(r, 4)}t} = ${numTex(level)} \\iff e^{${numTex(r, 4)}t} = ${numTex(k)} \\iff t = \\dfrac{\\ln ${numTex(k)}}{${numTex(r, 4)}} \\approx ${numTex(hit, 1)}$ năm.`
-      : `$${M0} \\cdot \\left(\\dfrac{1}{2}\\right)^{\\frac{t}{${half}}} = ${numTex(level)} \\iff \\dfrac{t}{${half}} = \\log_{\\frac{1}{2}} ${numTex(p / 100)} \\iff t = ${half} \\log_2 ${numTex(100 / p, 4)} \\approx ${numTex(hit, 1)}$ năm.`,
+      : `$${M0} \\cdot \\left(\\dfrac{1}{2}\\right)^{\\frac{t}{${half}}} = ${numTex(level)} \\iff \\dfrac{t}{${half}} = \\log_{\\frac{1}{2}} ${numTex(p / 100)} \\iff t = ${half} \\log_2 \\dfrac{100}{${p}} \\approx ${numTex(hit, 1)}$ năm.`,
   );
   const compare = $derived(
-    Math.abs(now - hit) < tMax / 200
-      ? 'Điểm đỏ đang ở đúng giao điểm: đây là thời điểm cần tìm.'
+    atHit(now, hit, step)
+      ? 'Điểm đỏ đã chạm giao điểm (sai khác không quá nửa bước kéo): đây là thời điểm cần tìm.'
       : growth
         ? `Kéo $t$ đến khi $S(t)$ chạm đường $y = ${numTex(level)}$; hiện ${now < hit ? 'chưa tới' : 'đã vượt'}.`
         : `Kéo $t$ đến khi $m(t)$ chạm đường $y = ${numTex(level)}$; hiện ${now < hit ? 'chưa xuống tới' : 'đã xuống dưới'}.`,
@@ -117,14 +118,7 @@
 
   <GraphBox {win} {label} {curves} {points} {guides} />
 
-  <SliderField
-    label="Thời gian t"
-    bind:value={t}
-    min={0}
-    max={tMax}
-    step={growth ? 1 : 0.5}
-    unit="năm"
-  />
+  <SliderField label="Thời gian t" bind:value={t} min={0} max={tMax} {step} unit="năm" />
 
   <FeedbackNote tone="info" text={reading} />
   <FeedbackNote tone="ok" text={solved} />

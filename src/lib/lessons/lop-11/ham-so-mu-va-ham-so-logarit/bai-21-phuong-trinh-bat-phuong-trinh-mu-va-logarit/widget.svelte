@@ -6,7 +6,7 @@
   import { formatNumber, numTex } from '#lib/core/number-format.js';
   import GraphBox from '../_shared/graph-box.svelte';
   import { BASES, logBase, powerBase } from '../_shared/plot.js';
-  import { RELATIONS, SETUP, sideTex, solve, valueAt } from './engine.js';
+  import { RELATIONS, SETUP, sideTex, solve, valueAt, windowFor } from './engine.js';
 
   const CURVE = '#4f46e5';
   const LINE = '#059669';
@@ -67,8 +67,10 @@
         ? `$x_0 = \\log_{${logBase(base)}} ${numTex(b)}$`
         : `$x_0 = ${powerBase(base)}^{${numTex(b)}}$`;
     return `Đường thẳng $y = ${numTex(b)}$ cắt đồ thị tại đúng một điểm có hoành độ ${where}${
-      sol.x0Tex.includes('\\log') || sol.x0Tex.includes('^') ? '' : ` $= ${sol.x0Tex}$`
-    } $\\approx ${numTex(sol.x0, 3)}$.`;
+      sol.x0Tex.includes('\\log') || sol.x0Tex.includes('^')
+        ? ` $\\approx ${numTex(sol.x0, 3)}$`
+        : ` $= ${sol.x0Tex}$`
+    }.`;
   });
   const why = $derived.by(() => {
     if (rel === '=') return 'Phương trình: chỉ lấy hoành độ giao điểm.';
@@ -115,7 +117,7 @@
     <Tex display math={problem} />
   </div>
 
-  <GraphBox win={setup.win} {label} {curves} {points} {strips} {guides} />
+  <GraphBox win={windowFor(kind, sol.x0)} {label} {curves} {points} {strips} {guides} />
 
   <FeedbackNote tone="info" text={meet} />
   <FeedbackNote tone="info" text={why} />

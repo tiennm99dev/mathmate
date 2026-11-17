@@ -5,6 +5,7 @@
  */
 
 import { toFraction } from '#lib/core/fractions.js';
+import { numTex } from '#lib/core/number-format.js';
 
 /**
  * The fraction with denominator up to 10 000 within rounding noise of v, or
@@ -23,12 +24,13 @@ export function nearFraction(v) {
 
 /**
  * A rational value as TeX ('8', '-2', '\\dfrac{1}{8}', '-\\dfrac{3}{2}'), or
- * null when it is not a fraction with a small denominator.
+ * null when it is not a fraction with a small denominator. Digits are grouped
+ * the book's way: '10\\,000'.
  * @param {number} v
  */
 export function exactValueTex(v) {
   const f = nearFraction(v);
   if (!f) return null;
   const sign = f.n < 0 ? '-' : '';
-  return f.d === 1 ? `${f.n}` : `${sign}\\dfrac{${Math.abs(f.n)}}{${f.d}}`;
+  return f.d === 1 ? numTex(f.n) : `${sign}\\dfrac{${numTex(Math.abs(f.n))}}{${numTex(f.d)}}`;
 }

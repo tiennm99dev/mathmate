@@ -51,7 +51,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Tính chất',
-          text: 'Với $m$, $n$ nguyên dương ($n \\ge 2$) và $a$, $b$ sao cho các biểu thức có nghĩa: $\\sqrt[n]{a} \\cdot \\sqrt[n]{b} = \\sqrt[n]{ab}$; $\\dfrac{\\sqrt[n]{a}}{\\sqrt[n]{b}} = \\sqrt[n]{\\dfrac{a}{b}}$; $\\left(\\sqrt[n]{a}\\right)^m = \\sqrt[n]{a^m}$; $\\sqrt[n]{\\sqrt[k]{a}} = \\sqrt[nk]{a}$; $\\sqrt[n]{a^n} = a$ khi $n$ lẻ và $\\sqrt[n]{a^n} = |a|$ khi $n$ chẵn.',
+          text: 'Với $m$, $n$, $k$ nguyên dương ($n \\ge 2$, $k \\ge 2$) và $a$, $b$ sao cho các biểu thức có nghĩa: $\\sqrt[n]{a} \\cdot \\sqrt[n]{b} = \\sqrt[n]{ab}$; $\\dfrac{\\sqrt[n]{a}}{\\sqrt[n]{b}} = \\sqrt[n]{\\dfrac{a}{b}}$; $\\left(\\sqrt[n]{a}\\right)^m = \\sqrt[n]{a^m}$; $\\sqrt[n]{\\sqrt[k]{a}} = \\sqrt[nk]{a}$; $\\sqrt[n]{a^n} = a$ khi $n$ lẻ và $\\sqrt[n]{a^n} = |a|$ khi $n$ chẵn.',
         },
       ],
     },

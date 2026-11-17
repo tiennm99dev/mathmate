@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { BASES } from '../_shared/plot.js';
-import { RELATIONS, SETUP, sideTex, solve, valueAt } from './engine.js';
+import { RELATIONS, SETUP, sideTex, solve, valueAt, windowFor } from './engine.js';
 
 const BASE_LIST = [BASES[2], BASES[3], BASES.half, BASES.third];
 
@@ -60,5 +60,21 @@ describe('solving aˣ ⋈ b and logₐ x ⋈ b', () => {
     expect(solve('log', BASES[3], 0.5, '>').setTex).toBe('S = (3^{0{,}5}; +\\infty)');
     expect(solve('log', BASES.third, -1, '<').setTex).toBe('S = (3; +\\infty)');
     expect(sideTex('log', BASES.half)).toBe('\\log_{\\frac{1}{2}} x');
+  });
+});
+
+describe('graph window', () => {
+  it('keeps the meeting point of every log case in view', () => {
+    const bad = [];
+    for (const a of [2, 3, 1 / 2, 1 / 3]) {
+      for (let b = SETUP.log.bMin; b <= SETUP.log.bMax; b += 0.5) {
+        const x0 = a ** b;
+        const win = windowFor('log', x0);
+        if (!(x0 < win.xMax)) bad.push(`${a} ${b}`);
+      }
+    }
+    expect(bad).toEqual([]);
+    expect(windowFor('exp', 2)).toBe(SETUP.exp.win);
+    expect(windowFor('log', 2)).toBe(SETUP.log.win);
   });
 });
