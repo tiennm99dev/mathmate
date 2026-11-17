@@ -166,19 +166,19 @@
     </defs>
     {#each yAxis.ticks as t (t)}
       <line x1={L} x2={W - R} y1={py(t)} y2={py(t)} stroke="#E2E8F0" />
-      <text x={L - 6} y={py(t) + 4} font-size="11" text-anchor="end" fill="#475569"
+      <text x={L - 6} y={py(t) + 4} font-size="13" text-anchor="end" fill="#475569"
         >{formatNumber(t, 2)}</text
       >
     {/each}
     {#each xAxis.ticks as t (t)}
-      <text x={px(t)} y={H - B + 16} font-size="11" text-anchor="middle" fill="#475569"
+      <text x={px(t)} y={H - B + 16} font-size="13" text-anchor="middle" fill="#475569"
         >{formatNumber(t)}</text
       >
     {/each}
     <line x1={L} x2={W - R} y1={H - B} y2={H - B} stroke="#64748B" />
     <line x1={L} x2={L} y1={T} y2={H - B} stroke="#64748B" />
-    <text x={W - R} y={H - 4} font-size="11" text-anchor="end" fill="#475569">t ({set.tName})</text>
-    <text x={L + 4} y={T + 10} font-size="11" fill="#475569">{isLn ? 'ln A' : 'A'}</text>
+    <text x={W - R} y={H - 4} font-size="13" text-anchor="end" fill="#475569">t ({set.tName})</text>
+    <text x={L + 4} y={T + 10} font-size="13" fill="#475569">{isLn ? 'ln A' : 'A'}</text>
     <polyline
       points={curve}
       fill="none"

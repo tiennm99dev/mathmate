@@ -14,11 +14,11 @@
    * step: −1 for pH, +1 for Richter, +10 dB for the sound level.
    */
 
-  const W = 440;
-  const H = 96;
+  const W = 360;
+  const H = 108;
   const L = 20;
   const R = 20;
-  const Y = 44;
+  const Y = 46;
 
   let scaleId = $state('ph');
   let e = $state(-7);
@@ -127,21 +127,23 @@
     aria-label="Thang {scale.label}: giá trị hiện tại {valueText}"
   >
     <line x1={L} x2={W - R} y1={Y} y2={Y} stroke="#64748B" stroke-width="2" />
-    {#each ticks as t (t)}
+    {#each ticks as t, i (t)}
       <line x1={px(t)} x2={px(t)} y1={Y - 5} y2={Y + 5} stroke="#64748B" />
-      <text x={px(t)} y={Y + 18} font-size="10" text-anchor="middle" fill="#334155"
+      <text x={px(t)} y={Y + 20} font-size="12" text-anchor="middle" fill="#334155"
         >{formatNumber(t)}</text
       >
-      <text x={px(t)} y={Y + 32} font-size="9" text-anchor="middle" fill="#94A3B8"
-        >{tenPow(expAt(t))}</text
-      >
+      {#if ticks.length <= 10 || i % 2 === 0}
+        <text x={px(t)} y={Y + 38} font-size="11" text-anchor="middle" fill="#64748B"
+          >{tenPow(expAt(t))}</text
+        >
+      {/if}
     {/each}
     {#each scale.marks as m (m.name)}
       <line x1={px(m.at)} x2={px(m.at)} y1={Y - 14} y2={Y} stroke="#0EA5E9" stroke-width="2" />
       <text
         x={px(m.at)}
         y={Y - 18}
-        font-size="10"
+        font-size="12"
         text-anchor={px(m.at) < L + 40 ? 'start' : px(m.at) > W - R - 40 ? 'end' : 'middle'}
         fill="#0369A1">{m.name}</text
       >

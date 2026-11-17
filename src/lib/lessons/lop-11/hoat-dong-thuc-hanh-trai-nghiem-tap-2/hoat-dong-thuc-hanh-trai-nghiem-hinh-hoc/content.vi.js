@@ -52,7 +52,7 @@ export default {
         { type: 'widget', name: 'shadow' },
         {
           type: 'p',
-          text: 'Đo góc nhị diện. Kẻ đường thẳng $a$ trên mặt đất, dựng cọc $AB$ thẳng đứng tại điểm $A$ không thuộc $a$ (đầu cọc là $B$), gọi $H$ là hình chiếu của $A$ trên $a$. Vì $AB$ vuông góc với mặt đất và $AH \\perp a$ nên $BH \\perp a$, góc $\\widehat{BHA}$ là góc phẳng của góc nhị diện tạo bởi mặt đất và mặt phẳng $(B, a)$, với $\\tan\\widehat{BHA} = \\dfrac{AB}{AH}$.',
+          text: 'Đo góc nhị diện. Kẻ đường thẳng $a$ trên mặt đất, dựng cọc $AB$ thẳng đứng tại điểm $A$ không thuộc $a$ (đầu cọc là $B$), gọi $H$ là hình chiếu của $A$ trên $a$. Vì $AB$ vuông góc với mặt đất và $AH \\perp a$ nên $BH \\perp a$, góc $\\widehat{BHA}$ là góc phẳng của góc nhị diện có cạnh $a$, tạo bởi mặt đất (nửa mặt phẳng chứa $A$) và mặt phẳng chứa $B$ và $a$, với $\\tan\\widehat{BHA} = \\dfrac{AB}{AH}$.',
         },
         {
           type: 'callout',

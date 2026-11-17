@@ -12,7 +12,7 @@
    */
 
   const W = 360;
-  const H = 200;
+  const H = 218;
   const GROUND = 160;
   const FOOT = 330;
   const PX = 100; // pixels per metre
@@ -93,10 +93,10 @@
       {@const x = FOOT - (c / 100) * PX}
       <line x1={x} x2={x} y1={GROUND + 4} y2={GROUND + (c % 50 === 0 ? 14 : 9)} stroke="#334155" />
       {#if c % 50 === 0}
-        <text {x} y={GROUND + 28} font-size="10" text-anchor="middle" fill="#334155">{c}</text>
+        <text {x} y={GROUND + 28} font-size="12" text-anchor="middle" fill="#334155">{c}</text>
       {/if}
     {/each}
-    <text x="8" y={H - 6} font-size="10" fill="#334155">thước đo (cm)</text>
+    <text x="8" y={H - 5} font-size="12" fill="#334155">thước đo (cm)</text>
   </svg>
   <p class="text-sm text-slate-700">
     Lúc {time.clock}: bóng cọc dài <span class="font-semibold">{shadow} cm</span>.
