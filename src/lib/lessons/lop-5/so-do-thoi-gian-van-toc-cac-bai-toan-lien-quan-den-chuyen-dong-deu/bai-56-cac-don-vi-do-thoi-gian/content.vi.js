@@ -57,7 +57,7 @@ export default {
         },
         {
           type: 'p',
-          text: '2/3 giờ = 60 phút × 2/3 = 40 phút.',
+          text: '$\\dfrac{2}{3}$ giờ = 60 phút × $\\dfrac{2}{3}$ = 40 phút.',
         },
         {
           type: 'p',
@@ -91,7 +91,7 @@ export default {
       steps: [
         'Đổi sang đơn vị lớn hơn nên em chia cho 60: 216 : 60 = 3, dư 36.',
         'Vậy 216 phút = 3 giờ 36 phút.',
-        '36 phút = 36/60 giờ = 0,6 giờ.',
+        '36 phút = $\\dfrac{36}{60}$ giờ = 0,6 giờ.',
       ],
       answer: '216 phút = 3 giờ 36 phút = 3,6 giờ.',
     },
@@ -136,11 +136,11 @@ export default {
     },
     {
       type: 'number',
-      prompt: '3/4 giờ = ? phút',
+      prompt: '$\\dfrac{3}{4}$ giờ = ? phút',
       answer: 45,
       unit: 'phút',
-      hints: ['1 giờ = 60 phút.', 'Em tính 60 × 3/4: lấy 60 chia 4 rồi nhân 3.'],
-      solution: '3/4 giờ = 60 phút × 3/4 = 45 phút.',
+      hints: ['1 giờ = 60 phút.', 'Em tính 60 × $\\dfrac{3}{4}$: lấy 60 chia 4 rồi nhân 3.'],
+      solution: '$\\dfrac{3}{4}$ giờ = 60 phút × $\\dfrac{3}{4}$ = 45 phút.',
     },
     {
       type: 'number',
@@ -172,8 +172,8 @@ export default {
       prompt: '2 giờ 15 phút bằng bao nhiêu giờ?',
       options: ['2,25 giờ', '2,15 giờ', '2,5 giờ', '215 giờ'],
       answer: 0,
-      hints: ['15 phút = 15/60 giờ.', '15/60 = 1/4 = 0,25.'],
-      solution: '15 phút = 15/60 giờ = 0,25 giờ. Vậy 2 giờ 15 phút = 2,25 giờ.',
+      hints: ['15 phút = $\\dfrac{15}{60}$ giờ.', '$\\dfrac{15}{60} = \\dfrac{1}{4}$ = 0,25.'],
+      solution: '15 phút = $\\dfrac{15}{60}$ giờ = 0,25 giờ. Vậy 2 giờ 15 phút = 2,25 giờ.',
     },
     {
       type: 'order',

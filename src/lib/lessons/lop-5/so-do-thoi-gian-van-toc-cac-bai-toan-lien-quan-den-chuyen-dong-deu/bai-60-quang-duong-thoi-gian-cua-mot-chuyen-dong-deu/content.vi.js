@@ -73,7 +73,10 @@ export default {
     {
       problem:
         'Một ca nô đi với vận tốc 36 km/giờ trên quãng đường 42 km. Tính thời gian ca nô đi.',
-      steps: ['t = s : v = 42 : 36 = 7/6 giờ.', '7/6 giờ = 1 1/6 giờ = 1 giờ 10 phút.'],
+      steps: [
+        't = s : v = 42 : 36 = $\\dfrac{7}{6}$ giờ.',
+        '$\\dfrac{7}{6}$ giờ = $1\\dfrac{1}{6}$ giờ = 1 giờ 10 phút.',
+      ],
       answer: 'Ca nô đi hết 1 giờ 10 phút.',
     },
     {
