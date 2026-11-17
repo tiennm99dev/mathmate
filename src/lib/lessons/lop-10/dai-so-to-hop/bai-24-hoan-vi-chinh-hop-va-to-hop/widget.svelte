@@ -10,11 +10,16 @@
   let mode = $state('xep');
   let n = $state(4);
   let k = $state(2);
-  /** @type {number[]} */
-  let seats = $state([]);
+  /**
+   * Student index on each chair, null while it is empty.
+   * @type {(number | null)[]}
+   */
+  let seats = $state(Array(2).fill(null));
   /** @type {string[]} */
   let found = $state([]);
-  let note = $state('Chạm vào thẻ một bạn để đưa bạn đó vào chỗ trống đầu tiên.');
+  let note = $state(
+    'Chạm vào thẻ một bạn để đưa bạn đó vào chỗ trống đầu tiên; chạm lại để bạn đó đứng dậy.',
+  );
   let fresh = $state(true);
 
   const total = $derived(totalOf(n, k, mode));
@@ -25,38 +30,44 @@
 
   function reset() {
     k = Math.min(k, n);
-    seats = [];
+    seats = Array(k).fill(null);
     found = [];
     fresh = true;
-    note = 'Chạm vào thẻ một bạn để đưa bạn đó vào chỗ trống đầu tiên.';
+    note =
+      'Chạm vào thẻ một bạn để đưa bạn đó vào chỗ trống đầu tiên; chạm lại để bạn đó đứng dậy.';
   }
 
-  /** @param {number} i */
+  /**
+   * Seats a student on the first empty chair, or stands a seated one up and
+   * leaves the chair empty. Once every chair is taken the way is recorded and
+   * stays on show; the next new student starts a fresh row.
+   * @param {number} i
+   */
   function tapStudent(i) {
-    if (seats.includes(i)) {
-      seats = seats.filter((s) => s !== i);
+    const at = seats.indexOf(i);
+    if (at >= 0) {
+      clearSeat(at);
       return;
     }
-    const next = [...seats, i];
-    if (next.length < k) {
-      seats = next;
-      return;
-    }
-    const got = record(found, next, mode, total);
+    const base = seats.includes(null) ? seats : Array(k).fill(null);
+    const next = [...base];
+    next[next.indexOf(null)] = i;
+    seats = next;
+    if (next.includes(null)) return;
+    const got = record(found, /** @type {number[]} */ (next), mode, total);
     found = got.found;
     fresh = got.fresh;
     note = got.text;
-    seats = [];
   }
 
   /** @param {number} place */
   function clearSeat(place) {
-    seats = seats.filter((_, j) => j !== place);
+    seats = seats.map((s, j) => (j === place ? null : s));
   }
 
   function listAll() {
     found = allKeys(n, k, mode);
-    seats = [];
+    seats = Array(k).fill(null);
     fresh = true;
     note = `Đây là tất cả ${total} cách.`;
   }
@@ -107,20 +118,20 @@
         : ''}"
     >
       {#each Array.from({ length: k }, (_, j) => j) as place (place)}
-        {@const who = seats[place]}
+        {@const who = seats[place] ?? null}
         <button
           type="button"
           class="flex min-h-14 min-w-20 flex-col items-center justify-center rounded-lg border-2 px-2 text-sm {who ===
-          undefined
+          null
             ? 'border-dashed border-slate-300 bg-slate-50 text-slate-500'
             : 'border-indigo-300 bg-indigo-50 font-semibold text-indigo-900'} {focusRing}"
-          aria-label={who === undefined
+          aria-label={who === null
             ? `${placeName} ${place + 1}: trống`
             : `${placeName} ${place + 1}: ${STUDENTS[who]}, chạm để bỏ ra`}
           onclick={() => clearSeat(place)}
         >
           {#if mode === 'xep'}<span class="text-xs text-slate-500">Ghế {place + 1}</span>{/if}
-          <span>{who === undefined ? '…' : STUDENTS[who]}</span>
+          <span>{who === null ? '…' : STUDENTS[who]}</span>
         </button>
       {/each}
     </div>

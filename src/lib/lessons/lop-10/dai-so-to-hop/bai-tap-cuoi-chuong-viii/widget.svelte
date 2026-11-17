@@ -55,7 +55,7 @@
     }}
   >
     <label class="min-w-0 flex-1" for={inputId}>
-      <span class="mb-1 block text-sm font-semibold text-slate-700">Đáp số (số cách)</span>
+      <span class="mb-1 block text-sm font-semibold text-slate-700">Đáp số</span>
       <input
         id={inputId}
         class={textInput}
@@ -73,7 +73,8 @@
   {#if listed}
     <div class="rounded-xl border border-slate-200 bg-slate-50 p-3">
       <p class="mb-2 text-sm font-semibold text-slate-700">
-        Tất cả {listed.length} cách, đánh số lần lượt:
+        Tất cả {listed.length}
+        {problem.unit}, đánh số lần lượt:
       </p>
       <ol class="flex max-h-64 flex-wrap gap-1 overflow-y-auto" aria-label="Danh sách liệt kê">
         {#each listed as way, i (way)}

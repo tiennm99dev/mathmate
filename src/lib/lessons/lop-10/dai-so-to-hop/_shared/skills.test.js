@@ -11,6 +11,8 @@ describe('chapter drill skills', () => {
         const q = skill.make(rand);
         if (!Number.isInteger(q.answer) || q.steps.length === 0 || !q.prompt.includes('$'))
           bad.push(skill.id);
+        // Four or more digits are grouped the book's way: 5\,040.
+        if (q.steps.some((s) => /\d{4}/.test(s))) bad.push(`${skill.id}: ${q.steps.join(' ')}`);
       }
     }
     expect(bad).toEqual([]);

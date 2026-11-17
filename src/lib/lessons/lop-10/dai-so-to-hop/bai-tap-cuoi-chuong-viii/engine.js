@@ -12,6 +12,7 @@ import { arrangements, combinations } from '../_shared/counting.js';
  * @property {string} title short name for the picker
  * @property {string} prompt rich text
  * @property {number} answer
+ * @property {string} unit what is counted, 'số', 'cách', 'ước'
  * @property {string} method how the formula gives the answer, rich text
  * @property {() => string[]} list every way, written out
  */
@@ -41,6 +42,7 @@ export const PROBLEMS = [
     title: 'Số có ba chữ số khác nhau',
     prompt: 'Từ các chữ số $1, 2, 3, 4$ lập được bao nhiêu số tự nhiên có ba chữ số khác nhau?',
     answer: 24,
+    unit: 'số',
     method: 'Mỗi số là một chỉnh hợp chập $3$ của $4$: $A_4^3 = 4 \\cdot 3 \\cdot 2 = 24$.',
     list: () => arrangements([1, 2, 3, 4], 3).map(numberOf),
   },
@@ -50,6 +52,7 @@ export const PROBLEMS = [
     prompt:
       'Từ các chữ số $0, 1, 2, 3, 4, 5$ lập được bao nhiêu số tự nhiên chẵn có ba chữ số khác nhau?',
     answer: 52,
+    unit: 'số',
     method:
       'Chữ số hàng đơn vị là $0$: $5 \\cdot 4 = 20$ số. Chữ số hàng đơn vị là $2$ hoặc $4$: $2 \\cdot 4 \\cdot 4 = 32$ số. Cộng lại: $20 + 32 = 52$.',
     list: () =>
@@ -63,6 +66,7 @@ export const PROBLEMS = [
     prompt:
       'Có bao nhiêu cách chọn một lớp trưởng và một lớp phó trong $5$ bạn An, Bình, Chi, Dũng, Hà?',
     answer: 20,
+    unit: 'cách',
     method: 'Hai chức vụ khác nhau nên có xét thứ tự: $A_5^2 = 5 \\cdot 4 = 20$.',
     list: () => arrangements(FIVE, 2).map(([a, b]) => `LT ${a}, LP ${b}`),
   },
@@ -71,6 +75,7 @@ export const PROBLEMS = [
     title: 'Nhóm trực nhật',
     prompt: 'Có bao nhiêu cách chọn $3$ bạn trong $5$ bạn An, Bình, Chi, Dũng, Hà để trực nhật?',
     answer: 10,
+    unit: 'cách',
     method:
       'Nhóm không phân biệt vai trò nên không xét thứ tự: $C_5^3 = \\dfrac{5 \\cdot 4 \\cdot 3}{3!} = 10$.',
     list: () => combinations(FIVE, 3).map((g) => `{${g.join(', ')}}`),
@@ -81,6 +86,7 @@ export const PROBLEMS = [
     prompt:
       'Một tổ có $4$ bạn nam và $3$ bạn nữ. Có bao nhiêu cách chọn $3$ bạn sao cho có cả nam và nữ?',
     answer: 30,
+    unit: 'cách',
     method:
       'Đếm phần bù: chọn tuỳ ý $C_7^3 = 35$ cách, bỏ đi $C_4^3 = 4$ cách toàn nam và $C_3^3 = 1$ cách toàn nữ: $35 - 4 - 1 = 30$.',
     list: () =>
@@ -94,6 +100,7 @@ export const PROBLEMS = [
     prompt:
       'Tung một đồng xu $4$ lần liên tiếp. Có bao nhiêu kết quả có đúng $2$ lần xuất hiện mặt ngửa (N)?',
     answer: 6,
+    unit: 'kết quả',
     method: 'Chọn $2$ trong $4$ lần tung để là mặt ngửa: $C_4^2 = 6$.',
     list: () => words(['S', 'N'], 4).filter((w) => [...w].filter((c) => c === 'N').length === 2),
   },
@@ -102,6 +109,7 @@ export const PROBLEMS = [
     title: 'Ước của 72',
     prompt: 'Số $72$ có bao nhiêu ước nguyên dương?',
     answer: 12,
+    unit: 'ước',
     method: '$72 = 2^3 \\cdot 3^2$, ước có dạng $2^a \\cdot 3^b$: $(3 + 1)(2 + 1) = 12$.',
     list: () =>
       Array.from({ length: 72 }, (_, i) => i + 1)
@@ -114,6 +122,7 @@ export const PROBLEMS = [
     prompt:
       'Xếp $3$ bạn nam Bảo, Cường, Đức và $2$ bạn nữ Hoa, Lan thành một hàng ngang. Có bao nhiêu cách xếp để hai bạn nữ đứng cạnh nhau?',
     answer: 48,
+    unit: 'cách',
     method:
       'Coi hai bạn nữ là một "khối": xếp khối và $3$ bạn nam có $4! = 24$ cách; trong khối, hai bạn nữ đổi chỗ được $2! = 2$ cách. Có $24 \\cdot 2 = 48$ cách.',
     list: () =>
@@ -135,7 +144,7 @@ export function judge(problem, typed) {
   }
   return {
     tone: 'warn',
-    text: `Chưa đúng: ${typed} cách. Thử xem bài toán có xét thứ tự không, có cần chia trường hợp không, rồi bấm "Liệt kê" để đếm trực tiếp.`,
+    text: `Chưa đúng: ${typed} ${problem.unit}. Thử xem bài toán có xét thứ tự không, có cần chia trường hợp không, rồi bấm "Liệt kê" để đếm trực tiếp.`,
   };
 }
 
@@ -145,5 +154,7 @@ export function judge(problem, typed) {
  */
 export function listText(problem) {
   const count = problem.list().length;
-  return `Liệt kê được ${count} cách, khớp với công thức: ${problem.method}`;
+  const verdict =
+    count === problem.answer ? 'khớp với công thức' : `công thức cho ${problem.answer}`;
+  return `Liệt kê được ${count} ${problem.unit}, ${verdict}: ${problem.method}`;
 }

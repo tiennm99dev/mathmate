@@ -5,6 +5,7 @@
  * answer is an integer (a coefficient may be negative).
  */
 import { int, nonZero, pick } from '#lib/core/drill.js';
+import { numTex } from '#lib/core/number-format.js';
 import {
   arrangeCount,
   chooseCount,
@@ -55,7 +56,7 @@ export const PERMUTATION_SKILL = {
       hints: ['Mỗi cách xếp là một hoán vị của các bạn.'],
       steps: [
         `Mỗi cách xếp là một hoán vị của $${n}$ phần tử.`,
-        `$P_{${n}} = ${n}! = ${fallingTex(n, n)} = ${factorial(n)}$.`,
+        `$P_{${n}} = ${n}! = ${fallingTex(n, n)} = ${numTex(factorial(n))}$.`,
       ],
     };
   },
@@ -76,7 +77,7 @@ export const ARRANGEMENT_SKILL = {
       hints: ['Các chức vụ khác nhau, nên đổi người giữa hai chức là một cách khác.'],
       steps: [
         `Mỗi cách bầu là một chỉnh hợp chập $${k}$ của $${n}$.`,
-        `$A_{${n}}^{${k}} = ${fallingTex(n, k)} = ${arrangeCount(n, k)}$.`,
+        `$A_{${n}}^{${k}} = ${fallingTex(n, k)} = ${numTex(arrangeCount(n, k))}$.`,
       ],
     };
   },
@@ -95,7 +96,7 @@ export const COMBINATION_SKILL = {
       hints: ['Các bạn trong đội có vai trò như nhau: không xét thứ tự.'],
       steps: [
         `Mỗi cách chọn là một tổ hợp chập $${k}$ của $${n}$.`,
-        `$C_{${n}}^{${k}} = \\dfrac{${fallingTex(n, k)}}{${k}!} = \\dfrac{${arrangeCount(n, k)}}{${factorial(k)}} = ${chooseCount(n, k)}$.`,
+        `$C_{${n}}^{${k}} = \\dfrac{${fallingTex(n, k)}}{${k}!} = \\dfrac{${numTex(arrangeCount(n, k))}}{${factorial(k)}} = ${numTex(chooseCount(n, k))}$.`,
       ],
     };
   },
@@ -129,7 +130,7 @@ export const COEFFICIENT_SKILL = {
       ],
       steps: [
         `Số hạng chứa $x^{${power}}$ ứng với $k = ${k}$: $C_{${n}}^{${k}}(${xTex(p)})^{${power}} \\cdot ${qTex}^{${k}}$.`,
-        `Hệ số là $${chooseCount(n, k)}${pPart} \\cdot ${qTex}^{${k}} = ${coef}$.`,
+        `Hệ số là $${chooseCount(n, k)}${pPart} \\cdot ${qTex}^{${k}} = ${numTex(coef)}$.`,
       ],
     };
   },

@@ -24,6 +24,7 @@ describe('counting problems checked by listing', () => {
     expect(judge(p, 24).tone).toBe('ok');
     expect(judge(p, 64).tone).toBe('warn');
     expect(judge(p, null).text).toContain('số tự nhiên');
-    expect(listText(p)).toContain('Liệt kê được 24 cách');
+    expect(listText(p)).toContain('Liệt kê được 24 số, khớp với công thức');
+    expect(judge(PROBLEMS.find((q) => q.id === 'uoc-72') ?? p, 10).text).toContain('10 ước');
   });
 });

@@ -57,7 +57,7 @@
               c,
             )} {focusRing}"
             aria-pressed={r === n && c === k}
-            aria-label="C {r} {c} bằng {value}, hàng {r}"
+            aria-label="Hàng {r}, số thứ {c + 1}: {value}"
             onclick={() => pick(r, c)}>{value}</button
           >
         {/each}
