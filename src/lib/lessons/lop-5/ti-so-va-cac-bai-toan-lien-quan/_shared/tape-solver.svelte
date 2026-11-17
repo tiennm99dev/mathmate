@@ -62,7 +62,7 @@
       return `Số bé là ${fmt(sol.small)}, số lớn là ${fmt(sol.big)}. ${GIVEN}: ${fmt(shown.given)}.`;
     if (done) return `Đúng rồi! Số bé là ${fmt(sol.small)}, số lớn là ${fmt(sol.big)}.`;
     if (slip) return slip;
-    return stepQuestion(kind, found);
+    return `Bước ${found + 1}: chạm vào số đúng.`;
   });
 
   /** @param {number} v */

@@ -23,7 +23,11 @@ export function tapCell(count, i) {
  */
 export function gridNote(count) {
   const white = CELLS - count;
-  return `Tô ${count} ô trong ${CELLS} ô. Tỉ số của số ô tô màu và số ô cả lưới là ${count} : ${CELLS} = ${count}%. Tỉ số của số ô tô màu và số ô chưa tô là ${count} : ${white}.`;
+  const head = `Tô ${count} ô trong ${CELLS} ô. Tỉ số của số ô tô màu và số ô cả lưới là ${count} : ${CELLS} = ${count}%.`;
+  // A ratio needs a second number other than 0, so a full grid has no ratio to the white squares.
+  return white === 0
+    ? `${head} Không còn ô nào chưa tô.`
+    : `${head} Tỉ số của số ô tô màu và số ô chưa tô là ${count} : ${white}.`;
 }
 
 /**

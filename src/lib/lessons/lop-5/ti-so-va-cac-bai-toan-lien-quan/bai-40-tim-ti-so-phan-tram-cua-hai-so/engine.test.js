@@ -12,6 +12,7 @@ describe('percentage of two numbers', () => {
       'Viết thêm kí hiệu %: 52,5%',
     ]);
     expect(percentOf(2.8, 80).p).toBe(3.5);
+    expect(percentSteps(2.8, 80)[0]).toBe('Tìm thương: 2,8 : 80 = 0,035');
     expect(barNote(18, 40)).toBe('18 là 45% của 40. Cả thanh 40 là 100%.');
   });
 

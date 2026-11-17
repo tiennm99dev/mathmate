@@ -1,4 +1,4 @@
-import { fmt, formatNumber, tidy } from '#lib/core/number-format.js';
+import { formatNumber, tidy } from '#lib/core/number-format.js';
 import { shuffle } from '#lib/core/drill.js';
 
 /**
@@ -29,7 +29,7 @@ export const percentText = (p) => `${formatNumber(p)}%`;
 export function percentSteps(a, b) {
   const { q, p } = percentOf(a, b);
   return [
-    `Tìm thương: ${fmt(a)} : ${fmt(b)} = ${formatNumber(q)}`,
+    `Tìm thương: ${formatNumber(a)} : ${formatNumber(b)} = ${formatNumber(q)}`,
     `Nhân thương với 100: ${formatNumber(q)} × 100 = ${formatNumber(p)}`,
     `Viết thêm kí hiệu %: ${percentText(p)}`,
   ];
@@ -53,7 +53,7 @@ export const STORIES = [
 /**
  * The question for story `i`: the percentage of the part in the whole,
  * among the slips of forgetting to multiply by 100, multiplying by 1 000 and
- * dividing the other way.
+ * multiplying by 10 only.
  * @param {number} i
  * @param {() => number} rand
  * @returns {PercentQuiz}
@@ -74,5 +74,5 @@ export function quizAt(i, rand) {
  */
 export function barNote(a, b) {
   const { p } = percentOf(a, b);
-  return `${fmt(a)} là ${percentText(p)} của ${fmt(b)}. Cả thanh ${fmt(b)} là 100%.`;
+  return `${formatNumber(a)} là ${percentText(p)} của ${formatNumber(b)}. Cả thanh ${formatNumber(b)} là 100%.`;
 }

@@ -51,7 +51,7 @@
     if (i === quiz.answer) {
       result = {
         ok: true,
-        text: `Đúng rồi! ${fmt(quiz.a)} : ${fmt(quiz.b)} = ${quiz.options[i]}.`,
+        text: `Đúng rồi! ${formatNumber(quiz.a)} : ${formatNumber(quiz.b)} = ${quiz.options[i]}.`,
       };
       await tick();
       nextButton?.focus();

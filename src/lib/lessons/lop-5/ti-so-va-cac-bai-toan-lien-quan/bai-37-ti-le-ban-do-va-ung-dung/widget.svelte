@@ -114,7 +114,7 @@
     )} cm trên thước."
   >
     <rect x="0" y="0" width={X0 * 2 + RULER_CM * U} height="104" rx="8" class="fill-emerald-50" />
-    <text x="8" y="16" class="fill-slate-700 text-[12px] font-bold">Tỉ lệ {scaleText(s)}</text>
+    <text x="8" y="18" class="fill-slate-700 text-[14px] font-bold">Tỉ lệ {scaleText(s)}</text>
     <line
       x1={X0 - 10}
       y1={ROAD_Y}
@@ -146,7 +146,7 @@
         x={xOf(p.at)}
         y={i % 2 === 0 ? ROAD_Y - 14 : ROAD_Y + 26}
         text-anchor="middle"
-        class="text-[13px] font-semibold {i === a || i === b ? 'fill-rose-800' : 'fill-slate-700'}"
+        class="text-[15px] font-semibold {i === a || i === b ? 'fill-rose-800' : 'fill-slate-700'}"
         >{p.name}</text
       >
     {/each}
@@ -176,11 +176,11 @@
           x={xOf(h / 2)}
           y={RULER_Y + 28}
           text-anchor="middle"
-          class="fill-slate-800 text-[12px] font-semibold">{h / 2}</text
+          class="fill-slate-800 text-[14px] font-semibold">{h / 2}</text
         >
       {/if}
     {/each}
-    <text x={xOf(RULER_CM) + 2} y={RULER_Y - 4} class="fill-slate-600 text-[10px]">cm</text>
+    <text x={xOf(RULER_CM) + 2} y={RULER_Y - 4} class="fill-slate-600 text-[12px]">cm</text>
   </svg>
 
   {#if asking}

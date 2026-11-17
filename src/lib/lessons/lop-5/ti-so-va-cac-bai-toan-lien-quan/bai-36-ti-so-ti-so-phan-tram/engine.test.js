@@ -12,6 +12,9 @@ describe('the hundred-square grid', () => {
     expect(gridNote(25)).toBe(
       'Tô 25 ô trong 100 ô. Tỉ số của số ô tô màu và số ô cả lưới là 25 : 100 = 25%. Tỉ số của số ô tô màu và số ô chưa tô là 25 : 75.',
     );
+    expect(gridNote(100)).toBe(
+      'Tô 100 ô trong 100 ô. Tỉ số của số ô tô màu và số ô cả lưới là 100 : 100 = 100%. Không còn ô nào chưa tô.',
+    );
     expect(readPercent(25)).toBe('hai mươi lăm phần trăm');
     expect(readPercent(100)).toBe('một trăm phần trăm');
   });
