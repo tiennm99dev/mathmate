@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { groupValues } from '../_shared/grouped.js';
+import { groupValues } from '#lib/stats-engine/grouped.js';
 import { HEIGHTS, SCORES } from '../_shared/datasets.js';
 import { dotStack, groupingAdvice, valuesIn } from './engine.js';
 

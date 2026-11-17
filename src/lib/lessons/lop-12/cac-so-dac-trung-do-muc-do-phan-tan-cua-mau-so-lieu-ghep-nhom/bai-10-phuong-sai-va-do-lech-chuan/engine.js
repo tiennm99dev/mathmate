@@ -18,9 +18,9 @@ import {
   sampleSize,
   stdTex,
   varianceWorkTex,
-} from '../_shared/grouped.js';
+} from '#lib/stats-engine/grouped.js';
 
-/** @typedef {import('../_shared/grouped.js').Group} Group */
+/** @typedef {import('#lib/stats-engine/grouped.js').Group} Group */
 
 /** Profit per year, in percent of the money put in: groups [−2; 0), …, [6; 8). */
 export const START = -2;

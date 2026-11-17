@@ -5,7 +5,7 @@
   import Tex from '#lib/components/tex.svelte';
   import { button } from '#lib/core/ui.js';
   import GroupChart from '../_shared/group-chart.svelte';
-  import { cumulative, groupText, makeGroups, sampleSize } from '../_shared/grouped.js';
+  import { cumulative, groupText, makeGroups, sampleSize } from '#lib/stats-engine/grouped.js';
   import { MEASURES, PRESETS, viewOf } from './engine.js';
 
   let presetId = $state(PRESETS[0].id);

@@ -17,9 +17,9 @@ import {
   makeGroups,
   quartileTex,
   sampleSize,
-} from '../_shared/grouped.js';
+} from '#lib/stats-engine/grouped.js';
 
-/** @typedef {import('../_shared/grouped.js').Group} Group */
+/** @typedef {import('#lib/stats-engine/grouped.js').Group} Group */
 
 /**
  * @typedef {object} Preset
@@ -108,7 +108,7 @@ export function spreadView(groups) {
   const r = groupedRange(groups);
   const { q1, q3, value } = groupedIqr(groups);
   const cum = cumulative(groups);
-  /** @param {import('../_shared/grouped.js').Quantile} q */
+  /** @param {import('#lib/stats-engine/grouped.js').Quantile} q */
   const shade = (q) => ({ index: q.index, fraction: (q.target - q.before) / q.count });
   return {
     empty: false,

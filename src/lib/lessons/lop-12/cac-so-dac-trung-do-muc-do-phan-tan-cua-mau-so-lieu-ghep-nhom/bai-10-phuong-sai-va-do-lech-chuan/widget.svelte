@@ -6,7 +6,7 @@
   import { button } from '#lib/core/ui.js';
   import { formatNumber } from '#lib/core/number-format.js';
   import GroupChart from '../_shared/group-chart.svelte';
-  import { groupText, midpoint, sampleSize } from '../_shared/grouped.js';
+  import { groupText, midpoint, sampleSize } from '#lib/stats-engine/grouped.js';
   import { FIELDS, UNIT, groupsOf, riskView, shareText, verdict } from './engine.js';
 
   let counts = $state({ A: [...FIELDS[0].counts], B: [...FIELDS[1].counts] });

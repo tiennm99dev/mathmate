@@ -9,7 +9,7 @@ import { tidy } from '#lib/core/number-format.js';
  * The values of a sample that belong to a group [lo; hi), or [lo; hi] when
  * the group is closed.
  * @param {readonly number[]} values
- * @param {import('../_shared/grouped.js').Group} g
+ * @param {import('#lib/stats-engine/grouped.js').Group} g
  * @returns {number[]}
  */
 export function valuesIn(values, g) {

@@ -231,6 +231,14 @@ leaves the plane) and `PALETTE`/`colorAt`.
 `intersect`, `degText` ('32,5°') and the angle drawings `arcPath`,
 `sectorPath`, `insidePath`, `rightMarkPath`.
 
+`#lib/stats-engine/grouped.js` (also exported from `#lib/stats-engine/index.js`)
+holds grouped samples the KNTT way: `groupValues`, `makeGroups`, `midpoint`,
+`cumulative`, `groupedMean`, `groupedQuartile`/`groupedMedian`,
+`groupedModes` (written $M_o$), `groupedRange`, `groupedIqr`,
+`groupedVariance`, `groupedStd` and their TeX writers (`quartileTex`,
+`modeTex`, `meanTex`, `varianceWorkTex`, `stdTex`, `eqTex`); never copy them
+into a chapter.
+
 `#lib/geom-engine/plane.js` is point geometry on `{ x, y }`: `dist`, `lerp`,
 `midpoint`, `angleAt(vertex, p, q)` in degrees, `cross`, `isParallel`, `foot`
 (of a perpendicular), `diagonalPoint`, `triangleFromSides`, `bisectorFoot`,

@@ -2,7 +2,7 @@
   import { niceAxis } from '#lib/stats-engine/ticks.js';
   import { formatNumber } from '#lib/core/number-format.js';
   import { linear } from '#lib/core/visuals/svg-math.js';
-  import { groupText } from './grouped.js';
+  import { groupText } from '#lib/stats-engine/grouped.js';
 
   /**
    * The frequency chart of a grouped sample: one column per group, standing
@@ -24,7 +24,7 @@
    *   first to the last group end (the range R).
    * - `midpoints`: a dot at the middle of each column bottom (giá trị đại diện).
    * @type {{
-   *   groups: import('./grouped.js').Group[];
+   *   groups: import('#lib/stats-engine/grouped.js').Group[];
    *   title: string;
    *   unit?: string;
    *   highlight?: number[];

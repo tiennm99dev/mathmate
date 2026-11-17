@@ -16,9 +16,9 @@ import {
   modeTex,
   quartileTex,
   sampleSize,
-} from '../_shared/grouped.js';
+} from '#lib/stats-engine/grouped.js';
 
-/** @typedef {import('../_shared/grouped.js').Group} Group */
+/** @typedef {import('#lib/stats-engine/grouped.js').Group} Group */
 /** @typedef {'mean' | 'median' | 'q1' | 'q3' | 'mode'} Measure */
 
 /**

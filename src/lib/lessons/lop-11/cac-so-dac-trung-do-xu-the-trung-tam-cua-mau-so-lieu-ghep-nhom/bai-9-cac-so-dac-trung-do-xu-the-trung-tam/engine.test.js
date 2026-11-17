@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import katex from 'katex';
-import { approxText, makeGroups } from '../_shared/grouped.js';
+import { approxText, makeGroups } from '#lib/stats-engine/grouped.js';
 import { MEASURES, PRESETS, viewOf } from './engine.js';
 
 const study = makeGroups(PRESETS[0].start, PRESETS[0].width, PRESETS[0].counts);

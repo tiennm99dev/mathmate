@@ -7,7 +7,7 @@
   import { linear } from '#lib/core/visuals/svg-math.js';
   import GroupChart from '../_shared/group-chart.svelte';
   import { SAMPLES } from '../_shared/datasets.js';
-  import { groupText, groupValues, sampleSize } from '../_shared/grouped.js';
+  import { groupText, groupValues, sampleSize } from '#lib/stats-engine/grouped.js';
   import { dotStack, groupingAdvice, valuesIn } from './engine.js';
 
   let sampleId = $state(SAMPLES[0].id);

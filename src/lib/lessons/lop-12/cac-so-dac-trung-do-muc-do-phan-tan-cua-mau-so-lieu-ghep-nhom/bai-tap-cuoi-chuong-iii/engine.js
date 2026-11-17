@@ -7,7 +7,7 @@
 import { readNumber } from '#lib/core/decimal.js';
 import { tidy } from '#lib/core/number-format.js';
 import { interquartileRange, range, stdDev } from '#lib/stats-engine/index.js';
-import { groupValues, groupedIqr, groupedRange, groupedStd } from '../_shared/grouped.js';
+import { groupValues, groupedIqr, groupedRange, groupedStd } from '#lib/stats-engine/grouped.js';
 
 /** @typedef {'range' | 'iqr' | 'std'} Measure */
 

@@ -7,7 +7,12 @@
 import { readNumber } from '#lib/core/decimal.js';
 import { tidy } from '#lib/core/number-format.js';
 import { mean, median, modes } from '#lib/stats-engine/index.js';
-import { groupValues, groupedMean, groupedMedian, groupedModes } from '../_shared/grouped.js';
+import {
+  groupValues,
+  groupedMean,
+  groupedMedian,
+  groupedModes,
+} from '#lib/stats-engine/grouped.js';
 
 /** @typedef {'mean' | 'median' | 'mode'} Measure */
 

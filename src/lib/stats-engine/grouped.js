@@ -1,9 +1,12 @@
 /**
  * Grouped samples (mẫu số liệu ghép nhóm) with the conventions of the KNTT
- * grade 11 book: groups [a_i; a_{i+1}) of equal length h, each represented
- * by its midpoint (giá trị đại diện), and the interpolation formulas for the
- * median, the quartiles and the mode, which assume the values of a group are
- * spread evenly over it.
+ * books, grade 11 (centre) and grade 12 (spread): groups [a_i; a_{i+1}) of
+ * equal length h, each represented by its midpoint (giá trị đại diện); the
+ * interpolation formulas for the median, the quartiles and the mode, which
+ * assume the values of a group are spread evenly over it; the range
+ * R = a_{k+1} − a_1, the interquartile range ΔQ = Q_3 − Q_1, the variance
+ * s² = (1/n)·Σ m_i (x_i − x̄)² and the standard deviation s; and the TeX that
+ * writes each formula with its numbers. The mode is written M_o.
  */
 
 import { formatNumber, numTex, tidy } from '#lib/core/number-format.js';
@@ -85,7 +88,7 @@ export function cumulative(groups) {
 export function groupedMean(groups) {
   const n = sampleSize(groups);
   if (n === 0) throw new Error('empty sample');
-  return groups.reduce((s, g) => s + g.count * midpoint(g), 0) / n;
+  return tidy(groups.reduce((s, g) => s + g.count * midpoint(g), 0) / n);
 }
 
 /**
@@ -176,6 +179,46 @@ export function groupedModes(groups) {
   return out;
 }
 
+/**
+ * The range R = a_{k+1} − a_1, from the first to the last group that holds
+ * data (a table in the book has no empty group at either end).
+ * @param {readonly Group[]} groups
+ * @returns {{ lo: number, hi: number, value: number }}
+ */
+export function groupedRange(groups) {
+  const first = groups.findIndex((g) => g.count > 0);
+  if (first < 0) throw new Error('empty sample');
+  const last = groups.findLastIndex((g) => g.count > 0);
+  const lo = groups[first].lo;
+  const hi = groups[last].hi;
+  return { lo, hi, value: tidy(hi - lo) };
+}
+
+/**
+ * The interquartile range ΔQ = Q_3 − Q_1, with both quartiles.
+ * @param {readonly Group[]} groups
+ */
+export function groupedIqr(groups) {
+  const q1 = groupedQuartile(groups, 1);
+  const q3 = groupedQuartile(groups, 3);
+  return { q1, q3, value: tidy(q3.value - q1.value) };
+}
+
+/**
+ * The variance s² = [m_1(x_1 − x̄)² + … + m_k(x_k − x̄)²]/n.
+ * @param {readonly Group[]} groups
+ */
+export function groupedVariance(groups) {
+  const n = sampleSize(groups);
+  const m = groupedMean(groups);
+  return tidy(groups.reduce((s, g) => s + g.count * (midpoint(g) - m) ** 2, 0) / n);
+}
+
+/** The standard deviation s = √s². @param {readonly Group[]} groups */
+export function groupedStd(groups) {
+  return Math.sqrt(groupedVariance(groups));
+}
+
 /** A group as TeX: '[40; 45)', or '[9; 10]' when closed. @param {Group} g */
 export function groupTex(g) {
   return `[${numTex(g.lo)}; ${numTex(g.hi)}${g.closed ? ']' : ')'}`;
@@ -199,6 +242,11 @@ export function eqTex(v) {
 export function approxText(v) {
   const r = tidy(Math.round(v * 100) / 100);
   return r === tidy(v) ? `= ${formatNumber(v)}` : `≈ ${formatNumber(r)}`;
+}
+
+/** A number for TeX, wrapped in brackets when negative. @param {number} v */
+function operandTex(v) {
+  return v < 0 ? `(${numTex(v)})` : numTex(v);
 }
 
 /** Subscript name of a quartile in TeX. @param {1 | 2 | 3} k */
@@ -233,7 +281,55 @@ export function meanTex(groups) {
   const n = sampleSize(groups);
   const terms = groups
     .filter((g) => g.count > 0)
-    .map((g) => `${g.count} \\cdot ${numTex(midpoint(g))}`)
+    .map((g) => `${g.count} \\cdot ${operandTex(midpoint(g))}`)
     .join(' + ');
   return `\\overline{x} = \\dfrac{${terms}}{${n}} ${eqTex(groupedMean(groups))}`;
+}
+
+/**
+ * The variance formula with the numbers put in, as TeX:
+ * 's^2 = \dfrac{3 \cdot (-4)^2 + … }{20} = 6{,}4'.
+ * @param {readonly Group[]} groups
+ */
+export function varianceTex(groups) {
+  const n = sampleSize(groups);
+  const m = groupedMean(groups);
+  const terms = groups
+    .filter((g) => g.count > 0)
+    .map((g) => `${g.count} \\cdot ${operandTex(tidy(midpoint(g) - m))}^2`)
+    .join(' + ');
+  return `s^2 = \\dfrac{${terms}}{${n}} ${eqTex(groupedVariance(groups))}`;
+}
+
+/**
+ * The shortcut s² = (m_1 x_1² + … + m_k x_k²)/n − x̄², with the numbers put
+ * in, as TeX; handy when x̄ is not a short decimal.
+ * @param {readonly Group[]} groups
+ */
+export function varianceShortTex(groups) {
+  const n = sampleSize(groups);
+  const m = groupedMean(groups);
+  const terms = groups
+    .filter((g) => g.count > 0)
+    .map((g) => `${g.count} \\cdot ${operandTex(midpoint(g))}^2`)
+    .join(' + ');
+  const mean = tidy(Math.round(m * 100) / 100) === m ? numTex(m) : `\\overline{x}`;
+  return `s^2 = \\dfrac{${terms}}{${n}} - ${mean.startsWith('-') ? `(${mean})` : mean}^2 ${eqTex(groupedVariance(groups))}`;
+}
+
+/**
+ * The variance with its numbers, as TeX: the deviations form when the mean
+ * is a short decimal, otherwise the shortcut form.
+ * @param {readonly Group[]} groups
+ */
+export function varianceWorkTex(groups) {
+  const m = groupedMean(groups);
+  return tidy(Math.round(m * 100) / 100) === m ? varianceTex(groups) : varianceShortTex(groups);
+}
+
+/** 's = \sqrt{6{,}4} \approx 2{,}53'. @param {readonly Group[]} groups */
+export function stdTex(groups) {
+  const v = groupedVariance(groups);
+  const inner = tidy(Math.round(v * 100) / 100) === v ? numTex(v) : 's^2';
+  return `s = \\sqrt{${inner}} ${eqTex(groupedStd(groups))}`;
 }

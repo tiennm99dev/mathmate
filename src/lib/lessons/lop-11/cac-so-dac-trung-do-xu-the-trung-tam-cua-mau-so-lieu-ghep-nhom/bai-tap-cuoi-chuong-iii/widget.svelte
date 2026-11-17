@@ -5,7 +5,7 @@
   import { formatNumber } from '#lib/core/number-format.js';
   import GroupChart from '../_shared/group-chart.svelte';
   import { SAMPLES } from '../_shared/datasets.js';
-  import { approxText, cumulative, groupText, sampleSize } from '../_shared/grouped.js';
+  import { approxText, cumulative, groupText, sampleSize } from '#lib/stats-engine/grouped.js';
   import { checkTyped, compare } from './engine.js';
 
   let sampleId = $state(SAMPLES[0].id);

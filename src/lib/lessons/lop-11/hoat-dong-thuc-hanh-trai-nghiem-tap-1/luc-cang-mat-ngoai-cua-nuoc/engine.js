@@ -7,7 +7,6 @@
  */
 
 import { int, rng } from '#lib/core/drill.js';
-import { formatNumber, numTex, tidy } from '#lib/core/number-format.js';
 
 /**
  * The two liquids of the experiment.
@@ -92,149 +91,22 @@ export function groupCounts(values, start, width) {
   return groups;
 }
 
-/** @param {readonly Group[]} groups */
-export function sampleSize(groups) {
-  return groups.reduce((s, g) => s + g.count, 0);
-}
-
-/** The midpoint (giá trị đại diện) of a group. @param {Group} g */
-export function midpoint(g) {
-  return tidy((g.lo + g.hi) / 2);
-}
-
-/** Cumulative frequencies. @param {readonly Group[]} groups */
-export function cumulative(groups) {
-  let run = 0;
-  return groups.map((g) => (run += g.count));
-}
-
-/** x̄ = (m_1 x_1 + … + m_k x_k)/n. @param {readonly Group[]} groups */
-export function groupedMean(groups) {
-  return groups.reduce((s, g) => s + g.count * midpoint(g), 0) / sampleSize(groups);
-}
-
-/**
- * @typedef {object} Quantile
- * @property {number} index the group that holds it, from 0
- * @property {number} target k·n/4
- * @property {number} before C, the frequencies of the groups before it
- * @property {number} count m_p
- * @property {number} lo a_p
- * @property {number} width h
- * @property {number} value a_p + (k·n/4 − C)/m_p · h
- */
-
-/**
- * Q_k of the grouped sample (Q_2 is the median M_e).
- * @param {readonly Group[]} groups
- * @param {1 | 2 | 3} k
- * @returns {Quantile}
- */
-export function groupedQuartile(groups, k) {
-  const target = (k * sampleSize(groups)) / 4;
-  const cum = cumulative(groups);
-  const index = cum.findIndex((c) => c >= target);
-  const g = groups[index];
-  const before = cum[index] - g.count;
-  const width = g.hi - g.lo;
-  return {
-    index,
-    target,
-    before,
-    count: g.count,
-    lo: g.lo,
-    width,
-    value: tidy(g.lo + ((target - before) / g.count) * width),
-  };
-}
-
-/**
- * @typedef {object} Mode
- * @property {number} index the modal group, from 0
- * @property {number} count m_j
- * @property {number} prev m_{j−1} (0 before the first group)
- * @property {number} next m_{j+1} (0 after the last group)
- * @property {number} lo a_j
- * @property {number} width h
- * @property {number | null} value the mode, or null when both neighbours are
- *   as large as the group and the formula has no answer
- */
-
-/**
- * The mode of every group of largest frequency.
- * @param {readonly Group[]} groups
- * @returns {Mode[]}
- */
-export function groupedModes(groups) {
-  const top = Math.max(...groups.map((g) => g.count));
-  /** @type {Mode[]} */
-  const out = [];
-  groups.forEach((g, index) => {
-    if (g.count !== top || top === 0) return;
-    const prev = groups[index - 1]?.count ?? 0;
-    const next = groups[index + 1]?.count ?? 0;
-    const width = g.hi - g.lo;
-    const left = g.count - prev;
-    const right = g.count - next;
-    out.push({
-      index,
-      count: g.count,
-      prev,
-      next,
-      lo: g.lo,
-      width,
-      value: left + right === 0 ? null : tidy(g.lo + (left / (left + right)) * width),
-    });
-  });
-  return out;
-}
-
-/** '[35; 40)' as plain text. @param {Group} g */
-export function groupText(g) {
-  return `[${g.lo}; ${g.hi})`;
-}
-
-/** '[35; 40)' as TeX. @param {Group} g */
-export function groupTex(g) {
-  return `[${g.lo}; ${g.hi})`;
-}
-
-/** '= 41{,}5' when exact to two decimals, else '\approx 37{,}67'. @param {number} v */
-export function eqTex(v) {
-  const r = tidy(Math.round(v * 100) / 100);
-  return r === tidy(v) ? `= ${numTex(v)}` : `\\approx ${numTex(r)}`;
-}
-
-/** '41,5' or '≈ 37,67' for captions. @param {number} v */
-export function approxText(v) {
-  const r = tidy(Math.round(v * 100) / 100);
-  return r === tidy(v) ? formatNumber(v) : `≈ ${formatNumber(r)}`;
-}
-
-/** @param {1 | 2 | 3} k */
-export function quartileName(k) {
-  return k === 2 ? 'M_e' : `Q_${k}`;
-}
-
-/** The quartile formula with its numbers, as TeX. @param {Quantile} q @param {1 | 2 | 3} k */
-export function quartileTex(q, k) {
-  return `${quartileName(k)} = ${q.lo} + \\dfrac{${numTex(q.target)} - ${q.before}}{${q.count}} \\cdot ${q.width} ${eqTex(q.value)}`;
-}
-
-/** The mode formula with its numbers, as TeX. @param {Mode} m */
-export function modeTex(m) {
-  const tail = m.value === null ? '' : ` ${eqTex(m.value)}`;
-  return `M_o = ${m.lo} + \\dfrac{${m.count} - ${m.prev}}{(${m.count} - ${m.prev}) + (${m.count} - ${m.next})} \\cdot ${m.width}${tail}`;
-}
-
-/** The mean formula with its numbers, as TeX. @param {readonly Group[]} groups */
-export function meanTex(groups) {
-  const terms = groups
-    .filter((g) => g.count > 0)
-    .map((g) => `${g.count} \\cdot ${numTex(midpoint(g))}`)
-    .join(' + ');
-  return `\\overline{x} = \\dfrac{${terms}}{${sampleSize(groups)}} ${eqTex(groupedMean(groups))}`;
-}
+export {
+  sampleSize,
+  midpoint,
+  cumulative,
+  groupedMean,
+  groupedQuartile,
+  groupedModes,
+  groupText,
+  groupTex,
+  eqTex,
+  approxText,
+  quartileName,
+  quartileTex,
+  modeTex,
+  meanTex,
+} from '#lib/stats-engine/grouped.js';
 
 /**
  * The first group start the widget offers: the smallest value rounded down

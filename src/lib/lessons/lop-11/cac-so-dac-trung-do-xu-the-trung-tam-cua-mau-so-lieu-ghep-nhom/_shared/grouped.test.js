@@ -16,7 +16,7 @@ import {
   modeTex,
   quartileTex,
   sampleSize,
-} from './grouped.js';
+} from '#lib/stats-engine/grouped.js';
 import { HEIGHTS, SAMPLES, SCORES } from './datasets.js';
 
 // Self-study time (minutes) of 40 students, worked by hand in the lesson.

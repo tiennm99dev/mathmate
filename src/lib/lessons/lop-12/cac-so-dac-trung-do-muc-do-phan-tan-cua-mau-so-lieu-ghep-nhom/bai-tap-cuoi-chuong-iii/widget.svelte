@@ -11,7 +11,7 @@
     groupedIqr,
     groupedRange,
     sampleSize,
-  } from '../_shared/grouped.js';
+  } from '#lib/stats-engine/grouped.js';
   import { checkTyped, compare } from './engine.js';
 
   let sampleId = $state(SAMPLES[0].id);

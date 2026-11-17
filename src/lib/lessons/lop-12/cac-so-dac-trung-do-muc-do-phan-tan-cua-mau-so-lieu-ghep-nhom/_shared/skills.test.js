@@ -9,7 +9,7 @@ import {
   stdQuestion,
   varianceQuestion,
 } from './skills.js';
-import { groupedIqr, groupedStd, groupedVariance, makeGroups } from './grouped.js';
+import { groupedIqr, groupedStd, groupedVariance, makeGroups } from '#lib/stats-engine/grouped.js';
 
 /** @param {string} text */
 const texParts = (text) => [...text.matchAll(/\$([^$]+)\$/g)].map((m) => m[1]);

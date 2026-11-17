@@ -26,11 +26,11 @@ import {
   sampleSize,
   stdTex,
   varianceWorkTex,
-} from './grouped.js';
+} from '#lib/stats-engine/grouped.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
 /** @typedef {Omit<import('#lib/core/drill.js').Question, 'skill'>} Draft */
-/** @typedef {import('./grouped.js').Group} Group */
+/** @typedef {import('#lib/stats-engine/grouped.js').Group} Group */
 
 const STARTS = [0, 10, 20, 40, 50, 100, 150];
 const WIDTHS = [2, 4, 5, 10, 20];
