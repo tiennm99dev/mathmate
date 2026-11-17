@@ -6,6 +6,7 @@ export default {
     'Em ôn lại thể tích của một hình và ba đơn vị m³, dm³, cm³. Em đếm khối, đổi đơn vị và giải bài toán về thùng hàng, bể nước nhé!',
   objectives: [
     'Tính thể tích hình xếp từ các khối 1 cm³ và so sánh thể tích hai hình.',
+    'Đọc, viết các số đo thể tích.',
     'Đổi được các số đo thể tích giữa m³, dm³ và cm³, kể cả số thập phân.',
     'Giải được bài toán thực tế có số đo thể tích.',
   ],
@@ -59,6 +60,26 @@ export default {
     },
   ],
   practice: [
+    {
+      type: 'number',
+      prompt: 'Viết số đo: mười ba phẩy không năm mét khối.',
+      answer: 13.05,
+      unit: 'm³',
+      hints: ['Phần nguyên là 13.', 'Sau dấu phẩy là "không năm": chữ số 0 rồi chữ số 5.'],
+      solution: 'Mười ba phẩy không năm mét khối viết là 13,05 m³.',
+    },
+    {
+      type: 'choice',
+      prompt: 'Số đo 0,857 m³ đọc là gì?',
+      options: [
+        'Không phẩy tám trăm năm mươi bảy mét khối',
+        'Không phẩy tám trăm năm mươi bảy đề-xi-mét khối',
+        'Tám trăm năm mươi bảy mét khối',
+      ],
+      answer: 0,
+      hints: ['Đọc phần nguyên, đọc "phẩy", đọc phần thập phân rồi đọc tên đơn vị.'],
+      solution: '0,857 m³ đọc là: không phẩy tám trăm năm mươi bảy mét khối.',
+    },
     {
       type: 'choice',
       prompt:
