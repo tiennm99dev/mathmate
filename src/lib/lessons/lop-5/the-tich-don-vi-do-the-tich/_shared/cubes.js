@@ -7,85 +7,17 @@
  * 1 dm³ = 1 000 cm³ and 1 m³ = 1 000 dm³. Pure and DOM-free.
  */
 import { fmt } from '#lib/core/number-format.js';
+import { cabinet } from '#lib/core/kid/cabinet-view.js';
 
 /** How far one step away from the viewer shifts a point right and up. */
 export const DEPTH = 0.45;
 
 /** @typedef {{ x: number, y: number, z: number }} Cube a unit cube by its corner nearest the origin */
-/** @typedef {{ x0: number, x1: number, y0: number, y1: number, z0: number, z1: number }} Box */
-/** @typedef {{ x: number, y: number }} Point screen point in edge units, y down */
-/** @typedef {{ kind: 'front' | 'top' | 'right', pts: Point[] }} Face */
+/** @typedef {import('#lib/core/kid/cabinet-view.js').Box} Box */
+/** @typedef {import('#lib/core/kid/cabinet-view.js').Point} Point */
+/** @typedef {import('#lib/core/kid/cabinet-view.js').Face} Face */
 
-/**
- * The screen point of a model point, in edge units (y down).
- * @param {number} x
- * @param {number} y
- * @param {number} z
- * @returns {Point}
- */
-export const project = (x, y, z) => ({ x: x + DEPTH * y, y: -(z + DEPTH * y) });
-
-/**
- * The three faces that show of a box: front (y = y0), top (z = z1) and
- * right (x = x1).
- * @param {Box} b
- * @returns {Face[]}
- */
-export function boxFaces(b) {
-  return [
-    {
-      kind: 'front',
-      pts: [
-        project(b.x0, b.y0, b.z0),
-        project(b.x1, b.y0, b.z0),
-        project(b.x1, b.y0, b.z1),
-        project(b.x0, b.y0, b.z1),
-      ],
-    },
-    {
-      kind: 'top',
-      pts: [
-        project(b.x0, b.y0, b.z1),
-        project(b.x1, b.y0, b.z1),
-        project(b.x1, b.y1, b.z1),
-        project(b.x0, b.y1, b.z1),
-      ],
-    },
-    {
-      kind: 'right',
-      pts: [
-        project(b.x1, b.y0, b.z0),
-        project(b.x1, b.y1, b.z0),
-        project(b.x1, b.y1, b.z1),
-        project(b.x1, b.y0, b.z1),
-      ],
-    },
-  ];
-}
-
-/**
- * The grid lines on the shown faces of a box, one per cube edge inside a
- * face, so a box of many cubes still shows its cubes.
- * @param {Box} b
- * @returns {[Point, Point][]}
- */
-export function boxGrid(b) {
-  /** @type {[Point, Point][]} */
-  const lines = [];
-  for (let x = b.x0 + 1; x < b.x1; x++) {
-    lines.push([project(x, b.y0, b.z0), project(x, b.y0, b.z1)]);
-    lines.push([project(x, b.y0, b.z1), project(x, b.y1, b.z1)]);
-  }
-  for (let z = b.z0 + 1; z < b.z1; z++) {
-    lines.push([project(b.x0, b.y0, z), project(b.x1, b.y0, z)]);
-    lines.push([project(b.x1, b.y0, z), project(b.x1, b.y1, z)]);
-  }
-  for (let y = b.y0 + 1; y < b.y1; y++) {
-    lines.push([project(b.x0, y, b.z1), project(b.x1, y, b.z1)]);
-    lines.push([project(b.x1, y, b.z0), project(b.x1, y, b.z1)]);
-  }
-  return lines;
-}
+export const { project, boxFaces, boxGrid } = cabinet(DEPTH);
 
 /** The box of one unit cube. @param {Cube} c @returns {Box} */
 export const cubeBox = (c) => ({

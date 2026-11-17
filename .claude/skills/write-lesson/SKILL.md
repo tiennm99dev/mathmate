@@ -448,6 +448,8 @@ Other shared pieces:
     vạch", `countBy`, `totalOf`, `extremes`) and the tally strokes, read one
     word per stroke until `settled`. `chance.js`: the book's three words
     (`CHANCES`) and `wordOf(outcomes, holds)`.
+  - `cabinet-view.js`: `cabinet(depth)` gives `project`, `boxFaces` and
+    `boxGrid` for boxes of unit cubes in the books' cabinet view.
   - `pass-focus.js`: `passFocus(from, to)` hands keyboard focus on when a
     press has just disabled the button that had it; `to` may be a getter
     (`() => restartButton`), read after the update, for a target that only
