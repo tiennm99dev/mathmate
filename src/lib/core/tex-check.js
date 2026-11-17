@@ -12,6 +12,7 @@ import { texSource, texStrict } from './katex-options.js';
  * Strict mode as the page applies it, with every warning made an error.
  * @param {string} code
  * @param {string} message
+ * @returns {'ignore'}
  */
 function pageStrict(code, message) {
   if (texStrict(code, message) === 'ignore') return 'ignore';
