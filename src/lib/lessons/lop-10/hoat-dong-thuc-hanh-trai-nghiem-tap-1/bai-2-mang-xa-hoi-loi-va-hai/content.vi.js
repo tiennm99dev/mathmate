@@ -100,7 +100,7 @@ export default {
           type: 'list',
           items: [
             'Thời gian dùng mạng xã hội mỗi ngày từ $30$ đến $420$ phút; trung bình mỗi bạn dùng khoảng $141$ phút, tức hơn $2$ giờ.',
-            'Có $75\\%$ số bạn dùng từ $90$ phút trở lên, một nửa dùng từ $120$ phút trở lên và $25\\%$ dùng từ $180$ phút ($3$ giờ) trở lên.',
+            'Khoảng $75\\%$ số bạn dùng từ $90$ phút trở lên ($23$ trong $30$ bạn), ít nhất một nửa dùng từ $120$ phút trở lên ($18$ bạn) và khoảng $25\\%$ dùng từ $180$ phút ($3$ giờ) trở lên ($8$ bạn).',
             'Nhiều bạn dùng khoảng $120$ phút nhất (mốt). Hai giá trị ngoại lệ $360$ và $420$ phút kéo số trung bình lên cao hơn trung vị, nên trung vị $120$ phút đại diện cho mẫu tốt hơn.',
           ],
         },

@@ -116,7 +116,7 @@
     [
       'Giá trị ngoại lệ',
       s.outliers.length > 0
-        ? `${s.outliers.map((v) => formatNumber(v)).join('; ')} (lớn hơn ${f1(s.high)})`
+        ? `${s.outliers.map((v) => formatNumber(v)).join('; ')} (ngoài đoạn [${f1(s.low)}; ${f1(s.high)}])`
         : 'không có',
     ],
   ];
@@ -290,7 +290,7 @@
       </svg>
       <FeedbackNote
         tone="info"
-        text={`Trung bình mỗi bạn dùng khoảng ${f1(summary.mean)} phút mỗi ngày. Có $75\\%$ số bạn dùng từ ${f1(summary.q1)} phút trở lên, $50\\%$ từ ${f1(summary.median)} phút và $25\\%$ từ ${f1(summary.q3)} phút trở lên.${summary.outliers.length > 0 ? ` Giá trị ngoại lệ ${summary.outliers.map((v) => formatNumber(v)).join('; ')} kéo số trung bình lên cao hơn trung vị.` : ''}`}
+        text={`Trung bình mỗi bạn dùng khoảng ${f1(summary.mean)} phút mỗi ngày. Khoảng $75\\%$ số bạn dùng từ ${f1(summary.q1)} phút trở lên, khoảng một nửa từ ${f1(summary.median)} phút và khoảng $25\\%$ từ ${f1(summary.q3)} phút trở lên.${summary.outliers.length > 0 ? ` Giá trị ngoại lệ ${summary.outliers.map((v) => formatNumber(v)).join('; ')} kéo số trung bình (${f1(summary.mean)}) ra xa trung vị (${f1(summary.median)}).` : ''}`}
       />
     {:else}
       <FeedbackNote tone="warn" text="Nhóm này chưa có phiếu nào." />
