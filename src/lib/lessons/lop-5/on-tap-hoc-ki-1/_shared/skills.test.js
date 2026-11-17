@@ -3,7 +3,12 @@ import { rng } from '#lib/core/drill.js';
 import { optionText } from '#lib/core/kid/quiz.js';
 import { AREA_SKILLS, PI } from './area-skills.js';
 import { DECIMAL_SKILLS, comparePair, roundScaled } from './decimal-skills.js';
-import { num, placesText, readDecimal, valueOptions } from './decimals.js';
+import {
+  num,
+  placesText,
+  readScaled as readDecimal,
+  valueOptions,
+} from '#lib/core/kid/decimals.js';
 import { GENERAL_SKILLS, mixedSkill } from './general-skills.js';
 import { HEIGHT_POINTS, MEASURED, SHAPE_POINTS } from './figures.js';
 import { AREA, LENGTH, MASS, MEASURE_SKILLS, convertQuestion, ratio } from './measure-skills.js';

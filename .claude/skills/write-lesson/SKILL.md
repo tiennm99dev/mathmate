@@ -448,6 +448,10 @@ Other shared pieces:
     vạch", `countBy`, `totalOf`, `extremes`) and the tally strokes, read one
     word per stroke until `settled`. `chance.js`: the book's three words
     (`CHANCES`) and `wordOf(outcomes, holds)`.
+  - `decimals.js`: grade 5 decimals kept exact: `partsOf`, `toScaled`,
+    `decText`, `trimZeros`, `placesText`, `readScaled` ("hai phẩy bốn mươi
+    bảy"), `num` (a computed value written the book's way), `DECIMAL_PLACES`
+    and `valueOptions` (tap-the-answer options with a unit).
   - `cabinet-view.js`: `cabinet(depth)` gives `project`, `boxFaces` and
     `boxGrid` for boxes of unit cubes in the books' cabinet view.
   - `pass-focus.js`: `passFocus(from, to)` hands keyboard focus on when a

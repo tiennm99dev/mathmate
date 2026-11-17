@@ -6,7 +6,7 @@
  */
 import { int, pick, shuffle } from '#lib/core/drill.js';
 import { mixOptions } from '#lib/core/kid/quiz.js';
-import { num, valueOptions } from './decimals.js';
+import { num, valueOptions } from '#lib/core/kid/decimals.js';
 
 /** @typedef {import('./visual.js').ReviewSkill} Skill */
 /** @typedef {import('./visual.js').Shape} Shape */

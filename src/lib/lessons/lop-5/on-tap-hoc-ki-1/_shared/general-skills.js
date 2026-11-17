@@ -8,7 +8,7 @@ import { mixOptions } from '#lib/core/kid/quiz.js';
 import { fmt } from '#lib/core/number-format.js';
 import { circleAreaSkill, trapezoidSkill, triangleSkill } from './area-skills.js';
 import { compareSkill, roundSkill } from './decimal-skills.js';
-import { num, valueOptions } from './decimals.js';
+import { num, valueOptions } from '#lib/core/kid/decimals.js';
 import { areaSkill } from './measure-skills.js';
 import { convenientSkill, divideSkill, multiplySkill, storySkill } from './operation-skills.js';
 import { heightSkill } from './shape-skills.js';

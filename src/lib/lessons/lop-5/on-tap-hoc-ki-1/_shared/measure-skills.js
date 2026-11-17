@@ -10,7 +10,7 @@ import { compareSign } from '#lib/core/kid/numbers.js';
 import { signOptions, slipOptions } from '#lib/core/kid/quiz.js';
 import { fmt, tidy } from '#lib/core/number-format.js';
 import { gcd } from '#lib/numtheory-engine/index.js';
-import { num, valueOptions } from './decimals.js';
+import { num, valueOptions } from '#lib/core/kid/decimals.js';
 
 /** @typedef {import('./visual.js').ReviewSkill} Skill */
 

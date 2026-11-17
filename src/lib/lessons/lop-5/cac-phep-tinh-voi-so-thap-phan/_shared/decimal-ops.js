@@ -6,52 +6,16 @@
  * the book's long division with the comma written into the quotient.
  * Numbers are written with a decimal comma ('45,08'). Pure and DOM-free.
  */
-import { scaledText } from '#lib/core/decimal.js';
 import { fmt } from '#lib/core/number-format.js';
+import { decText, partsOf, toScaled, trimZeros } from '#lib/core/kid/decimals.js';
 
-/**
- * A decimal as its two parts: '45,08' gives { whole: '45', frac: '08' }.
- * @param {string} text
- */
-export function partsOf(text) {
-  const [whole, frac = ''] = text.split(',');
-  return { whole, frac };
-}
+export { decText, partsOf, toScaled, trimZeros };
 
 /**
  * How many digits a decimal has after its comma.
  * @param {string} text
  */
 export const fracLength = (text) => partsOf(text).frac.length;
-
-/**
- * A decimal as an integer scaled by 10^places: '45,08' gives
- * { scaled: 4508, places: 2 }.
- * @param {string} text
- */
-export function toScaled(text) {
-  const { whole, frac } = partsOf(text);
-  return { scaled: Number(whole + frac), places: frac.length };
-}
-
-/**
- * Writes an integer scaled by 10^places with a comma, places kept:
- * (6978, 2) → '69,78', (21, 2) → '0,21'.
- * @param {number} scaled
- * @param {number} places
- */
-export const decText = (scaled, places) => scaledText(scaled, places);
-
-/**
- * The decimal without the zeros at the end of its decimal part: '5,20'
- * gives '5,2', '10,0' gives '10'.
- * @param {string} text
- */
-export function trimZeros(text) {
-  const { whole, frac } = partsOf(text);
-  const kept = frac.replace(/0+$/, '');
-  return kept === '' ? whole : `${whole},${kept}`;
-}
 
 /**
  * A decimal written the book's way, its whole part grouped by threes:

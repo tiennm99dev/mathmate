@@ -8,7 +8,13 @@ import { int, pick, shuffle } from '#lib/core/drill.js';
 import { compareSign } from '#lib/core/kid/numbers.js';
 import { capitalize, mixOptions, signOptions } from '#lib/core/kid/quiz.js';
 import { fmt } from '#lib/core/number-format.js';
-import { DECIMAL_PLACES, num, placesText, readDecimal, valueOptions } from './decimals.js';
+import {
+  DECIMAL_PLACES,
+  num,
+  placesText,
+  readScaled as readDecimal,
+  valueOptions,
+} from '#lib/core/kid/decimals.js';
 
 /** @typedef {import('./visual.js').ReviewQuestion} Question */
 /** @typedef {import('./visual.js').ReviewSkill} Skill */

@@ -8,7 +8,7 @@
 import { int, pick } from '#lib/core/drill.js';
 import { slipOptions } from '#lib/core/kid/quiz.js';
 import { fmt, formatFixed, tidy } from '#lib/core/number-format.js';
-import { num, valueOptions } from './decimals.js';
+import { num, valueOptions } from '#lib/core/kid/decimals.js';
 
 /** @typedef {import('./visual.js').ReviewSkill} Skill */
 

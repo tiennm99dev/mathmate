@@ -5,51 +5,11 @@
  * rounding to a whole number, tenths or hundredths. Numbers are written with
  * a decimal comma, as the book prints them ('2,47'). Pure and DOM-free.
  */
-import { scaledText } from '#lib/core/decimal.js';
 import { DIGIT_WORDS, SIGN_WORDS, compareSign } from '#lib/core/kid/numbers.js';
 import { readWhole } from '#lib/core/kid/whole-numbers.js';
+import { DECIMAL_PLACES, decText, partsOf, toScaled, trimZeros } from '#lib/core/kid/decimals.js';
 
-/** The places after the comma, from the left. */
-export const DECIMAL_PLACES = /** @type {const} */ (['phần mười', 'phần trăm', 'phần nghìn']);
-
-/**
- * A decimal as its two parts: '2,47' gives { whole: '2', frac: '47' }, '5'
- * gives { whole: '5', frac: '' }.
- * @param {string} text
- */
-export function partsOf(text) {
-  const [whole, frac = ''] = text.split(',');
-  return { whole, frac };
-}
-
-/**
- * A decimal as an integer scaled by 10^places: '2,47' gives
- * { scaled: 247, places: 2 }.
- * @param {string} text
- */
-export function toScaled(text) {
-  const { whole, frac } = partsOf(text);
-  return { scaled: Number(whole + frac), places: frac.length };
-}
-
-/**
- * Writes an integer scaled by 10^places as a decimal, places kept:
- * (247, 2) → '2,47', (50, 2) → '0,50'.
- * @param {number} scaled
- * @param {number} places
- */
-export const decText = (scaled, places) => scaledText(scaled, places);
-
-/**
- * The decimal without the zeros at the end of its decimal part: '2,50'
- * gives '2,5', '3,00' gives '3'.
- * @param {string} text
- */
-export function trimZeros(text) {
-  const { whole, frac } = partsOf(text);
-  const kept = frac.replace(/0+$/, '');
-  return kept === '' ? whole : `${whole},${kept}`;
-}
+export { DECIMAL_PLACES, decText, partsOf, toScaled, trimZeros };
 
 /**
  * The decimal part read the book's way: each leading zero is "không", the
