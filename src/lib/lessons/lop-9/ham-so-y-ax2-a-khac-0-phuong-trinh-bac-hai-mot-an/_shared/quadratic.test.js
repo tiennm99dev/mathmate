@@ -1,7 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { planeScale } from '#lib/core/visuals/svg-math.js';
 import {
-  curvePath,
   discriminant,
   isPerfectSquare,
   quadTex,
@@ -56,16 +54,5 @@ describe('writers', () => {
     expect(isPerfectSquare(16)).toBe(true);
     expect(isPerfectSquare(17)).toBe(false);
     expect(isPerfectSquare(-4)).toBe(false);
-  });
-});
-
-describe('curvePath', () => {
-  it('breaks the path where the curve leaves the plane', () => {
-    const plane = planeScale({ xMin: -5, xMax: 5, yMin: -5, yMax: 5 });
-    const d = curvePath((x) => 3 * x * x, plane);
-    expect(d.startsWith('M')).toBe(true);
-    expect(d.split('M').length - 1).toBe(1);
-    const flat = curvePath((x) => x, plane);
-    expect(flat.split('M').length - 1).toBe(1);
   });
 });

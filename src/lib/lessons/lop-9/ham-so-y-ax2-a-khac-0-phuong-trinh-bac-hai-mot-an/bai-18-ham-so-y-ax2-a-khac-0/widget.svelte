@@ -63,8 +63,8 @@
     keyShiftStep: unit,
   });
 
-  const curve = $derived(curvePath((t) => a * t * t, plane));
-  const reference = $derived(curvePath((t) => (a < 0 ? -t * t : t * t), plane));
+  const curve = $derived(curvePath((t) => a * t * t, plane, { steps: 160 }));
+  const reference = $derived(curvePath((t) => (a < 0 ? -t * t : t * t), plane, { steps: 160 }));
   const shape = $derived(shapeSentence(a));
   const target = $derived(CHALLENGES[challenge]);
   const met = $derived(passesThrough(a, target));

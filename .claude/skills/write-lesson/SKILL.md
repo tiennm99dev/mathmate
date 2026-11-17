@@ -223,7 +223,9 @@ Core visuals, `#lib/core/visuals/<name>.svelte`:
 | `counting-tray` | kid ten-frame tray filled with pictures |
 
 `#lib/core/visuals/svg-math.js` has `clamp`, `snap`, `linear`, `planeScale`,
-`polar`, `angleOf`, `sectorPath`, `hopPath` and `PALETTE`/`colorAt`.
+`polar`, `angleOf`, `sectorPath`, `hopPath`, `curvePath(f, plane, { lo, hi, steps, extra })`
+(a function graph as an SVG path that lifts the pen where f is undefined or
+leaves the plane) and `PALETTE`/`colorAt`.
 `#lib/core/visuals/angle-math.js` works in degrees on SVG points: `norm`,
 `dirOf`, `along`, `directionTo`, `measure`, `ccwSides`, `bisectorDir`,
 `intersect`, `degText` ('32,5°') and the angle drawings `arcPath`,

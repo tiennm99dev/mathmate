@@ -8,6 +8,8 @@
 import { numTex, polyTex, polyText } from '#lib/algebra-engine/polynomial.js';
 import { tidy } from '#lib/core/number-format.js';
 
+export { curvePath } from '#lib/core/visuals/svg-math.js';
+
 /** Rounds away floating-point noise (`tidy` in `number-format.js`). */
 export const clean = tidy;
 
@@ -78,32 +80,4 @@ export function quadText(a, b, c) {
  */
 export function texOperand(v) {
   return v < 0 ? `(${numTex(v)})` : numTex(v);
-}
-
-/**
- * Points of y = f(x) for x from lo to hi as an SVG path in the plane's
- * scale. Points far outside the plane's y range break the path, so a steep
- * branch leaves the picture instead of being drawn across it; draw it inside
- * a clip path for a clean edge.
- * @param {(x: number) => number} f
- * @param {{ mx: (x: number) => number, my: (y: number) => number, xMin: number, xMax: number, yMin: number, yMax: number }} plane
- * @param {number} [steps]
- */
-export function curvePath(f, plane, steps = 160) {
-  const margin = (plane.yMax - plane.yMin) * 0.5;
-  const top = plane.yMax + margin;
-  const bottom = plane.yMin - margin;
-  let d = '';
-  let pen = false;
-  for (let i = 0; i <= steps; i++) {
-    const x = plane.xMin + ((plane.xMax - plane.xMin) * i) / steps;
-    const y = f(x);
-    if (!Number.isFinite(y) || y > top || y < bottom) {
-      pen = false;
-      continue;
-    }
-    d += `${pen ? 'L' : 'M'}${plane.mx(x).toFixed(1)} ${plane.my(y).toFixed(1)} `;
-    pen = true;
-  }
-  return d.trim();
 }

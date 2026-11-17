@@ -48,7 +48,7 @@
   const opts2 = $derived(opts(h2));
 
   const coef = $derived(coefficients(a, x1, x2));
-  const curve = $derived(curvePath((t) => a * (t - x1) * (t - x2), plane, 200));
+  const curve = $derived(curvePath((t) => a * (t - x1) * (t - x2), plane, { steps: 200 }));
   const lines = $derived(vieteTex(a, x1, x2));
   const quick = $derived(quickRootNote(coef.a, coef.b, coef.c));
   const current = $derived(CHALLENGES[challenge]);

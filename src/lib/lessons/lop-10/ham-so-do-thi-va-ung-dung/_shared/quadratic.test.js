@@ -1,7 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { planeScale } from '#lib/core/visuals/svg-math.js';
 import {
-  curvePath,
   discriminant,
   exactRoots,
   quadAt,
@@ -86,16 +84,5 @@ describe('sign of the trinomial', () => {
         ) !== want,
     );
     expect(wrong).toEqual([]);
-  });
-});
-
-describe('curve path', () => {
-  const plane = planeScale({ xMin: -4, xMax: 4, yMin: -4, yMax: 4 });
-
-  it('lifts the pen where the function is undefined', () => {
-    const d = curvePath((x) => 1 / x, plane);
-    expect(d.match(/M/g)?.length).toBe(2);
-    const root = curvePath((x) => Math.sqrt(x - 1), plane, { extra: [1] });
-    expect(root.startsWith(`M${plane.mx(1).toFixed(1)} ${plane.my(0).toFixed(1)}`)).toBe(true);
   });
 });

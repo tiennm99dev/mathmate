@@ -30,7 +30,7 @@
 
   const info = $derived(analyse(a, b, c));
   const note = $derived(verdict(a, b, c));
-  const curve = $derived(curvePath((t) => a * t * t + b * t + c, plane, 200));
+  const curve = $derived(curvePath((t) => a * t * t + b * t + c, plane, { steps: 200 }));
   const lines = $derived(solutionTex(a, b, c));
   const current = $derived(CHALLENGES[challenge]);
   const met = $derived(a !== 0 && current.test(a, b, c));
