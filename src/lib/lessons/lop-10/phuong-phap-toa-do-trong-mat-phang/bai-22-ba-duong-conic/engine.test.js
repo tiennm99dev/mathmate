@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { BOX, clampC, conicOf, nearest, relationTex } from './engine.js';
+import { BOX, LIMITS, clampC, conicOf, nearest, relationTex } from './engine.js';
 
 /** @param {{ x: number, y: number }} p @param {{ x: number, y: number }} q */
 const dist = (p, q) => Math.hypot(p.x - q.x, p.y - q.y);
@@ -42,5 +42,19 @@ describe('the three conics', () => {
     expect(clampC('elip', 3, 5)).toBe(2);
     expect(clampC('hypebol', 3, 2)).toBe(4);
     expect(nearest(e.samples, { x: 5.2, y: 0.1 })).toBe(0);
+  });
+
+  it('keeps every allowed curve inside the board', () => {
+    const off = [];
+    for (let a = LIMITS.elip.a[0]; a <= LIMITS.elip.a[1]; a++) {
+      const [lo, hi] = LIMITS.elip.c(a);
+      for (let c = lo; c <= hi; c++) {
+        const e = conicOf('elip', { a, c, p: 1 });
+        if (e.samples.some((q) => Math.abs(q.x) > BOX.xMax || Math.abs(q.y) > BOX.yMax + 1e-9))
+          off.push([a, c]);
+      }
+    }
+    expect(off).toEqual([]);
+    expect(LIMITS.elip.c(7)).toEqual([4, 6]);
   });
 });

@@ -15,7 +15,14 @@ export const BOX = { xMin: -8, xMax: 8, yMin: -6, yMax: 6 };
 
 /** Allowed whole values of a and c (or p) for each kind, so every curve fits the board. */
 export const LIMITS = {
-  elip: { a: [2, 7], c: (/** @type {number} */ a) => [1, a - 1] },
+  // b = √(a² − c²) must stay within the board's half height, so a = 7 needs c ≥ 4.
+  elip: {
+    a: [2, 7],
+    c: (/** @type {number} */ a) => [
+      Math.max(1, Math.ceil(Math.sqrt(Math.max(0, a * a - BOX.yMax ** 2)))),
+      a - 1,
+    ],
+  },
   hypebol: { a: [1, 4], c: (/** @type {number} */ a) => [a + 1, 6] },
   parabol: { p: [1, 4] },
 };

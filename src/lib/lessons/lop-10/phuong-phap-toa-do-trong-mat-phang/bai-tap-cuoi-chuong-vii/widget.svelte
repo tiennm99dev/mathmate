@@ -7,7 +7,7 @@
   import { lineThrough } from '../_shared/coords.js';
   import LinePath from '../_shared/line-path.svelte';
   import PointHandle from '../_shared/point-handle.svelte';
-  import { BOX, builtText, isBuilt, makeRound } from './engine.js';
+  import { BOX, START, builtText, isBuilt, makeRound } from './engine.js';
 
   const plane = planeScale(BOX);
   const { mx, my } = plane;
@@ -16,8 +16,8 @@
 
   let seed = $state(0);
   const round = $derived(makeRound(seed));
-  let P = $state({ x: -4, y: -3 });
-  let Q = $state({ x: -1, y: -3 });
+  let P = $state(START[0]);
+  let Q = $state(START[1]);
   let showHint = $state(false);
   let solved = $state(0);
   let counted = $state(false);
@@ -35,8 +35,8 @@
     seed += 1;
     showHint = false;
     counted = false;
-    P = { x: -4, y: -3 };
-    Q = { x: -1, y: -3 };
+    P = START[0];
+    Q = START[1];
   }
 
   /** @type {SVGSVGElement | undefined} */
@@ -53,7 +53,7 @@
     settle();
   };
 
-  const names = $derived(round.kind === 'line' ? ['P', 'Q'] : ['I', 'R']);
+  const names = $derived(round.kind === 'line' ? ['P', 'Q'] : ['I', 'M']);
   const built = $derived(P.x === Q.x && P.y === Q.y ? null : lineThrough(P, Q));
   const r = $derived(Math.hypot(Q.x - P.x, Q.y - P.y));
   const feedback = $derived(

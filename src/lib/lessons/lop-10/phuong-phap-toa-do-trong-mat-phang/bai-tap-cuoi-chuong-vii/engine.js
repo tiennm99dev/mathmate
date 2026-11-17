@@ -65,6 +65,12 @@ const R2 = [4, 5, 9, 10, 13];
 /** @param {() => number} rand */
 const inner = (rand) => ({ x: int(rand, -3, 3), y: int(rand, -2, 2) });
 
+/** Where the two handles start each round; no round is built by them already. */
+export const START = [
+  { x: -4, y: -3 },
+  { x: -1, y: -3 },
+];
+
 /** A point with its TeX name: A(2;\ -1). @param {string} name @param {V} p */
 const pointTex = (name, p) => `${name}${coordTex(p.x, p.y)}`;
 
@@ -130,7 +136,7 @@ export function makeRound(seed) {
       const target = tangentAt(I, M);
       const u = { x: -target.b, y: target.a };
       const other = [1, -1].some((s) => onBoard({ x: M.x + s * u.x, y: M.y + s * u.y }));
-      if (!onBoard(M) || !other) continue;
+      if (!onBoard(M) || !other || sameLine(target, lineThrough(START[0], START[1]))) continue;
       return {
         kind: 'line',
         prompt: `Dựng tiếp tuyến của đường tròn $(C): ${circleTex(I, r2)}$ tại điểm $${pointTex('M', M)}$.`,
@@ -145,7 +151,7 @@ export function makeRound(seed) {
   if (kind === 5) {
     return {
       kind: 'circle',
-      prompt: `Dựng đường tròn $(C): ${circleTex(I, r2)}$: kéo tâm $I$, rồi kéo điểm $R$ tới một điểm của đường tròn.`,
+      prompt: `Dựng đường tròn $(C): ${circleTex(I, r2)}$: kéo tâm $I$, rồi kéo điểm $M$ tới một điểm của đường tròn.`,
       hint: 'Tâm là $(a; b)$ trong $(x - a)^2 + (y - b)^2 = R^2$; bán kính là căn bậc hai của vế phải.',
       I,
       r2,
@@ -153,7 +159,7 @@ export function makeRound(seed) {
   }
   return {
     kind: 'circle',
-    prompt: `Dựng đường tròn $(C): ${expandedTex(I, r2)}$: kéo tâm $I$, rồi kéo điểm $R$ tới một điểm của đường tròn.`,
+    prompt: `Dựng đường tròn $(C): ${expandedTex(I, r2)}$: kéo tâm $I$, rồi kéo điểm $M$ tới một điểm của đường tròn.`,
     hint: 'Từ $-2a$, $-2b$ tìm tâm $I(a; b)$, rồi $R = \\sqrt{a^2 + b^2 - c}$.',
     I,
     r2,

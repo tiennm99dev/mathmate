@@ -49,7 +49,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Công thức tính góc',
-          text: 'Với $\\vec n_1 = (a_1; b_1)$, $\\vec n_2 = (a_2; b_2)$ là vectơ pháp tuyến của $\\Delta_1$, $\\Delta_2$ và $\\varphi$ là góc giữa hai đường thẳng: $$\\cos\\varphi = |\\cos(\\vec n_1, \\vec n_2)| = \\dfrac{|a_1a_2 + b_1b_2|}{\\sqrt{a_1^2 + b_1^2} \\cdot \\sqrt{a_2^2 + b_2^2}}.$$',
+          text: 'Với $\\vec n_1 = (a_1; b_1)$, $\\vec n_2 = (a_2; b_2)$ là vectơ pháp tuyến của $\\Delta_1$, $\\Delta_2$ và $\\varphi$ là góc giữa hai đường thẳng thì $\\cos\\varphi = |\\cos(\\vec n_1, \\vec n_2)|$, tức là $$\\cos\\varphi = \\dfrac{|a_1a_2 + b_1b_2|}{\\sqrt{a_1^2 + b_1^2} \\cdot \\sqrt{a_2^2 + b_2^2}}.$$',
         },
         {
           type: 'list',

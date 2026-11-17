@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { latticeOnCircle } from '../_shared/coords.js';
-import { BOX, KINDS, builtText, isBuilt, makeRound, onBoard } from './engine.js';
+import { BOX, KINDS, START, builtText, isBuilt, makeRound, onBoard } from './engine.js';
 
 /** Every grid point of the board. @type {{ x: number, y: number }[]} */
 const GRID = [];
@@ -37,6 +37,14 @@ describe('the construction rounds', () => {
     expect(makeRound(3)).toEqual(makeRound(3));
     const kinds = Array.from({ length: KINDS }, (_, i) => makeRound(i).prompt.slice(0, 20));
     expect(new Set(kinds).size).toBeGreaterThan(3);
+  });
+
+  it('never starts a round already built by the starting handles', () => {
+    const built = [];
+    for (let seed = 0; seed < 2000; seed++) {
+      if (isBuilt(makeRound(seed), START[0], START[1])) built.push(seed);
+    }
+    expect(built).toEqual([]);
   });
 
   it('keeps the given point off the given line', () => {

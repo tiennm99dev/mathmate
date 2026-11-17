@@ -198,7 +198,8 @@ export default {
     },
     {
       type: 'choice',
-      prompt: 'Elip có độ dài $2a = 10$ và tiêu cự bằng $6$ có phương trình chính tắc là',
+      prompt:
+        'Elip có tổng khoảng cách từ mỗi điểm của nó đến hai tiêu điểm bằng $10$ và tiêu cự bằng $6$. Phương trình chính tắc của elip là',
       options: [
         '$\\dfrac{x^2}{25} + \\dfrac{y^2}{16} = 1$',
         '$\\dfrac{x^2}{25} + \\dfrac{y^2}{9} = 1$',
@@ -206,9 +207,9 @@ export default {
         '$\\dfrac{x^2}{25} - \\dfrac{y^2}{16} = 1$',
       ],
       answer: 0,
-      hints: ['$a = 5$, $c = 3$; với elip $b^2 = a^2 - c^2$.'],
+      hints: ['$MF_1 + MF_2 = 2a = 10$ và $2c = 6$.', 'Với elip, $b^2 = a^2 - c^2$.'],
       solution:
-        '$a = 5$, $c = 3$, $b^2 = 25 - 9 = 16$, nên $\\dfrac{x^2}{25} + \\dfrac{y^2}{16} = 1$.',
+        '$2a = 10$ nên $a = 5$; $2c = 6$ nên $c = 3$; $b^2 = 25 - 9 = 16$, nên $\\dfrac{x^2}{25} + \\dfrac{y^2}{16} = 1$.',
     },
     {
       type: 'number',

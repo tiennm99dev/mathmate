@@ -23,7 +23,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Phương trình chính tắc của elip',
-          text: 'Chọn hệ trục sao cho $F_1(-c; 0)$, $F_2(c; 0)$. Khi đó elip có phương trình $$\\dfrac{x^2}{a^2} + \\dfrac{y^2}{b^2} = 1,\\quad a > b > 0,\\quad b = \\sqrt{a^2 - c^2}.$$',
+          text: 'Chọn hệ trục sao cho $F_1(-c; 0)$, $F_2(c; 0)$. Khi đó elip có phương trình $$\\dfrac{x^2}{a^2} + \\dfrac{y^2}{b^2} = 1,$$ trong đó $a > b > 0$ và $b = \\sqrt{a^2 - c^2}$.',
         },
         {
           type: 'p',
@@ -44,7 +44,7 @@ export default {
           type: 'callout',
           tone: 'theorem',
           title: 'Phương trình chính tắc của hypebol',
-          text: 'Với $F_1(-c; 0)$, $F_2(c; 0)$, hypebol có phương trình $$\\dfrac{x^2}{a^2} - \\dfrac{y^2}{b^2} = 1,\\quad a > 0,\\ b > 0,\\quad b = \\sqrt{c^2 - a^2}.$$',
+          text: 'Với $F_1(-c; 0)$, $F_2(c; 0)$, hypebol có phương trình $$\\dfrac{x^2}{a^2} - \\dfrac{y^2}{b^2} = 1,$$ trong đó $a > 0$, $b > 0$ và $b = \\sqrt{c^2 - a^2}$.',
         },
         {
           type: 'p',
