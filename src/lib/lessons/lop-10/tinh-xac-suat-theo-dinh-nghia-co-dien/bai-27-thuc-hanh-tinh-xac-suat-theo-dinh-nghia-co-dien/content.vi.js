@@ -44,11 +44,20 @@ export default {
         },
         {
           type: 'p',
-          text: 'Ví dụ, tung một đồng xu rồi gieo một con xúc xắc: tầng thứ nhất có $2$ nhánh $S$, $N$; từ mỗi nhánh mọc ra $6$ nhánh $1, 2, \\ldots, 6$. Cây có $2 \\cdot 6 = 12$ ngọn, nên $n(\\Omega) = 12$: $\\Omega = \\{S1; S2; \\ldots; S6; N1; N2; \\ldots; N6\\}$.',
+          text: 'Ví dụ, tung một đồng xu rồi gieo một con xúc xắc: tầng thứ nhất có $2$ nhánh $S$, $N$; từ mỗi nhánh mọc ra $6$ nhánh $1; 2; \\ldots; 6$. Cây có $2 \\cdot 6 = 12$ ngọn, nên $n(\\Omega) = 12$: $\\Omega = \\{S1; S2; \\ldots; S6; N1; N2; \\ldots; N6\\}$.',
         },
         {
           type: 'p',
           text: 'Với phép thử hai bước, ta cũng có thể lập bảng: các hàng là kết quả bước thứ nhất, các cột là kết quả bước thứ hai, mỗi ô là một kết quả. Gieo hai con xúc xắc cho bảng $6 \\times 6$ gồm $36$ ô.',
+        },
+        {
+          type: 'table',
+          caption: 'Tung một đồng xu rồi gieo một con xúc xắc: mỗi ô là một kết quả',
+          head: ['Đồng xu / Xúc xắc', '$1$', '$2$', '$3$', '$4$', '$5$', '$6$'],
+          rows: [
+            ['$S$', '$S1$', '$S2$', '$S3$', '$S4$', '$S5$', '$S6$'],
+            ['$N$', '$N1$', '$N2$', '$N3$', '$N4$', '$N5$', '$N6$'],
+          ],
         },
       ],
     },

@@ -102,7 +102,7 @@ export const PROBLEMS = [
     id: 'xo-so',
     title: 'Trúng cả 6 số',
     prompt:
-      'Chọn ngẫu nhiên $6$ số khác nhau trong các số từ $1$ đến $45$. $E$: "Sáu số chọn được đúng là $5, 12, 19, 23, 34, 41$".',
+      'Chọn ngẫu nhiên $6$ số khác nhau trong các số từ $1$ đến $45$. $E$: "Sáu số chọn được đúng là $5; 12; 19; 23; 34; 41$".',
     favourable: 1,
     total: choose(45, 6),
     method:
@@ -113,7 +113,7 @@ export const PROBLEMS = [
         .sort((a, b) => a - b);
       return {
         hit: picked.every((x, i) => x === TICKET[i]),
-        text: `chọn được ${picked.join(', ')}.`,
+        text: `chọn được ${picked.join('; ')}.`,
       };
     },
   },

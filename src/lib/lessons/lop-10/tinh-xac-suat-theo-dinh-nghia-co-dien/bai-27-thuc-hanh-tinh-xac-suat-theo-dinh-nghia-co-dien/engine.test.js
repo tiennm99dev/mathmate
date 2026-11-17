@@ -31,7 +31,7 @@ describe('practice experiments', () => {
   it('almost never wins the lottery', () => {
     const run = playTrials(problem('xo-so'), emptyRun(), 20000, rng(3));
     expect(run.hits).toBe(0);
-    expect(run.last).toMatch(/^chọn được (\d+, ){5}\d+\.$/);
+    expect(run.last).toMatch(/^chọn được (\d+; ){5}\d+\.$/);
   });
 
   it('writes valid TeX', () => {

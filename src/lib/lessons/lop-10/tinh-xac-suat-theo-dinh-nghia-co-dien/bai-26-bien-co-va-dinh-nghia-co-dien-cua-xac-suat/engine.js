@@ -132,13 +132,13 @@ export const EXPERIMENTS = [
       {
         id: 'nguyen-to',
         text: 'Số ghi trên thẻ là số nguyên tố',
-        opposite: 'Số ghi trên thẻ không là số nguyên tố',
+        opposite: 'Số ghi trên thẻ không phải là số nguyên tố',
         holds: (o) => PRIMES.includes(o.faces[0]),
       },
       {
         id: 'chinh-phuong',
         text: 'Số ghi trên thẻ là số chính phương',
-        opposite: 'Số ghi trên thẻ không là số chính phương',
+        opposite: 'Số ghi trên thẻ không phải là số chính phương',
         holds: (o) => Number.isInteger(Math.sqrt(o.faces[0])),
       },
       {
@@ -244,5 +244,5 @@ export function summaryText(exp, event, opposite) {
 export function trialText(event, opposite, o) {
   const happened = event.holds(o) !== opposite;
   const name = letterTex(opposite);
-  return `Kết quả ${o.label}: biến cố $${name}$ ${happened ? 'xảy ra' : 'không xảy ra'}, vì ${o.label} ${happened ? 'là' : 'không là'} kết quả thuận lợi cho $${name}$.`;
+  return `Kết quả ${o.label}: biến cố $${name}$ ${happened ? 'xảy ra' : 'không xảy ra'}, vì ${o.label} ${happened ? 'là' : 'không phải là'} kết quả thuận lợi cho $${name}$.`;
 }

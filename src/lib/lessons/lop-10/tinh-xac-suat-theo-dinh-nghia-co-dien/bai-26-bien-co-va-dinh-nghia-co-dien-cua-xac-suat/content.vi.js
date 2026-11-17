@@ -197,7 +197,7 @@ export default {
     {
       type: 'fraction',
       prompt:
-        'Hộp thứ nhất có $4$ viên bi đánh số $1, 2, 3, 4$; hộp thứ hai có $5$ viên bi đánh số $1, 2, 3, 4, 5$. Lấy ngẫu nhiên từ mỗi hộp một viên bi. Tính xác suất để tổng hai số ghi trên hai viên bi không nhỏ hơn $7$.',
+        'Hộp thứ nhất có $4$ viên bi đánh số $1; 2; 3; 4$, hộp thứ hai có $5$ viên bi đánh số $1; 2; 3; 4; 5$. Lấy ngẫu nhiên từ mỗi hộp một viên bi. Tính xác suất để tổng hai số ghi trên hai viên bi không nhỏ hơn $7$.',
       answer: [3, 10],
       hints: [
         'Mỗi kết quả là một cặp $(a, b)$, $n(\\Omega) = 4 \\cdot 5 = 20$.',

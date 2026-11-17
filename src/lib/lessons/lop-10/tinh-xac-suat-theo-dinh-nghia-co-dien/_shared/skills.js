@@ -85,7 +85,7 @@ export const CARD_SKILL = {
       answer: k / m,
       hints: [
         `$n(\\Omega) = ${m}$.`,
-        `Các bội của $${d}$ không vượt quá $${m}$ là $${d}, ${2 * d}, \\ldots$`,
+        `Các bội của $${d}$ không vượt quá $${m}$ là $${d}; ${2 * d}; \\ldots$`,
       ],
       steps: [
         `$n(\\Omega) = ${m}$.`,
