@@ -3,7 +3,7 @@ export default {
   summary:
     'Vận dụng đạo hàm giải bài toán tối ưu: chọn biến, lập hàm mục tiêu trên miền xác định, tìm giá trị lớn nhất hoặc nhỏ nhất bằng đạo hàm, áp dụng cho bài toán thực tiễn và kinh tế (chi phí, doanh thu, lợi nhuận).',
   intro:
-    'Vì sao lon nước ngọt có chiều cao gần bằng đường kính đáy? Người đánh cá nên cập bờ ở đâu để về nhà nhanh nhất? Cửa hàng nên giảm giá bao nhiêu để lãi nhiều nhất? Mỗi câu hỏi là một bài toán tối ưu: biểu diễn đại lượng cần tối ưu thành một hàm số rồi dùng đạo hàm tìm giá trị lớn nhất, nhỏ nhất của nó.',
+    'Lon nước ngọt $330$ ml nên có bán kính đáy bao nhiêu để tốn ít vỏ nhất? Người đánh cá nên cập bờ ở đâu để về nhà nhanh nhất? Cửa hàng nên giảm giá bao nhiêu để lãi nhiều nhất? Mỗi câu hỏi là một bài toán tối ưu: biểu diễn đại lượng cần tối ưu thành một hàm số rồi dùng đạo hàm tìm giá trị lớn nhất, nhỏ nhất của nó.',
   objectives: [
     'Lập hàm mục tiêu của một bài toán tối ưu: chọn biến, đặt điều kiện, biểu diễn đại lượng cần tối ưu theo biến.',
     'Tìm giá trị lớn nhất, nhỏ nhất của hàm mục tiêu bằng đạo hàm và bảng biến thiên.',
@@ -49,7 +49,7 @@ export default {
         {
           type: 'callout',
           tone: 'note',
-          text: 'Lon thật thường cao hơn $2r$ một chút vì nắp và đáy dày hơn thân, còn phải tính phần mép gấp và cho vừa tay cầm. Mô hình toán học cho một đáp án lí tưởng; người thiết kế điều chỉnh theo các yếu tố khác.',
+          text: 'Lon $330$ ml thật thường cao khoảng $11{,}5$ cm, cao hơn hẳn đường kính đáy, vì nắp và đáy dày hơn thân, còn phải tính phần mép gấp và cho vừa tay cầm. Mô hình toán học cho một đáp án lí tưởng; người thiết kế điều chỉnh theo các yếu tố khác.',
         },
       ],
     },

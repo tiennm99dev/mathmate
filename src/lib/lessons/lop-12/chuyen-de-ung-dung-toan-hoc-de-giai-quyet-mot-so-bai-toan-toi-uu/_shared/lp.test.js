@@ -78,7 +78,22 @@ describe('linear programming by the level line', () => {
     expect([at(1200), at(2000), at(2050)]).toEqual(['info', 'ok', 'warn']);
     const diet = (/** @type {number} */ k) =>
       levelVerdict(DIET.constraints, DIET.box, 30, 40, 'min', k).tone;
-    expect([diet(90), diet(100), diet(200)]).toEqual(['warn', 'ok', 'info']);
+    expect([diet(90), diet(100), diet(200), diet(600)]).toEqual(['warn', 'ok', 'info', 'info']);
+    // Past the drawing the unbounded region still meets the level line.
+    expect(levelVerdict(DIET.constraints, DIET.box, 30, 40, 'min', 600).text).toContain(
+      'ngoài khung hình',
+    );
+    expect(levelVerdict(DIET.constraints, DIET.box, 30, 40, 'min', 200).text).not.toContain(
+      'ngoài khung hình',
+    );
+    const rental = (/** @type {number} */ k) =>
+      levelVerdict(RENTAL.constraints, RENTAL.box, 4, 3, 'min', k).tone;
+    expect([rental(31), rental(32), rental(50), rental(68)]).toEqual([
+      'warn',
+      'ok',
+      'info',
+      'warn',
+    ]);
   });
 
   it('writes constraints and verdicts as valid TeX', () => {

@@ -238,19 +238,28 @@ export function levelVerdict(ks, box, p, q, goal, k) {
       text: `Đường mức $F = ${kt}$ chỉ còn chạm miền chấp nhận được tại ${where}. Đi tiếp theo hướng đó thì đường mức rời khỏi miền, nên giá trị ${word} của $F$ là $${kt}$.`,
     };
   }
-  const beyond = goal === 'max' ? best && k > best.value : best && k < best.value;
-  if (beyond || k > range.max + EPS || k < range.min - EPS) {
+  // F takes every value between its least and greatest value on the region
+  // (convex), and every value past a side where the region is unbounded.
+  const top = goal === 'max' ? best : optimum(ks, box, p, q, 'max');
+  const bottom = goal === 'min' ? best : optimum(ks, box, p, q, 'min');
+  const fMax = top ? top.value : Infinity;
+  const fMin = bottom ? bottom.value : -Infinity;
+  if (k > fMax + EPS || k < fMin - EPS) {
     return {
       tone: 'warn',
       text: `Đường mức $F = ${kt}$ không cắt miền chấp nhận được: không có phương án nào cho $F = ${kt}$. Kéo $k$ quay lại.`,
     };
   }
+  const offBoard =
+    k > range.max + EPS || k < range.min - EPS
+      ? ' (phần đó nằm ngoài khung hình vì miền không bị chặn)'
+      : '';
   const dir = goal === 'max' ? 'Tăng' : 'Giảm';
   const tail = best
     ? `${dir} $k$ dần cho tới khi đường mức chỉ còn chạm miền.`
     : `Miền không bị chặn theo hướng này: ${goal === 'max' ? 'tăng' : 'giảm'} $k$ mãi đường mức vẫn cắt miền, nên $F$ không có giá trị ${word}.`;
   return {
     tone: 'info',
-    text: `Đường mức $F = ${kt}$ cắt miền chấp nhận được: mọi điểm trên phần nằm trong miền là phương án cho $F = ${kt}$. ${tail}`,
+    text: `Đường mức $F = ${kt}$ cắt miền chấp nhận được${offBoard}: mọi điểm trên phần nằm trong miền là phương án cho $F = ${kt}$. ${tail}`,
   };
 }
