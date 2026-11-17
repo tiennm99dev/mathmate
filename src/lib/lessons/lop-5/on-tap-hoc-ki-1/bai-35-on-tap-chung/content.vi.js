@@ -40,7 +40,15 @@ export default {
         },
         {
           type: 'p',
-          text: 'Nhân: em nhân như số tự nhiên, rồi tách ở tích số chữ số phần thập phân bằng tổng của hai thừa số.',
+          text: 'Nhân: em nhân như số tự nhiên, rồi đếm xem cả hai thừa số có tất cả bao nhiêu chữ số ở phần thập phân và tách ở tích bấy nhiêu chữ số kể từ phải sang trái.',
+        },
+        {
+          type: 'p',
+          text: 'Chia một số thập phân cho một số tự nhiên: em chia như số tự nhiên; chia đến phần thập phân thì viết dấu phẩy ở thương. Còn dư thì viết thêm chữ số 0 rồi chia tiếp.',
+        },
+        {
+          type: 'p',
+          text: 'Tính thuận tiện: a × b + a × c = a × (b + c). Ví dụ 2,5 × 3,7 + 2,5 × 6,3 = 2,5 × (3,7 + 6,3) = 2,5 × 10 = 25.',
         },
         {
           type: 'callout',

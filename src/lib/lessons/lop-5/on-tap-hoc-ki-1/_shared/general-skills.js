@@ -41,7 +41,9 @@ function mixedQuestion(rand) {
   const a = int(rand, 1, b - 1);
   const w = int(rand, 2, 9);
   const top = w * b + a;
-  const wrong = [`${w + a}/${b}`, `${w * a + b}/${b}`, `${w}${a}/${b}`, `${top}/${a}`];
+  // Writing the digits side by side gives the right fraction when b is 10.
+  const glued = b === 10 ? `${(w + 1) * b + a}/${b}` : `${w}${a}/${b}`;
+  const wrong = [`${w + a}/${b}`, `${w * a + b}/${b}`, glued, `${top}/${a}`];
   return {
     prompt: `Hỗn số ${w} ${a}/${b} viết thành phân số nào?`,
     ...mixOptions(rand, `${top}/${b}`, wrong),

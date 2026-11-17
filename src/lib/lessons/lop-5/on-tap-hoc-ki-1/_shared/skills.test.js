@@ -243,6 +243,7 @@ describe('the general review', () => {
       if (mixed) {
         const [w, a, b] = mixed.slice(1).map(Number);
         if (right !== `${w * b + a}/${b}`) bad.push([q.prompt, right]);
+        if (new Set(q.options).size !== 5) bad.push(['options', q.prompt, q.options]);
       } else if (frac) {
         const value = Number(frac[1]) / Number(frac[2]);
         if (Math.abs(firstValue(right) - value) > 1e-9) bad.push([q.prompt, right]);
