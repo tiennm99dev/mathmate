@@ -95,9 +95,9 @@ export default {
     },
     {
       problem:
-        'Viết phân số "bảy phần mười hai". Nêu tử số và mẫu số của phân số đó. Phần chưa tô màu là bao nhiêu nếu hình chia 12 phần bằng nhau và đã tô 7 phần?',
+        'Một hình được chia thành 12 phần bằng nhau, đã tô màu 7 phần. Viết phân số chỉ phần đã tô màu và nêu tử số, mẫu số của phân số đó. Viết phân số chỉ phần chưa tô màu.',
       steps: [
-        '"Bảy phần mười hai": tử số là 7, mẫu số là 12. Viết $\\dfrac{7}{12}$.',
+        'Hình có 12 phần bằng nhau, đã tô màu 7 phần: phân số $\\dfrac{7}{12}$, đọc là bảy phần mười hai. Tử số là 7, mẫu số là 12.',
         'Phần chưa tô màu: 12 − 7 = 5 (phần) trong 12 phần bằng nhau.',
       ],
       answer:

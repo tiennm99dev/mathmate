@@ -68,7 +68,7 @@ export function commonNote(task, k1, k2) {
         : ` Mẫu số chung bé hơn là ${task.common} cũng được: em thử chia ít phần hơn.`;
     return {
       tone: 'ok',
-      text: `Hai băng cùng có ${d1} phần. Quy đồng mẫu số được ${f1} và ${f2}, mẫu số chung là ${d1}.${extra}`,
+      text: `Đúng rồi! Hai băng cùng có ${d1} phần. Quy đồng mẫu số được ${f1} và ${f2}, mẫu số chung là ${d1}.${extra}`,
     };
   }
   return {

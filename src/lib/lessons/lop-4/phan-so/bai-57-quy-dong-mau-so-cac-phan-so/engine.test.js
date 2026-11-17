@@ -28,7 +28,7 @@ describe('two strips cut to a common denominator', () => {
     expect(commonNote(t, 1, 1).tone).toBe('info');
     expect(commonNote(t, 2, 1)).toEqual({
       tone: 'ok',
-      text: 'Hai băng cùng có 8 phần. Quy đồng mẫu số được $\\dfrac{6}{8}$ và $\\dfrac{5}{8}$, mẫu số chung là 8.',
+      text: 'Đúng rồi! Hai băng cùng có 8 phần. Quy đồng mẫu số được $\\dfrac{6}{8}$ và $\\dfrac{5}{8}$, mẫu số chung là 8.',
     });
     expect(commonNote(t, 4, 2).text).toContain('Mẫu số chung bé hơn là 8');
   });
