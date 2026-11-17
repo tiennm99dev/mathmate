@@ -31,6 +31,19 @@ export function samplesOf(a, b) {
 }
 
 /**
+ * The sample the arrow keys move M to: up and down slide along the branch M is
+ * on (five samples with Shift) and stop at its ends; right and left jump to
+ * the mirror point on the right or the left branch.
+ * @param {number} index @param {-1 | 0 | 1} dx @param {-1 | 0 | 1} dy @param {boolean} big
+ */
+export function keyStep(index, dx, dy, big) {
+  const along = index % PER_BRANCH;
+  if (dx) return along + (dx > 0 ? 0 : PER_BRANCH);
+  const start = index - along;
+  return start + Math.min(PER_BRANCH - 1, Math.max(0, along - dy * (big ? 5 : 1)));
+}
+
+/**
  * The distances from M to the asymptotes bx − ay = 0 and bx + ay = 0.
  * @param {number} a @param {number} b @param {V} M
  * @returns {[number, number]}

@@ -15,6 +15,7 @@
     PER_BRANCH,
     asymptotesTex,
     equationTex,
+    keyStep,
     noteAt,
     readout,
     samplesOf,
@@ -46,8 +47,8 @@
 
   /** @type {SVGSVGElement | undefined} */
   let svgEl = $state();
-  const mHandle = $derived(
-    slideHandle({
+  const mHandle = $derived({
+    ...slideHandle({
       samples,
       index: at,
       plane,
@@ -55,7 +56,11 @@
       onindex: (i) => (at = i),
       closed: false,
     }),
-  );
+    /** @type {(dx: -1 | 0 | 1, dy: -1 | 0 | 1, big: boolean) => void} */
+    onKeyMove: (dx, dy, big) => {
+      at = keyStep(at, dx, dy, big);
+    },
+  });
   const coord = (/** @type {number} */ v) => formatNumber(v, 2);
   const label = $derived(
     `Hypebol có a = ${a}, b = ${b} với hai đường tiệm cận; điểm M(${coord(M.x)}; ${coord(M.y)}).`,
@@ -146,7 +151,7 @@
       class="drag-handle"
       role="slider"
       tabindex="0"
-      aria-label="Điểm M trên hypebol: kéo, hoặc dùng phím mũi tên để trượt"
+      aria-label="Điểm M trên hypebol: kéo, hoặc dùng phím lên, xuống để trượt trên nhánh và phím trái, phải để sang nhánh kia"
       aria-valuenow={at}
       aria-valuemin={0}
       aria-valuemax={samples.length - 1}

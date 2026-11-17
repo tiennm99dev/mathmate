@@ -128,7 +128,7 @@ export default {
   explore: {
     title: 'Hiệu khoảng cách và đường tiệm cận',
     instruction:
-      'Chọn $a$, $b$ và kéo điểm $M$ trên hai nhánh (hoặc chọn $M$ rồi dùng phím mũi tên). Quan sát: $|MF_1 - MF_2|$ luôn bằng $2a$; khi $M$ chạy ra xa, nhánh hypebol tiến sát đường tiệm cận, còn tích hai khoảng cách từ $M$ đến hai tiệm cận không đổi.',
+      'Chọn $a$, $b$ và kéo điểm $M$ trên hai nhánh (hoặc chọn $M$ rồi dùng phím mũi tên lên, xuống để trượt trên một nhánh, trái, phải để sang nhánh kia). Quan sát: $|MF_1 - MF_2|$ luôn bằng $2a$; khi $M$ chạy ra xa, nhánh hypebol tiến sát đường tiệm cận, còn tích hai khoảng cách từ $M$ đến hai tiệm cận không đổi.',
   },
   examples: [
     {

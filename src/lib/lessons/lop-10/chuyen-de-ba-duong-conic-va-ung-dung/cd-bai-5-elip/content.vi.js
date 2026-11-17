@@ -202,7 +202,7 @@ export default {
       prompt:
         'Điểm $M$ thuộc elip $\\dfrac{x^2}{36} + \\dfrac{y^2}{27} = 1$ có hoành độ bằng $4$. Tính bán kính qua tiêu $MF_1$ (với $F_1$ là tiêu điểm có hoành độ âm).',
       answer: 8,
-      hints: ['$MF_1 = a + ex$.', 'Ở bài trước ta có $a = 6$, $e = \\dfrac{1}{2}$.'],
+      hints: ['$MF_1 = a + ex$.', 'Với elip này, $a = 6$ và $c = \\sqrt{36 - 27} = 3$.'],
       solution:
         '$MF_1 = a + ex = 6 + \\dfrac{1}{2} \\cdot 4 = 8$ (và $MF_2 = 6 - 2 = 4$, tổng bằng $2a = 12$).',
     },

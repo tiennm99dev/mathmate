@@ -4,6 +4,7 @@ import {
   asymptoteDistances,
   asymptotesTex,
   equationTex,
+  keyStep,
   noteAt,
   readout,
   samplesOf,
@@ -50,5 +51,19 @@ describe('hyperbola board', () => {
   it('notices when M hugs an asymptote', () => {
     const far = samplesOf(1, 1)[PER_BRANCH - 1];
     expect(noteAt(1, 1, far)).toContain('sát dần đường tiệm cận');
+  });
+
+  it('moves M along its branch with up and down, and across with left and right', () => {
+    const top = PER_BRANCH - 1;
+    expect(keyStep(10, 0, -1, false)).toBe(11);
+    expect(keyStep(10, 0, 1, true)).toBe(5);
+    expect(keyStep(top, 0, -1, false)).toBe(top);
+    expect(keyStep(PER_BRANCH, 0, 1, false)).toBe(PER_BRANCH);
+    expect(keyStep(2 * PER_BRANCH - 1, 0, -1, true)).toBe(2 * PER_BRANCH - 1);
+    expect(keyStep(10, -1, 0, false)).toBe(PER_BRANCH + 10);
+    expect(keyStep(PER_BRANCH + 10, 1, 0, false)).toBe(10);
+    expect(keyStep(10, 1, 0, false)).toBe(10);
+    const S = samplesOf(3, 4);
+    expect(S[PER_BRANCH + 10]).toEqual({ x: -S[10].x, y: S[10].y });
   });
 });

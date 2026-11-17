@@ -52,7 +52,7 @@ export function readout(e, k, M) {
   const d = Math.abs(M.x + k);
   return [
     `MF ${valueTex(mf)},\\quad d(M, \\Delta) ${valueTex(d)}`,
-    `\\dfrac{MF}{d(M, \\Delta)} = e = ${numTex(e, 2)}`,
+    `\\dfrac{MF}{d(M, \\Delta)} ${valueTex(mf / d, 2)} = e`,
   ];
 }
 

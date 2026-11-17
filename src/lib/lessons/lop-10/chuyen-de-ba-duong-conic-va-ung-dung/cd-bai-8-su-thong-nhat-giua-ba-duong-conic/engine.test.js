@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { numTex } from '#lib/core/number-format.js';
 import {
   ALPHA,
   branchesOf,
@@ -29,7 +30,16 @@ describe('focus-directrix board', () => {
   it('reads the ratio at a point of the curve', () => {
     const M = branchesOf(0.6, 3)[0][0];
     const lines = readout(0.6, 3, M);
-    expect(lines[1]).toBe('\\dfrac{MF}{d(M, \\Delta)} = e = 0{,}6');
+    expect(lines[1]).toBe('\\dfrac{MF}{d(M, \\Delta)} = 0{,}6 = e');
+    // Measured, not restated: the ratio is computed from M on every branch.
+    const bad = [];
+    for (const e of [0.6, 1, 1.5, 2.5])
+      for (const run of branchesOf(e, 3))
+        for (const P of run) {
+          const [, ratio] = readout(e, 3, P);
+          if (ratio !== `\\dfrac{MF}{d(M, \\Delta)} = ${numTex(e, 2)} = e`) bad.push([e, P, ratio]);
+        }
+    expect(bad).toEqual([]);
     expect(kindNote(0.6)).toContain('elip');
     expect(kindNote(1)).toContain('parabol');
     expect(kindNote(1.5)).toContain('hypebol');

@@ -111,14 +111,15 @@ export default {
   examples: [
     {
       problem:
-        'Viết phương trình đường conic có tâm sai $e = \\dfrac{1}{\\sqrt{2}}$, tiêu điểm $F(-1; 0)$ và đường chuẩn $\\Delta: x + y + 1 = 0$. Đường conic đó là đường gì?',
+        'Viết phương trình đường conic có tâm sai $e = \\dfrac{1}{\\sqrt{2}}$, tiêu điểm $F(-1; 0)$ và đường chuẩn $\\Delta: x + y + 3 = 0$. Đường conic đó là đường gì?',
       steps: [
-        '$MF^2 = (x + 1)^2 + y^2$ và $d(M, \\Delta)^2 = \\dfrac{(x + y + 1)^2}{2}$.',
-        '$MF^2 = e^2 \\cdot d(M, \\Delta)^2 = \\dfrac{1}{2} \\cdot \\dfrac{(x + y + 1)^2}{2}$, tức là $4(x + 1)^2 + 4y^2 = (x + y + 1)^2$.',
-        'Khai triển: $4x^2 + 8x + 4 + 4y^2 = x^2 + y^2 + 2xy + 2x + 2y + 1$.',
+        'Kiểm tra $F \\notin \\Delta$: $-1 + 0 + 3 = 2 \\ne 0$. (Nếu đường chuẩn đi qua tiêu điểm thì tập hợp các điểm $M$ suy biến, chẳng hạn chỉ còn một điểm.)',
+        '$MF^2 = (x + 1)^2 + y^2$ và $d(M, \\Delta)^2 = \\dfrac{(x + y + 3)^2}{2}$.',
+        '$MF^2 = e^2 \\cdot d(M, \\Delta)^2 = \\dfrac{1}{2} \\cdot \\dfrac{(x + y + 3)^2}{2}$, tức là $4(x + 1)^2 + 4y^2 = (x + y + 3)^2$.',
+        'Khai triển: $4x^2 + 8x + 4 + 4y^2 = x^2 + y^2 + 2xy + 6x + 6y + 9$.',
       ],
       answer:
-        '$3x^2 - 2xy + 3y^2 + 6x - 2y + 3 = 0$; vì $e = \\dfrac{1}{\\sqrt{2}} < 1$ nên đó là một elip.',
+        '$3x^2 - 2xy + 3y^2 + 2x - 6y - 5 = 0$; vì $e = \\dfrac{1}{\\sqrt{2}} < 1$ nên đó là một elip.',
     },
     {
       problem: 'Tìm tiêu điểm và đường chuẩn của parabol $y = x^2 - 2x + 3$.',
