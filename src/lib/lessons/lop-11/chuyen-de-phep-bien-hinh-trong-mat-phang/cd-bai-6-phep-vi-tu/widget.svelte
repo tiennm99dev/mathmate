@@ -137,7 +137,7 @@
       />
     </p>
   </div>
-  <FeedbackNote tone={Math.abs(k) === 1 ? 'ok' : 'info'} text={homothetyNote(k)} />
+  <FeedbackNote tone={Math.abs(k) === 1 ? 'ok' : 'info'} text={homothetyNote(k, o)} />
   {#if offBoard}
     <FeedbackNote
       tone="warn"

@@ -27,4 +27,11 @@ describe('homothety board', () => {
     expect(homothetyNote(-1)).toContain('đối xứng tâm');
     expect(homothetyNote(1)).toContain('đồng nhất');
   });
+
+  it("does not call A'B' parallel to AB when the centre lies on line AB", () => {
+    expect(homothetyNote(2, { x: 1, y: 1 })).toContain("A' = A");
+    expect(homothetyNote(2, { x: -2, y: 1 })).toContain('nằm trên đường thẳng $AB$');
+    expect(homothetyNote(2, { x: -2, y: 1 })).not.toContain('\\parallel');
+    expect(homothetyNote(2, { x: 0, y: 0 })).toContain("A'B' \\parallel AB");
+  });
 });
