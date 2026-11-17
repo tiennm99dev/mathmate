@@ -7,6 +7,7 @@ import {
   resultOptions,
   timingNote,
   trueTime,
+  usable,
   workText,
 } from './engine.js';
 
@@ -64,5 +65,17 @@ describe('pretend stopwatch', () => {
     expect(timingNote(an, 9.5).text).toContain('sớm');
     expect(timingNote(an, 10.6).text).toContain('muộn');
     expect(compareText('van-toc', an, 10)).toContain('rất gần');
+  });
+
+  it('asks to time again when the watch is stopped far off the line', () => {
+    const an = RUNS['van-toc'][0];
+    expect(usable(an, 0)).toBe(false);
+    expect(usable(an, 8.5)).toBe(false);
+    expect(usable(an, 13)).toBe(false);
+    expect(usable(an, 9)).toBe(true);
+    expect(usable(an, 11)).toBe(true);
+    expect(timingNote(an, 0).text).toContain('Bấm lại');
+    expect(timingNote(an, 13).text).toContain('muộn');
+    expect(timingNote(an, 10.6).text).not.toContain('Bấm lại');
   });
 });

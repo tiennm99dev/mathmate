@@ -27,7 +27,7 @@ export default {
         {
           type: 'callout',
           tone: 'theorem',
-          text: 'Cộng, trừ, nhân, chia số đo thời gian: em tính theo từng loại đơn vị. Kết quả có số phút, số giây từ 60 trở lên thì đổi sang đơn vị lớn hơn liền kề.',
+          text: 'Cộng, trừ, nhân, chia số đo thời gian: em tính theo từng loại đơn vị. Số đo ở đơn vị bé đủ để đổi (60 giây, 60 phút, 24 giờ, 7 ngày, 12 tháng) thì em đổi sang đơn vị lớn hơn liền kề.',
         },
         {
           type: 'table',
@@ -191,6 +191,49 @@ export default {
         'Chu vi đường tròn: 20 × 2 × 3,14 = 125,6 (m). Thời gian một vòng: 125,6 : 3,1 ≈ 40,5 (giây). 40,5 giây > 30 giây, nên hơn nửa phút.',
     },
     {
+      type: 'number',
+      prompt:
+        'Bến A cách bến B 115 km. Một con tàu đi từ bến A về phía bến B với vận tốc 22 km/giờ. Sau 3 giờ 30 phút, con tàu còn cách bến B bao nhiêu ki-lô-mét?',
+      answer: 38,
+      unit: 'km',
+      hints: ['Đổi 3 giờ 30 phút = 3,5 giờ.', 'Tính quãng đường tàu đã đi: 22 × 3,5.'],
+      solution:
+        '3 giờ 30 phút = 3,5 giờ. Tàu đã đi: 22 × 3,5 = 77 (km). Tàu còn cách bến B: 115 − 77 = 38 (km).',
+    },
+    {
+      type: 'choice',
+      prompt:
+        'Một xe tải khởi hành lúc 5 giờ sáng, đi quãng đường 56 km với vận tốc 16 km/giờ. Xe tải đến nơi lúc mấy giờ?',
+      options: ['8 giờ 30 phút', '8 giờ 50 phút', '3 giờ 30 phút', '9 giờ'],
+      answer: 0,
+      hints: ['Thời gian đi = 56 : 16 (giờ).', '3,5 giờ = 3 giờ 30 phút. Em cộng với 5 giờ.'],
+      solution:
+        'Thời gian đi là: 56 : 16 = 3,5 (giờ) = 3 giờ 30 phút. Xe tải đến nơi lúc: 5 giờ + 3 giờ 30 phút = 8 giờ 30 phút.',
+    },
+    {
+      type: 'number',
+      prompt:
+        'Một chiếc xe đua chạy với vận tốc 207 km/giờ. Vận tốc đó là bao nhiêu mét trên giây?',
+      answer: 57.5,
+      unit: 'm/giây',
+      hints: ['207 km = 207 000 m; 1 giờ = 3 600 giây.', 'Em tính 207 000 : 3 600.'],
+      solution:
+        '207 km/giờ: mỗi giây đi được 207 000 : 3 600 = 57,5 (m). Vậy 207 km/giờ = 57,5 m/giây.',
+    },
+    {
+      type: 'choice',
+      prompt:
+        'Một chiếc taxi bay bay một vòng quanh đường tròn bán kính 5 km với vận tốc 60 km/giờ. Chuyến bay một vòng hết khoảng bao lâu?',
+      options: ['Khoảng 30 phút', 'Khoảng 5 phút', 'Khoảng 1 giờ', 'Khoảng 3 giờ'],
+      answer: 0,
+      hints: [
+        'Một vòng là chu vi đường tròn: C = d × 3,14, với d = 5 × 2 = 10 km.',
+        '60 km/giờ nghĩa là mỗi phút bay được 1 km.',
+      ],
+      solution:
+        'Chu vi đường tròn: 10 × 3,14 = 31,4 (km). Mỗi phút taxi bay được 60 : 60 = 1 (km), nên một vòng hết khoảng 31,4 phút, tức là khoảng 30 phút.',
+    },
+    {
       type: 'match',
       prompt: 'Nối mỗi số đo với số đo bằng nó.',
       left: ['1,5 giờ', '2 giờ 15 phút', '72 km/giờ', '3 phút 20 giây'],
@@ -207,7 +250,7 @@ export default {
     },
   ],
   takeaways: [
-    'Tính với số đo thời gian theo từng loại đơn vị, rồi đổi khi số phút, số giây từ 60 trở lên.',
+    'Tính với số đo thời gian theo từng loại đơn vị, rồi đổi khi đơn vị bé đủ để đổi sang đơn vị lớn hơn liền kề.',
     'v = s : t, s = v × t, t = s : v.',
     'Đổi các số đo cho khớp đơn vị trước khi tính.',
   ],

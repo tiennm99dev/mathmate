@@ -14,6 +14,7 @@
     taskText,
     timingNote,
     trueTime,
+    usable,
     workText,
   } from './engine.js';
 
@@ -75,7 +76,7 @@
     read = readTime(elapsed);
     phase = 'stopped';
     await tick();
-    document.getElementById(`${uid}-opt-0`)?.focus();
+    (document.getElementById(`${uid}-opt-0`) ?? startButton)?.focus();
   }
 
   /** @param {number} i */
@@ -123,9 +124,7 @@
     return { x: CX + RX * Math.cos(a), y: CY + RY * Math.sin(a) };
   });
 
-  const watchText = $derived(
-    formatFixed(phase === 'running' ? Math.floor(elapsed * 10) / 10 : read, 1),
-  );
+  const watchText = $derived(formatFixed(phase === 'running' ? readTime(elapsed) : read, 1));
 
   const note = $derived.by(() => {
     if (phase === 'ready') {
@@ -246,7 +245,7 @@
     {/if}
   </div>
 
-  {#if phase === 'stopped' || phase === 'answered'}
+  {#if (phase === 'stopped' || phase === 'answered') && usable(run, read)}
     <div class="space-y-2">
       <p class="text-xl text-slate-800" id="{uid}-ask">
         {mode === 'van-toc'

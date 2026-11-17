@@ -36,6 +36,9 @@ export const RUNS = {
 /** After this many seconds past the line the stopwatch stops by itself. */
 export const LATE_STOP = 3;
 
+/** A time read further than this from the true time, in seconds, is timed again. */
+export const MAX_OFF = 1;
+
 /**
  * The time the run really takes, in seconds.
  * @param {Run} run
@@ -47,6 +50,14 @@ export const trueTime = (run) => tidy(run.s / run.v);
  * @param {number} seconds
  */
 export const readTime = (seconds) => tidy(Math.round(seconds * 10) / 10);
+
+/**
+ * Whether a time read is close enough to work a result out from. A watch
+ * stopped far too early (even at 0,0 giây) or far too late is timed again.
+ * @param {Run} run
+ * @param {number} t the time read
+ */
+export const usable = (run, t) => Math.abs(t - trueTime(run)) <= MAX_OFF;
 
 /**
  * A value rounded to a tenth.
@@ -123,10 +134,9 @@ export function timingNote(run, t) {
     return { tone: 'ok', text: `${read} Em bấm dừng rất đúng lúc!` };
   }
   const when = off < 0 ? 'sớm' : 'muộn';
-  const advice =
-    Math.abs(off) > 1
-      ? 'Lệch nhiều quá, em nên bấm lại để đo chuẩn hơn.'
-      : 'Kết quả vẫn dùng được, nhưng sẽ là số gần đúng.';
+  const advice = usable(run, t)
+    ? 'Kết quả vẫn dùng được, nhưng sẽ là số gần đúng.'
+    : 'Lệch nhiều quá, em bấm "Bấm lại" để đo lại nhé.';
   return {
     tone: 'warn',
     text: `${read} Em bấm dừng ${when}, lệch khoảng ${formatNumber(Math.abs(off))} giây. ${advice}`,
