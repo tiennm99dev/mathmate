@@ -83,7 +83,7 @@
               <text x="151" y="64" text-anchor="middle" fill="#047857" style={label}>{v.r}</text>
             {:else}
               <line x1="58" y1="72" x2="182" y2="72" stroke="#0369A1" stroke-width="3" />
-              <text x="151" y="64" text-anchor="middle" fill="#0369A1" style={label}>{v.d}</text>
+              <text x="120" y="62" text-anchor="middle" fill="#0369A1" style={label}>{v.d}</text>
             {/if}
           </svg>
         {:else if v.shape === 'plot'}
@@ -94,32 +94,32 @@
             aria-label="Mảnh đất gồm hình chữ nhật dài {v.long}, rộng {v.wide} và hình tam giác có đáy là chiều rộng, chiều cao {v.tip}."
           >
             <rect
-              x="20"
+              x="60"
               y="35"
-              width="160"
+              width="130"
               height="80"
               fill="#BBF7D0"
               stroke="#15803D"
               stroke-width="3"
             />
             <polygon
-              points="180,35 180,115 240,75"
+              points="190,35 190,115 245,75"
               fill="#FDE68A"
               stroke="#B45309"
               stroke-width="3"
             />
             <line
-              x1="180"
+              x1="190"
               y1="75"
-              x2="240"
+              x2="245"
               y2="75"
               stroke="#DC2626"
               stroke-width="2.5"
               stroke-dasharray="6 4"
             />
-            <text x="100" y="138" text-anchor="middle" fill="#15803D" style={label}>{v.long}</text>
-            <text x="14" y="80" text-anchor="end" fill="#15803D" style={label}>{v.wide}</text>
-            <text x="210" y="68" text-anchor="middle" fill="#DC2626" style={label}>{v.tip}</text>
+            <text x="125" y="138" text-anchor="middle" fill="#15803D" style={label}>{v.long}</text>
+            <text x="54" y="80" text-anchor="end" fill="#15803D" style={label}>{v.wide}</text>
+            <text x="217" y="68" text-anchor="middle" fill="#DC2626" style={label}>{v.tip}</text>
           </svg>
         {:else if v.shape === 'quarter'}
           <svg
