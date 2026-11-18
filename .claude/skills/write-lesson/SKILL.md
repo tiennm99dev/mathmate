@@ -217,6 +217,7 @@ Core visuals, `#lib/core/visuals/<name>.svelte`:
 | `double-bar-chart` | double bar chart (biểu đồ cột kép) with legend, hideable series, selectable categories; `format` writes the values (default `formatNumber`) |
 | `data-table` | statistics table with tally marks and percentages |
 | `graph-box` | a function graph in a window, x and y scaled separately (grades 10-12): grid with round ticks, curves that lift the pen at `breaks` (`refine` draws a branch up to its asymptote), points (hollow for a value not taken), and the layers `bands`, `spans` (`axis` marks the x-axis too), `marks`, `regions`, `traps`, `rects`, `guides` and dashed `lines`; `labelPoints` names points above the clip, `wide` fills the container, `interactive` with `bind:svgEl` holds drag handles; the children snippet gets the frame |
+| `group-chart` | frequency chart of a grouped sample (biểu đồ tần số ghép nhóm): `highlight`, `shades`, `markers`, the mode lines (`modeIndex`), a `band` (interquartile range, x̄ ± s) and a `span` (range R); `layout="fixed"` keeps the box height and shortens the plot instead |
 | `probability-spinner` | spinner with running frequency table |
 | `unit-converter` | length, mass, capacity, time and VND money |
 | `clock-face` | analog clock with draggable hands |

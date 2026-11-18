@@ -3,7 +3,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, textInput } from '#lib/core/ui.js';
   import { formatNumber } from '#lib/core/number-format.js';
-  import GroupChart from '../_shared/group-chart.svelte';
+  import GroupChart from '#lib/core/visuals/group-chart.svelte';
   import { SAMPLES } from '../_shared/datasets.js';
   import { approxText, cumulative, groupText, sampleSize } from '#lib/stats-engine/grouped.js';
   import { checkTyped, compare } from './engine.js';
@@ -163,6 +163,7 @@
       groups={result.groups}
       title={sample.title}
       unit={sample.unit}
+      layout="fixed"
       markers={[
         ...result.rows[1].grouped.map((x) => ({
           x,

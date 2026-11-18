@@ -4,7 +4,7 @@
   import Stepper from '#lib/core/stepper.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { button } from '#lib/core/ui.js';
-  import GroupChart from '../_shared/group-chart.svelte';
+  import GroupChart from '#lib/core/visuals/group-chart.svelte';
   import { cumulative, groupText, makeGroups, sampleSize } from '#lib/stats-engine/grouped.js';
   import { MEASURES, PRESETS, viewOf } from './engine.js';
 
@@ -48,8 +48,9 @@
     {groups}
     title={preset.title}
     unit={preset.unit}
-    highlight={view.highlight}
-    shade={view.shade}
+    layout="fixed"
+    highlight={view.highlight === null ? [] : [view.highlight]}
+    shades={view.shade ? [{ ...view.shade, opacity: 0.55 }] : []}
     markers={view.markers}
     modeIndex={view.modeIndex}
     midpoints={view.midpoints}

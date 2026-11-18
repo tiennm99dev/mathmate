@@ -5,7 +5,7 @@
   import Tex from '#lib/components/tex.svelte';
   import { button } from '#lib/core/ui.js';
   import { formatNumber } from '#lib/core/number-format.js';
-  import GroupChart from '../_shared/group-chart.svelte';
+  import GroupChart from '#lib/core/visuals/group-chart.svelte';
   import { groupText, midpoint, sampleSize } from '#lib/stats-engine/grouped.js';
   import { FIELDS, UNIT, groupsOf, riskView, shareText, verdict } from './engine.js';
 

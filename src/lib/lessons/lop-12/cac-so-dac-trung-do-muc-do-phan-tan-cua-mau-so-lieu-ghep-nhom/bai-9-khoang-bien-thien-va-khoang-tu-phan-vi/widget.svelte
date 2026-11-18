@@ -4,7 +4,7 @@
   import Stepper from '#lib/core/stepper.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { button } from '#lib/core/ui.js';
-  import GroupChart from '../_shared/group-chart.svelte';
+  import GroupChart from '#lib/core/visuals/group-chart.svelte';
   import { cumulative, groupText, sampleSize } from '#lib/stats-engine/grouped.js';
   import { PRESETS, groupsOf, outlierNote, spreadView } from './engine.js';
 

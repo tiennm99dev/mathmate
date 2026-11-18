@@ -5,7 +5,7 @@
   import { focusRing } from '#lib/core/ui.js';
   import { formatNumber, numTex } from '#lib/core/number-format.js';
   import { linear } from '#lib/core/visuals/svg-math.js';
-  import GroupChart from '../_shared/group-chart.svelte';
+  import GroupChart from '#lib/core/visuals/group-chart.svelte';
   import { SAMPLES } from '../_shared/datasets.js';
   import { groupText, groupValues, sampleSize } from '#lib/stats-engine/grouped.js';
   import { dotStack, groupingAdvice, valuesIn } from './engine.js';
@@ -181,7 +181,8 @@
     {groups}
     title="Biểu đồ tần số ghép nhóm: {sample.title}"
     unit={sample.unit}
-    highlight={chosen}
+    layout="fixed"
+    highlight={chosen === null ? [] : [chosen]}
   />
 
   <FeedbackNote tone="info" text={pickedText} />
