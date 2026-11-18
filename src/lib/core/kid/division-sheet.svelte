@@ -1,18 +1,22 @@
 <script>
   /**
-   * A three-digit division set out in columns as the book prints it. A digit
-   * just brought down flies from the dividend to its new line; with reduced
-   * motion it simply appears.
+   * A division set out in columns as the book prints it, from `sheetRows` in
+   * `division-steps.js`. A digit just brought down flies from the dividend to
+   * its new line; with reduced motion it simply appears. `compact` narrows
+   * the columns for a long dividend or a two-digit divisor.
    * @type {{
-   *   rows: import('./engine.js').Row[];
+   *   rows: import('./division-steps.js').Row[];
    *   divisor: number;
    *   quotient: string;
    *   label: string;
+   *   compact?: boolean;
    * }}
    */
-  let { rows, divisor, quotient, label } = $props();
+  let { rows, divisor, quotient, label, compact = false } = $props();
 
-  const cell = 'relative flex h-11 w-9 items-center justify-center';
+  const cell = $derived(
+    `relative flex h-11 ${compact ? 'w-8' : 'w-9'} items-center justify-center`,
+  );
 </script>
 
 <div

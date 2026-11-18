@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { stepsOf } from '../_shared/division.js';
+import { stepsOf } from '#lib/core/kid/division-steps.js';
 import { FIRST, drawTask, estimateOf, estimateText, promptOf, trialOf } from './engine.js';
 
 describe('estimating a quotient digit', () => {

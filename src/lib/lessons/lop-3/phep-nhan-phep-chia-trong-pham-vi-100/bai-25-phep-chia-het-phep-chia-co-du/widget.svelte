@@ -2,7 +2,8 @@
   import { tick } from 'svelte';
   import { button } from '#lib/core/ui.js';
   import DivisionSheet from '../_shared/division-sheet.svelte';
-  import { divText, oneStepRows } from '../_shared/division.js';
+  import { divText } from '#lib/core/kid/column-steps.js';
+  import { oneStepRows } from '../_shared/division.js';
   import KidNote from '#lib/core/kid/kid-note.svelte';
   import Candy from './candy.svelte';
   import {

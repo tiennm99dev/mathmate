@@ -1,7 +1,8 @@
 /**
- * A division written the book's way: "9 : 2 = 4 (dư 1)", and set out in columns
- * with the dividend on the left and the divisor and quotient on the right. Pure
- * and DOM-free.
+ * A division within the tables set out in two columns, tens and ones, with the
+ * dividend on the left and the divisor and quotient on the right; the sentence
+ * "9 : 2 = 4 (dư 1)" is `divText` in `#lib/core/kid/column-steps.js`. Pure and
+ * DOM-free.
  */
 
 /**
@@ -9,17 +10,6 @@
  * columns, `line` rules a line under it, `active` tints what is being divided.
  * @typedef {{ t: string, o: string, line?: boolean, active?: 't' | 'both' }} SheetRow
  */
-
-/**
- * The division sentence.
- * @param {number} dividend
- * @param {number} divisor
- */
-export function divText(dividend, divisor) {
-  const quotient = Math.floor(dividend / divisor);
-  const rest = dividend % divisor;
-  return `${dividend} : ${divisor} = ${quotient}${rest > 0 ? ` (dư ${rest})` : ''}`;
-}
 
 /**
  * A number as its two columns.

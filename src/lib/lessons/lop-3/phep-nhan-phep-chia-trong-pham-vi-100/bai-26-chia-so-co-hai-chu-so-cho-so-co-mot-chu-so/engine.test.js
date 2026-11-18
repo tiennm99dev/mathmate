@@ -3,7 +3,6 @@ import { rng } from '#lib/core/drill.js';
 import {
   asksOf,
   blocksAt,
-  checkText,
   firstTask,
   makeTask,
   quotientText,
@@ -28,8 +27,8 @@ describe('division from the tens', () => {
 
   it('ends on the division sentence and a check', () => {
     expect(stageMessage({ n: 29, d: 2 }, 4)).toContain('29 : 2 = 14 (dư 1).');
-    expect(checkText({ n: 75, d: 3 })).toBe('Thử lại: 25 × 3 = 75.');
-    expect(checkText({ n: 29, d: 2 })).toBe('Thử lại: 14 × 2 = 28, 28 + 1 = 29.');
+    expect(stageMessage({ n: 75, d: 3 }, 4)).toContain('Thử lại: 25 × 3 = 75.');
+    expect(stageMessage({ n: 29, d: 2 }, 4)).toContain('Thử lại: 14 × 2 = 28, 28 + 1 = 29.');
   });
 
   it('sets out the sheet as the book prints it', () => {

@@ -3,7 +3,7 @@
  * one. What is left is the remainder, always less than the divisor. Pure and
  * DOM-free.
  */
-import { divText } from '../_shared/division.js';
+import { divText } from '#lib/core/kid/column-steps.js';
 
 /** @typedef {{ total: number, per: number }} Task */
 

@@ -6,6 +6,7 @@
  */
 import { numberDivide } from '#lib/algebra-engine/long-division.js';
 import { int } from '#lib/core/drill.js';
+import { divText } from '#lib/core/kid/column-steps.js';
 import { slipOptions as coreSlipOptions } from '#lib/core/kid/quiz.js';
 
 /** What each column of a three-digit number is called, from the left. */
@@ -93,16 +94,6 @@ export function drawProduct(rand, kind, not) {
 }
 
 /**
- * The division sentence.
- * @param {number} n
- * @param {number} d
- */
-export function divText(n, d) {
-  const rest = n % d;
-  return `${n} : ${d} = ${Math.floor(n / d)}${rest > 0 ? ` (dư ${rest})` : ''}`;
-}
-
-/**
  * The whole division in words, from the left.
  * @param {number} n
  * @param {number} d
@@ -149,19 +140,6 @@ export function drawDivision(rand, kind, not) {
     const same = not && not.n === n && not.d === d;
     if (isDivKind(n, d, kind) && !same) return { n, d };
   }
-}
-
-/**
- * Checking a division by multiplying back.
- * @param {number} n
- * @param {number} d
- */
-export function checkText(n, d) {
-  const q = Math.floor(n / d);
-  const rest = n % d;
-  return rest === 0
-    ? `Thử lại: ${q} × ${d} = ${n}.`
-    : `Thử lại: ${q} × ${d} = ${q * d}, ${q * d} + ${rest} = ${n}.`;
 }
 
 /**

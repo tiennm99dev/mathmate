@@ -4,8 +4,6 @@ import { rng } from '#lib/core/drill.js';
 import { fmt } from '#lib/core/number-format.js';
 import {
   carriesOf,
-  checkText,
-  divText,
   divWords,
   drawDivision,
   drawProduct,
@@ -55,12 +53,9 @@ describe('multiplying in columns', () => {
 });
 
 describe('dividing in columns', () => {
-  it('writes the sentence, the words and the check', () => {
-    expect(divText(538, 4)).toBe('538 : 4 = 134 (dư 2)');
+  it('reads the division the book’s way', () => {
     expect(divWords(518, 5)).toContain('Hạ 1, được 1. 1 chia 5 được 0, viết 0');
     expect(divWords(354, 6).startsWith('35 chia 6 được 5')).toBe(true);
-    expect(checkText(396, 3)).toBe('Thử lại: 132 × 3 = 396.');
-    expect(checkText(538, 4)).toBe('Thử lại: 134 × 4 = 536, 536 + 2 = 538.');
   });
 
   it('tells the cases apart', () => {

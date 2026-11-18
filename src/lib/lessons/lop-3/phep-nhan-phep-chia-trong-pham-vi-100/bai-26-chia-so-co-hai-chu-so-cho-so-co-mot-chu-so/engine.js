@@ -6,7 +6,8 @@
  */
 import { int } from '#lib/core/drill.js';
 import { numberDivide } from '#lib/algebra-engine/long-division.js';
-import { cells, divText } from '../_shared/division.js';
+import { checkText, divText } from '#lib/core/kid/column-steps.js';
+import { cells } from '../_shared/division.js';
 
 /** @typedef {{ n: number, d: number }} Task */
 /** @typedef {'exact' | 'rest'} TaskKind */
@@ -53,21 +54,9 @@ export function stageMessage(task, stage) {
   if (stage === 0) return `Em chia từ hàng chục. ${asks[0].ask}`;
   const last = asks[stage - 1];
   if (stage === asks.length)
-    return `${last.say} Vậy ${divText(task.n, task.d)}. ${checkText(task)}`;
+    return `${last.say} Vậy ${divText(task.n, task.d)}. ${checkText(task.n, task.d)}`;
   const down = stage === 2 ? `Hạ ${task.n % 10}, được ${asks[2].partial}. ` : '';
   return `${last.say} ${down}${asks[stage].ask}`;
-}
-
-/**
- * Checking the result by multiplying back.
- * @param {Task} task
- */
-export function checkText({ n, d }) {
-  const q = Math.floor(n / d);
-  const rest = n % d;
-  return rest === 0
-    ? `Thử lại: ${q} × ${d} = ${n}.`
-    : `Thử lại: ${q} × ${d} = ${q * d}, ${q * d} + ${rest} = ${n}.`;
 }
 
 /**

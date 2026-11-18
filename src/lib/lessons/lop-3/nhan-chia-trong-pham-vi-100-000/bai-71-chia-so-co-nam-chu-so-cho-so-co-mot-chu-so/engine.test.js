@@ -2,17 +2,16 @@ import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import { GROUP } from '#lib/core/number-format.js';
 import {
-  firstTask,
-  makeTask,
   quotientText,
   roundLines,
   sheetRows,
   stageMessage,
   stepsOf,
   wrongMessage,
-} from './engine.js';
+} from '#lib/core/kid/division-steps.js';
+import { firstTask, makeTask } from './engine.js';
 
-/** @param {import('./engine.js').Row[]} rows */
+/** @param {import('#lib/core/kid/division-steps.js').Row[]} rows */
 const shown = (rows) => rows.map((r) => r.cells.join(''));
 
 /** @param {string} text */

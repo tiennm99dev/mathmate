@@ -4,15 +4,15 @@
  * divided and of the divisor, then divide the rest), tries a digit, and sees
  * at once whether it is too big (the product passes the number) or too small
  * (what is left is still at least the divisor). The working itself is
- * `../_shared/division.js`. Pure and DOM-free.
+ * `#lib/core/kid/division-steps.js`. Pure and DOM-free.
  */
 import { int } from '#lib/core/drill.js';
 import { fmt } from '#lib/core/number-format.js';
 import { checkText, divText } from '#lib/core/kid/column-steps.js';
-import { stepsOf } from '../_shared/division.js';
+import { stepsOf } from '#lib/core/kid/division-steps.js';
 
-/** @typedef {import('../_shared/division.js').Task} Task */
-/** @typedef {import('../_shared/division.js').Step} Step */
+/** @typedef {import('#lib/core/kid/division-steps.js').Task} Task */
+/** @typedef {import('#lib/core/kid/division-steps.js').Step} Step */
 /** @typedef {'exact' | 'rest' | 'big'} Kind */
 
 /** The first task of each kind; the first two are the book's. */

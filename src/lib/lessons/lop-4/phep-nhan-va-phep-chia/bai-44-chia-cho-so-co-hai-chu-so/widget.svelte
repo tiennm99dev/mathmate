@@ -5,8 +5,8 @@
   import { button } from '#lib/core/ui.js';
   import DigitPad from '#lib/core/kid/digit-pad.svelte';
   import KidNote from '#lib/core/kid/kid-note.svelte';
-  import DivisionSheet from '../_shared/division-sheet.svelte';
-  import { quotientText, sheetRows, stepsOf } from '../_shared/division.js';
+  import DivisionSheet from '#lib/core/kid/division-sheet.svelte';
+  import { quotientText, sheetRows, stepsOf } from '#lib/core/kid/division-steps.js';
   import { FIRST, drawTask, promptOf, trialOf } from './engine.js';
 
   /** @typedef {import('./engine.js').Kind} Kind */
@@ -33,7 +33,7 @@
     tone === 'warn' ? said : said ? `${said} ${promptOf(task, stage)}` : promptOf(task, stage),
   );
 
-  /** @param {import('../_shared/division.js').Task} next */
+  /** @param {import('#lib/core/kid/division-steps.js').Task} next */
   function start(next) {
     task = next;
     stage = 0;
@@ -98,6 +98,7 @@
       rows={sheetRows(task, stage)}
       divisor={task.d}
       {quotient}
+      compact
       label="Đặt tính {fmt(task.n)} chia {task.d}. Thương đã viết: {quotient || 'chưa có'}."
     />
   </div>

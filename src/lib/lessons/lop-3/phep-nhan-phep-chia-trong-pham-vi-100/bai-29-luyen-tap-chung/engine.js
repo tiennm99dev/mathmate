@@ -8,7 +8,7 @@
 import { numberDivide } from '#lib/algebra-engine/long-division.js';
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions, slipOptions } from '#lib/core/kid/quiz.js';
-import { divText } from '../_shared/division.js';
+import { divText } from '#lib/core/kid/column-steps.js';
 import {
   answerLine,
   drawStories,

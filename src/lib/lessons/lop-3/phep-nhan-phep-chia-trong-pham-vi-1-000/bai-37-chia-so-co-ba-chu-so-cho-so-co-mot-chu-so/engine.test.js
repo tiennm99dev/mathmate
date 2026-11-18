@@ -1,17 +1,22 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import {
-  firstTask,
-  makeTask,
   quotientText,
   roundLines,
   sheetRows,
-  stageMessage,
+  stageMessage as coreMessage,
   stepsOf,
-  wrongMessage,
-} from './engine.js';
+  wrongMessage as coreWrong,
+} from '#lib/core/kid/division-steps.js';
+import { WORDING, firstTask, makeTask } from './engine.js';
 
-/** @param {import('./engine.js').Row[]} rows */
+/** @type {typeof coreMessage} */
+const stageMessage = (task, stage) => coreMessage(task, stage, WORDING);
+
+/** @type {typeof coreWrong} */
+const wrongMessage = (task, stage, picked, tries) => coreWrong(task, stage, picked, tries, WORDING);
+
+/** @param {import('#lib/core/kid/division-steps.js').Row[]} rows */
 const shown = (rows) => rows.map((r) => r.cells.join(''));
 
 describe('the steps', () => {

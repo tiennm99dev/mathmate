@@ -10,9 +10,9 @@ import {
   stageMessage,
   stepsOf,
   wrongMessage,
-} from './division.js';
+} from '#lib/core/kid/division-steps.js';
 
-/** @param {import('./division.js').Row[]} rows */
+/** @param {import('#lib/core/kid/division-steps.js').Row[]} rows */
 const shown = (rows) => rows.map((r) => r.cells.join(''));
 
 /** @param {string} text */
