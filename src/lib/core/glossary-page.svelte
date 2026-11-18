@@ -1,4 +1,5 @@
 <script>
+  import { flushSync } from 'svelte';
   import { resolve } from '$app/paths';
   import { t } from '#lib/i18n/index.js';
   import { gradeSlug } from '#lib/curriculum/index.js';
@@ -28,6 +29,14 @@
   );
   const found = $derived(visible.reduce((n, s) => n + s.entries.length, 0));
   const total = $derived(sections.reduce((n, s) => n + s.entries.length, 0));
+
+  /**
+   * Clears the search before an in-page link is followed, so the grade or
+   * term it points at is on the page when the browser scrolls to it.
+   */
+  function showAll() {
+    if (query) flushSync(() => (query = ''));
+  }
 
   /** @param {number} grade */
   const label = (grade) => site.grades[gradeSlug(grade)];
@@ -63,6 +72,7 @@
           <li>
             <a
               href="#lop-{s.grade}"
+              onclick={showAll}
               class="inline-flex {look(s.grade)
                 .target} items-center rounded-[var(--btn-radius)] border border-slate-300 bg-white px-3 text-indigo-700 underline underline-offset-2 hover:bg-indigo-50 {focusRing}"
               >{label(s.grade)}</a
@@ -116,11 +126,11 @@
             {#each s.entries as e (e.anchor)}
               <div
                 id={e.anchor}
-                class="scroll-mt-4 {card} border-l-4 p-[var(--hub-pad)] target:border-l-indigo-600 target:bg-indigo-50"
+                class="scroll-mt-4 {card} p-[var(--hub-pad)] target:border-l-4 target:border-l-indigo-600 target:bg-indigo-50"
               >
                 <dt class="font-bold text-slate-900">
                   {e.term}
-                  <span lang="en" class="ml-1 font-normal text-slate-600">{e.en}</span>
+                  <span lang="en" class="ml-1 font-normal text-slate-600">({e.en})</span>
                 </dt>
                 <dd class="mt-1 text-slate-800">{e.def}</dd>
                 {#if e.aka.length}
@@ -137,8 +147,10 @@
                   <dd class="flex flex-wrap items-center gap-x-3 text-slate-600">
                     <span>{copy.seeAlso}</span>
                     {#each e.see as ref (ref.anchor)}
-                      <a href="#{ref.anchor}" class="inline-flex {target} items-center {link}"
-                        >{ref.term}</a
+                      <a
+                        href="#{ref.anchor}"
+                        onclick={showAll}
+                        class="inline-flex {target} items-center {link}">{ref.term}</a
                       >
                     {/each}
                   </dd>
