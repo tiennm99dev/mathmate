@@ -158,6 +158,13 @@ git diff --name-only main...HEAD                # chỉ đường dẫn trong th
 
 `scripts/sync-core.sh <repo>` chép phần dùng chung (core, engine, route, param, script, config, workflow và skill soạn bài) sang một site anh em, ghi chú đầu mỗi file rằng file được đồng bộ, và ghi commit nguồn vào `CORE_VERSION`. Sửa phần dùng chung ở ToánTốt trước, rồi đồng bộ; site anh em không sửa các file đó.
 
+Giao diện theo cấp học nằm ở core: `src/lib/core/band.js` chia cấp (`tieu-hoc` lớp 1-5, `thcs` lớp 6-9, `thpt` lớp 10-12, `chung` cho trang không có lớp), `site-shell.svelte` gắn `data-band` cho trang, và `src/app.css` giữ token, lớp `.decor-*` cùng quy tắc in và chế độ tương phản cao. Hình trang trí theo môn thuộc về từng site, trong `src/lib/site/` (không đồng bộ):
+
+- `src/lib/site/decor.css`: một khối `:root` định nghĩa `--tile-line`, `--spot-line` (`url('./decor/….svg')`), `--subject-tint`, `--subject-ink`; site có lớp 1-5 thêm `--tile-kid`, `--spot-kid`.
+- `src/lib/site/decor/tile-line.svg` (480×480, nét mảnh), `spot-line.svg` (120×120), và với lớp 1-5 thêm `tile-kid.svg` (320×320, màu pastel) và `spot-kid.svg`.
+
+Hình là SVG vẽ tay, chỉ gồm `svg, g, path, circle, ellipse, rect, line, polyline, polygon`, không có chữ, liên kết, id hay chú thích; mỗi tile ≤ 6 KB, mỗi spot ≤ 3 KB, tổng ≤ 24 KB. `src/lib/core/decor.test.js` kiểm tra tất cả. Site anh em commit `src/lib/site/` trước, rồi mới chạy đồng bộ.
+
 ## License
 
 Apache-2.0. Xem `LICENSE`.
