@@ -3,13 +3,13 @@
   import ClockPicture from '#lib/core/kid/clock-picture.svelte';
   import ColumnBoard from '#lib/core/kid/column-board.svelte';
   import Cup from '#lib/core/kid/cup.svelte';
-  import Ruler from '#lib/core/kid/ruler.svelte';
+  import NumberChain from '#lib/core/kid/number-chain.svelte';
+  import RulerSegment from '#lib/core/kid/ruler-segment.svelte';
   import ShapeFigure from '#lib/core/kid/shape-figure.svelte';
   import { FIGURE_NAMES, plainFigure } from '#lib/core/kid/shapes.js';
-  import { MINUS } from '#lib/core/number-format.js';
   import NumberLine from '#lib/core/visuals/number-line.svelte';
   import { resultOf, towerRows } from './arith-skills.js';
-  import Figure from './figure.svelte';
+  import Figure from '#lib/core/kid/plane-figure.svelte';
 
   /**
    * The picture above a review question (`Visual` in `visual.js`). Numbers the
@@ -18,25 +18,6 @@
    * @type {{ visual: import('./visual.js').Visual, settled: boolean }}
    */
   let { visual, settled } = $props();
-
-  /** Ruler marks, in SVG units per centimetre. */
-  const UNIT = 26;
-  const RULER_X = 20;
-  const RULER_CM = 12;
-
-  /** @param {import('./visual.js').Op} op */
-  const signOf = (op) => (op === '+' ? '+' : MINUS);
-
-  /**
-   * The values along a chain, the start number first.
-   * @param {number} start
-   * @param {{ op: import('./visual.js').Op, n: number }[]} steps
-   */
-  function chainValues(start, steps) {
-    const values = [start];
-    for (const s of steps) values.push(resultOf(values[values.length - 1], s.n, s.op));
-    return values;
-  }
 </script>
 
 {#if visual.type === 'column'}
@@ -52,22 +33,7 @@
     />
   </div>
 {:else if visual.type === 'chain'}
-  {@const values = chainValues(visual.start, visual.steps)}
-  <div
-    class="flex flex-wrap items-center justify-center gap-2 rounded-2xl bg-amber-50 p-3 text-2xl font-bold tabular-nums"
-    role="img"
-    aria-label="Bắt đầu từ {visual.start}, rồi {visual.steps
-      .map((s) => `${s.op === '+' ? 'cộng' : 'trừ'} ${s.n}`)
-      .join(', rồi ')}."
-  >
-    <span class="rounded-xl border-4 border-indigo-400 bg-white px-3 py-1">{visual.start}</span>
-    {#each visual.steps as s, i (i)}
-      <span class="text-lg text-slate-600">{signOf(s.op)}{s.n} →</span>
-      <span class="rounded-xl border-4 border-dashed border-indigo-400 bg-white px-3 py-1"
-        >{settled ? values[i + 1] : '?'}</span
-      >
-    {/each}
-  </div>
+  <NumberChain start={visual.start} steps={visual.steps} {settled} />
 {:else if visual.type === 'tower'}
   {@const rows = towerRows(visual.base)}
   <div
@@ -93,26 +59,8 @@
     <Figure figure={visual.figure} />
   </div>
 {:else if visual.type === 'ruler'}
-  {@const [p, q] = [...visual.name]}
-  {@const x0 = RULER_X + visual.from * UNIT}
-  {@const x1 = RULER_X + visual.to * UNIT}
   <div class="rounded-2xl bg-sky-50 p-3">
-    <svg
-      viewBox="0 0 382 110"
-      class="mx-auto block w-full max-w-md select-none"
-      role="img"
-      aria-label="Đoạn thẳng {visual.name} đặt trên thước: đầu {p} ở vạch {visual.from}, đầu {q} ở vạch {visual.to}."
-    >
-      <Ruler x={RULER_X} y={60} cm={RULER_CM} unit={UNIT} fontSize={18} />
-      <line x1={x0} y1="48" x2={x1} y2="48" stroke="#3730a3" stroke-width="4" />
-      {#each [{ x: x0, name: p }, { x: x1, name: q }] as d (d.name)}
-        <circle cx={d.x} cy="48" r="5" fill="#1e293b" />
-        <line x1={d.x} y1="48" x2={d.x} y2="60" stroke="#1e293b" stroke-dasharray="3 3" />
-        <text x={d.x} y="34" text-anchor="middle" font-size="18" font-weight="700" fill="#1e293b"
-          >{d.name}</text
-        >
-      {/each}
-    </svg>
+    <RulerSegment name={visual.name} from={visual.from} to={visual.to} />
   </div>
 {:else if visual.type === 'pattern'}
   <div

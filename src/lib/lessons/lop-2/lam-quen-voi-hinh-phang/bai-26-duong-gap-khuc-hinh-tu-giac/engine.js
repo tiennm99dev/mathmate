@@ -6,7 +6,7 @@
  * and DOM-free.
  */
 import { shuffled } from '#lib/core/card-sorter.js';
-import { shapeAt } from '../_shared/figures.js';
+import { shapeAt } from '#lib/core/kid/plane-figure.js';
 
 /** @typedef {{ c: number, r: number }} Spot */
 
@@ -144,26 +144,27 @@ export function challengeNote(path, challenge) {
 
 /** Drawings of the sorting cards, by card id; each shape fills a 70-unit box. */
 const box = { w: 70, h: 70 };
-export const FIGURE_CARDS = /** @type {Record<string, import('../_shared/figures.js').Figure>} */ ({
-  vuong: { ...box, shapes: [shapeAt('square')] },
-  'chu-nhat': { ...box, shapes: [shapeAt('rectangle')] },
-  thang: { ...box, shapes: [shapeAt('trapezoid')] },
-  lech: { ...box, shapes: [shapeAt('uneven')] },
-  'tam-giac': { ...box, shapes: [shapeAt('triangle')] },
-  'nam-canh': { ...box, shapes: [shapeAt('pentagon')] },
-  ho: {
-    ...box,
-    strokes: [
-      [
-        { x: 8, y: 60 },
-        { x: 8, y: 12 },
-        { x: 62, y: 12 },
-        { x: 62, y: 60 },
+export const FIGURE_CARDS =
+  /** @type {Record<string, import('#lib/core/kid/plane-figure.js').Figure>} */ ({
+    vuong: { ...box, shapes: [shapeAt('square')] },
+    'chu-nhat': { ...box, shapes: [shapeAt('rectangle')] },
+    thang: { ...box, shapes: [shapeAt('trapezoid')] },
+    lech: { ...box, shapes: [shapeAt('uneven')] },
+    'tam-giac': { ...box, shapes: [shapeAt('triangle')] },
+    'nam-canh': { ...box, shapes: [shapeAt('pentagon')] },
+    ho: {
+      ...box,
+      strokes: [
+        [
+          { x: 8, y: 60 },
+          { x: 8, y: 12 },
+          { x: 62, y: 12 },
+          { x: 62, y: 60 },
+        ],
       ],
-    ],
-  },
-  tron: { ...box, curves: [{ d: 'M 5 35 A 30 30 0 1 1 65 35 A 30 30 0 1 1 5 35 Z' }] },
-});
+    },
+    tron: { ...box, curves: [{ d: 'M 5 35 A 30 30 0 1 1 65 35 A 30 30 0 1 1 5 35 Z' }] },
+  });
 
 /** Sorter bins. */
 export const FIGURE_BINS = /** @type {const} */ ([

@@ -1,11 +1,13 @@
 <script>
   import Picture from '#lib/core/kid/picture.svelte';
-  import Ruler from '#lib/core/kid/ruler.svelte';
+  import NumberChain from '#lib/core/kid/number-chain.svelte';
+  import RulerSegment from '#lib/core/kid/ruler-segment.svelte';
   import { pictures } from '#lib/core/kid/pictures/index.js';
   import { countLabel } from '#lib/core/kid/quiz.js';
   import { resultOf } from '#lib/core/kid/column.js';
-  import ColumnBoard from './column-board.svelte';
-  import Figure from './figure.svelte';
+  import ColumnBoard from '#lib/core/kid/place-column-board.svelte';
+  import { onesDigits } from '#lib/core/kid/column-steps.js';
+  import Figure from '#lib/core/kid/plane-figure.svelte';
   import Block from '#lib/core/kid/block.svelte';
   import SolidFigure from './solid-figure.svelte';
   import { SOLID_LOOKS } from './solids.js';
@@ -19,10 +21,6 @@
    */
   let { visual, settled } = $props();
 
-  /** Ruler marks, in SVG units per centimetre. */
-  const UNIT = 26;
-  const RULER_X = 20;
-  const RULER_CM = 12;
   const LETTERS = ['A', 'B', 'C', 'D'];
   const SOLID_COLORS = ['#60a5fa', '#f87171', '#fbbf24', '#a78bfa'];
 
@@ -42,30 +40,17 @@
 </script>
 
 {#if visual.type === 'column'}
+  {@const result = visual.shown ?? (settled ? resultOf(visual.a, visual.b, visual.op) : null)}
   <div class="flex justify-center">
     <ColumnBoard
       a={visual.a}
       b={visual.b}
       op={visual.op}
-      result={visual.shown ?? (settled ? resultOf(visual.a, visual.b, visual.op) : null)}
+      written={result === null ? [] : onesDigits(result)}
     />
   </div>
 {:else if visual.type === 'chain'}
-  <div
-    class="flex flex-wrap items-center justify-center gap-2 rounded-2xl bg-amber-50 p-3 text-2xl font-bold tabular-nums"
-    role="img"
-    aria-label="Bắt đầu từ {visual.start}, rồi {visual.steps
-      .map((s) => `${s.word} ${s.n}`)
-      .join(', rồi ')}."
-  >
-    <span class="rounded-xl border-4 border-indigo-400 bg-white px-3 py-1">{visual.start}</span>
-    {#each visual.steps as s, i (i)}
-      <span class="text-lg text-slate-600">{s.sign} {s.n} →</span>
-      <span class="rounded-xl border-4 border-dashed border-indigo-400 bg-white px-3 py-1"
-        >{settled ? s.value : '?'}</span
-      >
-    {/each}
-  </div>
+  <NumberChain start={visual.start} steps={visual.steps} {settled} />
 {:else if visual.type === 'sequence'}
   <div
     class="flex flex-wrap items-center justify-center gap-2 rounded-2xl bg-amber-50 p-3 text-2xl font-bold tabular-nums"
@@ -166,26 +151,8 @@
     <Figure figure={visual.figure} />
   </div>
 {:else if visual.type === 'ruler'}
-  {@const [p, q] = [...visual.name]}
-  {@const x0 = RULER_X + visual.from * UNIT}
-  {@const x1 = RULER_X + visual.to * UNIT}
   <div class="rounded-2xl bg-sky-50 p-3">
-    <svg
-      viewBox="0 0 382 110"
-      class="mx-auto block w-full max-w-md select-none"
-      role="img"
-      aria-label="Đoạn thẳng {visual.name} đặt trên thước: đầu {p} ở vạch {visual.from}, đầu {q} ở vạch {visual.to}."
-    >
-      <Ruler x={RULER_X} y={60} cm={RULER_CM} unit={UNIT} fontSize={18} />
-      <line x1={x0} y1="48" x2={x1} y2="48" stroke="#3730a3" stroke-width="4" />
-      {#each [{ x: x0, name: p }, { x: x1, name: q }] as d (d.name)}
-        <circle cx={d.x} cy="48" r="5" fill="#1e293b" />
-        <line x1={d.x} y1="48" x2={d.x} y2="60" stroke="#1e293b" stroke-dasharray="3 3" />
-        <text x={d.x} y="34" text-anchor="middle" font-size="18" font-weight="700" fill="#1e293b"
-          >{d.name}</text
-        >
-      {/each}
-    </svg>
+    <RulerSegment name={visual.name} from={visual.from} to={visual.to} />
   </div>
 {:else if visual.type === 'solids'}
   <div

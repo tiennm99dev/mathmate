@@ -7,6 +7,7 @@
  * `adaptive-quiz.svelte`.
  */
 import { exprText } from '#lib/core/kid/column.js';
+import { chainSteps } from '#lib/core/kid/number-chain.js';
 import { int, pick, shuffle } from '#lib/core/drill.js';
 import { compareSign } from '#lib/core/kid/numbers.js';
 import { mixOptions, signOptions } from '#lib/core/kid/quiz.js';
@@ -314,7 +315,7 @@ export const chainSkill = {
     const flipped = lastStep.op === '+' ? before - lastStep.n : before + lastStep.n;
     return {
       prompt: 'Em tính theo chiều mũi tên. Ô cuối cùng là số nào?',
-      visual: { type: 'chain', start, steps },
+      visual: { type: 'chain', start, steps: chainSteps(start, steps) },
       ...nearOptions(rand, last, [before, flipped]),
       hint: 'Em tính từng phép tính từ trái sang phải. Kết quả của phép trước là số đầu của phép sau.',
       solution: `${steps.map((s, i) => `${exprText(values[i], s.n, s.op)} = ${values[i + 1]}`).join('. ')}. Ô cuối cùng là ${last}.`,

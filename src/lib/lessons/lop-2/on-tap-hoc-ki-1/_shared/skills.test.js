@@ -68,7 +68,7 @@ function agrees(id, q) {
     }
     case 'mui-ten': {
       if (v?.type !== 'chain') return false;
-      const end = v.steps.reduce((s, c) => (c.op === '+' ? s + c.n : s - c.n), v.start);
+      const end = v.steps.reduce((s, c) => (c.sign === '+' ? s + c.n : s - c.n), v.start);
       return Number(right) === end;
     }
     case 'thap-so':

@@ -2,12 +2,12 @@
   import BalanceScale from '#lib/core/kid/balance-scale.svelte';
   import ClockPicture from '#lib/core/kid/clock-picture.svelte';
   import MonthSheet from '#lib/core/kid/month-sheet.svelte';
-  import Picture from '#lib/core/kid/picture.svelte';
+  import PictureChart from '#lib/core/kid/picture-chart.svelte';
   import ShapeFigure from '#lib/core/kid/shape-figure.svelte';
   import Vessel from '#lib/core/kid/vessel.svelte';
-  import { countLabel } from '#lib/core/kid/quiz.js';
   import { FIGURE_NAMES, plainFigure } from '#lib/core/kid/shapes.js';
-  import { BALL_COLORS, boxText } from './chance.js';
+  import BallBox from '#lib/core/kid/ball-box.svelte';
+  import { BALL_COLORS } from '#lib/core/kid/chance.js';
   import TallyMarks from '#lib/core/kid/tally-marks.svelte';
 
   /**
@@ -85,45 +85,9 @@
     </table>
   </div>
 {:else if visual.type === 'chart'}
-  <figure
-    class="rounded-2xl border border-slate-200 bg-white p-3"
-    role="img"
-    aria-label="{visual.title}. {visual.rows
-      .map((r) => `${r.label}: ${countLabel('hình', r.count, settled)}`)
-      .join('. ')}."
-  >
-    <figcaption class="mb-2 text-base font-bold text-slate-700">{visual.title}</figcaption>
-    <div class="space-y-2">
-      {#each visual.rows as row (row.label)}
-        <div class="border-t border-slate-100 pt-2">
-          <p class="text-base font-semibold text-slate-700">
-            {row.label}{#if settled}: {row.count}{/if}
-          </p>
-          <div class="mt-1 grid min-h-7 grid-cols-10 gap-0.5">
-            {#each { length: row.count } as _, i (i)}
-              <span class="flex items-center justify-center">
-                <Picture name={row.picture} size={24} decorative />
-              </span>
-            {/each}
-          </div>
-        </div>
-      {/each}
-    </div>
-  </figure>
+  <PictureChart title={visual.title} rows={visual.rows} {settled} />
 {:else if visual.type === 'box'}
-  <div
-    class="mx-auto flex max-w-xs flex-wrap justify-center gap-2 rounded-2xl border-4 border-amber-700 bg-amber-50 p-3"
-    role="img"
-    aria-label="{boxText(visual.balls)}."
-  >
-    {#each visual.balls as color, i (i)}
-      <span
-        class="flex h-12 w-12 items-center justify-center rounded-full border-2 border-slate-700 text-lg font-bold"
-        style:background={BALL_COLORS[color].fill}
-        style:color={BALL_COLORS[color].ink}>{BALL_COLORS[color].mark}</span
-      >
-    {/each}
-  </div>
+  <BallBox balls={visual.balls} />
 {:else if visual.type === 'pattern'}
   {@const last = visual.items.length - 1}
   <div

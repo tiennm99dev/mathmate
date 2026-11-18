@@ -8,13 +8,13 @@ import { int, pick, shuffle } from '#lib/core/drill.js';
 import { capitalize, mixOptions, numberOptions } from '#lib/core/kid/quiz.js';
 import { pictures } from '#lib/core/kid/pictures/index.js';
 import { FIGURE_NAMES } from '#lib/core/kid/shapes.js';
-import { CHANCES, wordOf } from '#lib/core/kid/chance.js';
-import { BALL_COLORS, COLOR_IDS, waysToTake } from './chance.js';
+import { BALL_COLORS, CHANCES, waysToTake, wordOf } from '#lib/core/kid/chance.js';
+import { COLOR_IDS } from './chance.js';
 import { nearOptions } from './options.js';
 import { tallyWords } from '#lib/core/kid/tally.js';
 
 /** @typedef {import('./visual.js').ReviewSkill} ReviewSkill */
-/** @typedef {import('./chance.js').BallColor} BallColor */
+/** @typedef {import('#lib/core/kid/chance.js').BallColor} BallColor */
 /** @typedef {import('#lib/core/kid/chance.js').Chance} Chance */
 
 const SHAPE_KINDS = /** @type {const} */ (['vuong', 'tron', 'tam-giac']);
@@ -171,7 +171,7 @@ function makeChart(rand) {
     rows: theme.map((picture, i) => ({
       label: capitalize(nouns[i]),
       count: counts[i],
-      picture,
+      symbol: { picture },
     })),
   };
   return { visual, counts, nouns };

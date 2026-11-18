@@ -1,7 +1,7 @@
 <script>
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import { button } from '#lib/core/ui.js';
-  import { lineThrough } from '../_shared/figures.js';
+  import { lineThrough } from '#lib/core/kid/plane-figure.js';
   import {
     GOALS,
     HEIGHT,

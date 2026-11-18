@@ -1,6 +1,6 @@
 <script>
   import CardSorter from '#lib/core/card-sorter.svelte';
-  import Figure from '../_shared/figure.svelte';
+  import Figure from '#lib/core/kid/plane-figure.svelte';
   import { LINE_BINS, LINE_CARDS, LINE_FIGURES } from './engine.js';
 </script>
 

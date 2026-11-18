@@ -22,15 +22,16 @@
  * - `chart`: a picture chart, one picture per thing.
  * - `box`: a box of coloured balls.
  * - `pattern`: a row of shapes that repeats, with a "?" in place of the last.
- * @typedef {import('./figures.js').Figure} Figure
+ * @typedef {import('#lib/core/kid/plane-figure.js').Figure} Figure
  * @typedef {import('#lib/core/kid/column.js').Op} Op
  * @typedef {import('./solids.js').SolidKind} SolidKind
  * @typedef {import('#lib/core/kid/pictures/index.js').PictureName} PictureName
  * @typedef {import('#lib/core/kid/mass.js').Load} Load
- * @typedef {import('./chance.js').BallColor} BallColor
+ * @typedef {import('#lib/core/kid/tally.js').ChartSymbol} ChartSymbol
+ * @typedef {import('#lib/core/kid/chance.js').BallColor} BallColor
  * @typedef {'vuong' | 'tron' | 'tam-giac'} PlaneKind
  * @typedef {{ kind: PlaneKind, color: BallColor }} PatternItem
- * @typedef {{ sign: '+' | '−' | '×' | ':', word: string, n: number, value: number }} ChainStep
+ * @typedef {import('#lib/core/kid/number-chain.js').ChainStep} ChainStep
  * @typedef {(
  *   | { type: 'column', a: number, b: number, op: Op, shown?: number }
  *   | { type: 'chain', start: number, steps: ChainStep[] }
@@ -57,7 +58,7 @@
  *   | { type: 'month', month: number, marks: number[] }
  *   | { type: 'scatter', kinds: PlaneKind[] }
  *   | { type: 'tally', rows: Array<{ label: string, count: number }> }
- *   | { type: 'chart', title: string, rows: Array<{ label: string, count: number, picture: PictureName }> }
+ *   | { type: 'chart', title: string, rows: Array<{ label: string, count: number, symbol: ChartSymbol }> }
  *   | { type: 'box', balls: BallColor[] }
  *   | { type: 'pattern', items: PatternItem[] }
  * )} MeasureSurveyVisual

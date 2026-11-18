@@ -5,8 +5,7 @@ import { totalKg } from '#lib/core/kid/mass.js';
 import { optionText } from '#lib/core/kid/quiz.js';
 import { FIGURE_NAMES } from '#lib/core/kid/shapes.js';
 import { daysIn, weekdayOf, WEEKDAYS, dialNumber } from '#lib/core/kid/time.js';
-import { CHANCES, wordOf } from '#lib/core/kid/chance.js';
-import { BALL_COLORS, waysToTake } from './chance.js';
+import { BALL_COLORS, CHANCES, waysToTake, wordOf } from '#lib/core/kid/chance.js';
 import { carryCount } from './columns.js';
 import { GENERAL_SKILLS } from './general-skills.js';
 import { MEASURE_SKILLS, canChoices, clockWords } from './measure-review-skills.js';
@@ -145,7 +144,7 @@ function agrees(id, q) {
       if (v?.type !== 'box') return false;
       const taken = nums(q.prompt)[0] === 1 ? 1 : 2;
       const ways = waysToTake(v.balls, taken);
-      const color = /** @type {import('./chance.js').BallColor} */ (
+      const color = /** @type {import('#lib/core/kid/chance.js').BallColor} */ (
         Object.entries(BALL_COLORS).find(([, c]) => q.prompt.includes(`bóng ${c.name} là`))?.[0]
       );
       const holds = q.prompt.includes('Cả 2')

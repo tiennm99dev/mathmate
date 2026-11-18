@@ -11,14 +11,15 @@
  * - `cups`: groups of full 1 l mugs, one group per container.
  * - `clock`: a clock at a time, in minutes since 0:00.
  * - `number-line`: a number line with a "?" in place of one number.
- * @typedef {import('./figures.js').Figure} Figure
+ * @typedef {import('#lib/core/kid/plane-figure.js').Figure} Figure
+ * @typedef {import('#lib/core/kid/number-chain.js').ChainStep} ChainStep
  * @typedef {import('#lib/core/kid/shapes.js').ShapeKind} ShapeKind
  * @typedef {import('./arith-skills.js').Op} Op
  * @typedef {import('#lib/core/kid/mass.js').Load} Load
  * @typedef {{ left: Load[], right: Load[] }} Scale
  * @typedef {(
  *   | { type: 'column', a: number, b: number, op: Op }
- *   | { type: 'chain', start: number, steps: { op: Op, n: number }[] }
+ *   | { type: 'chain', start: number, steps: ChainStep[] }
  *   | { type: 'tower', base: number[] }
  *   | { type: 'figure', figure: Figure }
  *   | { type: 'ruler', name: string, from: number, to: number }

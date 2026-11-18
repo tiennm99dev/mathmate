@@ -1,18 +1,18 @@
 <script>
   import { pointsAttr } from '#lib/utils/svg.js';
-  import { figureText, lineThrough } from './figures.js';
+  import { figureText, lineThrough } from './plane-figure.js';
 
   /**
-   * Draws a `Figure` from `figures.js`: shapes, strokes, lines to the edges,
-   * segments, curves, length labels, and dots with their names.
+   * Draws a `Figure` from `plane-figure.js`: shapes, strokes, lines to the
+   * edges, curves, segments, length labels, and dots with their names.
    *
    * - `figure`: what to draw.
-   * - `label`: what a screen reader hears, by default the figure in words;
-   *   ignored when `decorative`.
+   * - `label`: what a screen reader hears, by default the figure's `say` or
+   *   else the figure in words; ignored when `decorative`.
    * - `decorative`: hide it from screen readers when a nearby label names it.
    * - `maxWidth`: Tailwind max-width class.
    * @type {{
-   *   figure: import('./figures.js').Figure;
+   *   figure: import('./plane-figure.js').Figure;
    *   label?: string;
    *   decorative?: boolean;
    *   maxWidth?: string;
@@ -28,7 +28,7 @@
   viewBox="0 0 {figure.w} {figure.h}"
   class="mx-auto block w-full select-none {maxWidth}"
   role={decorative ? undefined : 'img'}
-  aria-label={decorative ? undefined : label || figureText(figure)}
+  aria-label={decorative ? undefined : label || figure.say || figureText(figure)}
   aria-hidden={decorative ? 'true' : undefined}
 >
   {#each figure.shapes ?? [] as corners, i (i)}
@@ -91,8 +91,13 @@
   {/each}
   {#each figure.dots ?? [] as d (d.name)}
     <circle cx={d.x} cy={d.y} r="5" fill="#1e293b" />
-    <text x={d.x} y={d.y - 11} text-anchor="middle" font-size="17" font-weight="700" fill="#1e293b"
-      >{d.name}</text
+    <text
+      x={d.x}
+      y={d.below ? d.y + 22 : d.y - 11}
+      text-anchor="middle"
+      font-size="17"
+      font-weight="700"
+      fill="#1e293b">{d.name}</text
     >
   {/each}
 </svg>

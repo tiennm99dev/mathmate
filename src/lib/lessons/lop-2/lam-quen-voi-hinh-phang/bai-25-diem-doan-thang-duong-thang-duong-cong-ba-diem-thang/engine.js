@@ -5,9 +5,9 @@
  * Works in SVG units, all whole numbers. Pure and DOM-free.
  */
 import { shuffled } from '#lib/core/card-sorter.js';
-import { areCollinear, wave } from '../_shared/figures.js';
+import { areCollinear, wave } from '#lib/core/kid/plane-figure.js';
 
-/** @typedef {import('../_shared/figures.js').Point} Point */
+/** @typedef {import('#lib/core/kid/plane-figure.js').Point} Point */
 /** @typedef {{ A: Point, B: Point, C: Point }} Trio */
 
 export const COLS = 7;
@@ -158,50 +158,51 @@ export function trioText(t) {
 }
 
 /** The drawings of the sorting cards, by card id. */
-export const LINE_FIGURES = /** @type {Record<string, import('../_shared/figures.js').Figure>} */ ({
-  'doan-1': {
-    w: 100,
-    h: 70,
-    dots: [
-      { name: 'A', x: 16, y: 44 },
-      { name: 'B', x: 84, y: 44 },
-    ],
-    segments: [['A', 'B']],
-  },
-  'doan-2': {
-    w: 100,
-    h: 70,
-    dots: [
-      { name: 'M', x: 20, y: 28 },
-      { name: 'N', x: 76, y: 60 },
-    ],
-    segments: [['M', 'N']],
-  },
-  'thang-1': {
-    w: 100,
-    h: 70,
-    dots: [
-      { name: 'C', x: 32, y: 44 },
-      { name: 'D', x: 68, y: 44 },
-    ],
-    lines: [['C', 'D']],
-  },
-  'thang-2': {
-    w: 100,
-    h: 70,
-    dots: [
-      { name: 'P', x: 36, y: 26 },
-      { name: 'Q', x: 64, y: 54 },
-    ],
-    lines: [['P', 'Q']],
-  },
-  'cong-1': { w: 100, h: 70, curves: [{ d: wave(38, 8, 92, 40), name: 'x', x: 84, y: 22 }] },
-  'cong-2': {
-    w: 100,
-    h: 70,
-    curves: [{ d: 'M 10 60 Q 50 -14 90 60', name: 'y', x: 46, y: 62 }],
-  },
-});
+export const LINE_FIGURES =
+  /** @type {Record<string, import('#lib/core/kid/plane-figure.js').Figure>} */ ({
+    'doan-1': {
+      w: 100,
+      h: 70,
+      dots: [
+        { name: 'A', x: 16, y: 44 },
+        { name: 'B', x: 84, y: 44 },
+      ],
+      segments: [['A', 'B']],
+    },
+    'doan-2': {
+      w: 100,
+      h: 70,
+      dots: [
+        { name: 'M', x: 20, y: 28 },
+        { name: 'N', x: 76, y: 60 },
+      ],
+      segments: [['M', 'N']],
+    },
+    'thang-1': {
+      w: 100,
+      h: 70,
+      dots: [
+        { name: 'C', x: 32, y: 44 },
+        { name: 'D', x: 68, y: 44 },
+      ],
+      lines: [['C', 'D']],
+    },
+    'thang-2': {
+      w: 100,
+      h: 70,
+      dots: [
+        { name: 'P', x: 36, y: 26 },
+        { name: 'Q', x: 64, y: 54 },
+      ],
+      lines: [['P', 'Q']],
+    },
+    'cong-1': { w: 100, h: 70, curves: [{ d: wave(38, 8, 92, 40), name: 'x', x: 84, y: 22 }] },
+    'cong-2': {
+      w: 100,
+      h: 70,
+      curves: [{ d: 'M 10 60 Q 50 -14 90 60', name: 'y', x: 46, y: 62 }],
+    },
+  });
 
 /** Bins of the sorter, in the book's order. */
 export const LINE_BINS = /** @type {const} */ ([

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { optionText } from '#lib/core/kid/quiz.js';
-import { areCollinear } from '../_shared/figures.js';
+import { areCollinear } from '#lib/core/kid/plane-figure.js';
 import { KINDS, KIND_LABELS, buildRound } from './engine.js';
 
 /** @param {import('./engine.js').Question} q */

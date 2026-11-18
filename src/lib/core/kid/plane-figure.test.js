@@ -1,7 +1,15 @@
 import { describe, expect, it } from 'vitest';
-import { areCollinear, lineThrough, polylineFigure, zigzag } from './figures.js';
+import {
+  arch,
+  areCollinear,
+  figureText,
+  lineThrough,
+  polylineFigure,
+  shapeAt,
+  zigzag,
+} from './plane-figure.js';
 
-describe('figures of the plane-shape chapter', () => {
+describe('plane figures', () => {
   it('tells collinear points from others', () => {
     expect(areCollinear({ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 3, y: 6 })).toBe(true);
     expect(areCollinear({ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 3, y: 5 })).toBe(false);
@@ -65,5 +73,35 @@ describe('figures of the plane-shape chapter', () => {
       ['N', 'P'],
     ]);
     expect(f.texts?.map((t) => t.text)).toEqual(['4 cm', '7 cm']);
+  });
+
+  it('puts every other name below its dot and says the polyline in words', () => {
+    const f = polylineFigure('ABC', [3, 5]);
+    expect(f.dots?.map((d) => d.below)).toEqual([true, false, true]);
+    expect(f.say).toBe('Đường gấp khúc ABC. Đoạn AB dài 3 cm, Đoạn BC dài 5 cm.');
+  });
+
+  it('bends a curve towards a point', () => {
+    expect(arch({ x: 30, y: 20 }, { x: 75, y: 70 }, { x: 30, y: 120 })).toBe(
+      'M 30 20 Q 75 70 30 120',
+    );
+  });
+
+  it('moves a closed shape and reads a figure in words', () => {
+    expect(shapeAt('hexagon', 10, 5)).toHaveLength(6);
+    expect(shapeAt('triangle', 10, 5)[0]).toEqual({ x: 45, y: 9 });
+    const words = figureText({
+      w: 100,
+      h: 70,
+      dots: [
+        { name: 'C', x: 32, y: 44 },
+        { name: 'D', x: 68, y: 44 },
+      ],
+      lines: [['C', 'D']],
+      curves: [{ d: arch({ x: 0, y: 0 }, { x: 5, y: 5 }, { x: 10, y: 0 }) }],
+    });
+    expect(words).toBe(
+      'Các điểm C, D. đường thẳng đi qua C và D, kéo dài về hai phía; đường uốn cong.',
+    );
   });
 });

@@ -1,6 +1,6 @@
 <script>
   import ChoiceRound from '#lib/core/kid/choice-round.svelte';
-  import Figure from '../_shared/figure.svelte';
+  import Figure from '#lib/core/kid/plane-figure.svelte';
   import { KIND_LABELS, buildRound } from './engine.js';
 </script>
 

@@ -11,11 +11,11 @@ import { FIGURE_NAMES, SHAPES } from '#lib/core/kid/shapes.js';
 import { MINUS } from '#lib/core/number-format.js';
 import { cross } from '#lib/geom-engine/plane.js';
 import { unitOptions } from './arith-skills.js';
-import { NAME_RUNS, polylineFigure, shapeAt } from './figures.js';
+import { NAME_RUNS, polylineFigure, shapeAt } from '#lib/core/kid/plane-figure.js';
 
 /** @typedef {import('./visual.js').ReviewSkill} ReviewSkill */
-/** @typedef {import('./figures.js').Figure} Figure */
-/** @typedef {import('./figures.js').ShapeModel} ShapeModel */
+/** @typedef {import('#lib/core/kid/plane-figure.js').Figure} Figure */
+/** @typedef {import('#lib/core/kid/plane-figure.js').ShapeModel} ShapeModel */
 
 /**
  * Drawings to count segments on, with their points as a position per letter

@@ -7,9 +7,15 @@
  */
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions, numberOptions } from '#lib/core/kid/quiz.js';
-import { NAME_RUNS, areCollinear, polylineFigure, shapeAt, wave } from '../_shared/figures.js';
+import {
+  NAME_RUNS,
+  areCollinear,
+  polylineFigure,
+  shapeAt,
+  wave,
+} from '#lib/core/kid/plane-figure.js';
 
-/** @typedef {import('../_shared/figures.js').Figure} Figure */
+/** @typedef {import('#lib/core/kid/plane-figure.js').Figure} Figure */
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion<Figure>} Asked */
 /** @typedef {'doan-thang' | 'duong' | 'thang-hang' | 'gap-khuc' | 'tu-giac' | 'bai-toan'} Kind */
 /** @typedef {Asked & { kind: Kind }} Question */

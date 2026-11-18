@@ -9,13 +9,13 @@ import { int, pick, shuffle } from '#lib/core/drill.js';
 import { capitalize, mixOptions, numberOptions } from '#lib/core/kid/quiz.js';
 import { MINUS } from '#lib/core/number-format.js';
 import { cross } from '#lib/geom-engine/plane.js';
-import { NAME_RUNS, polylineFigure, shapeAt } from './figures.js';
+import { NAME_RUNS, arch, polylineFigure, shapeAt } from '#lib/core/kid/plane-figure.js';
 import { unitOptions } from './options.js';
 import { SOLID_KINDS, SOLID_NAMES, THINGS } from './solids.js';
 
 /** @typedef {import('./visual.js').ReviewSkill} ReviewSkill */
-/** @typedef {import('./figures.js').Figure} Figure */
-/** @typedef {import('./figures.js').ShapeModel} ShapeModel */
+/** @typedef {import('#lib/core/kid/plane-figure.js').Figure} Figure */
+/** @typedef {import('#lib/core/kid/plane-figure.js').ShapeModel} ShapeModel */
 
 /**
  * Drawings to count segments on: each point with its place and where its name
@@ -114,13 +114,7 @@ function curvesFigure(rand, curves, straights) {
     h: 140,
     curves: kinds.flatMap((kind, i) =>
       kind === 'đường cong'
-        ? [
-            /** @type {[{ x: number, y: number }, { x: number, y: number }, { x: number, y: number }]} */ ([
-              { x: xs[i], y: 20 },
-              { x: xs[i] + 45, y: 70 },
-              { x: xs[i], y: 120 },
-            ]),
-          ]
+        ? [{ d: arch({ x: xs[i], y: 20 }, { x: xs[i] + 45, y: 70 }, { x: xs[i], y: 120 }) }]
         : [],
     ),
     strokes: kinds.flatMap((kind, i) =>

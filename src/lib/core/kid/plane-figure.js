@@ -1,28 +1,101 @@
 /**
- * Plain drawings of the review of geometry as data, drawn by `figure.svelte`:
- * named points, segments, curves, closed shapes, dividing strokes and labels.
- * Pure and DOM-free.
+ * Plain drawings of grade 2 plane geometry as data, drawn by
+ * `plane-figure.svelte`: named points, segments, lines, curves, closed shapes,
+ * open or dividing strokes and length labels. Also the geometry a child's
+ * check rests on: whether three points are collinear and where a line through
+ * two points leaves the drawing. Pure and DOM-free.
  */
+import { cross } from '#lib/geom-engine/plane.js';
 
 /** @typedef {{ x: number, y: number }} Point */
 
 /**
- * A drawing. `segments` name their two points from `dots`.
+ * A curve as an SVG path, with an optional italic name at (`x`, `y`).
+ * @typedef {{ d: string, name?: string, x?: number, y?: number }} Curve
+ */
+
+/**
+ * A drawing. `segments` and `lines` name their points from `dots`; a line runs
+ * on to the edges of the drawing, a segment stops at its two points.
  * @typedef {object} Figure
  * @property {number} w
  * @property {number} h
  * @property {Array<Point & { name: string, below?: boolean }>} [dots] a name
  *   sits above its dot, or below when a line comes down onto the dot
  * @property {Array<[string, string]>} [segments]
- * @property {Array<[Point, Point, Point]>} [curves] start, bend and end of each curve
+ * @property {Array<[string, string]>} [lines]
+ * @property {Curve[]} [curves]
  * @property {Point[][]} [shapes] closed shapes, by their corners
- * @property {Point[][]} [strokes] unnamed straight strokes, by their points
+ * @property {Point[][]} [strokes] unnamed open or dividing strokes, by their points
  * @property {Array<Point & { text: string }>} [texts]
- * @property {string} say what a screen reader hears
+ * @property {string} [say] what a screen reader hears; by default the figure
+ *   in words (`figureText`)
  */
 
 /** Runs of letters the book names points with; it skips F and J. */
 export const NAME_RUNS = /** @type {const} */ (['ABCD', 'DEGH', 'GHIK', 'MNPQ', 'KLMN']);
+
+/**
+ * Whether three points lie on one straight line (exact for whole coordinates).
+ * @param {Point} a
+ * @param {Point} b
+ * @param {Point} c
+ */
+export function areCollinear(a, b, c) {
+  return cross(a, b, c) === 0;
+}
+
+/**
+ * Where the straight line through `a` and `b` meets the edges of a `w` × `h`
+ * drawing. `a` and `b` must be different points inside it.
+ * @param {Point} a
+ * @param {Point} b
+ * @param {number} w
+ * @param {number} h
+ * @returns {[Point, Point]}
+ */
+export function lineThrough(a, b, w, h) {
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  let lo = -Infinity;
+  let hi = Infinity;
+  for (const [from, d, size] of [
+    [a.x, dx, w],
+    [a.y, dy, h],
+  ]) {
+    if (d === 0) continue;
+    const t0 = (0 - from) / d;
+    const t1 = (size - from) / d;
+    lo = Math.max(lo, Math.min(t0, t1));
+    hi = Math.min(hi, Math.max(t0, t1));
+  }
+  return [
+    { x: a.x + lo * dx, y: a.y + lo * dy },
+    { x: a.x + hi * dx, y: a.y + hi * dy },
+  ];
+}
+
+/**
+ * A wavy curve from left to right around height `y`.
+ * @param {number} y
+ * @param {number} [left]
+ * @param {number} [right]
+ * @param {number} [bend]
+ */
+export function wave(y, left = 30, right = 250, bend = 28) {
+  const third = (right - left) / 3;
+  return `M ${left} ${y} C ${left + third} ${y - bend}, ${left + 2 * third} ${y + bend}, ${right} ${y}`;
+}
+
+/**
+ * A curve from `from` to `to`, pulled towards `bend`.
+ * @param {Point} from
+ * @param {Point} bend
+ * @param {Point} to
+ */
+export function arch(from, bend, to) {
+  return `M ${from.x} ${from.y} Q ${bend.x} ${bend.y} ${to.x} ${to.y}`;
+}
 
 /** Closed shapes that fit a 70-unit square from (0, 0). */
 export const SHAPE_MODELS = /** @type {const} */ ({
@@ -149,4 +222,23 @@ export function polylineFigure(names, lengths) {
     })),
     say: `Đường gấp khúc ${names}. ${lengths.map((len, i) => `Đoạn ${letters[i]}${letters[i + 1]} dài ${len} cm`).join(', ')}.`,
   };
+}
+
+/**
+ * What is drawn, in words, for a figure with no `say` of its own.
+ * @param {Figure} figure
+ */
+export function figureText(figure) {
+  const parts = [];
+  for (const [a, b] of figure.segments ?? []) parts.push(`đoạn nối ${a} với ${b}`);
+  for (const [a, b] of figure.lines ?? []) {
+    parts.push(`đường thẳng đi qua ${a} và ${b}, kéo dài về hai phía`);
+  }
+  for (const _ of figure.curves ?? []) parts.push('đường uốn cong');
+  for (const corners of figure.shapes ?? []) parts.push(`hình ${corners.length} cạnh`);
+  for (const pts of figure.strokes ?? []) parts.push(`nét vẽ gồm ${pts.length - 1} đoạn`);
+  for (const t of figure.texts ?? []) parts.push(`số đo ${t.text}`);
+  const named = (figure.dots ?? []).map((d) => d.name);
+  const dots = named.length > 0 ? `Các điểm ${named.join(', ')}. ` : '';
+  return `${dots}${parts.join('; ')}.`;
 }
