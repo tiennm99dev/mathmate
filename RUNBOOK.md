@@ -1,10 +1,10 @@
-# Runbook — MathMax
+# Runbook — MathMate
 
 ## Deployment
 
 Production deploys from `main` via GitHub Actions (`.github/workflows/deploy.yml`).
 
-- Live URL: `https://tiennm99dev.github.io/mathmax/`
+- Live URL: `https://tiennm99dev.github.io/mathmate/`
 - Build: `npm run build` (SvelteKit static, output to `build/`)
 - Deploy mechanism: `actions/upload-pages-artifact` + `actions/deploy-pages`, phiên bản pin trong `.github/workflows/deploy.yml`
 - Concurrency: `pages-deploy` group, cancel-in-progress disabled (so a force-pushed retry doesn't abort an in-flight rollback)
@@ -33,14 +33,14 @@ Per plan, buy a `.vn` / `.com.vn` domain only when ANY of:
 2. **1 organic teacher share** (Facebook group, Zalo, or school chat — verified, not founder-initiated), OR
 3. **≥5 modules shipped** (signals content sustainability and amortizes the domain cost)
 
-If none hit within 90 days of soft launch, stay on `tiennm99dev.github.io/mathmax/`.
+If none hit within 90 days of soft launch, stay on `tiennm99dev.github.io/mathmate/`.
 
 When the trigger fires:
 
 1. Register the domain (VN registration: passport scan + address proof + MIC filing, 7–14 days)
-2. Add `CNAME` file at repo root with the new domain (e.g. `mathmax.vn`)
+2. Add `CNAME` file at repo root with the new domain (e.g. `mathmate.vn`)
 3. Configure custom domain in GitHub Pages settings (Settings → Pages → Custom domain)
-4. Update `vite.config.js`: change the SvelteKit `paths.base` default from `/mathmax` to `/`, update any hardcoded references. Or update the workflow `env:` block.
+4. Update `vite.config.js`: change the SvelteKit `paths.base` default from `/mathmate` to `/`, update any hardcoded references. Or update the workflow `env:` block.
 5. Update OpenGraph + canonical URLs (handled automatically once `vite.config.js` reflects the new domain)
 6. Wait 24h, then update sitemap submission in Google Search Console
 7. Set up 301 redirects (GitHub Pages handles this automatically once the custom domain is the primary)

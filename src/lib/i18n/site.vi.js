@@ -1,9 +1,9 @@
 export const site = {
-  title: 'MathMax',
-  repo: 'https://github.com/tiennm99dev/mathmax',
+  title: 'MathMate',
+  repo: 'https://github.com/tiennm99dev/mathmate',
   tagline: 'Toán tương tác cho học sinh lớp 1-12',
   description:
-    'MathMax giúp học sinh lớp 1-12 học toán theo sách Kết nối tri thức với cuộc sống qua tương tác: kéo, thử nghiệm và minh hoạ trực quan.',
+    'MathMate giúp học sinh lớp 1-12 học toán theo sách Kết nối tri thức với cuộc sống qua tương tác: kéo, thử nghiệm và minh hoạ trực quan.',
 };
 
 export const home = {
