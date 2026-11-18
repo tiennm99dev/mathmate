@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import { errorPage } from '#lib/core/copy.vi.js';
 import { strands } from '#lib/curriculum/index.js';
 
 /** @type {import('./$types').EntryGenerator} */
@@ -9,6 +10,6 @@ export function entries() {
 /** @type {import('./$types').PageLoad} */
 export function load({ params }) {
   const strand = strands().find((s) => s.slug === params.strand);
-  if (!strand) error(404, 'Unknown strand');
+  if (!strand) error(404, errorPage.notFound);
   return { strand };
 }

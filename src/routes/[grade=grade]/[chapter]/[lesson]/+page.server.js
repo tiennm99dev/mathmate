@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import { errorPage } from '#lib/core/copy.vi.js';
 import { gradeSlug, grades, lesson } from '#lib/curriculum/index.js';
 import { renderLesson } from '#lib/core/render-content.server.js';
 
@@ -37,7 +38,7 @@ export function entries() {
  * @type {import('./$types').PageServerLoad}
  */
 export function load({ params }) {
-  if (!lesson(params.grade, params.chapter, params.lesson)) error(404, 'Unknown lesson');
+  if (!lesson(params.grade, params.chapter, params.lesson)) error(404, errorPage.notFound);
   const content = contents[`${params.grade}/${params.chapter}/${params.lesson}`];
   return { content: content ? renderLesson(content) : null };
 }
