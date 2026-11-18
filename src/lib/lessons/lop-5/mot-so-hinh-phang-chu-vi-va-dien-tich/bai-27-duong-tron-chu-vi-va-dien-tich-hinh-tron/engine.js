@@ -27,7 +27,7 @@ export const START_X = 60;
 /** The ground line, in SVG units from the top. */
 export const GROUND_Y = 135;
 export const WHEEL_W = 480;
-export const WHEEL_H = 215;
+export const WHEEL_H = 255;
 
 /**
  * The true length of one turn, in cm, used only for drawing.

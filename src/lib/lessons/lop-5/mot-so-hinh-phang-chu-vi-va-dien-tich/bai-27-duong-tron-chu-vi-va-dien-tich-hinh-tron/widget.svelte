@@ -157,8 +157,12 @@
       rx="3"
       fill="#FCA5A5"
     />
-    <text x={START_X} y={GROUND_Y + 72} font-size="18" fill="#1E3A8A"
-      >Một vòng = {bars.whole} đường kính và thêm {num(bars.rest)} cm</text
+    <!-- two lines, so the sentence stays readable on a phone-wide board -->
+    <text x={START_X} y={GROUND_Y + 80} font-size="24" fill="#1E3A8A"
+      >Một vòng = {bars.whole} đường kính</text
+    >
+    <text x={START_X} y={GROUND_Y + 110} font-size="24" fill="#1E3A8A"
+      >và thêm {num(bars.rest)} cm</text
     >
 
     <!-- the painted trace -->
