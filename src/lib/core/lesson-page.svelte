@@ -10,6 +10,7 @@
   import PracticeBlock from './practice-block.svelte';
   import PrevNext from './prev-next.svelte';
   import KidLessonPage from './kid-lesson-page.svelte';
+  import GlossaryTerms from './glossary-terms.svelte';
   import { crumbs } from './crumbs.js';
   import { scrollRegions } from '#lib/actions/scroll-focus.js';
   import { KID_MAX_GRADE, bandOf } from './band.js';
@@ -124,6 +125,8 @@
           </ul>
         </section>
       {/if}
+
+      <GlossaryTerms terms={props.terms ?? []} />
     </article>
 
     <PrevNext {prev} {next} />

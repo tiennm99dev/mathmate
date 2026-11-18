@@ -1,13 +1,14 @@
 <script>
+  import { resolve } from '$app/paths';
   import { t } from '#lib/i18n/index.js';
   import { gradeSlug } from '#lib/curriculum/index.js';
   import SiteShell from './site-shell.svelte';
   import Breadcrumbs from './breadcrumbs.svelte';
   import ChapterCard from './chapter-card.svelte';
   import { crumbs } from './crumbs.js';
-  import { hub as copy } from './copy.vi.js';
+  import { glossary, hub as copy } from './copy.vi.js';
   import { bandOf } from './band.js';
-  import { pageTitle } from './ui.js';
+  import { focusRing, pageTitle } from './ui.js';
 
   /**
    * A grade's chapters grouped by volume (Tập 1, Tập 2, Chuyên đề), in book order.
@@ -16,6 +17,7 @@
   let { grade } = $props();
 
   const site = t();
+  const glossaryPage = resolve('/thuat-ngu/');
   const label = $derived(site.grades[gradeSlug(grade.grade)]);
   const volumes = $derived.by(() => {
     const names = [...grade.volumes];
@@ -49,5 +51,14 @@
         </ul>
       </section>
     {/each}
+
+    <p>
+      <a
+        href="{glossaryPage}#{gradeSlug(grade.grade)}"
+        data-sveltekit-reload
+        class="inline-flex min-h-11 items-center rounded font-semibold text-indigo-700 underline underline-offset-2 hover:text-indigo-900 {focusRing}"
+        >{glossary.forGrade(label)}</a
+      >
+    </p>
   </div>
 </SiteShell>

@@ -1,0 +1,10 @@
+import { termsByGrade } from '#lib/core/glossary.js';
+
+/**
+ * The glossary is built here at prerender time, so its data reaches the page
+ * as `__data.json` and never as a client chunk.
+ * @type {import('./$types').PageServerLoad}
+ */
+export function load() {
+  return { sections: termsByGrade() };
+}

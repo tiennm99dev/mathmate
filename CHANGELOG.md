@@ -20,6 +20,7 @@ All notable changes to **ToánTốt** are documented here. Format: [Keep a Chang
 
 ### Added
 
+- Trang "Thuật ngữ" (`/thuat-ngu/`): thuật ngữ của từng lớp xếp theo bảng chữ cái, kèm tên tiếng Anh, định nghĩa ngắn và liên kết tới bài học; tìm kiếm không cần gõ dấu. Liên kết ở thanh đầu trang, trang chủ, trang lớp, và khối "Thuật ngữ trong bài" ở cuối mỗi bài có thuật ngữ. Dữ liệu từng lớp nằm ở `src/lib/glossary/lop-<N>.js`.
 - `/sitemap.xml` được prerender từ chương trình: trang chủ, mọi trang lớp, chương, mạch kiến thức và bài học, với URL tuyệt đối theo `paths.origin` (`SITE_ORIGIN`).
 - Lớp 9 — Hệ phương trình bậc nhất hai ẩn (`/dai-so/he-phuong-trinh-bac-nhat/`): hai đường thẳng dạng `ax + by = c`, kéo để tịnh tiến, ba nút xem nhanh trường hợp cắt nhau / song song / trùng nhau.
 - `subtendedArc` / `angleOnCircle` trong `geom-engine/circle.js`; `morphSquareA` / `morphSquareB` trong bài Pythagoras; test hồi quy cho cả ba lỗi trên.

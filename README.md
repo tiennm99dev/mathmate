@@ -163,6 +163,8 @@ Giao diện theo cấp học nằm ở core: `src/lib/core/band.js` chia cấp (
 - `src/lib/site/decor.css`: một khối `:root` định nghĩa `--tile-line`, `--spot-line` (`url('./decor/….svg')`), `--subject-tint`, `--subject-ink`; site có lớp 1-5 thêm `--tile-kid`, `--spot-kid`.
 - `src/lib/site/decor/tile-line.svg` (480×480, nét mảnh), `spot-line.svg` (120×120), và với lớp 1-5 thêm `tile-kid.svg` (320×320, màu pastel) và `spot-kid.svg`.
 
+Trang "Thuật ngữ" (`/thuat-ngu/`) cũng nằm ở core: `src/lib/core/glossary.js` đọc dữ liệu, `glossary-page.svelte` vẽ trang (mỗi lớp một mục, xếp theo bảng chữ cái, tìm không dấu), `glossary-terms.svelte` vẽ khối "Thuật ngữ trong bài" ở cuối mỗi bài. Dữ liệu thuộc về từng site (không đồng bộ): `src/lib/glossary/lop-<N>.js` cho mỗi lớp site có, mỗi file `export default` một mảng mục `{ id, term, en, def, lesson, see?, aka? }`. `src/lib/core/glossary.test.js` kiểm tra khoá, liên kết bài học, độ dài định nghĩa (≤ 240 kí tự, ≤ 140 cho lớp 1-5), số mục mỗi lớp và dung lượng; file rỗng vẫn hợp lệ cho tới khi lớp đó được soạn.
+
 Hình là SVG vẽ tay, chỉ gồm `svg, g, path, circle, ellipse, rect, line, polyline, polygon`, không có chữ, liên kết, id hay chú thích; mỗi tile ≤ 6 KB, mỗi spot ≤ 3 KB, tổng ≤ 24 KB. `src/lib/core/decor.test.js` kiểm tra tất cả. Site anh em commit `src/lib/site/` trước, rồi mới chạy đồng bộ.
 
 ## License
