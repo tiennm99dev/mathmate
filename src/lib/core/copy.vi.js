@@ -181,7 +181,7 @@ export const glossary = {
   count: (n) => `${n} thuật ngữ`,
   learnedIn: 'Học ở:',
   seeAlso: 'Xem thêm:',
-  aka: 'Tên khác, kí hiệu:',
+  aka: 'Tên khác, từ liên quan:',
   /** @param {string} grade the grade's label, "Lớp N" */
   forGrade: (grade) => `Thuật ngữ ${grade.toLowerCase()}`,
   inLesson: 'Thuật ngữ trong bài',

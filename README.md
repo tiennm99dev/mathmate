@@ -139,6 +139,7 @@ Lớp 1-5 dùng giao diện cho bé (`kid-lesson-page.svelte`, tự chọn theo 
 - Mọi điều khiển dùng được bằng con trỏ và bàn phím, có nhãn tiếng Việt cho trình đọc màn hình, vừa màn hình 390 px.
 - Chỉ import `#lib/components/tex.svelte` khi widget cần TeX thay đổi theo thao tác; KaTeX nằm ở chunk riêng.
 - JS của một bài nên dưới 30 KB gzip; `npm run size-report` báo lỗi khi một chunk của bài vượt 60 KB.
+- `npm run size-report` cũng báo lỗi khi `build/thuat-ngu/index.html` thiếu, vượt 540 KB, vượt 100 KB gzip, hoặc tổng các thuộc tính `class` trong đó vượt 40 KB.
 - Logic không tầm thường nằm trong `engine.js` hoặc `*.svelte.js` có test Node; dự án không có jsdom.
 
 ### Kiểm tra trước khi merge
