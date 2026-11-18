@@ -150,12 +150,12 @@ export default [
     aka: ['100'],
   },
   {
-    id: 'xang-ti-met',
-    term: 'xăng-ti-mét',
-    en: 'centimetre',
-    def: 'Một đơn vị đo độ dài, viết tắt là cm. Trên thước kẻ, từ vạch 0 đến vạch 1 dài 1 cm.',
+    id: 'do-dai',
+    term: 'độ dài',
+    en: 'length',
+    def: 'Cho biết một vật dài bao nhiêu. Đơn vị đo độ dài là xăng-ti-mét, viết tắt là cm.',
     lesson: 'do-dai-va-do-do-dai/bai-26-don-vi-do-do-dai',
-    aka: ['cm'],
+    aka: ['xăng-ti-mét', 'cm'],
   },
   {
     id: 'kim-gio',

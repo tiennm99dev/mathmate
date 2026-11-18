@@ -29,7 +29,7 @@ export default [
   {
     id: 'tam',
     term: 'tâm',
-    en: 'centre',
+    en: 'center',
     def: 'Điểm ở chính giữa hình tròn. Hình tròn có tâm O gọi là hình tròn tâm O.',
     lesson: `${HINH}/bai-17-hinh-tron-tam-ban-kinh-duong-kinh-cua-hinh-tron`,
     see: ['ban-kinh', 'duong-kinh'],

@@ -108,8 +108,9 @@ export default [
     id: 'hai-vecto-cung-phuong',
     term: 'hai vectơ cùng phương',
     en: 'collinear vectors',
-    def: 'Hai vectơ có giá song song hoặc trùng nhau. Hai vectơ bằng nhau khi chúng cùng hướng và có cùng độ dài.',
+    def: 'Hai vectơ có giá song song hoặc trùng nhau. Hai vectơ cùng phương thì hoặc cùng hướng, hoặc ngược hướng.',
     lesson: 'vecto/bai-7-cac-khai-niem-mo-dau',
+    aka: ['cùng hướng', 'ngược hướng'],
   },
   {
     id: 'tong-cua-hai-vecto',

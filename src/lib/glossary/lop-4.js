@@ -32,7 +32,7 @@ export default [
     id: 'so-do-goc',
     term: 'số đo góc',
     en: 'angle measure',
-    def: 'Đo bằng thước đo góc. Đơn vị đo góc là độ, kí hiệu °: góc vuông có số đo 90°.',
+    def: 'Số ta đọc được trên thước đo góc khi đo một góc. Đơn vị đo góc là độ, kí hiệu °: góc vuông có số đo 90°.',
     lesson: 'goc-va-don-vi-do-goc/bai-7-do-goc-don-vi-do-goc',
     aka: ['độ', '°'],
   },
