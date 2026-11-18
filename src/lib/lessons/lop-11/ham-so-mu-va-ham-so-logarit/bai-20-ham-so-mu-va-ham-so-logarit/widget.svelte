@@ -3,8 +3,8 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { formatNumber, numTex, tidy } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
-  import { squareHeight } from '../_shared/plot.js';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
+  import { squareHeight } from '#lib/core/visuals/plot.js';
   import { A_MAX, A_MIN, A_STEP, WINDOW, formulas, logOf, mirror, trend } from './engine.js';
 
   const EXP = '#4f46e5';
@@ -83,7 +83,17 @@
   {/if}
 
   <div class="mx-auto max-w-md">
-    <GraphBox win={WINDOW} {label} {curves} {points} {guides} height={HEIGHT} />
+    <GraphBox
+      wide
+      xTicks={6}
+      yTicks={6}
+      win={WINDOW}
+      {label}
+      {curves}
+      {points}
+      {guides}
+      height={HEIGHT}
+    />
   </div>
 
   <SliderField

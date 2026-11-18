@@ -8,8 +8,8 @@
   import { formatNumber, numTex } from '#lib/core/number-format.js';
   import { viewPoint } from '#lib/geom-engine/solid.js';
   import { pointsAttr } from '#lib/utils/svg.js';
-  import GraphBox from '../_shared/graph-box.svelte';
-  import { approxTex, approxText } from '../_shared/plot.js';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
+  import { approxTex, approxText } from '#lib/core/visuals/plot.js';
   import {
     SOLIDS,
     arcAt,
@@ -163,6 +163,9 @@
     <div>
       <p class="mb-1 text-sm font-semibold text-slate-700">Miền phẳng ban đầu và lát cắt</p>
       <GraphBox
+        labelPoints
+        left={40}
+        xTicks={6}
         win={{ xMin: s.a - 0.5, xMax: s.b + 0.5, yMin: -0.5, yMax: 2.5 }}
         label="Miền phẳng giới hạn bởi đồ thị {s.label}, trục hoành và hai đường thẳng x = {formatNumber(
           s.a,

@@ -4,8 +4,8 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { formatNumber, numTex } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
-  import { BASES, powerBase } from '../_shared/plot.js';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
+  import { BASES, powerBase } from '../_shared/bases.js';
   import {
     DENOMINATORS,
     DIGITS_MAX,
@@ -138,7 +138,7 @@
     <Tex display math={formula} />
   </div>
 
-  <GraphBox {win} {label} {curves} {points} />
+  <GraphBox wide xTicks={6} yTicks={6} {win} {label} {curves} {points} />
 
   {#if mode === 'real'}
     <div class="overflow-x-auto">

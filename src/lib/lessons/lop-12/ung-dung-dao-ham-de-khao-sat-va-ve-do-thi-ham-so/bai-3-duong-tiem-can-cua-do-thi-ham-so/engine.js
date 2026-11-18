@@ -89,7 +89,7 @@ const tallOf = (c) => c.tall ?? 3;
  * case's centre.
  * @param {AsymCase} c
  * @param {number} k
- * @returns {import('../_shared/plot.js').Window}
+ * @returns {import('#lib/core/visuals/plot.js').Window}
  */
 export function windowAt(c, k) {
   return {

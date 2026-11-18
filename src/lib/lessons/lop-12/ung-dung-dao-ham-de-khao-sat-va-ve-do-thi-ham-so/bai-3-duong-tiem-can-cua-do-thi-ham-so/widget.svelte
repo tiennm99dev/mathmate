@@ -4,8 +4,8 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { formatNumber, numTex } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
-  import { approxTex, approxText } from '../_shared/plot.js';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
+  import { approxTex, approxText } from '#lib/core/visuals/plot.js';
   import { CASES, ZOOMS, probe, windowAt } from './engine.js';
 
   const CURVE = '#334155';
@@ -59,7 +59,7 @@
   <GraphBox
     {win}
     {label}
-    curves={[{ f: c.f, color: CURVE, breaks: c.poles }]}
+    curves={[{ f: c.f, color: CURVE, breaks: c.poles, refine: true }]}
     {lines}
     {points}
     height={300}

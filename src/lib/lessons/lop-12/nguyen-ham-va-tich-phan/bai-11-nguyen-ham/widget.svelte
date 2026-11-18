@@ -4,8 +4,8 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { formatNumber, numTex } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
-  import { approxTex, approxText } from '../_shared/plot.js';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
+  import { approxTex, approxText } from '#lib/core/visuals/plot.js';
   import { CASES, FAMILY, passesTarget } from './engine.js';
 
   const MAIN = '#4f46e5';
@@ -40,7 +40,7 @@
   /**
    * A short tangent segment of fixed screen length at (x; y) with the given
    * slope, in page coordinates.
-   * @param {import('../_shared/plot.js').Frame} fr
+   * @param {import('#lib/core/visuals/plot.js').Frame} fr
    * @param {number} y @param {number} k
    */
   function tangent(fr, y, k) {
@@ -90,6 +90,9 @@
     <div>
       <p class="mb-1 text-sm font-semibold text-slate-700">Họ nguyên hàm y = F(x) + C</p>
       <GraphBox
+        labelPoints
+        left={40}
+        xTicks={6}
         win={c.win}
         {label}
         {curves}
@@ -120,6 +123,9 @@
     <div>
       <p class="mb-1 text-sm font-semibold text-slate-700">Đồ thị của f: f(x) là hệ số góc</p>
       <GraphBox
+        labelPoints
+        left={40}
+        xTicks={6}
         win={c.dwin}
         label={dlabel}
         curves={[{ f: c.f, color: '#334155' }]}

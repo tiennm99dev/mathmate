@@ -3,10 +3,10 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { formatNumber, numTex, tidy } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
   import CurveHandle from '../_shared/curve-handle.svelte';
   import VariationTable from '../_shared/variation-table.svelte';
-  import { approxTex, approxText } from '../_shared/plot.js';
+  import { approxTex, approxText } from '#lib/core/visuals/plot.js';
   import { CASES, locate, pieces, zeroKind } from './engine.js';
 
   const UP = '#059669';

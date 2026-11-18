@@ -7,7 +7,7 @@
   import { button } from '#lib/core/ui.js';
   import { intText } from '#lib/core/number-format.js';
   import { frameLoop, reducedMotion } from '#lib/core/motion.js';
-  import GraphBox from '../_shared/graph-box.svelte';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
   import VariationTable from '../_shared/variation-table.svelte';
   import { FAMILIES, STEP_TITLES, survey } from './engine.js';
 
@@ -82,7 +82,7 @@
   const curveTo = $derived(s.win.xMin + progress * (s.win.xMax - s.win.xMin));
   const curves = $derived(
     s.ok && shownSteps >= 5
-      ? [{ f: s.f, color: '#4f46e5', breaks: s.poles, to: curveTo, width: 3 }]
+      ? [{ f: s.f, color: '#4f46e5', breaks: s.poles, refine: true, to: curveTo, width: 3 }]
       : [],
   );
   const lines = $derived(

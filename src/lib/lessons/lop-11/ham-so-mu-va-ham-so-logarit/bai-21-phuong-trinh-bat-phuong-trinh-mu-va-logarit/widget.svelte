@@ -4,8 +4,8 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { formatNumber, numTex } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
-  import { BASES, logBase, powerBase } from '../_shared/plot.js';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
+  import { BASES, logBase, powerBase } from '../_shared/bases.js';
   import { RELATIONS, SETUP, sideTex, solve, valueAt, windowFor } from './engine.js';
 
   const CURVE = '#4f46e5';
@@ -34,8 +34,8 @@
     { f: (/** @type {number} */ x) => valueAt(kind, base.value, x), color: CURVE },
     { f: () => b, color: LINE, width: 2, dashed: true },
   ]);
-  const strips = $derived(
-    rel === '=' ? [] : sol.parts.map((p) => ({ lo: p.lo, hi: p.hi, color: SET })),
+  const spans = $derived(
+    rel === '=' ? [] : sol.parts.map((p) => ({ from: p.lo, to: p.hi, color: SET, axis: true })),
   );
   const points = $derived(
     sol.x0 === null
@@ -117,7 +117,17 @@
     <Tex display math={problem} />
   </div>
 
-  <GraphBox win={windowFor(kind, sol.x0)} {label} {curves} {points} {strips} {guides} />
+  <GraphBox
+    wide
+    win={windowFor(kind, sol.x0)}
+    {label}
+    {curves}
+    {points}
+    {spans}
+    {guides}
+    xTicks={6}
+    yTicks={6}
+  />
 
   <FeedbackNote tone="info" text={meet} />
   <FeedbackNote tone="info" text={why} />

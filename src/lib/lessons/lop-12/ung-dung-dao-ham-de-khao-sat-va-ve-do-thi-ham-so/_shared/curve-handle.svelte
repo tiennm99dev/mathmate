@@ -2,7 +2,7 @@
 
 <script>
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
-  import { snapX } from './plot.js';
+  import { snapX } from './snap.js';
 
   /**
    * A drag handle that rides on the curve y = f(x) inside a `graph-box`: a
@@ -11,7 +11,7 @@
    * special values `snaps` (critical points, ends of an interval). Set
    * `onAxis` to keep the handle on the x-axis instead of on the curve.
    * @type {{
-   *   frame: import('./plot.js').Frame;
+   *   frame: import('#lib/core/visuals/plot.js').Frame;
    *   svg: () => SVGSVGElement | null;
    *   f: (x: number) => number;
    *   x: number;

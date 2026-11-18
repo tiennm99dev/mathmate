@@ -5,8 +5,8 @@
   import Tex from '#lib/components/tex.svelte';
   import { focusRing } from '#lib/core/ui.js';
   import { formatNumber, numTex, tidy } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
-  import { ZOOM_STEPS as STEPS, approach, valueCell } from '../_shared/plot.js';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
+  import { ZOOM_STEPS as STEPS, approach, valueCell } from '../_shared/approach.js';
   import { CASES, TABLE_STEPS, zoomWindow } from './engine.js';
 
   const LEFT = '#2563eb';
@@ -61,6 +61,7 @@
   </div>
 
   <GraphBox
+    wide
     {win}
     {label}
     curves={[{ f: c.f, color: CURVE, breaks: [c.x0] }]}

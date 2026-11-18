@@ -4,7 +4,7 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { formatNumber, numTex } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
   import { MODELS, atHit, mass, population, timeToFall, timeToGrow, yearsShown } from './engine.js';
 
   const CURVE = '#4f46e5';
@@ -116,7 +116,7 @@
     </div>
   {/if}
 
-  <GraphBox {win} {label} {curves} {points} {guides} />
+  <GraphBox wide xTicks={6} yTicks={6} {win} {label} {curves} {points} {guides} />
 
   <SliderField label="Thời gian t" bind:value={t} min={0} max={tMax} {step} unit="năm" />
 

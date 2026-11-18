@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { SOLIDS, regionAt, sectionArea, sliceAt, turned } from './engine.js';
-import { simpson } from '../_shared/plot.js';
+import { simpson } from '#lib/core/visuals/plot.js';
 
 describe('solids of revolution', () => {
   it('the stated volume is π times the integral of f²', () => {

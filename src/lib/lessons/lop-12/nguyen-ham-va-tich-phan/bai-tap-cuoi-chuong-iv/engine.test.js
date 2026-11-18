@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { ROUNDS, checkArea } from './engine.js';
-import { simpson } from '../_shared/plot.js';
+import { simpson } from '#lib/core/visuals/plot.js';
 
 describe('shaded-region rounds', () => {
   it('the stated area is the integral of |f − g| over the region', () => {

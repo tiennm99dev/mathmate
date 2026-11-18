@@ -4,14 +4,14 @@
  * draw them in.
  */
 
-import { riemann } from '../_shared/plot.js';
+import { riemann } from '../_shared/riemann.js';
 
 /**
  * @typedef {{
  *   id: string, label: string, fTex: string, FTex: string,
  *   f: (x: number) => number, F: (x: number) => number,
  *   a: number, b: number, aTex: string, bTex: string, valueTex: string,
- *   win: import('../_shared/plot.js').Window,
+ *   win: import('#lib/core/visuals/plot.js').Window,
  * }} Case
  */
 
@@ -75,7 +75,7 @@ export const CASES = [
   },
 ];
 
-/** @typedef {import('../_shared/plot.js').Rule} Rule */
+/** @typedef {import('../_shared/riemann.js').Rule} Rule */
 
 /** The ways of choosing each rectangle's height. */
 export const RULES = /** @type {const} */ ([

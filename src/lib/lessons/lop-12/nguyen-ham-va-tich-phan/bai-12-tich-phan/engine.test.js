@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { CASES, exactOf, sumOf } from './engine.js';
-import { simpson } from '../_shared/plot.js';
+import { simpson } from '#lib/core/visuals/plot.js';
 
 describe('integral cases', () => {
   it('F(b) − F(a) matches a numeric integral and the stated value', () => {

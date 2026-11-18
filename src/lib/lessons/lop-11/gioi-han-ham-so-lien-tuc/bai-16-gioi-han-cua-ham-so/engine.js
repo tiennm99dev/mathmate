@@ -7,7 +7,7 @@
  * window can zoom in with them.
  */
 
-import { zoomAround } from '../_shared/plot.js';
+import { zoomAround } from '../_shared/approach.js';
 
 /**
  * @typedef {object} LimitCase

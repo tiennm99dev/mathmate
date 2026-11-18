@@ -20,8 +20,8 @@ import { variationOf } from '../_shared/variation.js';
  * @property {string[]} intervals TeX of the intervals between them, from −∞ to +∞
  * @property {import('../_shared/variation.js').Variation} table
  * @property {{ lo: number, hi: number }} range where the point may go
- * @property {import('../_shared/plot.js').Window} win the window of f
- * @property {import('../_shared/plot.js').Window} dwin the window of f′
+ * @property {import('#lib/core/visuals/plot.js').Window} win the window of f
+ * @property {import('#lib/core/visuals/plot.js').Window} dwin the window of f′
  * @property {string} why rich text: why f′ keeps or changes its sign
  */
 

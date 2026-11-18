@@ -21,7 +21,7 @@ import { formatNumber, tidy } from '#lib/core/number-format.js';
  * @property {string} formula the family with the letter m, as plain text
  * @property {{ min: number, max: number, step: number }} range of m
  * @property {number} start
- * @property {import('../_shared/plot.js').Window} win
+ * @property {import('#lib/core/visuals/plot.js').Window} win
  * @property {string} locus the curve the extremum points trace, as plain text
  * @property {(x: number) => number} [locusF]
  */

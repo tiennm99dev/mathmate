@@ -5,8 +5,8 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import { formatNumber, numTex } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
-  import GraphBox from '../_shared/graph-box.svelte';
-  import { approxTex } from '../_shared/plot.js';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
+  import { approxTex } from '#lib/core/visuals/plot.js';
   import { TASKS, errorBound, leastN, trapezoid } from './engine.js';
 
   /**
@@ -81,6 +81,9 @@
   <SliderField label="Số đoạn chia n" bind:value={n} min={1} max={MAX_N} />
 
   <GraphBox
+    labelPoints
+    left={40}
+    xTicks={6}
     win={t.win}
     label={graphLabel}
     regions={[{ f: t.f, from: t.a, to: t.b, color: '#a5b4fc', opacity: 0.35 }]}

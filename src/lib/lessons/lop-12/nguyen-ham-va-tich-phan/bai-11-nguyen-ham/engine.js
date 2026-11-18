@@ -10,7 +10,7 @@ import { tidy } from '#lib/core/number-format.js';
  * @typedef {{
  *   id: string, label: string, fTex: string, FTex: string, ruleTex: string,
  *   f: (x: number) => number, F: (x: number) => number,
- *   win: import('../_shared/plot.js').Window, dwin: import('../_shared/plot.js').Window,
+ *   win: import('#lib/core/visuals/plot.js').Window, dwin: import('#lib/core/visuals/plot.js').Window,
  *   lo: number, hi: number,
  *   target: { x: number, xTex: string, y: number, c: number },
  * }} Case

@@ -4,9 +4,9 @@
   import DragPoint from '#lib/core/visuals/drag-point.svelte';
   import { formatNumber, numTex, tidy } from '#lib/core/number-format.js';
   import { pointsAttr } from '#lib/utils/svg.js';
-  import GraphBox from '../_shared/graph-box.svelte';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
   import CurveHandle from '../_shared/curve-handle.svelte';
-  import { snapX } from '../_shared/plot.js';
+  import { snapX } from '../_shared/snap.js';
   import { SHEETS, best, boxFaces, slope, volume } from './engine.js';
 
   const STEP = 0.1;

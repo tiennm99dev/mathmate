@@ -4,7 +4,7 @@
   import Tex from '#lib/components/tex.svelte';
   import LiveRichText from '#lib/components/live-rich-text.svelte';
   import { button } from '#lib/core/ui.js';
-  import GraphBox from '../_shared/graph-box.svelte';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
   import VariationTable from '../_shared/variation-table.svelte';
   import {
     LETTERS,
@@ -102,7 +102,7 @@
         <GraphBox
           win={round.win}
           label={graphText(item, i + 1)}
-          curves={[{ f: item.f, color: '#4f46e5', breaks: breaksOf(item) }]}
+          curves={[{ f: item.f, color: '#4f46e5', breaks: breaksOf(item), refine: true }]}
           lines={linesOf(item)}
           points={pointsOf(item)}
           height={260}

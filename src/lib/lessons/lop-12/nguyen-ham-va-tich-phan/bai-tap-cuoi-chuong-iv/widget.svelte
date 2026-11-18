@@ -2,7 +2,7 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { button, textInput } from '#lib/core/ui.js';
-  import GraphBox from '../_shared/graph-box.svelte';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
   import { ROUNDS, checkArea } from './engine.js';
 
   let index = $state(0);
@@ -79,6 +79,9 @@
     <Tex display math={round.tex} />
   </div>
   <GraphBox
+    labelPoints
+    left={40}
+    xTicks={6}
     win={round.win}
     label="Miền phẳng tô màu xanh giới hạn bởi các đường đã cho."
     {regions}

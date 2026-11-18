@@ -8,9 +8,9 @@
 
 import { numTex } from '#lib/core/number-format.js';
 import { exactValueTex } from '../_shared/values.js';
-import { logBase, powerBase } from '../_shared/plot.js';
+import { logBase, powerBase } from '../_shared/bases.js';
 
-/** @typedef {import('../_shared/plot.js').Base} Base */
+/** @typedef {import('../_shared/bases.js').Base} Base */
 /** @typedef {'=' | '>' | '>=' | '<' | '<='} Relation */
 /** @typedef {'exp' | 'log'} Kind */
 

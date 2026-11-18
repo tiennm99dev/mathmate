@@ -79,7 +79,7 @@ export const FAMILIES = [
  * @property {number[]} poles
  * @property {Array<{ a?: number, b?: number, c?: number, vertical?: boolean }>} asymptotes
  * @property {Special[]} specials
- * @property {import('../_shared/plot.js').Window} win
+ * @property {import('#lib/core/visuals/plot.js').Window} win
  */
 
 const INF = { pos: '+∞', neg: '−∞' };
@@ -154,7 +154,7 @@ export function crossings(f, lo, hi, poles) {
 /**
  * A window holding the interesting points with some room.
  * @param {number[]} xs @param {number[]} ys
- * @returns {import('../_shared/plot.js').Window}
+ * @returns {import('#lib/core/visuals/plot.js').Window}
  */
 export function windowFor(xs, ys) {
   const x0 = Math.min(...xs);

@@ -6,7 +6,7 @@
  * and the least n that makes the bound smaller than a given accuracy ε.
  */
 
-import { simpson } from '../_shared/plot.js';
+import { simpson } from '#lib/core/visuals/plot.js';
 
 /** @typedef {(x: number) => number} Fn */
 

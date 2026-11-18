@@ -8,9 +8,9 @@
 import { numTex, tidy } from '#lib/core/number-format.js';
 import { int, pick } from '#lib/core/drill.js';
 import { exactValueTex } from '../_shared/values.js';
-import { logBase, powerBase } from '../_shared/plot.js';
+import { logBase, powerBase } from '../_shared/bases.js';
 
-/** @typedef {import('../_shared/plot.js').Base} Base */
+/** @typedef {import('../_shared/bases.js').Base} Base */
 
 /** The exponents of the converter, in halves. */
 export const ALPHA_MIN = -3;

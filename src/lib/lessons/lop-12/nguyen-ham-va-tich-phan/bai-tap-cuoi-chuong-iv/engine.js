@@ -12,7 +12,7 @@ import { readNumber } from '#lib/core/decimal.js';
  *   tex: string,
  *   f: (x: number) => number, g?: (x: number) => number,
  *   from: number, to: number,
- *   win: import('../_shared/plot.js').Window,
+ *   win: import('#lib/core/visuals/plot.js').Window,
  *   options: string[], correct: number,
  *   area: number, areaTex: string,
  *   why: string, steps: string,

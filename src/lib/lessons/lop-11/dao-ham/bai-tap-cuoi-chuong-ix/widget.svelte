@@ -5,8 +5,8 @@
   import { textInput } from '#lib/core/ui.js';
   import { formatNumber, numTex } from '#lib/core/number-format.js';
   import { readNumber } from '#lib/core/decimal.js';
-  import GraphBox from '../_shared/graph-box.svelte';
-  import { lineTex } from '../_shared/plot.js';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
+  import { lineTex } from '../_shared/lines.js';
   import { PROBLEMS, judge } from './engine.js';
 
   const CURVE = '#334155';
@@ -87,6 +87,7 @@
   </div>
 
   <GraphBox
+    wide
     win={p.view}
     {label}
     {curves}

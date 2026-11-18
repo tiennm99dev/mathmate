@@ -4,7 +4,7 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import { button } from '#lib/core/ui.js';
   import { formatNumber } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
   import { FAMILIES, familyOf, pointText, survey } from './engine.js';
 
   /** @typedef {import('./engine.js').FamilyId} FamilyId */
@@ -59,9 +59,11 @@
   }
 
   const curves = $derived([
-    ...(tracing ? past.map((p) => ({ f: p.f, color: TRACE, breaks: p.breaks, width: 1.5 })) : []),
+    ...(tracing
+      ? past.map((p) => ({ f: p.f, color: TRACE, breaks: p.breaks, refine: true, width: 1.5 }))
+      : []),
     ...(showLocus && fam.locusF ? [{ f: fam.locusF, color: LOCUS, width: 2, dashed: true }] : []),
-    { f: s.f, color: CURVE, breaks: s.breaks },
+    { f: s.f, color: CURVE, breaks: s.breaks, refine: true },
   ]);
 
   const lines = $derived(

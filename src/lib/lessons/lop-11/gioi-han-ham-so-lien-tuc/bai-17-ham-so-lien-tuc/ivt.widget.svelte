@@ -2,7 +2,7 @@
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import { button } from '#lib/core/ui.js';
   import { formatNumber, numTex } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
   import { bisect, ivtF } from './engine.js';
 
   const MAX_STEPS = 12;
@@ -59,6 +59,8 @@
 
 <div class="space-y-4">
   <GraphBox
+    wide
+    clipChildren
     {win}
     {label}
     curves={[{ f: ivtF, color: CURVE }]}

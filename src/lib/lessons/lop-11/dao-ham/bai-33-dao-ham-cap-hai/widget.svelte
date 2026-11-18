@@ -6,8 +6,8 @@
   import { button } from '#lib/core/ui.js';
   import { formatNumber, numTex, tidy } from '#lib/core/number-format.js';
   import { frameLoop, reducedMotion } from '#lib/core/motion.js';
-  import GraphBox from '../_shared/graph-box.svelte';
-  import { lineThrough } from '../_shared/plot.js';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
+  import { lineThrough } from '../_shared/lines.js';
   import { MOTIONS, motionState, windowOf } from './engine.js';
 
   const S_COLOR = '#2563eb';
@@ -127,6 +127,7 @@
       <figure class="min-w-0">
         <figcaption class="mb-1 text-sm font-semibold text-slate-700">{g.title}</figcaption>
         <GraphBox
+          wide
           win={g.win}
           label={g.label}
           curves={g.curves}

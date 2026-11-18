@@ -6,7 +6,7 @@
   import { button } from '#lib/core/ui.js';
   import { frameLoop, reducedMotion } from '#lib/core/motion.js';
   import { formatNumber, numTex } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
   import { FAMILIES, M_MAX, M_MIN, M_STEP, isContinuous } from './engine.js';
 
   const CURVE = '#4f46e5';
@@ -111,6 +111,7 @@
   </div>
 
   <GraphBox
+    wide
     {win}
     {label}
     curves={[{ f, color: CURVE, breaks: ok ? [] : [fam.x0], to: end }]}

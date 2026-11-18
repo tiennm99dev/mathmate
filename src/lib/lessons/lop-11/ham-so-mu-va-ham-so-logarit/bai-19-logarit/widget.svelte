@@ -7,7 +7,7 @@
   import { rng } from '#lib/core/drill.js';
   import { readNumber } from '#lib/core/decimal.js';
   import { formatNumber, MINUS } from '#lib/core/number-format.js';
-  import { BASES } from '../_shared/plot.js';
+  import { BASES } from '../_shared/bases.js';
   import { nearFraction } from '../_shared/values.js';
   import { ALPHA_MAX, ALPHA_MIN, ALPHA_STEP, challenge, convertTex, isLog } from './engine.js';
 

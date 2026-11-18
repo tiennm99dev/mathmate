@@ -15,7 +15,7 @@
  * @property {number[]} crit the zeros of f′ (and points where f′ does not exist)
  * @property {{ lo: number, hi: number }} range where the ends a and b may go
  * @property {{ a: number, b: number }} start the first [a; b]
- * @property {import('../_shared/plot.js').Window} win
+ * @property {import('#lib/core/visuals/plot.js').Window} win
  */
 
 /** @type {RangeCase[]} */

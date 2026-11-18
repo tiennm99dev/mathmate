@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { BASES } from '../_shared/plot.js';
+import { BASES } from '../_shared/bases.js';
 import {
   challenge,
   convertTex,

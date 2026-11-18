@@ -6,8 +6,8 @@
   import { textInput } from '#lib/core/ui.js';
   import { formatNumber, numTex, tidy } from '#lib/core/number-format.js';
   import { readNumber } from '#lib/core/decimal.js';
-  import GraphBox from '../_shared/graph-box.svelte';
-  import { ZOOM_STEPS, zoomAround } from '../_shared/plot.js';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
+  import { ZOOM_STEPS, zoomAround } from '../_shared/approach.js';
   import { PROBLEMS, isRight, miss } from './engine.js';
 
   const CURVE = '#334155';
@@ -86,7 +86,7 @@
     <input class={textInput} inputmode="text" autocomplete="off" bind:value={typed} />
   </label>
 
-  <GraphBox {win} {label} {curves} {points} marks={[p.x0]} />
+  <GraphBox wide {win} {label} {curves} {points} marks={[p.x0]} />
 
   <SliderField
     label="Phóng to quanh x₀"

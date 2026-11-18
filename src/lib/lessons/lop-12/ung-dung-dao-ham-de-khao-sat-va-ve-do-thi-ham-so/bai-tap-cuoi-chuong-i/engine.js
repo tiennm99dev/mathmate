@@ -22,7 +22,7 @@ import { variationOf } from '../_shared/variation.js';
  * @property {string} clue rich text: what on the graph tells this function apart
  * @typedef {object} Round
  * @property {string} label
- * @property {import('../_shared/plot.js').Window} win
+ * @property {import('#lib/core/visuals/plot.js').Window} win
  * @property {Item[]} items in the order the graphs are shown
  * @property {number[]} formulas the item shown as formula A, B, C
  * @property {number[]} tables the item shown as table I, II, III

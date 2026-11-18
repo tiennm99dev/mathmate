@@ -5,8 +5,8 @@
   import Tex from '#lib/components/tex.svelte';
   import { focusRing } from '#lib/core/ui.js';
   import { formatNumber, numTex, tidy } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
-  import { lineTex, lineThrough } from '../_shared/plot.js';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
+  import { lineTex, lineThrough } from '../_shared/lines.js';
   import { CASES, H_SIZES, TABLE_H, firstStart, secantSlope } from './engine.js';
 
   const CURVE = '#334155';
@@ -83,7 +83,7 @@
     <Tex display math={`${c.tex}, \\quad ${c.dtex}`} />
   </div>
 
-  <GraphBox win={c.view} {label} {curves} {points} marks={[x0]} />
+  <GraphBox wide win={c.view} {label} {curves} {points} marks={[x0]} />
 
   <div class="grid gap-3 sm:grid-cols-2">
     <SliderField

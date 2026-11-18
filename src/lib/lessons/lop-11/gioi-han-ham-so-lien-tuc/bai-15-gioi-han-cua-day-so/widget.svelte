@@ -4,7 +4,7 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { formatNumber, numTex } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
   import { EPSILONS, LEVELS, SEQUENCES, SHOWN, firstInside, isInside } from './engine.js';
 
   const IN = '#059669';
@@ -72,7 +72,7 @@
     <Tex display math={`${seq.tex}, \\quad \\lim_{n \\to +\\infty} ${sym}_n = ${seq.limitTex}`} />
   </div>
 
-  <GraphBox {win} {label} {points} {bands} curves={limitLine} />
+  <GraphBox wide {win} {label} {points} {bands} curves={limitLine} />
 
   <SliderField
     label={finite ? 'Độ rộng dải ε' : 'Mức M'}

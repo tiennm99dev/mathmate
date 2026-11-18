@@ -7,10 +7,10 @@
 
 import { numTex, tidy } from '#lib/core/number-format.js';
 import { gcd } from '#lib/numtheory-engine/index.js';
-import { powerBase } from '../_shared/plot.js';
+import { powerBase } from '../_shared/bases.js';
 import { exactValueTex } from '../_shared/values.js';
 
-/** @typedef {import('../_shared/plot.js').Base} Base */
+/** @typedef {import('../_shared/bases.js').Base} Base */
 
 /** Integer exponents the slider offers, and rational ones m/n. */
 export const N_MIN = -3;

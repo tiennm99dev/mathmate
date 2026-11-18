@@ -4,8 +4,8 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { formatNumber, numTex, tidy } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
-  import { approxTex, approxText } from '../_shared/plot.js';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
+  import { approxTex, approxText } from '#lib/core/visuals/plot.js';
   import { CASES, RULES, exactOf, sumOf } from './engine.js';
 
   let id = $state('square');
@@ -54,6 +54,9 @@
   </div>
 
   <GraphBox
+    labelPoints
+    left={40}
+    xTicks={6}
     win={c.win}
     {label}
     regions={[{ f: c.f, from: c.a, to: c.b, color: '#6366f1', opacity: 0.15 }]}

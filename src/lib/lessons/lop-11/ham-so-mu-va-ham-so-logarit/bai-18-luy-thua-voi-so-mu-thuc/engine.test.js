@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { BASES } from '../_shared/plot.js';
+import { BASES } from '../_shared/bases.js';
 import {
   IRRATIONALS,
   approximations,

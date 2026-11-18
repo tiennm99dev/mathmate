@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { ZOOM_STEPS as STEPS } from '../_shared/plot.js';
+import { ZOOM_STEPS as STEPS } from '../_shared/approach.js';
 import { CASES, zoomWindow } from './engine.js';
 
 describe('one-sided limit cases', () => {

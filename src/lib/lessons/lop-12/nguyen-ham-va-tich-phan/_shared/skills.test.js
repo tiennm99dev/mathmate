@@ -3,7 +3,7 @@ import { rng } from '#lib/core/drill.js';
 import { numberText, readNumber } from '#lib/core/decimal.js';
 import { evaluate } from '#lib/algebra-engine/polynomial.js';
 import { CHAPTER_SKILLS, quadraticWithWholePrimitive } from './skills.js';
-import { simpson } from './plot.js';
+import { simpson } from '#lib/core/visuals/plot.js';
 
 describe('chapter skills', () => {
   it('G is an antiderivative of f with whole coefficients', () => {

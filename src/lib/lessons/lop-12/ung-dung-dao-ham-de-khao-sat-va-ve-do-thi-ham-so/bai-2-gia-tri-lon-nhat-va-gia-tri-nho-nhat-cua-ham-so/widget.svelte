@@ -3,9 +3,9 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import Tex from '#lib/components/tex.svelte';
   import { formatNumber, numTex, tidy } from '#lib/core/number-format.js';
-  import GraphBox from '../_shared/graph-box.svelte';
+  import GraphBox from '#lib/core/visuals/graph-box.svelte';
   import CurveHandle from '../_shared/curve-handle.svelte';
-  import { approxTex, approxText } from '../_shared/plot.js';
+  import { approxTex, approxText } from '#lib/core/visuals/plot.js';
   import { CASES, candidates, extreme } from './engine.js';
 
   const MAX = '#dc2626';
