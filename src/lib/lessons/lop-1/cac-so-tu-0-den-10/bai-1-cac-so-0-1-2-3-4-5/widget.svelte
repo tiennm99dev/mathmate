@@ -117,7 +117,7 @@
       aria-label="Khay có {inTray} {noun}"
     >
       {#if inTray === 0}
-        <span class="px-2 text-lg text-slate-500">Khay đang trống</span>
+        <span class="px-2 text-lg text-slate-600">Khay đang trống</span>
       {/if}
       {#each { length: inTray } as _, i (i)}
         {#if mode === 'fill'}

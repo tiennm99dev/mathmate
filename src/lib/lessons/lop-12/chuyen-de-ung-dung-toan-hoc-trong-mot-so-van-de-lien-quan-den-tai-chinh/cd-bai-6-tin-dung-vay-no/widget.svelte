@@ -2,6 +2,7 @@
   import LiveRichText from '#lib/components/live-rich-text.svelte';
   import FeedbackNote from '#lib/core/feedback-note.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
+  import { scrollFocus } from '#lib/actions/scroll-focus.js';
   import { focusRing } from '#lib/core/ui.js';
   import { formatNumber } from '#lib/core/number-format.js';
   import { clamp } from '#lib/core/visuals/svg-math.js';
@@ -140,7 +141,10 @@
     <LiveRichText text={rowText(loan, period)} />
   </p>
 
-  <div class="max-h-64 overflow-auto rounded-lg border border-slate-200">
+  <div
+    class="max-h-64 overflow-auto rounded-lg border border-slate-200 {focusRing}"
+    use:scrollFocus
+  >
     <table class="w-full text-right text-sm tabular-nums">
       <caption class="sr-only">Lịch trả nợ (triệu đồng)</caption>
       <thead class="sticky top-0 bg-slate-100 text-slate-700">
