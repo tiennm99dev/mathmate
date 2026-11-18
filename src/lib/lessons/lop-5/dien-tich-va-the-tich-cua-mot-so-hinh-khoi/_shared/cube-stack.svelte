@@ -72,9 +72,10 @@
   function play(event) {
     halt();
     count = 0;
+    // The animation disables this button until the box is full.
+    passFocus(/** @type {HTMLButtonElement} */ (event.currentTarget), resetButton);
     if (reducedMotion()) {
       count = total;
-      passFocus(/** @type {HTMLButtonElement} */ (event.currentTarget), resetButton);
       return;
     }
     playing = true;
