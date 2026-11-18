@@ -1,4 +1,5 @@
 <script>
+  import { passFocus } from '#lib/core/kid/pass-focus.js';
   import { focusRing } from '#lib/core/ui.js';
 
   /**
@@ -18,12 +19,19 @@
 
   const id = $props.id();
 
+  /** @type {HTMLButtonElement | undefined} */
+  let down = $state();
+  /** @type {HTMLButtonElement | undefined} */
+  let up = $state();
+
   /** @param {number} delta */
   function bump(delta) {
     const next = Math.min(max, Math.max(min, value + delta));
     if (next === value) return;
     value = next;
     onchange?.(next);
+    // A button that reaches its end is disabled, so focus moves to the other one.
+    passFocus(delta < 0 ? down : up, delta < 0 ? up : down);
   }
 
   const btn = `inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-300 bg-white text-xl font-bold text-slate-700 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40 ${focusRing}`;
@@ -34,6 +42,7 @@
   <button
     type="button"
     class={btn}
+    bind:this={down}
     onclick={() => bump(-1)}
     disabled={value <= min}
     aria-label="Giảm {label}">−</button
@@ -44,6 +53,7 @@
   <button
     type="button"
     class={btn}
+    bind:this={up}
     onclick={() => bump(1)}
     disabled={value >= max}
     aria-label="Tăng {label}">+</button

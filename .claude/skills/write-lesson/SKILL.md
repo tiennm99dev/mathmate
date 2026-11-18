@@ -334,7 +334,8 @@ Other shared pieces:
   (`3x²y − xy + 5`), and roots `rootValue` (`= 2,5` or `≈ 1,414`),
   `isShortDecimal`, `numText`.
   `#lib/core/frac.svelte` draws a stacked fraction in HTML (no KaTeX) and
-  `#lib/core/stepper.svelte` is a labelled − / + whole-number stepper.
+  `#lib/core/stepper.svelte` is a labelled − / + whole-number stepper (a
+  button that reaches its end hands focus to the other one).
 - `#lib/core/decimal.js`: exact decimals from integers: `expand` (long
   division with its remainders and period), `decimalText` (`0,(45)`),
   `decimalTex`, `digitAt`, `roundFraction`, `sqrtFloor`, `roundSqrt`,
