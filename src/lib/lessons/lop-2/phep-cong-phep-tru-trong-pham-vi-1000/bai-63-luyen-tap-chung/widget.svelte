@@ -1,7 +1,7 @@
 <script>
   import ChoiceRound from '#lib/core/kid/choice-round.svelte';
-  import ColumnBoard from '../_shared/column-board.svelte';
-  import { resultDigits } from '../_shared/column-three.js';
+  import ColumnBoard from '#lib/core/kid/place-column-board.svelte';
+  import { resultDigits, writtenList } from '../_shared/column-three.js';
   import { KIND_LABELS, buildRound } from './engine.js';
 
   const LIST_KINDS = ['lon-be', 'sai'];
@@ -20,9 +20,10 @@
           a={q.visual.a}
           b={q.visual.b}
           op={q.visual.op}
+          width={3}
           written={settled
-            ? resultDigits(q.visual.a, q.visual.b, q.visual.op)
-            : { ones: null, tens: null, hundreds: null }}
+            ? writtenList(resultDigits(q.visual.a, q.visual.b, q.visual.op))
+            : [null, null, null]}
         />
       </div>
     {/if}

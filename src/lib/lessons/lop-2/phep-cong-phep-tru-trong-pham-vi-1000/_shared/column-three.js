@@ -30,6 +30,20 @@ export const PLACE_WORDS = /** @type {const} */ ({
 const VALUE = { ones: 1, tens: 10, hundreds: 100 };
 
 /**
+ * A place as the power of ten that `place-column-board.svelte` counts by, or
+ * null for no place.
+ * @param {Place | null} place
+ */
+export const placeIndex = (place) => (place === null ? null : PLACES.indexOf(place));
+
+/**
+ * Written digits by place name, as the list `place-column-board.svelte` takes,
+ * ones first.
+ * @param {Record<Place, number | null>} written
+ */
+export const writtenList = (written) => PLACES.map((p) => written[p]);
+
+/**
  * The digit of `n` at a place, or null when `n` is too short to have one (the
  * tens of 7).
  * @param {number} n

@@ -9,8 +9,11 @@ import {
   columnSteps,
   columnText,
   isShowable,
+  placeIndex,
   planOf,
+  resultDigits,
   viewAt,
+  writtenList,
 } from './column-three.js';
 import {
   ADD_CARRY_ONES,
@@ -212,5 +215,18 @@ describe('the block plan', () => {
     const view = viewAt(651, 635, '-', planOf(651, 635, '-').length);
     expect(view.written).toEqual({ ones: 6, tens: 1, hundreds: null });
     expect(view.active).toBe(null);
+  });
+});
+
+describe('the board of places', () => {
+  it('counts places by power of ten', () => {
+    expect(placeIndex('ones')).toBe(0);
+    expect(placeIndex('hundreds')).toBe(2);
+    expect(placeIndex(null)).toBe(null);
+  });
+
+  it('lists the written digits ones first', () => {
+    expect(writtenList(resultDigits(427, 246, '+'))).toEqual([3, 7, 6]);
+    expect(writtenList({ ones: 3, tens: null, hundreds: null })).toEqual([3, null, null]);
   });
 });

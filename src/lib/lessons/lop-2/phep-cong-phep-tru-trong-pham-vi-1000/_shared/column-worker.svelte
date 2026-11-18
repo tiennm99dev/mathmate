@@ -2,7 +2,7 @@
   import { tick } from 'svelte';
   import { button, focusRing } from '#lib/core/ui.js';
   import { equationText } from '#lib/core/kid/column.js';
-  import ColumnBoard from './column-board.svelte';
+  import ColumnBoard from '#lib/core/kid/place-column-board.svelte';
   import PlaceChart from './place-chart.svelte';
   import {
     actionAsk,
@@ -10,8 +10,10 @@
     columnSteps,
     digitHint,
     PLACE_WORDS,
+    placeIndex,
     planOf,
     viewAt,
+    writtenList,
   } from './column-three.js';
 
   /**
@@ -75,7 +77,15 @@
   <PlaceChart columns={view.columns} active={view.active} {op} />
 
   <div class="flex flex-wrap items-start justify-center gap-3">
-    <ColumnBoard {a} {b} {op} written={view.written} carried={view.carried} active={view.active} />
+    <ColumnBoard
+      {a}
+      {b}
+      {op}
+      width={3}
+      written={writtenList(view.written)}
+      carried={placeIndex(view.carried)}
+      active={placeIndex(view.active)}
+    />
     <p
       bind:this={feedback}
       tabindex="-1"

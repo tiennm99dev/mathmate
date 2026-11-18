@@ -5,7 +5,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button } from '#lib/core/ui.js';
   import BrokenLine from '../_shared/broken-line.svelte';
-  import ColumnBoard from '../_shared/column-board.svelte';
+  import ColumnBoard from '#lib/core/kid/place-column-board.svelte';
   import { columnSteps } from '../_shared/columns.js';
   import { passFocus } from '#lib/core/kid/pass-focus.js';
   import { resultOf } from '#lib/core/kid/column.js';

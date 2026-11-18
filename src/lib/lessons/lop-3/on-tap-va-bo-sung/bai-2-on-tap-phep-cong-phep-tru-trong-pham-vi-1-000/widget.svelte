@@ -6,7 +6,7 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
   import { columnSteps, columnWords, PLACE_NAMES } from '../_shared/columns.js';
-  import ColumnBoard from '../_shared/column-board.svelte';
+  import ColumnBoard from '#lib/core/kid/place-column-board.svelte';
   import { BOOK_CALCS, SKILLS, boardWidth, calcAt, workerView } from './engine.js';
 
   let mode = $state(/** @type {'work' | 'quiz'} */ ('work'));
