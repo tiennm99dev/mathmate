@@ -3,7 +3,7 @@
   import Picture from '#lib/core/kid/picture.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import PictureChart from '../_shared/picture-chart.svelte';
+  import PictureChart from '#lib/core/kid/picture-chart.svelte';
   import { KIND_LABELS, MAX_PICTURES, buildMessage, buildRound, makeTask } from './engine.js';
 
   let mode = $state(/** @type {'build' | 'quiz'} */ ('build'));

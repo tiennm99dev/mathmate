@@ -1,5 +1,5 @@
 <script>
-  import BallBox from './ball-box.svelte';
+  import BallBox from '#lib/core/kid/ball-box.svelte';
   import ClockFace from './clock-face.svelte';
   import ColumnSheet from './column-sheet.svelte';
   import DataTable from './data-table.svelte';

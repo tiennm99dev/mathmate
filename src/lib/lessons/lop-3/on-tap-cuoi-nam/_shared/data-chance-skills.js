@@ -5,7 +5,7 @@
 import { int, pick, shuffle } from '#lib/core/drill.js';
 import { fmt } from '#lib/core/number-format.js';
 import { mixOptions } from '#lib/core/kid/quiz.js';
-import { CHANCES } from '#lib/core/kid/chance.js';
+import { BALL_COLORS, CHANCES } from '#lib/core/kid/chance.js';
 import { boxText, chanceOfOne } from './chance.js';
 import { dong, valueOptions } from './options.js';
 
@@ -213,7 +213,15 @@ export const savingsSkill = {
 };
 
 /** @type {ReadonlyArray<BallColor>} */
-const COLORS = ['đỏ', 'xanh', 'vàng', 'trắng', 'nâu', 'tím'];
+const COLORS = ['do', 'xanh', 'vang', 'trang', 'nau', 'tim'];
+
+/**
+ * `n` balls of one colour.
+ * @param {BallColor} color
+ * @param {number} n
+ * @returns {BallColor[]}
+ */
+const repeat = (color, n) => Array.from({ length: n }, () => color);
 
 /** @type {ReviewSkill} */
 export const oneBall = {
@@ -224,13 +232,11 @@ export const oneBall = {
     const kind = int(rand, 0, 2);
     const balls =
       kind === 0
-        ? [{ color: x, count: int(rand, 3, 6) }]
-        : [
-            { color: x, count: int(rand, 2, 4) },
-            { color: y, count: int(rand, 1, 3) },
-          ];
-    const color = kind === 2 ? z : rand() < 0.5 || kind === 0 ? x : y;
-    const right = chanceOfOne(balls, color);
+        ? repeat(x, int(rand, 3, 6))
+        : [...repeat(x, int(rand, 2, 4)), ...repeat(y, int(rand, 1, 3))];
+    const id = kind === 2 ? z : rand() < 0.5 || kind === 0 ? x : y;
+    const right = chanceOfOne(balls, id);
+    const color = BALL_COLORS[id].name;
     return {
       prompt: `Nhắm mắt lấy ra 1 quả bóng từ hộp. Lấy được quả bóng ${color} là:`,
       visual: { type: 'box', balls },
@@ -254,7 +260,9 @@ export const oneBall = {
  * @param {BallColor} b
  */
 export const pairText = (a, b) =>
-  a === b ? `2 quả bóng ${a}` : `1 quả bóng ${a} và 1 quả bóng ${b}`;
+  a === b
+    ? `2 quả bóng ${BALL_COLORS[a].name}`
+    : `1 quả bóng ${BALL_COLORS[a].name} và 1 quả bóng ${BALL_COLORS[b].name}`;
 
 /** @type {ReviewSkill} */
 export const twoBalls = {
@@ -262,10 +270,7 @@ export const twoBalls = {
   label: 'Lấy cùng lúc hai đồ vật',
   make(rand) {
     const [x, y, z] = shuffle(rand, COLORS);
-    const balls = [
-      { color: x, count: int(rand, 2, 3) },
-      { color: y, count: 1 },
-    ];
+    const balls = [...repeat(x, int(rand, 2, 3)), y];
     /** @type {Array<[BallColor, BallColor]>} */
     const can = [
       [x, x],
@@ -287,8 +292,8 @@ export const twoBalls = {
         pairText(...right),
         wrong.map((w) => pairText(...w)),
       ),
-      hint: `Hộp chỉ có 1 quả bóng ${y}. Em xem mỗi sự kiện cần những quả bóng nào.`,
-      solution: `${boxText(balls)} Có thể lấy được ${pairText(x, x)}, hoặc ${pairText(x, y)}. Không thể lấy được ${pairText(y, y)} vì chỉ có 1 quả bóng ${y}, cũng không thể lấy được bóng ${z} vì hộp không có bóng ${z}.`,
+      hint: `Hộp chỉ có 1 quả bóng ${BALL_COLORS[y].name}. Em xem mỗi sự kiện cần những quả bóng nào.`,
+      solution: `${boxText(balls)} Có thể lấy được ${pairText(x, x)}, hoặc ${pairText(x, y)}. Không thể lấy được ${pairText(y, y)} vì chỉ có 1 quả bóng ${BALL_COLORS[y].name}, cũng không thể lấy được bóng ${BALL_COLORS[z].name} vì hộp không có bóng ${BALL_COLORS[z].name}.`,
     };
   },
 };

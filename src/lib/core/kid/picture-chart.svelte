@@ -1,5 +1,5 @@
 <script>
-  import { countLabel } from '#lib/core/kid/quiz.js';
+  import { countLabel } from './quiz.js';
   import ChartSymbol from './chart-symbol.svelte';
 
   /**
@@ -11,7 +11,7 @@
    *   rows: ReadonlyArray<{
    *     label: string;
    *     count: number;
-   *     symbol: import('#lib/core/kid/tally.js').ChartSymbol;
+   *     symbol: import('./tally.js').ChartSymbol;
    *   }>;
    *   title: string;
    *   settled?: boolean;

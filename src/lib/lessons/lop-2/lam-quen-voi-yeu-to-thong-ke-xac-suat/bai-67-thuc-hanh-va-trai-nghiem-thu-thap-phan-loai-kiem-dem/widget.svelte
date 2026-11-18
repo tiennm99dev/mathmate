@@ -1,8 +1,8 @@
 <script>
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import ChartSymbol from '../_shared/chart-symbol.svelte';
-  import PictureChart from '../_shared/picture-chart.svelte';
+  import ChartSymbol from '#lib/core/kid/chart-symbol.svelte';
+  import PictureChart from '#lib/core/kid/picture-chart.svelte';
   import TallyMarks from '#lib/core/kid/tally-marks.svelte';
   import { MAX_VOTES, SURVEYS, countVotes, sampleVotes, surveySummary } from './engine.js';
 

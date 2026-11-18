@@ -1,7 +1,7 @@
 <script>
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import { button, focusRing } from '#lib/core/ui.js';
-  import DataSymbol from '../_shared/data-symbol.svelte';
+  import ChartSymbol from '#lib/core/kid/chart-symbol.svelte';
   import NumberTable from '../_shared/number-table.svelte';
   import TallyMarks from '#lib/core/kid/tally-marks.svelte';
   import { MAX_COUNT, SURVEYS, setCount, surveySummary } from './engine.js';
@@ -46,7 +46,7 @@
       {#each rows as row, i (row.label)}
         <li class="flex flex-wrap items-center gap-3 rounded-2xl bg-white p-3 shadow-sm">
           <span class="flex min-w-36 flex-1 items-center gap-2 text-lg font-bold text-slate-800">
-            <DataSymbol symbol={row.symbol} size={32} />
+            <ChartSymbol symbol={row.symbol} size={32} swatch="tile" />
             {row.label}
           </span>
           <span class="flex items-center gap-2">

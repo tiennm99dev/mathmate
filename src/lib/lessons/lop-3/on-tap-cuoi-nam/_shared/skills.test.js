@@ -9,8 +9,8 @@ import {
   doseStory,
   treeStory,
 } from './add-sub-skills.js';
-import { CHANCES } from '#lib/core/kid/chance.js';
-import { chanceOfOne, pairPossible } from './chance.js';
+import { BALL_COLORS, CHANCES } from '#lib/core/kid/chance.js';
+import { boxText, chanceOfOne, pairPossible } from './chance.js';
 import {
   addSteps,
   columnValue,
@@ -308,26 +308,25 @@ describe('measures', () => {
   });
 });
 
+/**
+ * The ball colour with this name.
+ * @param {string | undefined} name
+ */
+const idOf = (name) =>
+  /** @type {import('./visual.js').BallColor} */ (
+    Object.entries(BALL_COLORS).find(([, c]) => c.name === name)?.[0]
+  );
+
 describe('data and chance', () => {
   it('says how likely a ball is', () => {
-    const balls = /** @type {import('./visual.js').Ball[]} */ ([
-      { color: 'đỏ', count: 3 },
-      { color: 'xanh', count: 2 },
-    ]);
-    expect(chanceOfOne(balls, 'đỏ')).toBe('Có thể');
-    expect(chanceOfOne(balls, 'vàng')).toBe('Không thể');
-    expect(chanceOfOne([{ color: 'đỏ', count: 5 }], 'đỏ')).toBe('Chắc chắn');
+    /** @type {import('./visual.js').BallColor[]} */
+    const balls = ['do', 'do', 'do', 'xanh', 'xanh'];
+    expect(chanceOfOne(balls, 'do')).toBe('Có thể');
+    expect(chanceOfOne(balls, 'vang')).toBe('Không thể');
+    expect(chanceOfOne(['do', 'do', 'do', 'do', 'do'], 'do')).toBe('Chắc chắn');
     expect(pairPossible(balls, 'xanh', 'xanh')).toBe(true);
-    expect(
-      pairPossible(
-        [
-          { color: 'trắng', count: 2 },
-          { color: 'nâu', count: 1 },
-        ],
-        'nâu',
-        'nâu',
-      ),
-    ).toBe(false);
+    expect(pairPossible(['trang', 'trang', 'nau'], 'nau', 'nau')).toBe(false);
+    expect(boxText(balls)).toBe('Trong hộp có 3 quả bóng đỏ, 2 quả bóng xanh.');
   });
 
   it('answers every ball question right', () => {
@@ -336,7 +335,7 @@ describe('data and chance', () => {
       const one = oneBall.make(rng(seed));
       const color = /bóng (\S+) là:$/.exec(one.prompt)?.[1];
       if (one.visual?.type !== 'box' || !color) throw new Error('no box');
-      const want = chanceOfOne(one.visual.balls, /** @type {any} */ (color));
+      const want = chanceOfOne(one.visual.balls, idOf(color));
       if (rightText(one) !== want) bad.push(one.prompt);
 
       const two = twoBalls.make(rng(seed));
@@ -348,7 +347,7 @@ describe('data and chance', () => {
         const m = /^2 quả bóng (\S+)$/.exec(text);
         const n = /^1 quả bóng (\S+) và 1 quả bóng (\S+)$/.exec(text);
         const [a, b] = m ? [m[1], m[1]] : [n?.[1], n?.[2]];
-        const can = pairPossible(box, /** @type {any} */ (a), /** @type {any} */ (b));
+        const can = pairPossible(box, idOf(a), idOf(b));
         if ((i === two.answer) !== (can === askCan)) bad.push([two.prompt, text]);
       });
     }

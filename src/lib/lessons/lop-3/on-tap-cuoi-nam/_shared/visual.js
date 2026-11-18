@@ -8,7 +8,7 @@
  *   | { type: 'clock', minutes: number }
  *   | { type: 'shape', kind: ShapeKind, labels: string[] }
  *   | { type: 'table', table: DataTable }
- *   | { type: 'box', balls: Ball[] }
+ *   | { type: 'box', balls: BallColor[] }
  * )} Visual
  */
 
@@ -23,9 +23,7 @@
  * @property {Array<{ label: string, cells: string[] }>} rows
  */
 
-/** @typedef {'đỏ' | 'xanh' | 'vàng' | 'trắng' | 'nâu' | 'tím'} BallColor */
-
-/** @typedef {{ color: BallColor, count: number }} Ball */
+/** @typedef {import('#lib/core/kid/chance.js').BallColor} BallColor */
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion<Visual>} ReviewQuestion */
 /** @typedef {import('#lib/core/kid/quiz.js').KidSkill<Visual>} ReviewSkill */

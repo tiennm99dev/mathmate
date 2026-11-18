@@ -1,5 +1,5 @@
 <script>
-  import PictureChart from '../_shared/picture-chart.svelte';
+  import PictureChart from '#lib/core/kid/picture-chart.svelte';
 
   /** A finished picture chart to look at; the rows give no number, so the child counts. */
   const rows = [

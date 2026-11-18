@@ -1,5 +1,5 @@
 <script>
-  import DataSymbol from './data-symbol.svelte';
+  import ChartSymbol from '#lib/core/kid/chart-symbol.svelte';
 
   /**
    * A data table (bảng số liệu) laid out the way the grade 3 book prints it:
@@ -37,7 +37,7 @@
         {#each columns as col, i (i)}
           <th scope="col" class="{cell} bg-sky-50 font-semibold">
             <span class="flex flex-col items-center gap-1">
-              {#if col.symbol}<DataSymbol symbol={col.symbol} size={30} />{/if}
+              {#if col.symbol}<ChartSymbol symbol={col.symbol} size={30} swatch="tile" />{/if}
               <span class="text-base leading-tight">{col.label}</span>
             </span>
           </th>
