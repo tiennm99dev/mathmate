@@ -474,9 +474,9 @@ Other shared pieces:
     `division-worker.svelte`: dividing in columns from the left, round by
     round (`stepsOf` digit, rest and bring-down steps, `sheetRows`,
     `quotientText`, `stageMessage`, `wrongMessage`, `roundLines` "13 chục : 4
-    = 3 chục, còn 1 chục", `placeOf`; `{ alwaysReach: true }` reads "Hạ 9,
-    được 9."). A chapter writes only its first tasks and how it draws new
-    ones, and renders `<DivisionWorker kinds draw />` (`compact` for five
+    = 3 chục, còn 1 chục", `placeOf`; a digit brought down reads "Hạ 9." when
+    nothing was left and "Hạ 6, được 36." otherwise, as `divWords` does). A
+    chapter writes only its first tasks and how it draws new ones, and renders `<DivisionWorker kinds draw />` (`compact` for five
     digits or more).
   - `times-table.js` with `table-grid.svelte`: the tables' sentences
     (`mulLine` "3 × 4 = 12", `divLine`, `repeatedSum`) and options

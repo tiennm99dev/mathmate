@@ -27,12 +27,6 @@ import { PLACE_NAMES } from './whole-numbers.js';
  */
 
 /**
- * How the sentences are worded. `alwaysReach` says what a digit brought down
- * makes even when nothing was left ("Hạ 9, được 9." rather than "Hạ 9.").
- * @typedef {{ alwaysReach?: boolean }} Wording
- */
-
-/**
  * One line of the sheet. `cells` holds the dividend's columns from the left,
  * `line` rules a line under it, `active` tints those columns and `fly` is the
  * column whose digit has just come down from the dividend.
@@ -147,9 +141,8 @@ export function quotientText(task, stage) {
  * What a finished step says.
  * @param {Task} task
  * @param {Step} step
- * @param {Wording} wording
  */
-function sayStep(task, step, { alwaysReach = false }) {
+function sayStep(task, step) {
   const { d } = task;
   const { kind, partial, digit, product, rest, answer } = step;
   if (kind === 'digit') {
@@ -159,7 +152,7 @@ function sayStep(task, step, { alwaysReach = false }) {
   if (kind === 'rest') {
     return `${digit} nhân ${d} bằng ${product}; ${partial} trừ ${product} bằng ${rest}.`;
   }
-  return rest > 0 || alwaysReach ? `Hạ ${answer}, được ${rest * 10 + answer}.` : `Hạ ${answer}.`;
+  return rest > 0 ? `Hạ ${answer}, được ${rest * 10 + answer}.` : `Hạ ${answer}.`;
 }
 
 /**
@@ -180,13 +173,12 @@ function askStep({ d }, step) {
  * The sentence for a stage: the step just finished, then the next question.
  * @param {Task} task
  * @param {number} stage
- * @param {Wording} [wording]
  */
-export function stageMessage(task, stage, wording = {}) {
+export function stageMessage(task, stage) {
   const steps = stepsOf(task);
   const { n, d } = task;
   if (stage >= steps.length) {
-    return `${sayStep(task, steps[steps.length - 1], wording)} Vậy ${divText(n, d)}. ${checkText(n, d)}`;
+    return `${sayStep(task, steps[steps.length - 1])} Vậy ${divText(n, d)}. ${checkText(n, d)}`;
   }
   if (stage === 0) {
     const first = steps[0];
@@ -196,7 +188,7 @@ export function stageMessage(task, stage, wording = {}) {
         : `${String(n).slice(0, first.end)} bé hơn ${d}, nên em lấy ${first.partial} để chia.`;
     return `${start} ${askStep(task, first)}`;
   }
-  return `${sayStep(task, steps[stage - 1], wording)} ${askStep(task, steps[stage])}`;
+  return `${sayStep(task, steps[stage - 1])} ${askStep(task, steps[stage])}`;
 }
 
 /**
@@ -205,12 +197,11 @@ export function stageMessage(task, stage, wording = {}) {
  * @param {number} stage
  * @param {number} picked
  * @param {number} tries wrong tries on this step, this one included
- * @param {Wording} [wording]
  */
-export function wrongMessage(task, stage, picked, tries, wording = {}) {
+export function wrongMessage(task, stage, picked, tries) {
   const step = stepsOf(task)[stage];
   const { d } = task;
-  if (tries >= 2) return `Em xem nhé: ${sayStep(task, step, wording)}`;
+  if (tries >= 2) return `Em xem nhé: ${sayStep(task, step)}`;
   if (step.kind === 'rest') return `Chưa đúng. Em trừ lại: ${step.partial} − ${step.product}.`;
   return picked * d > step.partial
     ? `${picked} nhân ${d} bằng ${picked * d}, lớn hơn ${step.partial}. Em thử số bé hơn.`

@@ -31,12 +31,11 @@ describe('dividing in columns', () => {
     );
   });
 
-  it('reads a digit brought down with what it makes when asked to', () => {
+  it('reads what a digit brought down makes only when something was left', () => {
     const exact = { n: 396, d: 3 };
     expect(stageMessage(exact, 3)).toBe('Hạ 9. 9 chia 3 được mấy?');
-    expect(stageMessage(exact, 3, { alwaysReach: true })).toBe('Hạ 9, được 9. 9 chia 3 được mấy?');
     expect(stageMessage(task, 6)).toBe('Hạ 6, được 36. 36 chia 4 được mấy?');
-    expect(wrongMessage(exact, 2, 1, 2, { alwaysReach: true })).toBe('Em xem nhé: Hạ 9, được 9.');
+    expect(wrongMessage(exact, 2, 1, 2)).toBe('Em xem nhé: Hạ 9.');
   });
 
   it('guides a wrong number', () => {

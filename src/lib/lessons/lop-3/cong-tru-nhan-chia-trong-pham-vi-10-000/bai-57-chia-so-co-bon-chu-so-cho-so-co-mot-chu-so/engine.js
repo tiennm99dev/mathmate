@@ -8,13 +8,6 @@ import { drawDivision } from '../_shared/columns.js';
 /** @typedef {import('#lib/core/kid/division-steps.js').Task} Task */
 /** @typedef {import('../_shared/columns.js').DivKind} TaskKind */
 
-/**
- * How this lesson words the division: a digit brought down is always read
- * with what it makes ("Hạ 9, được 9.").
- * @type {import('#lib/core/kid/division-steps.js').Wording}
- */
-export const WORDING = { alwaysReach: true };
-
 /** @type {Record<TaskKind, Task>} */
 const FIRST = {
   exact: { n: 6369, d: 3 },

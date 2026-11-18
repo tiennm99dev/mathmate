@@ -25,12 +25,10 @@
    * - `kinds`: the cases to choose from, each with its first task.
    * - `draw(kind, previous)`: a new task of a kind, not the previous one.
    * - `compact`: narrower columns, for a dividend of five digits or more.
-   * - `wording`: how the sentences are worded (`division-steps.js`).
    * @type {{
    *   kinds: Array<{ value: string, label: string, first: import('./division-steps.js').Task }>;
    *   draw: (kind: any, previous: import('./division-steps.js').Task) => import('./division-steps.js').Task;
    *   compact?: boolean;
-   *   wording?: import('./division-steps.js').Wording;
    *   switchLabel?: string;
    *   nextLabel?: string;
    * }}
@@ -39,7 +37,6 @@
     kinds,
     draw,
     compact = false,
-    wording = {},
     switchLabel = 'Chọn loại phép chia',
     nextLabel = 'Phép chia khác',
   } = $props();
@@ -59,7 +56,7 @@
   const step = $derived(done ? null : steps[stage]);
   const quotient = $derived(quotientText(task, stage));
   const lines = $derived(roundLines(task, stage));
-  const message = $derived(slip || stageMessage(task, stage, wording));
+  const message = $derived(slip || stageMessage(task, stage));
   const tone = $derived(done ? 'ok' : slip ? 'warn' : 'info');
 
   /** @param {import('./division-steps.js').Task} next */
@@ -94,7 +91,7 @@
     if (!step) return;
     if (digit !== step.answer) {
       tries += 1;
-      slip = wrongMessage(task, stage, digit, tries, wording);
+      slip = wrongMessage(task, stage, digit, tries);
       return;
     }
     advance();

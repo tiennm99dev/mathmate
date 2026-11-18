@@ -4,17 +4,11 @@ import {
   quotientText,
   roundLines,
   sheetRows,
-  stageMessage as coreMessage,
+  stageMessage,
   stepsOf,
-  wrongMessage as coreWrong,
+  wrongMessage,
 } from '#lib/core/kid/division-steps.js';
-import { WORDING, firstTask, makeTask } from './engine.js';
-
-/** @type {typeof coreMessage} */
-const stageMessage = (task, stage) => coreMessage(task, stage, WORDING);
-
-/** @type {typeof coreWrong} */
-const wrongMessage = (task, stage, picked, tries) => coreWrong(task, stage, picked, tries, WORDING);
+import { firstTask, makeTask } from './engine.js';
 
 /** @param {import('#lib/core/kid/division-steps.js').Row[]} rows */
 const shown = (rows) => rows.map((r) => r.cells.join(''));

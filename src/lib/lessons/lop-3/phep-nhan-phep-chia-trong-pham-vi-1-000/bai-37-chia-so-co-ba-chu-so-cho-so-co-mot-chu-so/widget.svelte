@@ -1,6 +1,6 @@
 <script>
   import DivisionWorker from '#lib/core/kid/division-worker.svelte';
-  import { WORDING, firstTask, makeTask } from './engine.js';
+  import { firstTask, makeTask } from './engine.js';
 
   const KINDS = [
     { value: 'exact', label: 'Chia hết', first: firstTask('exact') },
@@ -10,8 +10,4 @@
   ];
 </script>
 
-<DivisionWorker
-  kinds={KINDS}
-  draw={(kind, previous) => makeTask(Math.random, kind, previous)}
-  wording={WORDING}
-/>
+<DivisionWorker kinds={KINDS} draw={(kind, previous) => makeTask(Math.random, kind, previous)} />
