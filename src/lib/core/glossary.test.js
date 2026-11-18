@@ -91,7 +91,7 @@ function validEntries(g, n = floorOf(g)) {
 
 /**
  * Errors of one grade's file after a change to its first entry.
- * @param {Partial<GlossaryEntry> & Record<string, unknown>} change
+ * @param {Record<string, unknown>} change
  */
 function errorsWith(change) {
   const entries = validEntries(top);

@@ -113,7 +113,10 @@
 
   <section aria-labelledby="glossary" class="pb-6">
     <h2 id="glossary" class="sr-only">{glossary.title}</h2>
-    <a href={resolve('/thuat-ngu/')} class="{cardClass} sm:max-w-sm">
+    <a
+      href={resolve(/** @type {import('$app/types').Path} */ ('/thuat-ngu/'))}
+      class="{cardClass} sm:max-w-sm"
+    >
       <span class="font-bold text-slate-900">{glossary.title}</span>
       <span class="text-sm text-slate-500">{glossary.blurb}</span>
     </a>

@@ -17,7 +17,7 @@
   let { grade } = $props();
 
   const site = t();
-  const glossaryPage = resolve('/thuat-ngu/');
+  const glossaryPage = resolve(/** @type {import('$app/types').Path} */ ('/thuat-ngu/'));
   const label = $derived(site.grades[gradeSlug(grade.grade)]);
   const volumes = $derived.by(() => {
     const names = [...grade.volumes];

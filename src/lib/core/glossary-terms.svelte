@@ -13,7 +13,7 @@
    */
   let { terms, kid = false } = $props();
 
-  const page = resolve('/thuat-ngu/');
+  const page = resolve(/** @type {import('$app/types').Path} */ ('/thuat-ngu/'));
   const link = $derived(
     `inline-flex ${kid ? 'min-h-12' : 'min-h-11'} items-center rounded text-indigo-700 underline underline-offset-2 hover:text-indigo-900 ${focusRing}`,
   );
