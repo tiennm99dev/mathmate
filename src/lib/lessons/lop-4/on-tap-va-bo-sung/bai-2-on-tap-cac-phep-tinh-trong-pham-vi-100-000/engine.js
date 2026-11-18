@@ -134,7 +134,8 @@ function mulSteps(a, b) {
 function divSteps(a, b) {
   const digits = String(a);
   return numberDivide(a, b).rounds.map(({ digit, partial, product, rest, end }, col) => {
-    const down = col > 0 ? `Hạ ${digits[end]}, được ${partial}. ` : '';
+    const reach = partial >= 10 ? `, được ${partial}` : '';
+    const down = col > 0 ? `Hạ ${digits[end]}${reach}. ` : '';
     return {
       digit,
       col,

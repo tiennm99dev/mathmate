@@ -67,7 +67,7 @@ export default {
         'Rô-bốt dùng 35 m vải để may quần áo công nhân. Mỗi bộ quần áo hết 3 m vải. Hỏi Rô-bốt may được nhiều nhất bao nhiêu bộ quần áo và còn thừa mấy mét vải?',
       steps: [
         'Em chia 35 cho 3.',
-        '3 chia 3 được 1, viết 1. Hạ 5, được 5.',
+        '3 chia 3 được 1, viết 1. Hạ 5.',
         '5 chia 3 được 1, viết 1. 5 trừ 3 bằng 2.',
         'Vậy 35 : 3 = 11 (dư 2).',
         'Số dư 2 bé hơn 3, không may thêm được bộ nào.',

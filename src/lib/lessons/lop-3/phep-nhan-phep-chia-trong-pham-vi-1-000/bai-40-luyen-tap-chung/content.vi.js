@@ -106,7 +106,7 @@ export default {
       prompt: '725 : 6 bằng bao nhiêu?',
       options: ['120 (dư 5)', '12 (dư 5)', '121 (dư 5)', '120 (dư 7)'],
       answer: 0,
-      hints: ['Số dư phải bé hơn 6.', 'Hạ 5, được 5. 5 bé hơn 6 thì em viết gì ở thương?'],
+      hints: ['Số dư phải bé hơn 6.', 'Hạ 5. 5 bé hơn 6 thì em viết gì ở thương?'],
       solution:
         '7 chia 6 được 1, dư 1. Hạ 2, được 12. 12 chia 6 được 2, dư 0. Hạ 5: 5 chia 6 được 0, dư 5. Vậy 725 : 6 = 120 (dư 5).',
     },

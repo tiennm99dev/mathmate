@@ -101,7 +101,7 @@ export default {
       steps: [
         '25 chia 4 được 6, viết 6; 6 nhân 4 bằng 24; 25 trừ 24 bằng 1.',
         'Hạ 6, được 16. 16 chia 4 được 4, viết 4; 4 nhân 4 bằng 16; 16 trừ 16 bằng 0.',
-        'Hạ 3, được 3. 3 chia 4 được 0, viết 0; 0 nhân 4 bằng 0; 3 trừ 0 bằng 3.',
+        'Hạ 3. 3 chia 4 được 0, viết 0; 0 nhân 4 bằng 0; 3 trừ 0 bằng 3.',
         'Hạ 2, được 32. 32 chia 4 được 8, viết 8; 8 nhân 4 bằng 32; 32 trừ 32 bằng 0.',
       ],
       answer: '25 632 : 4 = 6 408.',
