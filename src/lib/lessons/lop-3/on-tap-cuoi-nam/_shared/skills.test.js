@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { rng } from '#lib/core/drill.js';
 import { fmt } from '#lib/core/number-format.js';
 import { optionText } from '#lib/core/kid/quiz.js';
+import { divWords } from '#lib/core/kid/column-steps.js';
 import {
   ADD_SUB_SKILLS,
   addSubExpression,
@@ -16,7 +17,6 @@ import {
   columnValue,
   columnWords,
   divText,
-  divWords,
   forgotAddCarry,
   forgotBorrow,
   forgotMulCarry,

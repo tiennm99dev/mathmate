@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { optionText } from '#lib/core/kid/quiz.js';
-import { KIND_LABELS, buildRound, divWords, mulWords } from './engine.js';
+import { divWords } from '#lib/core/kid/column-steps.js';
+import { KIND_LABELS, buildRound, mulWords } from './engine.js';
 
 describe('how a calculation is said', () => {
   it('multiplies with a carry the way the book says it', () => {

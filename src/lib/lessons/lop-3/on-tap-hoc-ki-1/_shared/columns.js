@@ -78,20 +78,6 @@ export function divText(n, d) {
 }
 
 /**
- * The whole division in words, from the left.
- * @param {number} n
- * @param {number} d
- */
-export function divWords(n, d) {
-  const digits = String(n);
-  const rounds = numberDivide(n, d).rounds.map(({ digit, partial, product, rest, end }, i) => {
-    const down = i > 0 ? `Hạ ${digits[end]}, được ${partial}. ` : '';
-    return `${down}${partial} chia ${d} được ${digit}, viết ${digit}; ${digit} nhân ${d} bằng ${product}; ${partial} trừ ${product} bằng ${rest}.`;
-  });
-  return `${rounds.join(' ')} Vậy ${divText(n, d)}.`;
-}
-
-/**
  * One line of a division sheet: a cell per digit of the dividend, and whether a
  * line is ruled under it.
  * @typedef {{ cells: string[], line: boolean }} SheetRow

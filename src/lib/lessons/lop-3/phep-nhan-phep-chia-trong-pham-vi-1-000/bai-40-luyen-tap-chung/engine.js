@@ -6,9 +6,8 @@
  */
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions } from '#lib/core/kid/quiz.js';
-import { divText } from '#lib/core/kid/column-steps.js';
+import { divText, divWords } from '#lib/core/kid/column-steps.js';
 import {
-  divWords,
   drawDivision,
   drawProduct,
   forgotCarry,

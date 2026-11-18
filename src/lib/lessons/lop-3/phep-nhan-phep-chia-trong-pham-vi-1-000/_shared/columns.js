@@ -4,9 +4,7 @@
  * that fit each case, and answer options built from the slips a child makes.
  * Pure and DOM-free.
  */
-import { numberDivide } from '#lib/algebra-engine/long-division.js';
 import { int } from '#lib/core/drill.js';
-import { divText } from '#lib/core/kid/column-steps.js';
 import { slipOptions as coreSlipOptions } from '#lib/core/kid/quiz.js';
 
 /** What each column of a three-digit number is called, from the left. */
@@ -91,20 +89,6 @@ export function drawProduct(rand, kind, not) {
     const same = not && not.a === a && not.b === b;
     if (a * b <= 999 && a % 10 > 0 && carriesOf(a, b) === carries && !same) return { a, b };
   }
-}
-
-/**
- * The whole division in words, from the left.
- * @param {number} n
- * @param {number} d
- */
-export function divWords(n, d) {
-  const digits = String(n);
-  const rounds = numberDivide(n, d).rounds.map(({ digit, partial, product, rest, end }, i) => {
-    const down = i > 0 ? `Hạ ${digits[end]}, được ${partial}. ` : '';
-    return `${down}${partial} chia ${d} được ${digit}, viết ${digit}; ${digit} nhân ${d} bằng ${product}; ${partial} trừ ${product} bằng ${rest}.`;
-  });
-  return `${rounds.join(' ')} Vậy ${divText(n, d)}.`;
 }
 
 /** @typedef {'exact' | 'rest' | 'zero' | 'two'} DivKind */

@@ -5,10 +5,9 @@
  * with one or two steps. One question of each part in a shuffled order. Pure
  * and DOM-free.
  */
-import { numberDivide } from '#lib/algebra-engine/long-division.js';
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions, slipOptions } from '#lib/core/kid/quiz.js';
-import { divText } from '#lib/core/kid/column-steps.js';
+import { divText, divWords } from '#lib/core/kid/column-steps.js';
 import {
   answerLine,
   drawStories,
@@ -54,19 +53,6 @@ export function mulWords(n, m) {
     ? `${m} nhân ${tens} bằng ${high}, thêm ${carry} bằng ${high + carry}, viết ${high + carry}.`
     : `${m} nhân ${tens} bằng ${high}, viết ${high}.`;
   return `${lowWords} ${highWords} Vậy ${n} × ${m} = ${n * m}.`;
-}
-
-/**
- * How the book says a division, starting from the tens.
- * @param {number} n a two-digit number
- * @param {number} d a digit
- */
-export function divWords(n, d) {
-  const rounds = numberDivide(n, d).rounds.map(({ digit, partial, product, rest }, i) => {
-    const down = i > 0 ? `Hạ ${n % 10}, được ${partial}. ` : '';
-    return `${down}${partial} chia ${d} được ${digit}, viết ${digit}; ${digit} nhân ${d} bằng ${product}; ${partial} trừ ${product} bằng ${rest}.`;
-  });
-  return `${rounds.join(' ')} Vậy ${divText(n, d)}.`;
 }
 
 /**

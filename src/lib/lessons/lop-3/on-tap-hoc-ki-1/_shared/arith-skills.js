@@ -6,7 +6,8 @@
 import { int, pick } from '#lib/core/drill.js';
 import { fmt } from '#lib/core/number-format.js';
 import { mixOptions } from '#lib/core/kid/quiz.js';
-import { divText, divWords, forgotCarry, mulWords } from './columns.js';
+import { divWords } from '#lib/core/kid/column-steps.js';
+import { divText, forgotCarry, mulWords } from './columns.js';
 import { valueOptions, withRest } from './options.js';
 
 /** @typedef {import('./visual.js').ReviewSkill} ReviewSkill */

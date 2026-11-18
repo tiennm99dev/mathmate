@@ -2,9 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { numberDivide } from '#lib/algebra-engine/long-division.js';
 import { rng } from '#lib/core/drill.js';
 import { fmt } from '#lib/core/number-format.js';
+import { divWords } from '#lib/core/kid/column-steps.js';
 import {
   carriesOf,
-  divWords,
   drawDivision,
   drawProduct,
   forgotCarry,
@@ -54,7 +54,7 @@ describe('multiplying in columns', () => {
 
 describe('dividing in columns', () => {
   it('reads the division the book’s way', () => {
-    expect(divWords(518, 5)).toContain('Hạ 1, được 1. 1 chia 5 được 0, viết 0');
+    expect(divWords(518, 5)).toContain('Hạ 1. 1 chia 5 được 0, viết 0');
     expect(divWords(354, 6).startsWith('35 chia 6 được 5')).toBe(true);
   });
 
