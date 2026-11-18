@@ -3,4 +3,4 @@
   import { TASKS } from './engine.js';
 </script>
 
-<ColumnSheet op="−" tasks={TASKS} />
+<ColumnSheet op="-" tasks={TASKS} />

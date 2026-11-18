@@ -8,7 +8,7 @@
 import { int, pick, rng, shuffle } from '#lib/core/drill.js';
 import { mixOptions } from '#lib/core/kid/quiz.js';
 import { fmt } from '#lib/core/number-format.js';
-import { carries, forgotCarry } from '../_shared/column.js';
+import { carriesOf, noCarry } from '#lib/core/kid/column-steps.js';
 
 /** @typedef {import('#lib/core/kid/quiz.js').KidQuestion} Question */
 
@@ -44,7 +44,7 @@ export function pairFor(rand, op) {
   for (;;) {
     const a = op === '+' ? int(rand, 100000, 499999) : int(rand, 500000, 999999);
     const b = op === '+' ? int(rand, 100000, 499999) : int(rand, 100000, a - 100000);
-    if (carries(op, a, b) >= 2) return { a, b };
+    if (carriesOf(a, b, op === '+' ? '+' : '-') >= 2) return { a, b };
   }
 }
 
@@ -62,7 +62,7 @@ const MAKERS = {
     const sum = a + b;
     return {
       prompt: `${fmt(a)} + ${fmt(b)} = ?`,
-      ...numberChoice(rand, sum, [forgotCarry('+', a, b), sum + 10, sum - 1000, sum + 100]),
+      ...numberChoice(rand, sum, [noCarry(a, b, '+'), sum + 10, sum - 1000, sum + 100]),
       hint: 'Em đặt tính, các chữ số cùng hàng thẳng cột. Cộng từ hàng đơn vị, nhớ 1 khi được 10 trở lên.',
       solution: `${fmt(a)} + ${fmt(b)} = ${fmt(sum)}.`,
     };
@@ -72,7 +72,7 @@ const MAKERS = {
     const diff = a - b;
     return {
       prompt: `${fmt(a)} − ${fmt(b)} = ?`,
-      ...numberChoice(rand, diff, [forgotCarry('−', a, b), diff + 10, diff + 1000, diff - 100]),
+      ...numberChoice(rand, diff, [noCarry(a, b, '-'), diff + 10, diff + 1000, diff - 100]),
       hint: 'Em trừ từ hàng đơn vị. Chữ số trên bé hơn thì lấy thêm 10, rồi nhớ 1 cộng vào chữ số dưới ở hàng bên trái.',
       solution: `${fmt(a)} − ${fmt(b)} = ${fmt(diff)}. Thử lại: ${fmt(diff)} + ${fmt(b)} = ${fmt(a)}.`,
     };
@@ -154,7 +154,7 @@ const MAKERS = {
       prompt: story,
       ...numberChoice(rand, right, [
         add ? a - b : a + b,
-        forgotCarry(add ? '+' : '−', a, b),
+        noCarry(a, b, add ? '+' : '-'),
         right + 1000,
       ]),
       hint: add

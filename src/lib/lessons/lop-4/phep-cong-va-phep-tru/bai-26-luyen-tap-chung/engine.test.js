@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { optionText } from '#lib/core/kid/quiz.js';
 import { GROUP } from '#lib/core/number-format.js';
 import { rng } from '#lib/core/drill.js';
-import { carries } from '../_shared/column.js';
+import { carriesOf } from '#lib/core/kid/column-steps.js';
 import { KIND_LABELS, buildRound, pairFor } from './engine.js';
 
 /** @param {string} text */
@@ -72,7 +72,8 @@ describe('mixed practice round', () => {
       for (const op of /** @type {const} */ (['+', '−'])) {
         const { a, b } = pairFor(rand, op);
         const value = op === '+' ? a + b : a - b;
-        if (carries(op, a, b) < 2 || String(value).length !== 6) bad.push(`${a} ${op} ${b}`);
+        if (carriesOf(a, b, op === '+' ? '+' : '-') < 2 || String(value).length !== 6)
+          bad.push(`${a} ${op} ${b}`);
       }
     }
     expect(bad).toEqual([]);

@@ -4,7 +4,8 @@
   import { button } from '#lib/core/ui.js';
   import { scale } from 'svelte/transition';
   import { reducedMotion } from '#lib/core/motion.js';
-  import { askFor, equation, nudge, rowsOf, stepsOf } from './column.js';
+  import { OP_SIGNS, equation } from '#lib/core/kid/column-steps.js';
+  import { askFor, nudge, rowsOf, sheetSteps } from './column.js';
 
   /**
    * A column addition or subtraction worked by the child one digit at a time,
@@ -33,7 +34,7 @@
   let nextButton = $state();
 
   const task = $derived(tasks[index % tasks.length]);
-  const steps = $derived(stepsOf(op, task.a, task.b));
+  const steps = $derived(sheetSteps(op, task.a, task.b));
   const step = $derived(steps[done] ?? null);
   const finished = $derived(step === null);
   const size = $derived(steps.length);
@@ -42,10 +43,10 @@
   const rows = $derived(rowsOf(op, task.a, task.b));
   const top = $derived(rows[0]);
   const bottom = $derived(rows[1]);
-  const marks = $derived(steps.slice(0, done).filter((s) => s.out > 0).length);
+  const marks = $derived(steps.slice(0, done).filter((s) => s.carryOut > 0).length);
   const note = $derived(
     finished
-      ? { tone: 'ok', text: `Đúng rồi! ${equation(op, task.a, task.b)}.` }
+      ? { tone: 'ok', text: `Đúng rồi! ${equation(task.a, task.b, op)}.` }
       : tries > 0
         ? { tone: 'warn', text: nudge(op, /** @type {import('./column.js').Step} */ (step), tries) }
         : { tone: 'info', text: askFor(/** @type {import('./column.js').Step} */ (step)) },
@@ -61,7 +62,7 @@
    * Whether the column before `c` sent a 1 on to it, and that column is done.
    * @param {number} c
    */
-  const gotOne = (c) => c > 0 && isDone(c - 1) && steps[c - 1].out > 0;
+  const gotOne = (c) => c > 0 && isDone(c - 1) && steps[c - 1].carryOut > 0;
 
   /**
    * The digit of `n` in column `c`, or a blank.
@@ -109,14 +110,16 @@
         bottom,
       )}. Đã viết {done} chữ số của kết quả{marks > 0 ? `, có ${marks} lần nhớ 1` : ''}."
     >
-      <span class="flex w-8 items-center justify-center self-center text-slate-600">{op}</span>
+      <span class="flex w-8 items-center justify-center self-center text-slate-600"
+        >{OP_SIGNS[op]}</span
+      >
       <div>
         <div class="flex h-7 text-base text-rose-600" aria-hidden="true">
           {#each cols as c (c)}
             <span class={cell}>
               {#if op === '+' && gotOne(c)}
                 <span in:scale={pop}>1</span>
-              {:else if op === '−' && isDone(c) && steps[c].out > 0}
+              {:else if op === '-' && isDone(c) && steps[c].carryOut > 0}
                 <span class="rounded bg-rose-100 px-1" in:scale={pop}>+10</span>
               {/if}
             </span>
@@ -133,7 +136,7 @@
           {#each cols as c (c)}
             <span class="{cell} relative h-11 {step && step.col === c ? 'bg-amber-100' : ''}">
               {digitOf(bottom, c)}
-              {#if op === '−' && gotOne(c)}
+              {#if op === '-' && gotOne(c)}
                 <span
                   class="absolute -top-1 right-0 rounded bg-rose-100 px-0.5 text-sm text-rose-600"
                   aria-hidden="true"

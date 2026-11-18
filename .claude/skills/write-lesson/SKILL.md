@@ -464,7 +464,9 @@ Other shared pieces:
     read the grade 3 book's way (`stepsOf`, `columnWords`, `equation`,
     `carriesOf`, `noCarry`, `divText`, `divWords`, `checkText`), and the board a
     child fills in (`planOf`, `sheetAt(a, b, op, done, columns)`, `askFor`,
-    `borrowLabel` "Lấy 12 trừ, nhớ 1", `wrongFor`). A chapter writes only how it
+    `borrowLabel` "Lấy 12 trừ, nhớ 1", `wrongFor`). `stepsOf(a, b, op, {
+    grade: 4 })` reads + and − columns in the grade 4 book's words ("Hạ 4",
+    "4 thêm 1 bằng 5; …"). A chapter writes only how it
     draws its tasks and renders `<ColumnWorker op columns draw kinds … />`;
     `digit-pad` is the ten big digit buttons and `kid-note` the live sentence
     under a kid widget.
