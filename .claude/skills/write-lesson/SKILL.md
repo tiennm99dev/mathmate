@@ -216,6 +216,7 @@ Core visuals, `#lib/core/visuals/<name>.svelte`:
 | `pictograph` | picture chart (biểu đồ tranh): one row of icons per category, a remainder as part of an icon; `item` draws a kid picture (`'apple'`) or a `'dot'` instead of the green circle |
 | `double-bar-chart` | double bar chart (biểu đồ cột kép) with legend, hideable series, selectable categories; `format` writes the values (default `formatNumber`) |
 | `data-table` | statistics table with tally marks and percentages |
+| `graph-box` | a function graph in a window, x and y scaled separately (grades 10-12): grid with round ticks, curves that lift the pen at `breaks` (`refine` draws a branch up to its asymptote), points (hollow for a value not taken), and the layers `bands`, `spans` (`axis` marks the x-axis too), `marks`, `regions`, `traps`, `rects`, `guides` and dashed `lines`; `labelPoints` names points above the clip, `wide` fills the container, `interactive` with `bind:svgEl` holds drag handles; the children snippet gets the frame |
 | `probability-spinner` | spinner with running frequency table |
 | `unit-converter` | length, mass, capacity, time and VND money |
 | `clock-face` | analog clock with draggable hands |
@@ -226,6 +227,12 @@ Core visuals, `#lib/core/visuals/<name>.svelte`:
 `polar`, `angleOf`, `sectorPath`, `hopPath`, `curvePath(f, plane, { lo, hi, steps, extra })`
 (a function graph as an SVG path that lifts the pen where f is undefined or
 leaves the plane) and `PALETTE`/`colorAt`.
+`#lib/core/visuals/plot.js` draws for `graph-box`: `frameOf(win, { width, height, pad, left })`
+(`sx`, `sy`, `ix`), `squareHeight` (equal scales), `ticksIn`, `tickText`,
+`graphPath(f, win, frame, { breaks, refine, from, to })`, `sample`, `regionPath`
+(between two graphs), `simpson` (a numeric integral to check exact answers) and
+`approxText`/`approxTex` ('2,5', '≈ 0,33'; '= -1{,}5', '\approx 0{,}33');
+never copy them into a chapter.
 `#lib/core/visuals/angle-math.js` works in degrees on SVG points: `norm`,
 `dirOf`, `along`, `directionTo`, `measure`, `ccwSides`, `bisectorDir`,
 `intersect`, `degText` ('32,5°') and the angle drawings `arcPath`,
