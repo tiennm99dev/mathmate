@@ -1,9 +1,9 @@
 {
-  "name": "mathmate",
+  "name": "toantot",
   "version": "0.0.1.0",
   "private": true,
   "type": "module",
-  "description": "MathMate — Toán tương tác cho học sinh lớp 1-12. Static site.",
+  "description": "ToánTốt — Toán tương tác cho học sinh lớp 1-12. Static site.",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",

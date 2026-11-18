@@ -1,11 +1,12 @@
 # Changelog
 
-All notable changes to **MathMate** are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: 4-digit MAJOR.MINOR.PATCH.MICRO.
+All notable changes to **ToánTốt** are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: 4-digit MAJOR.MINOR.PATCH.MICRO.
 
 ## [Unreleased]
 
 ### Changed
 
+- Đổi tên site từ MathMate thành ToánTốt: repo `tiennm99dev/toantot`, địa chỉ mới `https://tiennm99dev.github.io/toantot/`. Các site anh em cũng đổi sang tên tiếng Việt: AlgorithmAlly thành TinTưởng, PhysicsFriend thành LíLẽ, ChemCoach thành HoáHợp, BioBuddy thành SinhSôi. Tiến độ "đã làm" lưu trong trình duyệt dưới cả hai tên cũ (MathMax và MathMate) được chuyển sang tên mới ở lần mở bài đầu tiên.
 - Đổi tên site từ MathMax thành MathMate: repo `tiennm99dev/mathmate`, địa chỉ mới `https://tiennm99dev.github.io/mathmate/`. Các site anh em cũng đổi tên: AlgoAtlas thành AlgorithmAlly, PhysMax thành PhysicsFriend, ChemMax thành ChemCoach, BioMax thành BioBuddy. Tiến độ "đã làm" lưu trong trình duyệt dưới tên cũ được chuyển sang tên mới ở lần mở bài đầu tiên.
 - Nâng cấp lên SvelteKit 3 (adapter-static 4), Vitest 5 và KaTeX 0.19. Cấu hình SvelteKit chuyển từ `svelte.config.js` sang plugin `sveltekit()` trong `vite.config.js`; alias `$lib` thay bằng subpath import `#lib/*` trong `package.json`; liên kết nội bộ dùng `resolve()` của `$app/paths` thay cho `base` (đã bị gỡ).
 

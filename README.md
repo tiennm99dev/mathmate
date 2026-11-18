@@ -1,4 +1,4 @@
-# MathMate
+# ToánTốt
 
 Toán tương tác cho học sinh Việt Nam lớp 1-12, theo chương trình Kết nối tri thức với cuộc sống (KNTT). Số học, Đại số, Hình học qua kéo-thả và minh hoạ trực quan.
 
@@ -16,7 +16,7 @@ Yêu cầu: Node 24+, npm.
 
 ```sh
 npm install
-npm run dev           # http://localhost:5173/mathmate/
+npm run dev           # http://localhost:5173/toantot/
 npm run lint          # ESLint (eslint-plugin-svelte)
 npm run format:check  # Prettier --check
 npm run check         # svelte-kit sync + svelte-check --fail-on-warnings (JSDoc strict)
@@ -33,11 +33,11 @@ npm run preview       # Serve build/
 
 CI (`.github/workflows/ci.yml`) chạy lint, format:check, check, test, build và size-report cho mỗi push/PR; deploy chạy lại toàn bộ các bước đó trước khi lên GitHub Pages từ `main`. Cấu hình và phiên bản action nằm trong `.github/workflows/deploy.yml`; xem `RUNBOOK.md` để rollback / chuyển domain.
 
-Live URL: https://tiennm99dev.github.io/mathmate/
+Live URL: https://tiennm99dev.github.io/toantot/
 
 ## Architecture
 
-- **Static**: SvelteKit + `@sveltejs/adapter-static`, cấu hình trong `vite.config.js`: `paths.base` là `/<tên package>` (`/mathmate`; đổi bằng `SITE_BASE`), `paths.origin` là host xuất bản (`https://tiennm99dev.github.io`; đổi bằng `SITE_ORIGIN`), output `build/`, `static/404.html` cho GitHub Pages. `/sitemap.xml` liệt kê trang chủ, mọi trang lớp, chương, mạch kiến thức và bài học.
+- **Static**: SvelteKit + `@sveltejs/adapter-static`, cấu hình trong `vite.config.js`: `paths.base` là `/<tên package>` (`/toantot`; đổi bằng `SITE_BASE`), `paths.origin` là host xuất bản (`https://tiennm99dev.github.io`; đổi bằng `SITE_ORIGIN`), output `build/`, `static/404.html` cho GitHub Pages. `/sitemap.xml` liệt kê trang chủ, mọi trang lớp, chương, mạch kiến thức và bài học.
 - **CSP**: chế độ `hash` — mỗi trang prerender có thẻ meta CSP với hash của script inline; `style-src` cho phép `'unsafe-inline'` vì Svelte và KaTeX ghi style inline.
 - **Styling**: Tailwind 4 (PostCSS qua `@tailwindcss/postcss`) + Be Vietnam Pro (woff2 qua `@fontsource`). `src/app.css` nạp Tailwind bằng `@import 'tailwindcss/index.css'`; tick palette `colors.pair.{1,2,3,4}` vẫn khai báo trong `tailwind.config.js` và được nạp qua `@config`.
 - **Language**: JavaScript only (Svelte 5, JSDoc qua `jsconfig.json` với `checkJs: true`).
@@ -156,7 +156,7 @@ git diff --name-only main...HEAD                # chỉ đường dẫn trong th
 
 ### Site anh em
 
-`scripts/sync-core.sh <repo>` chép phần dùng chung (core, engine, route, param, script, config, workflow và skill soạn bài) sang một site anh em, ghi chú đầu mỗi file rằng file được đồng bộ, và ghi commit nguồn vào `CORE_VERSION`. Sửa phần dùng chung ở MathMate trước, rồi đồng bộ; site anh em không sửa các file đó.
+`scripts/sync-core.sh <repo>` chép phần dùng chung (core, engine, route, param, script, config, workflow và skill soạn bài) sang một site anh em, ghi chú đầu mỗi file rằng file được đồng bộ, và ghi commit nguồn vào `CORE_VERSION`. Sửa phần dùng chung ở ToánTốt trước, rồi đồng bộ; site anh em không sửa các file đó.
 
 ## License
 
