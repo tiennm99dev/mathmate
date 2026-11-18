@@ -1,6 +1,7 @@
-import { P, add3, dot3, mul3, planeValue, sub3 } from '../_shared/space.js';
+import { add3, dot3, mul3, sub3 } from '#lib/geom-engine/solid.js';
+import { P, planeValue } from '#lib/geom-engine/space.js';
 
-/** @typedef {import('../_shared/space.js').P3} P3 */
+/** @typedef {import('#lib/geom-engine/space.js').P3} P3 */
 
 /**
  * A drone takes off from A and flies straight with velocity v (km per

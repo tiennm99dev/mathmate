@@ -4,12 +4,12 @@
   import Stepper from '#lib/core/stepper.svelte';
   import { button } from '#lib/core/ui.js';
   import { intText } from '#lib/core/number-format.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { P } from '#lib/geom-engine/space.js';
   import {
     BOX_EDGES,
     CHALLENGE_W,
     ORIGIN,
-    P,
     boxCorners,
     chain,
     challengeText,
@@ -144,6 +144,7 @@
   </div>
 
   <SpaceScene
+    look="coordinates"
     {axes}
     {arrows}
     {segments}

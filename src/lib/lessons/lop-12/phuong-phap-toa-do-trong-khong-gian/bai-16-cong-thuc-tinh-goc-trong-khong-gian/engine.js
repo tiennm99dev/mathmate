@@ -1,17 +1,8 @@
-import {
-  angleDeg,
-  coords,
-  cross3,
-  degreeTex,
-  dot3,
-  isZero3,
-  mul3,
-  opTex,
-  overSqrtTex,
-  sub3,
-} from '../_shared/space.js';
+import { cross3, dot3, mul3, sub3 } from '#lib/geom-engine/solid.js';
+import { angleDeg, coords, isZero3 } from '#lib/geom-engine/space.js';
+import { degreeTex, opTex, overSqrtTex } from '#lib/geom-engine/space-tex.js';
 
-/** @typedef {import('../_shared/space.js').P3} P3 */
+/** @typedef {import('#lib/geom-engine/space.js').P3} P3 */
 /** @typedef {'ll' | 'lp' | 'pp'} Mode */
 
 /** Largest coordinate a stepper of the widget reaches. */

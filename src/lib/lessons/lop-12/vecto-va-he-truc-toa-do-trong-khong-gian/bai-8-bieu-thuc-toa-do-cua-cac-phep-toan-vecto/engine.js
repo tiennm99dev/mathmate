@@ -1,16 +1,6 @@
-import {
-  add3,
-  coordTex,
-  cross3,
-  dot3,
-  len3,
-  mul3,
-  opTex,
-  overSqrtTex,
-  sqrtTex,
-  sub3,
-  angleDeg,
-} from '../_shared/space.js';
+import { add3, cross3, dot3, mul3, sub3 } from '#lib/geom-engine/solid.js';
+import { angleDeg, len3 } from '#lib/geom-engine/space.js';
+import { coordTex, opTex, overSqrtTex, sqrtTex } from '#lib/geom-engine/space-tex.js';
 
 /**
  * The coordinate formulas of the vector operations, worked out step by step
@@ -19,7 +9,7 @@ import {
  * the parallelogram built on the two vectors.
  */
 
-/** @typedef {import('../_shared/space.js').P3} P3 */
+/** @typedef {import('#lib/geom-engine/space.js').P3} P3 */
 
 /**
  * √n written out, then simplified when it changes: '\\sqrt{21}',

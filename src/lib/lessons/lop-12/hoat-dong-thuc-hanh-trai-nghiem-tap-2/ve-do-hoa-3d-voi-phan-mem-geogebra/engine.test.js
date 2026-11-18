@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { P } from '../_shared/space.js';
+import { P } from '#lib/geom-engine/space.js';
 import {
   lineInput,
   linePlane,

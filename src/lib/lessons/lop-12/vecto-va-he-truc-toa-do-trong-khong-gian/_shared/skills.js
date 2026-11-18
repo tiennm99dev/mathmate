@@ -10,23 +10,13 @@
 
 import { int, nonZero, pick, shuffle } from '#lib/core/drill.js';
 import { gcd } from '#lib/numtheory-engine/index.js';
-import {
-  P,
-  add3,
-  arrowTex,
-  coordTex,
-  coords,
-  cross3,
-  cubeDot,
-  cubeVector,
-  dot3,
-  mul3,
-  opTex,
-  sub3,
-} from './space.js';
+import { add3, cross3, dot3, mul3, sub3 } from '#lib/geom-engine/solid.js';
+import { coords, P } from '#lib/geom-engine/space.js';
+import { coordTex, opTex } from '#lib/geom-engine/space-tex.js';
+import { arrowTex, cubeDot, cubeVector } from './cube.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-/** @typedef {import('./space.js').P3} P3 */
+/** @typedef {import('#lib/geom-engine/space.js').P3} P3 */
 
 /** The names of the three coordinates, in order. */
 export const COORD_NAMES = ['hoành độ', 'tung độ', 'cao độ'];

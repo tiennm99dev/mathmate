@@ -1,6 +1,8 @@
-import { coords, dot3, opTex, sqrtTex, sub3 } from '../_shared/space.js';
+import { dot3, sub3 } from '#lib/geom-engine/solid.js';
+import { coords } from '#lib/geom-engine/space.js';
+import { opTex, sqrtTex } from '#lib/geom-engine/space-tex.js';
 
-/** @typedef {import('../_shared/space.js').P3} P3 */
+/** @typedef {import('#lib/geom-engine/space.js').P3} P3 */
 
 /** The houses of the village to be covered, on the ground z = 0 (unit: km). */
 export const HOUSES = /** @type {P3[]} */ ([

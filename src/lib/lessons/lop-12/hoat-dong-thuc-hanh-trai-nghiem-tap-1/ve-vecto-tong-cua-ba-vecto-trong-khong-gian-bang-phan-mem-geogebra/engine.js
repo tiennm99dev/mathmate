@@ -7,20 +7,15 @@
  */
 
 import { add3, cross3, dot3 } from '#lib/geom-engine/solid.js';
+import { P, same3 } from '#lib/geom-engine/space.js';
 import { intText } from '#lib/core/number-format.js';
 
 /** @typedef {import('#lib/geom-engine/solid.js').P3} P3 */
-
-/** @param {number} x @param {number} y @param {number} z @returns {P3} */
-export const P = (x, y, z) => ({ x, y, z });
 
 export const ORIGIN = P(0, 0, 0);
 
 /** u + v + w. @param {P3} u @param {P3} v @param {P3} w */
 export const sum3 = (u, v, w) => add3(add3(u, v), w);
-
-/** @param {P3} a @param {P3} b */
-export const same3 = (a, b) => a.x === b.x && a.y === b.y && a.z === b.z;
 
 /**
  * The mixed product u · (v × w): 0 exactly when the three vectors are

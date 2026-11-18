@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest';
 import {
   BOX_EDGES,
   CHALLENGE_W,
-  P,
   boxCorners,
   chain,
   challengeText,
@@ -10,10 +9,10 @@ import {
   ggbVector,
   lengthText,
   mixed,
-  same3,
   sceneFrame,
   sum3,
 } from './engine.js';
+import { P, same3 } from '#lib/geom-engine/space.js';
 
 const u = P(1, 2, 0);
 const v = P(0, 1, 3);

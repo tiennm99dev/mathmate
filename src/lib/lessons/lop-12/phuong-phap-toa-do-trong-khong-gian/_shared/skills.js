@@ -9,26 +9,22 @@
  */
 
 import { int, nonZero, pick, shuffle } from '#lib/core/drill.js';
+import { add3, dot3, mul3 } from '#lib/geom-engine/solid.js';
+import { coords, P, planeD } from '#lib/geom-engine/space.js';
 import {
-  P,
-  add3,
-  coordTex,
-  coords,
-  dot3,
-  mul3,
   affineTex,
+  coordTex,
   opTex,
   overSqrtTex,
-  sqrtTex,
   paramTex,
-  planeD,
   planeTex,
   sphereExpandedTex,
+  sqrtTex,
   sumTex,
-} from './space.js';
+} from '#lib/geom-engine/space-tex.js';
 
 /** @typedef {import('#lib/core/drill.js').Skill} Skill */
-/** @typedef {import('./space.js').P3} P3 */
+/** @typedef {import('#lib/geom-engine/space.js').P3} P3 */
 
 /** The names of the three coordinates, in order. */
 export const COORD_NAMES = ['hoành độ', 'tung độ', 'cao độ'];

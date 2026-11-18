@@ -1,34 +1,18 @@
-import { add3, cross3, dot3, mul3, sub3 } from '#lib/geom-engine/solid.js';
-import { gcd } from '#lib/numtheory-engine/index.js';
 import { formatNumber, numTex } from '#lib/core/number-format.js';
+import { gcd } from '#lib/numtheory-engine/index.js';
+import { dot3 } from '#lib/geom-engine/solid.js';
+import { coords } from '#lib/geom-engine/space.js';
 
 /**
- * Coordinates in space for the chapter "Phương pháp toạ độ trong không
- * gian": points and vectors written the book's way (`(1; −2; 3)`), exact
- * square roots and quotients such as $\dfrac{\sqrt{3}}{3}$, and the
- * equations of planes, lines and spheres with whole coefficients, written as
- * the book prints them (`2x - y + 3z - 5 = 0`).
- *
- * Model space as in `#lib/geom-engine/solid.js`: z points up, so the model's
- * x, y, z are the axes Ox, Oy, Oz of the book.
+ * Coordinates in space written the way the grade 12 book prints them: points
+ * and vectors (`(1; −2; 3)`, `2\vec{i} - \vec{j} + 3\vec{k}`), exact square
+ * roots and quotients such as $\dfrac{\sqrt{3}}{3}$, angles, and the equations
+ * of planes, lines and spheres with whole coefficients
+ * (`2x - y + 3z - 5 = 0`). The geometry itself is in
+ * `#lib/geom-engine/space.js`. Pure and DOM-free.
  */
 
 /** @typedef {import('#lib/geom-engine/solid.js').P3} P3 */
-
-/** @param {number} x @param {number} y @param {number} z @returns {P3} */
-export const P = (x = 0, y = 0, z = 0) => ({ x, y, z });
-
-/** @param {P3} a */
-export const len3 = (a) => Math.hypot(a.x, a.y, a.z);
-
-/** @param {P3} a */
-export const isZero3 = (a) => a.x === 0 && a.y === 0 && a.z === 0;
-
-/**
- * The three coordinates, with −0 written as 0.
- * @param {P3} a @returns {[number, number, number]}
- */
-export const coords = (a) => [a.x + 0, a.y + 0, a.z + 0];
 
 /**
  * Coordinates as TeX, the book's way: `(1; -2; 0{,}5)`.
@@ -54,11 +38,9 @@ export const coordText = (a) =>
  */
 export const opTex = (n) => (n < 0 ? `(${numTex(n)})` : numTex(n));
 
-/** True when u and v are parallel (the zero vector counts as parallel). @param {P3} u @param {P3} v */
-export const parallel3 = (u, v) => isZero3(cross3(u, v));
-
 /**
- * √n = out·√rest with rest free of square factors, for a whole n > 0.
+ * √n = out·√rest with rest free of square factors, for a whole n > 0:
+ * 12 → { out: 2, rest: 3 }.
  * @param {number} n
  */
 export function splitSquare(n) {
@@ -74,7 +56,8 @@ export function splitSquare(n) {
 }
 
 /**
- * Exact √n for a whole n ≥ 0, simplified: 12 → '2\\sqrt{3}', 9 → '3'.
+ * Exact √n for a whole n ≥ 0, simplified: 12 → '2\\sqrt{3}', 9 → '3',
+ * 1 → '1', 0 → '0'.
  * @param {number} n
  */
 export function sqrtTex(n) {
@@ -87,12 +70,13 @@ export function sqrtTex(n) {
 /**
  * The exact value of d / √m for whole d and m > 0, as TeX with a rational
  * denominator: (1, 3) → '\\dfrac{\\sqrt{3}}{3}', (−1, 4) → '-\\dfrac{1}{2}',
- * (6, 9) → '2', (0, 6) → '0'.
+ * (2, 4) → '1', (0, 6) → '0'.
  * @param {number} d @param {number} m
  */
 export function overSqrtTex(d, m) {
   if (d === 0) return '0';
   const { out, rest } = splitSquare(m);
+  // d / (out·√rest) = d·√rest / (out·rest)
   let p = Math.abs(d);
   let q = out * rest;
   const g = gcd(p, q);
@@ -105,7 +89,15 @@ export function overSqrtTex(d, m) {
 }
 
 /**
- * "= 45^\\circ" for a whole angle, "\\approx 54{,}7^\\circ" otherwise.
+ * The degrees of an angle written the book's way with a decimal comma,
+ * rounded to tenths: 54.7356 → '54,7°'; whole angles stay whole: '90°'.
+ * @param {number} deg
+ */
+export const degreeText = (deg) => `${formatNumber(deg, 1)}°`;
+
+/**
+ * "= 45^\\circ" for a whole angle, "\\approx 54{,}7^\\circ" otherwise: the
+ * relation and the angle in TeX, rounded to tenths.
  * @param {number} deg
  */
 export function degreeTex(deg) {
@@ -114,21 +106,24 @@ export function degreeTex(deg) {
 }
 
 /**
- * The degrees of an angle rounded to tenths with a decimal comma: '54,7°'.
- * @param {number} deg
+ * A vector as a combination of the unit vectors, in TeX:
+ * (2, −1, 3) → '2\vec{i} - \vec{j} + 3\vec{k}', (0, 0, 0) → '\vec{0}'.
+ * @param {P3} a
  */
-export const degreeText = (deg) => `${formatNumber(deg, 1)}°`;
-
-/**
- * The angle between two non-zero vectors in degrees (0° to 180°), or null
- * when one of them is the zero vector.
- * @param {P3} u @param {P3} v
- */
-export function angleDeg(u, v) {
-  const l = Math.sqrt(dot3(u, u) * dot3(v, v));
-  if (l === 0) return null;
-  const cos = Math.max(-1, Math.min(1, dot3(u, v) / l));
-  return (Math.acos(cos) * 180) / Math.PI;
+export function ijkTex(a) {
+  const parts = /** @type {[number, string][]} */ ([
+    [a.x, '\\vec{i}'],
+    [a.y, '\\vec{j}'],
+    [a.z, '\\vec{k}'],
+  ]).filter(([c]) => c !== 0);
+  if (!parts.length) return '\\vec{0}';
+  return parts
+    .map(([c, e], i) => {
+      const mag = Math.abs(c) === 1 ? '' : numTex(Math.abs(c));
+      const sign = c < 0 ? (i ? ' - ' : '-') : i ? ' + ' : '';
+      return `${sign}${mag}${e}`;
+    })
+    .join('');
 }
 
 /**
@@ -166,13 +161,6 @@ export function sumTex(ks, c = 0, names = ['x', 'y', 'z']) {
 export const planeTex = (n, D) => `${sumTex(coords(n), D)} = 0`;
 
 /**
- * D of the plane through M0 with normal n: A(x − x0) + B(y − y0) + C(z − z0) = 0
- * gives D = −(Ax0 + By0 + Cz0).
- * @param {P3} n @param {P3} m0
- */
-export const planeD = (n, m0) => -dot3(n, m0) + 0;
-
-/**
  * A(x − x0) + B(y − y0) + C(z − z0) = 0 in TeX, terms with A = 0 left out:
  * '2(x - 1) - (y + 2) + 3z = 0'.
  * @param {P3} n @param {P3} m0
@@ -197,17 +185,21 @@ export function pointNormalTex(n, m0) {
 }
 
 /**
- * The value of Ax + By + Cz + D at a point.
- * @param {P3} n @param {number} D @param {P3} p
- */
-export const planeValue = (n, D, p) => dot3(n, p) + D;
-
-/**
  * x − x0 written in TeX: 'x', 'x - 2', 'x + 3'.
  * @param {string} name @param {number} x0
  */
 const shiftTex = (name, x0) =>
   x0 === 0 ? name : `${name} ${x0 < 0 ? '+' : '-'} ${numTex(Math.abs(x0))}`;
+
+/**
+ * x0 + a·t written the book's way, the constant first: '1 + 2t', '-t',
+ * '3', '2 - t'.
+ * @param {number} x0 @param {number} a @param {string} [t]
+ */
+export function affineTex(x0, a, t = 't') {
+  if (x0 === 0) return sumTex([a], 0, [t]);
+  return `${numTex(x0)}${term(a, t, false)}`;
+}
 
 /**
  * The parametric equations of the line through M with direction u, as a
@@ -219,16 +211,6 @@ export function paramTex(m, u, t = 't') {
   const us = coords(u);
   const rows = ['x', 'y', 'z'].map((name, i) => `${name} = ${affineTex(ms[i], us[i], t)}`);
   return `\\begin{cases} ${rows.join(' \\\\ ')} \\end{cases}`;
-}
-
-/**
- * x0 + a·t written the book's way, the constant first: '1 + 2t', '-t',
- * '3', '2 - t'.
- * @param {number} x0 @param {number} a @param {string} [t]
- */
-export function affineTex(x0, a, t = 't') {
-  if (x0 === 0) return sumTex([a], 0, [t]);
-  return `${numTex(x0)}${term(a, t, false)}`;
 }
 
 /**
@@ -269,80 +251,3 @@ export function sphereExpandedTex(centre, r2) {
   const rest = sumTex(lin, d);
   return `x^2 + y^2 + z^2${rest === '0' ? '' : rest.startsWith('-') ? ` - ${rest.slice(1)}` : ` + ${rest}`} = 0`;
 }
-
-/**
- * Two unit vectors that, with n, make a right-handed orthonormal frame: a
- * basis of the plane with normal n, used to draw a square patch of it.
- * @param {P3} n a non-zero vector
- * @returns {[P3, P3]}
- */
-export function planeBasis(n) {
-  const k = mul3(n, 1 / len3(n));
-  const helper = Math.abs(k.z) < 0.9 ? P(0, 0, 1) : P(1, 0, 0);
-  let a = cross3(helper, k);
-  a = mul3(a, 1 / len3(a));
-  const b = cross3(k, a);
-  return [a, b];
-}
-
-/**
- * The corners of a square patch of the plane with normal n through c, of
- * half side h.
- * @param {P3} n @param {P3} c @param {number} h
- */
-export function planePatch(n, c, h) {
-  const [a, b] = planeBasis(n);
-  return [
-    [1, 1],
-    [-1, 1],
-    [-1, -1],
-    [1, -1],
-  ].map(([s, t]) => add3(c, add3(mul3(a, s * h), mul3(b, t * h))));
-}
-
-/**
- * The foot of the perpendicular from p to the plane n·X + D = 0.
- * @param {P3} n @param {number} D @param {P3} p
- */
-export function footOnPlane(n, D, p) {
-  const k = planeValue(n, D, p) / dot3(n, n);
-  return sub3(p, mul3(n, k));
-}
-
-/**
- * A fan marking the angle from direction u to direction v at the point o, as
- * a polygon of radius r; empty when the angle is next to 0°.
- * @param {P3} o @param {P3} u @param {P3} v @param {number} r
- * @returns {P3[]}
- */
-export function angleFan(o, u, v, r, steps = 18) {
-  const a = mul3(u, 1 / len3(u));
-  const b = mul3(v, 1 / len3(v));
-  const cos = Math.max(-1, Math.min(1, dot3(a, b)));
-  const theta = Math.acos(cos);
-  if (theta < 1e-3) return [];
-  const side = sub3(b, mul3(a, cos));
-  if (len3(side) < 1e-9) return [];
-  const w = mul3(side, 1 / len3(side));
-  const out = [o];
-  for (let i = 0; i <= steps; i++) {
-    const k = (theta * i) / steps;
-    out.push(add3(o, mul3(add3(mul3(a, Math.cos(k)), mul3(w, Math.sin(k))), r)));
-  }
-  return out;
-}
-
-/**
- * The circle of centre c and radius r in the plane with normal n, as a
- * closed list of points (a sphere's equator, a cut of a sphere).
- * @param {P3} c @param {number} r @param {P3} [n]
- */
-export function circle3(c, r, n = P(0, 0, 1), steps = 48) {
-  const [a, b] = planeBasis(n);
-  return Array.from({ length: steps }, (_, i) => {
-    const t = (2 * Math.PI * i) / steps;
-    return add3(c, add3(mul3(a, r * Math.cos(t)), mul3(b, r * Math.sin(t))));
-  });
-}
-
-export { add3, cross3, dot3, mul3, sub3 };

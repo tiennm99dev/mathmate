@@ -4,19 +4,10 @@
   import SegmentedControl from '#lib/core/segmented-control.svelte';
   import Stepper from '#lib/core/stepper.svelte';
   import { intText } from '#lib/core/number-format.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import {
-    P,
-    angleFan,
-    coordTex,
-    coordText,
-    cross3,
-    degreeText,
-    isZero3,
-    len3,
-    mul3,
-    planePatch,
-  } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { cross3, mul3 } from '#lib/geom-engine/solid.js';
+  import { angleFan, isZero3, len3, P, planePatch } from '#lib/geom-engine/space.js';
+  import { coordTex, coordText, degreeText } from '#lib/geom-engine/space-tex.js';
   import { LIMIT, formula, measure } from './engine.js';
 
   /**
@@ -30,7 +21,7 @@
    */
 
   /** @typedef {import('./engine.js').Mode} Mode */
-  /** @typedef {import('../_shared/space.js').P3} P3 */
+  /** @typedef {import('#lib/geom-engine/space.js').P3} P3 */
 
   const C1 = '#2563EB';
   const C2 = '#DC2626';
@@ -219,6 +210,7 @@
     onchange={pick}
   />
   <SpaceScene
+    look="coordinates"
     axes={3.2}
     segments={scene.segments}
     polygons={scene.polygons}

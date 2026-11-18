@@ -1,17 +1,11 @@
 <script>
   import LiveRichText from '#lib/components/live-rich-text.svelte';
   import SegmentedControl from '#lib/core/segmented-control.svelte';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import {
-    CUBE,
-    CUBE_EDGES,
-    add3,
-    angleFan,
-    arrowTex,
-    degreeTex,
-    degreeText,
-    mul3,
-  } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { add3, mul3 } from '#lib/geom-engine/solid.js';
+  import { angleFan } from '#lib/geom-engine/space.js';
+  import { degreeTex, degreeText } from '#lib/geom-engine/space-tex.js';
+  import { arrowTex, CUBE, CUBE_EDGES } from '../_shared/cube.js';
   import { U_CHOICES, V_CHOICES, dotOf } from './engine.js';
 
   /**
@@ -55,7 +49,7 @@
   ]);
 
   const polygons = $derived.by(() => {
-    const fan = angleFan(CUBE.A, d.u, d.v, 0.3, { x: 0, y: 0, z: 1 });
+    const fan = angleFan(CUBE.A, d.u, d.v, 0.3, { across: { x: 0, y: 0, z: 1 } });
     return fan.length
       ? [{ key: 'fan', pts: fan, fill: '#F59E0B', opacity: 0.5, stroke: '#D97706' }]
       : [];
@@ -109,6 +103,7 @@
     />
   </div>
   <SpaceScene
+    look="coordinates"
     {segments}
     {arrows}
     {polygons}

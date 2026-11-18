@@ -1,4 +1,6 @@
-import { CUBE, P, add3, arrowTex, cubeDot, cubeVector, same3 } from '../_shared/space.js';
+import { add3 } from '#lib/geom-engine/solid.js';
+import { P, same3 } from '#lib/geom-engine/space.js';
+import { arrowTex, CUBE, cubeDot, cubeVector } from '../_shared/cube.js';
 
 /**
  * The parallelepiped (hình hộp) ABCD.A'B'C'D' built on three edge vectors
@@ -8,7 +10,7 @@ import { CUBE, P, add3, arrowTex, cubeDot, cubeVector, same3 } from '../_shared/
  * vectors of the cube of edge a.
  */
 
-/** @typedef {import('../_shared/space.js').P3} P3 */
+/** @typedef {import('#lib/geom-engine/space.js').P3} P3 */
 
 /** The vertex reached from A by the sum of the chosen edge vectors. */
 export const VERTEX = ['A', 'B', 'D', 'C', "A'", "B'", "D'", "C'"];

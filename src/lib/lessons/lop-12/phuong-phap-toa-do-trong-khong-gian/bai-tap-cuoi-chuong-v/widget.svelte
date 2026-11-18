@@ -3,16 +3,9 @@
   import LiveRichText from '#lib/components/live-rich-text.svelte';
   import SliderField from '#lib/core/slider-field.svelte';
   import { formatNumber, numTex } from '#lib/core/number-format.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import {
-    P,
-    coordText,
-    len3,
-    paramTex,
-    planePatch,
-    planeTex,
-    sphereTex,
-  } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { len3, P, planePatch } from '#lib/geom-engine/space.js';
+  import { coordText, paramTex, planeTex, sphereTex } from '#lib/geom-engine/space-tex.js';
   import {
     D,
     EVENTS,
@@ -112,6 +105,7 @@
 
 <div class="space-y-4">
   <SpaceScene
+    look="coordinates"
     axes={4.5}
     {discs}
     {polygons}

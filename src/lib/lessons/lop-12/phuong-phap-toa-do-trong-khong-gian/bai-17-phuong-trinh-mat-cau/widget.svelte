@@ -4,15 +4,9 @@
   import Stepper from '#lib/core/stepper.svelte';
   import { intText, numTex } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import {
-    P,
-    circle3,
-    coordTex,
-    coordText,
-    sphereExpandedTex,
-    sphereTex,
-  } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { circle3, P } from '#lib/geom-engine/space.js';
+  import { coordTex, coordText, sphereExpandedTex, sphereTex } from '#lib/geom-engine/space-tex.js';
   import {
     HIGH,
     HOUSES,
@@ -108,6 +102,7 @@
 
 <div class="space-y-4">
   <SpaceScene
+    look="coordinates"
     axes={4}
     {discs}
     {polygons}

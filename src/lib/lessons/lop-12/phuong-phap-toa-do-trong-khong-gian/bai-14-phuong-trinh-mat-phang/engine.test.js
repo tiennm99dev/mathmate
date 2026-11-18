@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { P, planeValue } from '../_shared/space.js';
+import { P, planeValue } from '#lib/geom-engine/space.js';
 import { LIMIT, planeWork } from './engine.js';
 
 describe('plane through a point with a normal vector', () => {

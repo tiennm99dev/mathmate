@@ -5,8 +5,10 @@
   import Stepper from '#lib/core/stepper.svelte';
   import { intText, numTex, tidy } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { P, add3, coordTex, coordText, len3, mul3, paramTex } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { add3, mul3 } from '#lib/geom-engine/solid.js';
+  import { len3, P } from '#lib/geom-engine/space.js';
+  import { coordTex, coordText, paramTex } from '#lib/geom-engine/space-tex.js';
   import { LIMIT, PRESETS, RELATION_NAMES, relate } from './engine.js';
 
   /**
@@ -47,7 +49,7 @@
     line2 = { m: { ...PRESETS[key].m }, u: { ...PRESETS[key].u } };
   }
 
-  /** @param {{ m: import('../_shared/space.js').P3, u: import('../_shared/space.js').P3 }} l */
+  /** @param {{ m: import('#lib/geom-engine/space.js').P3, u: import('#lib/geom-engine/space.js').P3 }} l */
   function ends(l) {
     const l0 = len3(l.u);
     if (l0 === 0) return null;
@@ -98,7 +100,7 @@
   /**
    * The common point in TeX: exact when its coordinates have at most two
    * decimals, rounded with ≈ otherwise.
-   * @param {import('../_shared/space.js').P3} p
+   * @param {import('#lib/geom-engine/space.js').P3} p
    */
   function meetTex(p) {
     const vals = [p.x, p.y, p.z].map((v) => tidy(v));
@@ -116,6 +118,7 @@
 
 <div class="space-y-4">
   <SpaceScene
+    look="coordinates"
     axes={3.5}
     {segments}
     {arrows}

@@ -4,8 +4,8 @@
   import SliderField from '#lib/core/slider-field.svelte';
   import { formatNumber } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { arrowTex } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { arrowTex } from '../_shared/cube.js';
   import { BOX_EDGES, EDGES, TARGETS, VERTEX, boxPoints, chain, sumTex, why } from './engine.js';
 
   /**
@@ -104,6 +104,7 @@
     />
   </p>
   <SpaceScene
+    look="coordinates"
     {segments}
     {arrows}
     {labels}

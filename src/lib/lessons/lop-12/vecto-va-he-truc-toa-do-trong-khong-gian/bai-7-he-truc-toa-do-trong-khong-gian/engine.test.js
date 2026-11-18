@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { rng } from '#lib/core/drill.js';
-import { P } from '../_shared/space.js';
+import { P } from '#lib/geom-engine/space.js';
 import { LIMIT, boxEdges, makeTarget, project, wrongCoords } from './engine.js';
 
 describe('coordinates of a point', () => {

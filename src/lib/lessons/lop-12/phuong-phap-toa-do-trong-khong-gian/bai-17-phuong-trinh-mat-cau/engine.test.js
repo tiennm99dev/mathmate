@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { P } from '../_shared/space.js';
+import { P } from '#lib/geom-engine/space.js';
 import { HOUSES, bestRadius, covered, distanceTex, groundRadius, placeOf } from './engine.js';
 
 describe('coverage of a station', () => {

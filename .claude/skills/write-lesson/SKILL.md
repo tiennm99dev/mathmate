@@ -258,9 +258,18 @@ flat) and `touchPoints` (where the incircle meets the sides).
 `#lib/geom-engine/space.js` is points, lines and planes in space (`planeThrough`,
 `meetPlane`, `lineRelation`, `meetLines`, `projectAlong`, `footOnPlane`,
 `footOnLine`, `lineAngle`, `linePlaneAngle`, `commonPerpendicular`,
-`orientFaces`, `isHidden`, `cube`, `angleFan`), drawn by
-`#lib/core/visuals/space-scene.svelte` (a turning scene with dashed hidden
-edges). `#lib/geom-engine/solid.js` draws solids in a turning orthographic view:
+`orientFaces`, `isHidden`, `cube`, `angleFan` with `{ across }` for a
+straight angle), and coordinates in space: `isZero3`, `same3`, `coords`,
+`parallel3`, `angleDeg`, planes by their general equation (`planeValue`,
+`planeD`, `footOnEquation`) and `planePatch`/`circle3` to draw them.
+`#lib/geom-engine/space-tex.js` writes them the book's way: `coordTex`
+(`(1; -2; 0{,}5)`), `coordText`, `opTex`, `sqrtTex`, `overSqrtTex`
+(`\dfrac{\sqrt{3}}{3}`), `degreeText`, `degreeTex`, `ijkTex`, `sumTex`,
+`planeTex`, `pointNormalTex`, `paramTex`, `affineTex`, `canonTex`,
+`sphereTex` and `sphereExpandedTex`. Both are drawn by
+`#lib/core/visuals/space-scene.svelte`: a turning scene with dashed hidden
+edges, `arrows` (vectors), `axes` (Ox, Oy, Oz), `discs` (spheres) and
+`look="coordinates"` for the grade 12 coordinate chapters. `#lib/geom-engine/solid.js` draws solids in a turning orthographic view:
 `add3`, `sub3`, `mul3`, `dot3`, `cross3` on `{ x, y, z }`, `viewPoint`,
 `facesViewer`, `drawOrder` (faces far to near) and the view controls
 `clampPitch`, `wrapYaw`, `dragView` and `arrowView` (the near side follows

@@ -1,5 +1,5 @@
 import { int } from '#lib/core/drill.js';
-import { P, same3 } from '../_shared/space.js';
+import { P, same3 } from '#lib/geom-engine/space.js';
 
 /**
  * The coordinates of a point in the system Oxyz: its projections on the
@@ -7,7 +7,7 @@ import { P, same3 } from '../_shared/space.js';
  * shows them, and points to locate in the challenge.
  */
 
-/** @typedef {import('../_shared/space.js').P3} P3 */
+/** @typedef {import('#lib/geom-engine/space.js').P3} P3 */
 
 /** Coordinates of the points in the widget go from −LIMIT to LIMIT. */
 export const LIMIT = 3;

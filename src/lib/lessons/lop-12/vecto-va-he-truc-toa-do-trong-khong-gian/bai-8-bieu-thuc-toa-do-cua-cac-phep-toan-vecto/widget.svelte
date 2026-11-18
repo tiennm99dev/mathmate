@@ -3,8 +3,10 @@
   import Stepper from '#lib/core/stepper.svelte';
   import { formatNumber, intText } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { P, add3, coordText, degreeTex, isZero3 } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { add3 } from '#lib/geom-engine/solid.js';
+  import { isZero3, P } from '#lib/geom-engine/space.js';
+  import { coordText, degreeTex } from '#lib/geom-engine/space-tex.js';
   import { LIMIT, drawnCross, work } from './engine.js';
 
   /**
@@ -89,6 +91,7 @@
 
 <div class="space-y-4">
   <SpaceScene
+    look="coordinates"
     axes={LIMIT + 0.5}
     {arrows}
     {segments}

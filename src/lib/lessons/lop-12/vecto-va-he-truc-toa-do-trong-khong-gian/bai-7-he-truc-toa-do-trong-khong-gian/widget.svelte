@@ -6,8 +6,9 @@
   import { rng } from '#lib/core/drill.js';
   import { intText } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { P, coordTex, coordText, ijkTex, same3 } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { P, same3 } from '#lib/geom-engine/space.js';
+  import { coordTex, coordText, ijkTex } from '#lib/geom-engine/space-tex.js';
   import {
     LIMIT,
     PLANES,
@@ -115,6 +116,7 @@
 
 <div class="space-y-4">
   <SpaceScene
+    look="coordinates"
     axes={LIMIT + 1}
     {segments}
     {arrows}

@@ -1,6 +1,8 @@
-import { add3, coordTex, cross3, dot3, isZero3, mul3, parallel3, sub3 } from '../_shared/space.js';
+import { add3, cross3, dot3, mul3, sub3 } from '#lib/geom-engine/solid.js';
+import { isZero3, parallel3 } from '#lib/geom-engine/space.js';
+import { coordTex } from '#lib/geom-engine/space-tex.js';
 
-/** @typedef {import('../_shared/space.js').P3} P3 */
+/** @typedef {import('#lib/geom-engine/space.js').P3} P3 */
 /** @typedef {'trung' | 'song-song' | 'cat' | 'cheo'} Relation */
 
 /** Largest coordinate a stepper of the widget reaches. */

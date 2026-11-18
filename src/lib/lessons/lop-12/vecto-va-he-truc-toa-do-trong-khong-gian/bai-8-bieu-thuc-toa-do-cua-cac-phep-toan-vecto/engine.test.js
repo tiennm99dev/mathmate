@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { dot3 } from '#lib/geom-engine/solid.js';
-import { P, len3 } from '../_shared/space.js';
+import { len3, P } from '#lib/geom-engine/space.js';
 import { LIMIT, MAX_DRAWN, drawnCross, work } from './engine.js';
 
 describe('coordinate formulas', () => {

@@ -4,8 +4,9 @@
   import Stepper from '#lib/core/stepper.svelte';
   import { numTex } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import { P, coordTex, coordText, same3 } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { P, same3 } from '#lib/geom-engine/space.js';
+  import { coordTex, coordText } from '#lib/geom-engine/space-tex.js';
   import {
     DESK_HIGH,
     DESK_LOW,
@@ -43,7 +44,7 @@
   const hit = $derived(same3(m, obj.at));
   const dist = $derived(distanceFromO(obj.at));
 
-  /** @param {import('../_shared/space.js').P3} p */
+  /** @param {import('#lib/geom-engine/space.js').P3} p */
   const floor = (p) => P(p.x, p.y, 0);
 
   const grid = $derived([
@@ -152,6 +153,7 @@
     />
   </p>
   <SpaceScene
+    look="coordinates"
     {segments}
     {arrows}
     {dots}

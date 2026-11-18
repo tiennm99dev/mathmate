@@ -1,4 +1,6 @@
-import { P, dot3, same3, sqrtTex } from '../_shared/space.js';
+import { dot3 } from '#lib/geom-engine/solid.js';
+import { P, same3 } from '#lib/geom-engine/space.js';
+import { sqrtTex } from '#lib/geom-engine/space-tex.js';
 
 /**
  * A classroom placed in the system Oxyz, one metre a unit: the origin O at a
@@ -6,7 +8,7 @@ import { P, dot3, same3, sqrtTex } from '../_shared/space.js';
  * Oz. Objects in the room have whole coordinates to find.
  */
 
-/** @typedef {import('../_shared/space.js').P3} P3 */
+/** @typedef {import('#lib/geom-engine/space.js').P3} P3 */
 
 export const ROOM = { length: 8, width: 6, height: 4 };
 

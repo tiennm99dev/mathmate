@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { P } from '../_shared/space.js';
+import { P } from '#lib/geom-engine/space.js';
 import { eventTimes, planeSide, position, radarSquare } from './engine.js';
 
 describe('drone flight', () => {

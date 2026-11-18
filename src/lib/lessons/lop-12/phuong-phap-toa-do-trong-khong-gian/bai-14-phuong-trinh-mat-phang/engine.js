@@ -1,19 +1,15 @@
+import { dot3 } from '#lib/geom-engine/solid.js';
+import { coords, footOnEquation, isZero3, planeD, planeValue } from '#lib/geom-engine/space.js';
 import {
   coordTex,
-  coords,
-  dot3,
-  footOnPlane,
-  isZero3,
   opTex,
   overSqrtTex,
-  planeD,
   planeTex,
-  planeValue,
   pointNormalTex,
   sqrtTex,
-} from '../_shared/space.js';
+} from '#lib/geom-engine/space-tex.js';
 
-/** @typedef {import('../_shared/space.js').P3} P3 */
+/** @typedef {import('#lib/geom-engine/space.js').P3} P3 */
 
 /** Largest coordinate a stepper of the widget reaches. */
 export const LIMIT = 3;
@@ -38,7 +34,7 @@ export function planeWork(n, m0, q) {
     D,
     value,
     distance,
-    foot: footOnPlane(n, D, q),
+    foot: footOnEquation(n, D, q),
     pointNormalTex: pointNormalTex(n, m0),
     generalTex: planeTex(n, D),
     normalTex: `\\vec{n} = ${coordTex(n)}`,

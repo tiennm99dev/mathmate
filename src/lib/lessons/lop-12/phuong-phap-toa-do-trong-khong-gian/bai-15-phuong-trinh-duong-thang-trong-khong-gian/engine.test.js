@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { P, cross3, sub3 } from '../_shared/space.js';
+import { cross3, sub3 } from '#lib/geom-engine/solid.js';
+import { P } from '#lib/geom-engine/space.js';
 import { LIMIT, PRESETS, relate } from './engine.js';
 
 const M = P(0, 0, 0);

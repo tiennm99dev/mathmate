@@ -7,16 +7,8 @@
  * line one types in GeoGebra.
  */
 
-import {
-  add3,
-  dot3,
-  mul3,
-  sub3,
-  cross3,
-  isZero3,
-  footOnPlane,
-  planeValue,
-} from '../_shared/space.js';
+import { add3, cross3, dot3, mul3, sub3 } from '#lib/geom-engine/solid.js';
+import { footOnEquation, isZero3, planeValue } from '#lib/geom-engine/space.js';
 
 /** @typedef {import('#lib/geom-engine/solid.js').P3} P3 */
 
@@ -57,7 +49,7 @@ export function planeSphere(n, D, c, r) {
   const d = Math.abs(top) / Math.sqrt(nn);
   const lhs = top * top;
   const rhs = r * r * nn;
-  const centre = footOnPlane(n, D, c);
+  const centre = footOnEquation(n, D, c);
   if (lhs < rhs) return { kind: 'circle', top, nn, d, r: Math.sqrt(r * r - d * d), centre };
   if (lhs === rhs) return { kind: 'tangent', top, nn, d, r: 0, centre };
   return { kind: 'apart', top, nn, d, r: 0, centre: null };

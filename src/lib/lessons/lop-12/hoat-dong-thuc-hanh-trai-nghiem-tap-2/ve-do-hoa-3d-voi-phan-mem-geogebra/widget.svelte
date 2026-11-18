@@ -5,20 +5,10 @@
   import Stepper from '#lib/core/stepper.svelte';
   import { formatNumber, intText, numTex } from '#lib/core/number-format.js';
   import { button } from '#lib/core/ui.js';
-  import SpaceScene from '../_shared/space-scene.svelte';
-  import {
-    P,
-    add3,
-    circle3,
-    footOnPlane,
-    len3,
-    mul3,
-    overSqrtTex,
-    paramTex,
-    planePatch,
-    planeTex,
-    sphereTex,
-  } from '../_shared/space.js';
+  import SpaceScene from '#lib/core/visuals/space-scene.svelte';
+  import { add3, mul3 } from '#lib/geom-engine/solid.js';
+  import { circle3, footOnEquation, len3, P, planePatch } from '#lib/geom-engine/space.js';
+  import { overSqrtTex, paramTex, planeTex, sphereTex } from '#lib/geom-engine/space-tex.js';
   import {
     lineInput,
     linePlane,
@@ -84,7 +74,7 @@
       ? [
           {
             key: 'p',
-            pts: planePatch(n, footOnPlane(n, d, P()), 3.6),
+            pts: planePatch(n, footOnEquation(n, d, P()), 3.6),
             fill: PLANE,
             opacity: 0.22,
             stroke: '#D97706',
@@ -132,7 +122,7 @@
           {
             key: 'p',
             text: '(P)',
-            at: planePatch(n, footOnPlane(n, d, P()), 3.6)[0],
+            at: planePatch(n, footOnEquation(n, d, P()), 3.6)[0],
             color: '#B45309',
           },
         ]
@@ -209,6 +199,7 @@
 
 <div class="space-y-4">
   <SpaceScene
+    look="coordinates"
     axes={4}
     {discs}
     {polygons}
