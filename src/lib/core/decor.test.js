@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { grades } from '#lib/curriculum/index.js';
