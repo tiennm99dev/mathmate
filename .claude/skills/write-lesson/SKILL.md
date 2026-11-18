@@ -459,8 +459,14 @@ Other shared pieces:
   - `tally.js` with `tally-marks.svelte`: counting by category for grades 2
     and 3 (`ChartSymbol`, `tallyBundles`, `tallyWords` "1 bó 5 vạch và 2
     vạch", `countBy`, `totalOf`, `extremes`) and the tally strokes, read one
-    word per stroke until `settled`. `chance.js`: the book's three words
-    (`CHANCES`) and `wordOf(outcomes, holds)`.
+    word per stroke until `settled`; `chart-symbol.svelte` draws a
+    `ChartSymbol` (a colour as a ball, or as a tile with `swatch="tile"`) and
+    `picture-chart.svelte` is the kid picture chart (biểu đồ tranh), rows of
+    `{ label, count, symbol }`. `chance.js`: the book's three words
+    (`CHANCES`), `wordOf(outcomes, holds)`, and boxes of coloured balls as a
+    list of `BallColor` ids, one per ball (`BALL_COLORS` with each colour's
+    name, fill and letter, `ballCounts`, `boxText`, `waysToTake`), drawn by
+    `ball-box.svelte`. A chapter keeps only which colours it draws from.
   - `fractions.js` with `fraction-note.svelte`: grade 4-5 fractions on
     `{ n, d }`: `fracTex`, `fracRich`, `fracText`, `fracWords` ("ba phần tư")
     and `denominatorWords` (a denominator of 1 collapses unless `{ keepOne:
@@ -495,6 +501,20 @@ Other shared pieces:
     column addition and subtraction ("đặt tính rồi tính"), `makeProblem` and
     `freshProblem`; `counting-sticks.svelte` draws que tính bundles and loose
     sticks (cross-out, extra and ringed columns, `small`).
+    `place-column-board.svelte` is the same board for numbers of any length:
+    `written` and the `carried`/`active` places are counted by power of ten
+    (0 the ones), `width` defaults to fit the numbers and the result.
+  - `number-chain.js` with `number-chain.svelte`: a chain of calculations
+    along arrows (`chainSteps(start, [{ op, n }])` gives `ChainStep`s `{ sign,
+    word, n, value }`; a × or : chain writes its own steps), the boxes showing
+    "?" until `settled`. `ruler-segment.svelte`: a named segment lying on a cm
+    ruler from mark `from` to mark `to`.
+  - `plane-figure.js` with `plane-figure.svelte`: grade 2 plane drawings as
+    data (`Figure`: named `dots`, a name `below` its dot, `segments`, `lines`
+    run to the edges, `curves` as SVG paths with an optional name, `shapes`,
+    `strokes`, `texts` and an optional `say`), `SHAPE_MODELS`/`shapeAt`,
+    `polylineFigure` with `zigzag`, `wave`, `arch(from, bend, to)`,
+    `areCollinear`, `lineThrough`, `NAME_RUNS` and `figureText`.
   - `carry.js` with `carry-quiz.svelte` (and `column-board.svelte` with
     `carried`): the same with carrying, `carrySteps`, `carryText`, `makeCarry`,
     `freshCarry`, `sumOptions` and `differenceOptions` (the slip of a forgotten
