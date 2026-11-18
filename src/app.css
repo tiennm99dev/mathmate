@@ -82,9 +82,9 @@
 
 /* Age-band theme. SiteShell sets `data-band` (core/band.js); hub sections may
    nest their own. Bands change surface, shape, density and decoration, never
-   the interaction colour. The art and subject colours come from the
-   site-owned src/lib/site/decor.css. Decoration sits only in the gutters, the
-   ribbon and hub spots, on empty aria-hidden elements, never under text. */
+   the interaction colour. Art and subject colours: site-owned
+   src/lib/site/decor.css. Decoration sits only in the gutters, ribbon and
+   hub spots, on empty aria-hidden elements, never under text. */
 :root,
 [data-band='thcs'],
 [data-band='chung'] {
@@ -140,7 +140,7 @@
   --spot-opacity: 0.6;
 }
 
-/* <main>: the page colour, plus the ô li grid paper in the thpt gutters. */
+/* <main>: page colour, plus ô li grid paper in thpt gutters. */
 .decor-surface {
   position: relative;
   background-color: var(--page-bg);
@@ -148,7 +148,7 @@
   background-size: 24px 24px;
 }
 
-/* The content column stays opaque, with plain colour 1.5rem to each side. */
+/* The content column stays opaque, plain 1.5rem to each side. */
 .decor-column {
   position: relative;
   background-color: var(--page-bg);
